@@ -15,7 +15,7 @@
 import UIKit
 import SKPhotoBrowser
 import MobilePlayer
-import AVFoundation
+import AVKit
 
 extension ChatViewController : UICollectionViewDataSource {
     
@@ -37,19 +37,20 @@ extension ChatViewController : UICollectionViewDataSource {
         
         // Text message
         if type == .TextMessage && senderType == .Incoming {
-            cellIdentifier = "BubbleCellViewIDTextIncoming"
+            //cellIdentifier = "BubbleCellViewIDTextIncoming"
+            cellIdentifier = incomingTextMessageReuseIdentifier
         }
         else if type == .TextMessage && senderType == .Outgoing {
-            cellIdentifier = "BubbleCellViewIDTextOutgoing"
+            cellIdentifier = outgoingTextMessageReuseIdentifier
         }
         // ----
         
         // Image and Video message
         else if (type == .ImageMessage || type == .VideoMessage) && senderType == .Outgoing {
-            cellIdentifier = "BubbleCellViewIDImageOutgoing"
+            cellIdentifier = incomingImageMessageReuseIdentifier
         }
         else if (type == .ImageMessage || type == .VideoMessage) && senderType == .Incoming {
-            cellIdentifier = "BubbleCellViewIDImageIncoming"
+            cellIdentifier = outgoingImageMessageReuseIdentifier
         }
         // ---
         
@@ -63,6 +64,8 @@ extension ChatViewController : UICollectionViewDataSource {
         // ---
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! BubbleViewCell
+        
+    
         cell.viewController = self
         cell.indexPath = indexPath
         
@@ -141,30 +144,29 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
     final var bubbleSizeCalculator: CellSizeCalculator!
     
     // Insets for sections, label and the text inside the label.
-    
-  /*  init() {
-        super.init(nibName: "nibName", bundle: Bundle.main)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-    }
-     */
-    
+   
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        
-        if textField.text!.isEmpty {
-            return ;
+        if !textField.text!.isEmpty {
+            let sm = SMessage(senderId: self.senderId, senderName: self.senderName, text: textField.text!, date: Date(), senderAvatar: nil)
+            didPressSendButton(withMessage: sm, textField: self.textField, collectionView: self.collectionView)
         }
-        
-        let sm = SMessage(senderId: self.senderId, senderName: self.senderName, text: textField.text!, date: Date(), senderAvatar: nil)
-        didPressSendButton(withMessage: sm, textField: self.textField, collectionView: self.collectionView)
-        
     }
+    
+    private let incomingTextMessageXibName = "IncomingTextMessageCell", incomingTextMessageReuseIdentifier = "BubbleCellViewIDTextIncomingXib"
+    private let outgoingTextMessageXibName = "OutgoingTextMessageCell", outgoingTextMessageReuseIdentifier = "BubbleCellViewIDTextOutgoingXib"
+    private let incomingImageMessageXibName = "IncomingImageMessageCell", incomingImageMessageReuseIdentifier = "BubbleCellViewIDImageIncomingXib"
+    private let outgoingImageMessageXibName = "OutgoingImageMessageCell", outgoingImageMessageReuseIdentifier = "BubbleCellViewIDImageOutgoingXib"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let b = Bundle.main
+        
+        collectionView.register(UINib(nibName: incomingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingTextMessageReuseIdentifier)
+        collectionView.register(UINib(nibName: outgoingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingTextMessageReuseIdentifier)
+        collectionView.register(UINib(nibName: incomingImageMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingImageMessageReuseIdentifier)
+        collectionView.register(UINib(nibName: outgoingImageMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingImageMessageReuseIdentifier)
         
         senderId = sender().id
         senderName = sender().name

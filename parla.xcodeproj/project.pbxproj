@@ -39,6 +39,11 @@
 		527994962282CAC500ACB791 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994932282CAC500ACB791 /* ViewController.swift */; };
 		527994992282CAFC00ACB791 /* DebuggingStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994972282CAFC00ACB791 /* DebuggingStuff.swift */; };
 		5279949C2282D11A00ACB791 /* BubbleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279949B2282D11A00ACB791 /* BubbleDelegate.swift */; };
+		527994A62282E96300ACB791 /* IncomingTextMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A12282E96300ACB791 /* IncomingTextMessageCell.xib */; };
+		527994A72282E96300ACB791 /* ParlaCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A22282E96300ACB791 /* ParlaCollectionView.xib */; };
+		527994A82282E96300ACB791 /* OutgoingImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A32282E96300ACB791 /* OutgoingImageMessageCell.xib */; };
+		527994A92282E96300ACB791 /* IncomingImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A42282E96300ACB791 /* IncomingImageMessageCell.xib */; };
+		527994AA2282E96300ACB791 /* OutgoingTextMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */; };
 		76EAD7C4CC32E8B0755A82D4 /* Pods_parlaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCDFCBBE54D94DA41E0869D /* Pods_parlaTests.framework */; };
 		E786FA49560A40F4D442072D /* Pods_parla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3841403D16E995C75C0467 /* Pods_parla.framework */; };
 /* End PBXBuildFile section */
@@ -93,6 +98,11 @@
 		527994932282CAC500ACB791 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		527994972282CAFC00ACB791 /* DebuggingStuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebuggingStuff.swift; sourceTree = "<group>"; };
 		5279949B2282D11A00ACB791 /* BubbleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleDelegate.swift; sourceTree = "<group>"; };
+		527994A12282E96300ACB791 /* IncomingTextMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingTextMessageCell.xib; sourceTree = "<group>"; };
+		527994A22282E96300ACB791 /* ParlaCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParlaCollectionView.xib; sourceTree = "<group>"; };
+		527994A32282E96300ACB791 /* OutgoingImageMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingImageMessageCell.xib; sourceTree = "<group>"; };
+		527994A42282E96300ACB791 /* IncomingImageMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingImageMessageCell.xib; sourceTree = "<group>"; };
+		527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingTextMessageCell.xib; sourceTree = "<group>"; };
 		8E79302EB35E1A59CAFD2A78 /* Pods-parlaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parlaTests.release.xcconfig"; path = "Target Support Files/Pods-parlaTests/Pods-parlaTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE3841403D16E995C75C0467 /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D25D1C435AAEEA8E8BD9F483 /* Pods-parla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parla.debug.xcconfig"; path = "Target Support Files/Pods-parla/Pods-parla.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +151,7 @@
 		527994402282C94500ACB791 /* parla */ = {
 			isa = PBXGroup;
 			children = (
+				527994A02282E95200ACB791 /* Xib */,
 				527994762282CA4300ACB791 /* Domain */,
 				527994612282C9FE00ACB791 /* Resources */,
 				527994412282C94500ACB791 /* AppDelegate.swift */,
@@ -218,6 +229,18 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		527994A02282E95200ACB791 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				527994A42282E96300ACB791 /* IncomingImageMessageCell.xib */,
+				527994A12282E96300ACB791 /* IncomingTextMessageCell.xib */,
+				527994A32282E96300ACB791 /* OutgoingImageMessageCell.xib */,
+				527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */,
+				527994A22282E96300ACB791 /* ParlaCollectionView.xib */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
 		B07FDA34B9D9C56CA3DEAD89 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,7 +249,6 @@
 				2925BB6411B1F7FD6D0E82FB /* Pods-parlaTests.debug.xcconfig */,
 				8E79302EB35E1A59CAFD2A78 /* Pods-parlaTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -323,7 +345,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				527994A92282E96300ACB791 /* IncomingImageMessageCell.xib in Resources */,
 				5279946C2282CA3D00ACB791 /* avatarDefault.png in Resources */,
+				527994A82282E96300ACB791 /* OutgoingImageMessageCell.xib in Resources */,
 				5279946E2282CA3D00ACB791 /* video.mp4 in Resources */,
 				5279946D2282CA3D00ACB791 /* play100.png in Resources */,
 				527994712282CA3D00ACB791 /* doc.jpg in Resources */,
@@ -331,8 +355,11 @@
 				5279944C2282C94700ACB791 /* LaunchScreen.storyboard in Resources */,
 				527994492282C94700ACB791 /* Assets.xcassets in Resources */,
 				527994742282CA3D00ACB791 /* play40.png in Resources */,
+				527994A72282E96300ACB791 /* ParlaCollectionView.xib in Resources */,
 				527994752282CA3D00ACB791 /* Microphone-100.png in Resources */,
+				527994AA2282E96300ACB791 /* OutgoingTextMessageCell.xib in Resources */,
 				527994732282CA3D00ACB791 /* play.png in Resources */,
+				527994A62282E96300ACB791 /* IncomingTextMessageCell.xib in Resources */,
 				527994722282CA3D00ACB791 /* Imagine.mp3 in Resources */,
 				527994702282CA3D00ACB791 /* pause100.png in Resources */,
 				527994472282C94500ACB791 /* Main.storyboard in Resources */,

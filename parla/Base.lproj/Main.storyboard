@@ -13,7 +13,6 @@
         <!--Seneca-->
         <scene sceneID="Cx7-wh-Tko">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iFQ-vA-YaZ" sceneMemberID="firstResponder"/>
                 <viewController id="iKU-4b-JTQ" customClass="ViewController" customModule="parla" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Br9-bJ-prO"/>
@@ -632,6 +631,7 @@
                         <outlet property="textFieldContainer" destination="yU0-Rb-cFy" id="Xsd-Eb-Sdx"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iFQ-vA-YaZ" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="980" y="133.5832083958021"/>
         </scene>
