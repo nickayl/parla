@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: ChatViewController {
     
-    private var m: Array<SMessage> = []
+    private var m: [SMessage] = []
 
     override func viewDidLoad() {
         

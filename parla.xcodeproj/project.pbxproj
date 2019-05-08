@@ -44,6 +44,7 @@
 		527994A82282E96300ACB791 /* OutgoingImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A32282E96300ACB791 /* OutgoingImageMessageCell.xib */; };
 		527994A92282E96300ACB791 /* IncomingImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A42282E96300ACB791 /* IncomingImageMessageCell.xib */; };
 		527994AA2282E96300ACB791 /* OutgoingTextMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */; };
+		527994AC2283079800ACB791 /* VoiceMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994AB2283079800ACB791 /* VoiceMessageCell.xib */; };
 		76EAD7C4CC32E8B0755A82D4 /* Pods_parlaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCDFCBBE54D94DA41E0869D /* Pods_parlaTests.framework */; };
 		E786FA49560A40F4D442072D /* Pods_parla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3841403D16E995C75C0467 /* Pods_parla.framework */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,7 @@
 		527994A32282E96300ACB791 /* OutgoingImageMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingImageMessageCell.xib; sourceTree = "<group>"; };
 		527994A42282E96300ACB791 /* IncomingImageMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingImageMessageCell.xib; sourceTree = "<group>"; };
 		527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingTextMessageCell.xib; sourceTree = "<group>"; };
+		527994AB2283079800ACB791 /* VoiceMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoiceMessageCell.xib; sourceTree = "<group>"; };
 		8E79302EB35E1A59CAFD2A78 /* Pods-parlaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parlaTests.release.xcconfig"; path = "Target Support Files/Pods-parlaTests/Pods-parlaTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE3841403D16E995C75C0467 /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D25D1C435AAEEA8E8BD9F483 /* Pods-parla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parla.debug.xcconfig"; path = "Target Support Files/Pods-parla/Pods-parla.debug.xcconfig"; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				527994A32282E96300ACB791 /* OutgoingImageMessageCell.xib */,
 				527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */,
 				527994A22282E96300ACB791 /* ParlaCollectionView.xib */,
+				527994AB2283079800ACB791 /* VoiceMessageCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				527994742282CA3D00ACB791 /* play40.png in Resources */,
 				527994A72282E96300ACB791 /* ParlaCollectionView.xib in Resources */,
 				527994752282CA3D00ACB791 /* Microphone-100.png in Resources */,
+				527994AC2283079800ACB791 /* VoiceMessageCell.xib in Resources */,
 				527994AA2282E96300ACB791 /* OutgoingTextMessageCell.xib in Resources */,
 				527994732282CA3D00ACB791 /* play.png in Resources */,
 				527994A62282E96300ACB791 /* IncomingTextMessageCell.xib in Resources */,

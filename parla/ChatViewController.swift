@@ -56,7 +56,7 @@ extension ChatViewController : UICollectionViewDataSource {
         
         // Voice message
         else if type == .VoiceMessage  && senderType == .Incoming {
-            cellIdentifier = "BubbleCellViewIDVoiceIncoming"
+            cellIdentifier = incomingVoiceMessageReuseIdenfitier
         }
         else  {
             cellIdentifier = "BubbleCellViewIDVoiceOutgoing"
@@ -117,9 +117,9 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
     @IBOutlet var textFieldContainer: UIView!
     @IBOutlet var textField: UITextField!
     
-    @IBOutlet var inputToolbarTextFieldHeightConstraint: NSLayoutConstraint!
+  //  @IBOutlet var inputToolbarTextFieldHeightConstraint: NSLayoutConstraint!
     @IBOutlet var bottom: NSLayoutConstraint!
-    @IBOutlet var inputToolbarContainerHeightConstraint: NSLayoutConstraint!
+  //  @IBOutlet var inputToolbarContainerHeightConstraint: NSLayoutConstraint!
     
     @IBAction func microphoneTouchDown(_ sender: UIButton) {
         print("Microphone touch DOWN")
@@ -145,28 +145,72 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
     
     // Insets for sections, label and the text inside the label.
    
-    @IBAction func sendButtonPressed(_ sender: UIButton) {
+    @objc func onSendButtonPressed(_ sender: UITapGestureRecognizer) {
         if !textField.text!.isEmpty {
             let sm = SMessage(senderId: self.senderId, senderName: self.senderName, text: textField.text!, date: Date(), senderAvatar: nil)
             didPressSendButton(withMessage: sm, textField: self.textField, collectionView: self.collectionView)
         }
     }
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: "ParlaCollectionView", bundle: Bundle.main)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     private let incomingTextMessageXibName = "IncomingTextMessageCell", incomingTextMessageReuseIdentifier = "BubbleCellViewIDTextIncomingXib"
     private let outgoingTextMessageXibName = "OutgoingTextMessageCell", outgoingTextMessageReuseIdentifier = "BubbleCellViewIDTextOutgoingXib"
     private let incomingImageMessageXibName = "IncomingImageMessageCell", incomingImageMessageReuseIdentifier = "BubbleCellViewIDImageIncomingXib"
     private let outgoingImageMessageXibName = "OutgoingImageMessageCell", outgoingImageMessageReuseIdentifier = "BubbleCellViewIDImageOutgoingXib"
+    private let incomingVoiceMessageXibName = "VoiceMessageCell", incomingVoiceMessageReuseIdenfitier = "BubbleCellViewIDVoiceIncomingXib"
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let b = Bundle.main
         
+        let nib = UINib(nibName: "ParlaCollectionView", bundle: b)
+        let chatView = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        
+        // view.addConstraint(NSLayoutConstraint(item: gamePreview, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1, constant: 0))
+        
+        self.view.addSubview(chatView)
+        self.bottom = NSLayoutConstraint(item: chatView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: -35)
+        let top = NSLayoutConstraint(item: chatView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 35)
+        
+        self.view.addConstraints([
+            self.bottom,
+            NSLayoutConstraint(item: chatView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: chatView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0),
+            top
+            ])
+        
+        self.collectionView = chatView.subviews[0] as? UICollectionView
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.inputToolbarContainer = chatView.subviews[1]
+        self.textFieldContainer = chatView.subviews[1].subviews[2]
+        let sendButton = chatView.subviews[1].subviews[1] as! UIButton
+        
+        sendButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onSendButtonPressed(_:))))
+        self.textField = chatView.subviews[1].subviews[2].subviews[0] as? UITextField
+        self.textField.delegate = self
+        
+        
         collectionView.register(UINib(nibName: incomingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingTextMessageReuseIdentifier)
         collectionView.register(UINib(nibName: outgoingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingTextMessageReuseIdentifier)
         collectionView.register(UINib(nibName: incomingImageMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingImageMessageReuseIdentifier)
         collectionView.register(UINib(nibName: outgoingImageMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingImageMessageReuseIdentifier)
+        collectionView.register(UINib(nibName: incomingVoiceMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingVoiceMessageReuseIdenfitier)
+        
+        chatView.translatesAutoresizingMaskIntoConstraints = false
+     //   self.view.translatesAutoresizingMaskIntoConstraints = false
         
         senderId = sender().id
         senderName = sender().name
@@ -178,7 +222,7 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
         
         //  collectionView.register(UINib.init(nibName: "OutgoingTextMessageCell", bundle: Bundle.main), forCellWithReuseIdentifier: "BubbleCellViewIDRight")
         
-        self.bubbleSizeCalculator = CellSizeCalculator(mainView: view, textFont: textFont)
+        self.bubbleSizeCalculator = CellSizeCalculator(mainView: self.view, textFont: textFont)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -288,7 +332,7 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
         // Scrolls the collection view to the last visible item (message). Section is 0 becouse here we have only one section , i.e. a message per cell.
        // self.collectionView!.scrollToBottom(animated: true)
         
-        bottom.constant += keyboardSize.height
+        bottom.constant -= keyboardSize.height + 20
         
     }
     
@@ -301,7 +345,7 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
         
        // self.inputToolbarContainerHeightConstraint.constant = 44
         // self.inputToolbarTextFieldHeightConstraint.constant = 30
-        bottom.constant = 0
+        bottom.constant = -35
         
       //  self.collectionView.layoutIfNeeded()
     }
