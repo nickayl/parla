@@ -39,6 +39,8 @@
 		527994962282CAC500ACB791 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994932282CAC500ACB791 /* ViewController.swift */; };
 		527994992282CAFC00ACB791 /* DebuggingStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994972282CAFC00ACB791 /* DebuggingStuff.swift */; };
 		5279949C2282D11A00ACB791 /* BubbleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279949B2282D11A00ACB791 /* BubbleDelegate.swift */; };
+		76EAD7C4CC32E8B0755A82D4 /* Pods_parlaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCDFCBBE54D94DA41E0869D /* Pods_parlaTests.framework */; };
+		E786FA49560A40F4D442072D /* Pods_parla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3841403D16E995C75C0467 /* Pods_parla.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BCDFCBBE54D94DA41E0869D /* Pods_parlaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parlaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1408B47793C81470808D10E1 /* Pods-parla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parla.release.xcconfig"; path = "Target Support Files/Pods-parla/Pods-parla.release.xcconfig"; sourceTree = "<group>"; };
+		2925BB6411B1F7FD6D0E82FB /* Pods-parlaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parlaTests.debug.xcconfig"; path = "Target Support Files/Pods-parlaTests/Pods-parlaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5279943E2282C94500ACB791 /* parla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		527994412282C94500ACB791 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		527994462282C94500ACB791 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +93,9 @@
 		527994932282CAC500ACB791 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		527994972282CAFC00ACB791 /* DebuggingStuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebuggingStuff.swift; sourceTree = "<group>"; };
 		5279949B2282D11A00ACB791 /* BubbleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleDelegate.swift; sourceTree = "<group>"; };
+		8E79302EB35E1A59CAFD2A78 /* Pods-parlaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parlaTests.release.xcconfig"; path = "Target Support Files/Pods-parlaTests/Pods-parlaTests.release.xcconfig"; sourceTree = "<group>"; };
+		BE3841403D16E995C75C0467 /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D25D1C435AAEEA8E8BD9F483 /* Pods-parla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parla.debug.xcconfig"; path = "Target Support Files/Pods-parla/Pods-parla.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E786FA49560A40F4D442072D /* Pods_parla.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76EAD7C4CC32E8B0755A82D4 /* Pods_parlaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +124,8 @@
 				527994402282C94500ACB791 /* parla */,
 				527994552282C94700ACB791 /* parlaTests */,
 				5279943F2282C94500ACB791 /* Products */,
+				B07FDA34B9D9C56CA3DEAD89 /* Pods */,
+				E200FFB25FAB39FA22F4A7C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,6 +218,27 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		B07FDA34B9D9C56CA3DEAD89 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D25D1C435AAEEA8E8BD9F483 /* Pods-parla.debug.xcconfig */,
+				1408B47793C81470808D10E1 /* Pods-parla.release.xcconfig */,
+				2925BB6411B1F7FD6D0E82FB /* Pods-parlaTests.debug.xcconfig */,
+				8E79302EB35E1A59CAFD2A78 /* Pods-parlaTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E200FFB25FAB39FA22F4A7C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE3841403D16E995C75C0467 /* Pods_parla.framework */,
+				0BCDFCBBE54D94DA41E0869D /* Pods_parlaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -213,9 +246,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5279945B2282C94700ACB791 /* Build configuration list for PBXNativeTarget "parla" */;
 			buildPhases = (
+				481C7A136C2A962F824D2390 /* [CP] Check Pods Manifest.lock */,
 				5279943A2282C94500ACB791 /* Sources */,
 				5279943B2282C94500ACB791 /* Frameworks */,
 				5279943C2282C94500ACB791 /* Resources */,
+				A802CF977D6FA0E729554079 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -230,6 +265,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5279945E2282C94700ACB791 /* Build configuration list for PBXNativeTarget "parlaTests" */;
 			buildPhases = (
+				18035EBE40E4DE32F6282D53 /* [CP] Check Pods Manifest.lock */,
 				5279944E2282C94700ACB791 /* Sources */,
 				5279944F2282C94700ACB791 /* Frameworks */,
 				527994502282C94700ACB791 /* Resources */,
@@ -311,6 +347,77 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18035EBE40E4DE32F6282D53 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-parlaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		481C7A136C2A962F824D2390 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-parla-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A802CF977D6FA0E729554079 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-parla/Pods-parla-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MobilePlayer/MobilePlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MobilePlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SKPhotoBrowser.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-parla/Pods-parla-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5279943A2282C94500ACB791 /* Sources */ = {
@@ -494,6 +601,7 @@
 		};
 		5279945C2282C94700ACB791 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D25D1C435AAEEA8E8BD9F483 /* Pods-parla.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -512,6 +620,7 @@
 		};
 		5279945D2282C94700ACB791 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1408B47793C81470808D10E1 /* Pods-parla.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -530,6 +639,7 @@
 		};
 		5279945F2282C94700ACB791 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2925BB6411B1F7FD6D0E82FB /* Pods-parlaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -551,6 +661,7 @@
 		};
 		527994602282C94700ACB791 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E79302EB35E1A59CAFD2A78 /* Pods-parlaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

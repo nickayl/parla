@@ -13,8 +13,8 @@
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import UIKit
-//import SKPhotoBrowser
-//import MobilePlayer
+import SKPhotoBrowser
+import MobilePlayer
 import AVFoundation
 
 extension ChatViewController : UICollectionViewDataSource {
@@ -339,22 +339,22 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
         
         if m.messageType == .VideoMessage {
             if let videoURL = m.video {
-//
-//                let playerVC = MobilePlayerViewController(contentURL: videoURL)
-//                playerVC.title = "\(m.senderName)'s video"
-//                playerVC.activityItems = [videoURL]
-//
-//                presentMoviePlayerViewControllerAnimated(playerVC)
+
+                let playerVC = MobilePlayerViewController(contentURL: videoURL)
+                playerVC.title = "\(m.senderName)'s video"
+                playerVC.activityItems = [videoURL]
+
+                presentMoviePlayerViewControllerAnimated(playerVC)
             }
 
         } else if m.messageType == .ImageMessage {
             let image = m.image
             
-//            let photo = SKPhoto.photoWithImage(image!)
-//            let browser = SKPhotoBrowser(photos: [photo])
-//            browser.initializePageIndex(0)
-//
-//            present(browser, animated: true, completion: nil)
+            let photo = SKPhoto.photoWithImage(image!)
+            let browser = SKPhotoBrowser(photos: [photo])
+            browser.initializePageIndex(0)
+
+            present(browser, animated: true, completion: nil)
         }
         
     }

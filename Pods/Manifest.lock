@@ -1,0 +1,20 @@
+PODS:
+  - MobilePlayer (1.3.0)
+  - SKPhotoBrowser (6.1.0)
+
+DEPENDENCIES:
+  - MobilePlayer (~> 1.3.0)
+  - SKPhotoBrowser (~> 6.1.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MobilePlayer
+    - SKPhotoBrowser
+
+SPEC CHECKSUMS:
+  MobilePlayer: e50e2160830f3db51d6e08067318aec6a9d39408
+  SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
+
+PODFILE CHECKSUM: 62e423153aabef854e2982f765595f5ce15e446e
+
+COCOAPODS: 1.6.1
