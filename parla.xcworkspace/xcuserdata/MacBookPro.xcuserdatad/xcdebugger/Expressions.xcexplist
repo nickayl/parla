@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "TextMessageCell.awakeFromNib():MessageCell.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ImageMessageCell.content.setter:MessageCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "newValue as! PImageMessageImpl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewViewController.viewDidLoad():NewViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.messages as! [PTextMessageImpl]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ParlaViewController.collectionView(_:cellForItemAt:):ParlaViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "message as! PTextMessageImpl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ImageMessageCell.initialize():MessageCell.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

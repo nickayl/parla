@@ -28,7 +28,6 @@ public class SKPhotoBrowserImageViewer : ImageViewer {
     public required init(withImage image: UIImage, withViewController viewController: UIViewController) {
         self.image = image
         self.viewController = viewController
-        
     }
     
     public func show() {

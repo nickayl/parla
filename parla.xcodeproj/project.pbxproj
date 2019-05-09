@@ -51,6 +51,10 @@
 		52FB4DCD22842D67001BF14E /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCC22842D67001BF14E /* ImageViewer.swift */; };
 		52FB4DCF228433F6001BF14E /* ParlaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCE228433F6001BF14E /* ParlaViewController.swift */; };
 		52FB4DD1228439DC001BF14E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DD0228439DC001BF14E /* MessageCell.swift */; };
+		52FB4DD32284576D001BF14E /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DD22284576D001BF14E /* NewViewController.swift */; };
+		52FB4DD52284AAB0001BF14E /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DD42284AAB0001BF14E /* VideoPlayer.swift */; };
+		52FB4DD72284AE89001BF14E /* OutgoingVideoMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FB4DD62284AE89001BF14E /* OutgoingVideoMessageCell.xib */; };
+		52FB4DD92284AED0001BF14E /* IncomingVideoMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FB4DD82284AED0001BF14E /* IncomingVideoMessageCell.xib */; };
 		76EAD7C4CC32E8B0755A82D4 /* Pods_parlaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCDFCBBE54D94DA41E0869D /* Pods_parlaTests.framework */; };
 		E786FA49560A40F4D442072D /* Pods_parla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3841403D16E995C75C0467 /* Pods_parla.framework */; };
 /* End PBXBuildFile section */
@@ -117,6 +121,10 @@
 		52FB4DCC22842D67001BF14E /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		52FB4DCE228433F6001BF14E /* ParlaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlaViewController.swift; sourceTree = "<group>"; };
 		52FB4DD0228439DC001BF14E /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		52FB4DD22284576D001BF14E /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
+		52FB4DD42284AAB0001BF14E /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
+		52FB4DD62284AE89001BF14E /* OutgoingVideoMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingVideoMessageCell.xib; sourceTree = "<group>"; };
+		52FB4DD82284AED0001BF14E /* IncomingVideoMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingVideoMessageCell.xib; sourceTree = "<group>"; };
 		8E79302EB35E1A59CAFD2A78 /* Pods-parlaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parlaTests.release.xcconfig"; path = "Target Support Files/Pods-parlaTests/Pods-parlaTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE3841403D16E995C75C0467 /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D25D1C435AAEEA8E8BD9F483 /* Pods-parla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parla.debug.xcconfig"; path = "Target Support Files/Pods-parla/Pods-parla.debug.xcconfig"; sourceTree = "<group>"; };
@@ -248,8 +256,10 @@
 			isa = PBXGroup;
 			children = (
 				527994A42282E96300ACB791 /* IncomingImageMessageCell.xib */,
+				52FB4DD82284AED0001BF14E /* IncomingVideoMessageCell.xib */,
 				527994A12282E96300ACB791 /* IncomingTextMessageCell.xib */,
 				527994A32282E96300ACB791 /* OutgoingImageMessageCell.xib */,
+				52FB4DD62284AE89001BF14E /* OutgoingVideoMessageCell.xib */,
 				527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */,
 				527994A22282E96300ACB791 /* ParlaCollectionView.xib */,
 				527994AB2283079800ACB791 /* VoiceMessageCell.xib */,
@@ -263,9 +273,11 @@
 				52FB4DC22284155B001BF14E /* SenderLogic.swift */,
 				52FB4DC622841875001BF14E /* MessageLogic.swift */,
 				52FB4DCA22841A60001BF14E /* ParlaConfig.swift */,
-				52FB4DCC22842D67001BF14E /* ImageViewer.swift */,
 				52FB4DCE228433F6001BF14E /* ParlaViewController.swift */,
 				52FB4DD0228439DC001BF14E /* MessageCell.swift */,
+				52FB4DD22284576D001BF14E /* NewViewController.swift */,
+				52FB4DCC22842D67001BF14E /* ImageViewer.swift */,
+				52FB4DD42284AAB0001BF14E /* VideoPlayer.swift */,
 			);
 			path = Redesign;
 			sourceTree = "<group>";
@@ -377,12 +389,14 @@
 				527994A92282E96300ACB791 /* IncomingImageMessageCell.xib in Resources */,
 				5279946C2282CA3D00ACB791 /* avatarDefault.png in Resources */,
 				527994A82282E96300ACB791 /* OutgoingImageMessageCell.xib in Resources */,
+				52FB4DD92284AED0001BF14E /* IncomingVideoMessageCell.xib in Resources */,
 				5279946E2282CA3D00ACB791 /* video.mp4 in Resources */,
 				5279946D2282CA3D00ACB791 /* play100.png in Resources */,
 				527994712282CA3D00ACB791 /* doc.jpg in Resources */,
 				5279946F2282CA3D00ACB791 /* play_blu.png in Resources */,
 				5279944C2282C94700ACB791 /* LaunchScreen.storyboard in Resources */,
 				527994492282C94700ACB791 /* Assets.xcassets in Resources */,
+				52FB4DD72284AE89001BF14E /* OutgoingVideoMessageCell.xib in Resources */,
 				527994742282CA3D00ACB791 /* play40.png in Resources */,
 				527994A72282E96300ACB791 /* ParlaCollectionView.xib in Resources */,
 				527994752282CA3D00ACB791 /* Microphone-100.png in Resources */,
@@ -488,6 +502,7 @@
 				52FB4DCD22842D67001BF14E /* ImageViewer.swift in Sources */,
 				52FB4DC32284155B001BF14E /* SenderLogic.swift in Sources */,
 				527994882282CAA600ACB791 /* ViewHolder.swift in Sources */,
+				52FB4DD32284576D001BF14E /* NewViewController.swift in Sources */,
 				527994852282CAA600ACB791 /* SConfig.swift in Sources */,
 				527994902282CAA600ACB791 /* BubbleDataSource.swift in Sources */,
 				527994942282CAC500ACB791 /* CellBubble.swift in Sources */,
@@ -496,6 +511,7 @@
 				5279948B2282CAA600ACB791 /* BubbleTextViewHolder.swift in Sources */,
 				527994952282CAC500ACB791 /* ChatViewController.swift in Sources */,
 				527994962282CAC500ACB791 /* ViewController.swift in Sources */,
+				52FB4DD52284AAB0001BF14E /* VideoPlayer.swift in Sources */,
 				5279948D2282CAA600ACB791 /* SMessage.swift in Sources */,
 				5279949C2282D11A00ACB791 /* BubbleDelegate.swift in Sources */,
 				52FB4DD1228439DC001BF14E /* MessageCell.swift in Sources */,

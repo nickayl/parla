@@ -11,11 +11,15 @@ import UIKit
 
 public class Parla {
     
-    var sender: PSender
-    var avatarSize: CGSize = CGSize(width: 0, height: 0)
+    public var sender: PSender
+    public var avatarSize: CGSize = CGSize(width: 34, height: 30)
     
-    public let kDefaultBubbleViewIncomingColor = UIColor.lightGray
-    public let kDefaultBubbleViewOutgoingColor = UIColor.blue
+    // Bubble color
+    final public var kDefaultBubbleViewOutgoingColor: UIColor = UIColor(withRed: 0.0, green: 122.0, blue: 255.0)
+    final public var kDefaultBubbleViewIncomingColor: UIColor = UIColor(withRed: 230.0, green: 229.0, blue: 234.0)
+    
+    public var containerViewController: UIViewController!
+    
     public let kDefaultTextIncomingColor = UIColor.black
     public let kDefaultTextOutgoingColor = UIColor.white
     
@@ -23,10 +27,12 @@ public class Parla {
     public let kDefaultCellTopLabelHeight:CGFloat = 16
     public let kDefaultCellAvatarImageWidth: CGFloat = 30
     public let kDefaultBubbleMargins: CGFloat = 20
-    public let kDefaultImageBubbleSize: CGSize = CGSize(width: 190, height: 160)
+    public let kDefaultImageBubbleSize: CGSize = CGSize(width: 170, height: 150)
     public let kAddFactor:CGFloat = 1.367
     
     public var cellBottomLabelHidden:Bool = false
+    public var isAvatarHidden = false
+    public var avatarBackgroundColor = UIColor.lightGray
 
     public let kDefaultTextFont: UIFont = UIFont(name: "AvenirNext-Regular", size: 16.0)!
     

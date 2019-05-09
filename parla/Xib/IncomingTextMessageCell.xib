@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" reuseIdentifier="BubbleCellViewIDTextIncomingXib" id="EKd-d0-h03" customClass="BubbleViewCell" customModule="parla" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" reuseIdentifier="TextIncomingXib" id="EKd-d0-h03" customClass="TextMessageCell" customModule="parla" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -39,7 +39,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domenico" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDK-Ls-iq3" customClass="UIPaddingLabel" customModule="parla" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="56" width="375" height="16"/>
+                        <rect key="frame" x="34" y="56" width="341" height="16"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="ZeG-mF-nuf"/>
@@ -49,7 +49,10 @@
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
-                                <real key="value" value="5"/>
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="paddingTop">
+                                <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
@@ -65,15 +68,15 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="MiU-I1-H4a" firstAttribute="top" secondItem="05R-lr-nk4" secondAttribute="bottom" id="3to-l0-d0M"/>
-                <constraint firstAttribute="trailing" secondItem="iDK-Ls-iq3" secondAttribute="trailing" id="4fX-fo-DiH"/>
                 <constraint firstItem="iDK-Ls-iq3" firstAttribute="top" secondItem="MiU-I1-H4a" secondAttribute="bottom" id="5pA-fw-vSb"/>
-                <constraint firstItem="iDK-Ls-iq3" firstAttribute="leading" secondItem="EKd-d0-h03" secondAttribute="leading" id="J6C-oA-TSE"/>
+                <constraint firstAttribute="trailing" secondItem="iDK-Ls-iq3" secondAttribute="trailing" id="Kdb-Ca-N03"/>
                 <constraint firstItem="Ev0-gb-fq6" firstAttribute="leading" secondItem="EKd-d0-h03" secondAttribute="leading" id="RO7-Jl-rju"/>
                 <constraint firstAttribute="trailing" secondItem="05R-lr-nk4" secondAttribute="trailing" id="Rq4-s4-832"/>
                 <constraint firstItem="05R-lr-nk4" firstAttribute="top" secondItem="EKd-d0-h03" secondAttribute="top" id="WOe-kc-0te"/>
                 <constraint firstAttribute="bottom" secondItem="iDK-Ls-iq3" secondAttribute="bottom" id="ZLg-tt-03b"/>
                 <constraint firstItem="MiU-I1-H4a" firstAttribute="leading" secondItem="Ev0-gb-fq6" secondAttribute="trailing" constant="4" id="dWJ-BT-358"/>
                 <constraint firstItem="05R-lr-nk4" firstAttribute="leading" secondItem="EKd-d0-h03" secondAttribute="leading" id="fhC-RM-zkZ"/>
+                <constraint firstItem="iDK-Ls-iq3" firstAttribute="leading" secondItem="MiU-I1-H4a" secondAttribute="leading" id="mtO-6Z-HPM"/>
                 <constraint firstItem="iDK-Ls-iq3" firstAttribute="top" secondItem="Ev0-gb-fq6" secondAttribute="bottom" constant="6" id="pIn-Ga-lQh"/>
                 <constraint firstAttribute="trailing" secondItem="MiU-I1-H4a" secondAttribute="trailing" id="zB6-A7-XK7"/>
             </constraints>
@@ -81,10 +84,10 @@
             <connections>
                 <outlet property="avatarBubbleImage" destination="Ev0-gb-fq6" id="WEN-CZ-0aX"/>
                 <outlet property="bottomLabel" destination="iDK-Ls-iq3" id="cjF-JP-3iJ"/>
-                <outlet property="bubbleTrailingConstraint" destination="zB6-A7-XK7" id="bDL-tn-1gt"/>
                 <outlet property="cellAvatarImageWidthConstraint" destination="HKU-KT-MEw" id="4IS-w6-Ccq"/>
                 <outlet property="cellBottomLabelHeightConstraint" destination="ZeG-mF-nuf" id="XXI-5h-arG"/>
                 <outlet property="cellTopLabelHeightContraint" destination="3dh-sw-YXu" id="AUI-Af-99k"/>
+                <outlet property="cellTrailingConstraint" destination="zB6-A7-XK7" id="bzF-kg-EQN"/>
                 <outlet property="textLabel" destination="MiU-I1-H4a" id="fvA-ix-aCG"/>
                 <outlet property="topLabel" destination="05R-lr-nk4" id="DgK-9P-xBj"/>
             </connections>
