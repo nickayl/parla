@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-enum MessageType {
+public enum MessageType {
     case ImageMessage, VideoMessage, TextMessage, VoiceMessage
 }
 
-enum SenderType : String {
+public enum SenderType : String {
     case Incoming = "Incoming", Outgoing = "Outgoing"
 }
 

@@ -11,17 +11,19 @@ import UIKit
 class ViewController: ChatViewController {
     
     private var m: [SMessage] = []
-
+    
     override func viewDidLoad() {
-        
-        super.viewDidLoad()
+        self.sender = SSender(senderId: "0", senderName: "Domenico", avatarImage: UIImage(withBackground: UIColor.black))
         
         self.config.avatarIsHidden = false
+        self.config.avatarBackgroundColor = UIColor.black
         self.config.cellBottomLabelHidden = false
         self.config.kDefaultImageBubbleSize = CGSize(width: 170, height: 150)
+        
         self.m.append(contentsOf: DebuggingStuff.initChat())
-        self.collectionView.reloadData()
-
+        super.viewDidLoad()
+//        self.collectionView.reloadData()
+        
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -29,11 +31,6 @@ class ViewController: ChatViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func sender() -> SSender {
-        let s = SSender(senderId: "0", senderName: "Domenico", avatarImage: nil)
-        return s
     }
     
     override func messageForBubbble(at indexPath: IndexPath, collectionView: UICollectionView) -> SMessage {

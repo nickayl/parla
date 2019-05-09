@@ -9,16 +9,17 @@
 import UIKit
 
 @IBDesignable
-class UIPaddingLabel: UILabel {
+public class UIPaddingLabel: UILabel {
 
     var padding: UIEdgeInsets?
+    var canCopyText: Bool = true
     
     @IBInspectable var paddingLeft: CGFloat = 0
     @IBInspectable var paddingRight: CGFloat = 0
     @IBInspectable var paddingTop: CGFloat = 0
     @IBInspectable var paddingBottom: CGFloat = 0
     
-    override func drawText(in rect: CGRect) {
+    override public func drawText(in rect: CGRect) {
         
         if let p = padding {
             super.drawText(in: rect.inset(by: p))
@@ -47,21 +48,19 @@ class UIPaddingLabel: UILabel {
     }
     
     
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        return (action == #selector(UIResponderStandardEditActions.copy(_:))) || (action == #selector(self.copyText(_:)))
+    override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        print("===> Inside canPErformAction \(action.description) <===")
+        return action == #selector(UIResponderStandardEditActions.copy(_:)) && canCopyText
     }
 
-    override var canBecomeFirstResponder: Bool {
+    override public var canBecomeFirstResponder: Bool {
         return true
     }
     
-    override func copy(_ sender: Any?) {
+    override public func copy(_ sender: Any?) {
+        print("===> Inside copy <===")
         UIPasteboard.general.string = text
-        print("copy text: \(text)")
-    }
-    
-    @objc public func copyText(_ sender: Any?) {
-        print("copy text")
+        print("copy text: \(text!)")
     }
     
     /*

@@ -23,7 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rn8-tj-JqY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="507" y="133"/>
+            <point key="canvasLocation" x="505.79710144927537" y="132.58928571428572"/>
         </scene>
         <!--Parla-->
         <scene sceneID="Cx7-wh-Tko">
@@ -144,7 +144,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="53d-R5-A9z">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -183,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iFQ-vA-YaZ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1467" y="138"/>
+            <point key="canvasLocation" x="1466.6666666666667" y="137.94642857142856"/>
         </scene>
     </scenes>
     <resources>

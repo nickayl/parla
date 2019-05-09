@@ -158,7 +158,7 @@ public class CellBubble : NSObject {
             if let img = message.senderAvatar {
                 cell.avatarBubbleImage.image = img
             } else {
-                cell.avatarBubbleImage.image = UIImage(withBackground: UIColor.lightGray)
+                cell.avatarBubbleImage.image = UIImage(withBackground: config.avatarBackgroundColor)
             }
             // ---
             
@@ -238,7 +238,7 @@ public class CellBubble : NSObject {
         // DEFAULT CONSTANTS -------
         
         // Avatar settings
-        public var avatarBackgroundColor: UIColor? = UIColor.lightGray
+        public var avatarBackgroundColor: UIColor = UIColor.lightGray
         public var avatarSize: CGSize = CGSize(width: 34, height: 30)
         final public var kDefaultCellAvatarImageWidth: CGFloat = 30
         

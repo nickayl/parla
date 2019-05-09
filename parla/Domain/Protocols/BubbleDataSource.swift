@@ -11,7 +11,7 @@ import UIKit
 
 protocol BubbleDataSource {
     
-    func sender() -> SSender
+    var sender: SSender! { get set }
     
     func bubbleViewForItem(at indexPath: IndexPath) -> CellBubble
     func messageForBubbble(at indexPath: IndexPath, collectionView: UICollectionView) -> SMessage

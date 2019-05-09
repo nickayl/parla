@@ -116,10 +116,25 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var textFieldContainer: UIView!
     @IBOutlet var textField: UITextField!
+    @IBOutlet var chatContainerView: UIView!
     
   //  @IBOutlet var inputToolbarTextFieldHeightConstraint: NSLayoutConstraint!
     @IBOutlet var bottom: NSLayoutConstraint!
   //  @IBOutlet var inputToolbarContainerHeightConstraint: NSLayoutConstraint!
+    
+    let textFont = UIFont(name: "AvenirNext-Regular", size: 16.0)!
+    let itemsPerRow = CGFloat(1.0);
+    var messages: [SMessage] = []
+    var sender: SSender!
+    
+    let config = CellBubble.CellBubbleConfig()
+//    private var bubbleSizeCalculator: CellSizeCalculator!
+    
+    private let incomingTextMessageXibName = "IncomingTextMessageCell", incomingTextMessageReuseIdentifier = "BubbleCellViewIDTextIncomingXib"
+    private let outgoingTextMessageXibName = "OutgoingTextMessageCell", outgoingTextMessageReuseIdentifier = "BubbleCellViewIDTextOutgoingXib"
+    private let incomingImageMessageXibName = "IncomingImageMessageCell", incomingImageMessageReuseIdentifier = "BubbleCellViewIDImageIncomingXib"
+    private let outgoingImageMessageXibName = "OutgoingImageMessageCell", outgoingImageMessageReuseIdentifier = "BubbleCellViewIDImageOutgoingXib"
+    private let incomingVoiceMessageXibName = "VoiceMessageCell", incomingVoiceMessageReuseIdenfitier = "BubbleCellViewIDVoiceIncomingXib"
     
     @IBAction func microphoneTouchDown(_ sender: UIButton) {
         print("Microphone touch DOWN")
@@ -133,61 +148,33 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
         didPressSendButton(withMessage: sm, textField: self.textField, collectionView: self.collectionView)
     }
     
-    let textFont = UIFont(name: "AvenirNext-Regular", size: 16.0)!
-    let itemsPerRow = CGFloat(1.0);
-    let config = CellBubble.CellBubbleConfig()
-    
-    var senderId: String!
-    var senderName: String!
-    
-    var messages: Array<SMessage> = []
-    final var bubbleSizeCalculator: CellSizeCalculator!
-    
-    // Insets for sections, label and the text inside the label.
-   
     @objc func onSendButtonPressed(_ sender: UITapGestureRecognizer) {
         if !textField.text!.isEmpty {
-            let sm = SMessage(senderId: self.senderId, senderName: self.senderName, text: textField.text!, date: Date(), senderAvatar: nil)
+            let sm = SMessage(senderId: self.sender.id, senderName: self.sender.name, text: textField.text!, date: Date(), senderAvatar: self.sender.avatarImage)
             didPressSendButton(withMessage: sm, textField: self.textField, collectionView: self.collectionView)
         }
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: "ParlaCollectionView", bundle: Bundle.main)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    private let incomingTextMessageXibName = "IncomingTextMessageCell", incomingTextMessageReuseIdentifier = "BubbleCellViewIDTextIncomingXib"
-    private let outgoingTextMessageXibName = "OutgoingTextMessageCell", outgoingTextMessageReuseIdentifier = "BubbleCellViewIDTextOutgoingXib"
-    private let incomingImageMessageXibName = "IncomingImageMessageCell", incomingImageMessageReuseIdentifier = "BubbleCellViewIDImageIncomingXib"
-    private let outgoingImageMessageXibName = "OutgoingImageMessageCell", outgoingImageMessageReuseIdentifier = "BubbleCellViewIDImageOutgoingXib"
-    private let incomingVoiceMessageXibName = "VoiceMessageCell", incomingVoiceMessageReuseIdenfitier = "BubbleCellViewIDVoiceIncomingXib"
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if self.chatContainerView == nil {
+            self.chatContainerView = self.view
+        }
         
         let b = Bundle.main
         
         let nib = UINib(nibName: "ParlaCollectionView", bundle: b)
         let chatView = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
-        // view.addConstraint(NSLayoutConstraint(item: gamePreview, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1, constant: 0))
+        self.chatContainerView.addSubview(chatView)
+        self.bottom = NSLayoutConstraint(item: chatView, attribute: .bottom, relatedBy: .equal, toItem: self.chatContainerView, attribute: .bottom, multiplier: 1, constant: -35)
+        let top = NSLayoutConstraint(item: chatView, attribute: .top, relatedBy: .equal, toItem: self.chatContainerView, attribute: .top, multiplier: 1, constant: 35)
         
-        self.view.addSubview(chatView)
-        self.bottom = NSLayoutConstraint(item: chatView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: -35)
-        let top = NSLayoutConstraint(item: chatView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 35)
-        
-        self.view.addConstraints([
+        self.chatContainerView.addConstraints([
             self.bottom,
-            NSLayoutConstraint(item: chatView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: chatView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: chatView, attribute: .leading, relatedBy: .equal, toItem: self.chatContainerView, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: chatView, attribute: .trailing, relatedBy: .equal, toItem: self.chatContainerView, attribute: .trailing, multiplier: 1, constant: 0),
             top
             ])
         
@@ -202,7 +189,6 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
         self.textField = chatView.subviews[1].subviews[2].subviews[0] as? UITextField
         self.textField.delegate = self
         
-        
         collectionView.register(UINib(nibName: incomingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingTextMessageReuseIdentifier)
         collectionView.register(UINib(nibName: outgoingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingTextMessageReuseIdentifier)
         collectionView.register(UINib(nibName: incomingImageMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingImageMessageReuseIdentifier)
@@ -212,17 +198,12 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
         chatView.translatesAutoresizingMaskIntoConstraints = false
      //   self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        senderId = sender().id
-        senderName = sender().name
-        
-        if senderId.isEmpty || senderName.isEmpty {
+        if sender.id.isEmpty || sender.name.isEmpty {
             assertionFailure("Fatal error: You must specify a senderId and a senderName by subclassing sender() medthod.")
             return ;
         }
         
-        //  collectionView.register(UINib.init(nibName: "OutgoingTextMessageCell", bundle: Bundle.main), forCellWithReuseIdentifier: "BubbleCellViewIDRight")
-        
-        self.bubbleSizeCalculator = CellSizeCalculator(mainView: self.view, textFont: textFont)
+     //   self.bubbleSizeCalculator = CellSizeCalculator(mainView: self.chatContainerView, textFont: textFont)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -357,10 +338,6 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected item at index path: \(indexPath)")
-    } 
-    
-    func sender() -> SSender {
-        return SSender(senderId: "0", senderName: "", avatarImage: nil)
     }
     
     final func bubbleViewForItem(at indexPath: IndexPath) -> CellBubble {
