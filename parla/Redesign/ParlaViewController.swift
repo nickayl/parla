@@ -45,6 +45,9 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         return cell
         
+        
+        
+        
       //  var cellIdentifier: String
         
 //        let type = message.messageType
