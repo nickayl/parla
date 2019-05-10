@@ -25,10 +25,12 @@ class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate {
         
         Parla.config = Parla(withSender: sender)
         let config = Parla.config!
+        
         config.cellBottomLabelHidden = false
         config.isAvatarHidden = false
         config.avatarBackgroundColor = UIColor.black
         config.containerViewController = self
+        config.accessoryButton.preventDefault = false
         
         let testVideo = Bundle.main.url(forResource: "video", withExtension: "mp4")!
         
@@ -47,6 +49,10 @@ class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate {
             }
         }
         
+        for i in 0 ..< messages.count {
+            messages[i].isDateLabelActive = (i % 4 == 0)
+        }
+        
         self.parlaDelegate = self
         self.parlaDataSource = self
         
@@ -61,13 +67,35 @@ class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate {
     
     func didPressSendButton(withMessage message: PMessage, textField: UITextField, collectionView: UICollectionView) {
         self.messages.append(message)
-        
+        textField.text = ""
         collectionView.reloadData()
         collectionView.scrollToBottom(animated: true)
     }
     
+    func didStartPickingImage(collectionView: UICollectionView) {
+        print("Starting picking image...")
+    }
+    
+    func didFinishPickingVideo(with: URL?, collectionView: UICollectionView) {
+        if let url = with {
+            let msg = PVideoMessageImpl(id: messages.count+1, sender: sender, videoUrl: url)
+            messages.append(msg)
+            collectionView.reloadData()
+            collectionView.scrollToBottom(animated: true)
+        }
+    }
+    
+    func didFinishPickingImage(with image: UIImage?, collectionView: UICollectionView) {
+        if image != nil {
+            let msg = PImageMessageImpl(id: messages.count+1, sender: sender, image: image!)
+            messages.append(msg)
+            collectionView.reloadData()
+            collectionView.scrollToBottom(animated: true)
+        }
+    }
+    
     func didPresAccessoryButton(button: UIButton, collectionView: UICollectionView) {
-        
+        print("Did press accessory button")
     }
     
     func messageForBubbble(at indexPath: IndexPath, collectionView: UICollectionView) -> PMessage {

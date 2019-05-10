@@ -33,17 +33,26 @@ public class Parla {
     public var cellBottomLabelHidden:Bool = false
     public var isAvatarHidden = false
     public var avatarBackgroundColor = UIColor.lightGray
+    
+    public var accessoryButton = AccessoryButtonConfig()
 
     public let kDefaultTextFont: UIFont = UIFont(name: "AvenirNext-Regular", size: 16.0)!
-    
     
     public var sectionInsets = UIEdgeInsets(top: 8.0, left: 10.0, bottom: 0.0, right: 10.0)
     public var labelInsets = UIEdgeInsets(top: 24.0, left: 0.0, bottom: 24.0, right: 0.0)
     public var textInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
     
+    public var mediaPicker: MediaPicker?
+    public var accessoryActionChooser: AccessoryActionChooser?
+    
     public static var config: Parla!
     
     init(withSender sender: PSender) {
         self.sender = sender
+    }
+    
+    public class AccessoryButtonConfig {
+        var preventDefault = false
+        fileprivate init() { }
     }
 }

@@ -25,6 +25,7 @@ public protocol PMessage {
     var messageType: MessageType { get }
     var senderType: SenderType { get }
     var cellIdentifier: String { get }
+    var isDateLabelActive: Bool { get set }
     func displaySize(frameWidth: CGFloat) -> CGSize
     
     func triggerSelection()
@@ -94,7 +95,7 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
         return senderType == .Incoming ? incomingImageMessageReuseIdentifier : outgoingImageMessageReuseIdentifier
     }
     
-    public required init(id: Int, sender: PSender, image: UIImage, date: Date) {
+    public required init(id: Int, sender: PSender, image: UIImage, date: Date = Date()) {
         self.image = image
         self.viewer = SKPhotoBrowserImageViewer(withImage: image, withViewController: viewController)
         super.init(id: id, sender: sender, date: date, type: .ImageMessage)
@@ -153,13 +154,15 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
         
         let bubbleWidth = cellWidth - ((cfg.labelInsets.left + cfg.labelInsets.right) + (cfg.textInsets.left + cfg.textInsets.right) + avatarSize.width + cfg.kDefaultBubbleMargins)
         
-        let baseHeight = CGFloat(56.0)
+        let baseHeight = CGFloat(52.0)
         var bubbleHeight = baseHeight
         
         if(self.text.count > 60 || self.text.contains("\n")) {
             bubbleHeight = ceil(text.height(with: bubbleWidth, font: cfg.kDefaultTextFont)) + (cfg.labelInsets.top + cfg.labelInsets.bottom)
             bubbleHeight = bubbleHeight < baseHeight ? baseHeight : bubbleHeight
         }
+        
+        bubbleHeight += isDateLabelActive ? 19 : 0
         
         return CGSize(width: cellWidth, height: bubbleHeight)
     }
@@ -178,12 +181,11 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
         print("TextMessage does nothing when is tapped")
     }
     
-    
-    
 }
 
 public class AbstractPMessage<T> : PMessage, Equatable, Comparable {
     
+    public var isDateLabelActive: Bool = false
     public var messageId: Int = 0
     public var date: Date
     public var sender: PSender

@@ -216,12 +216,20 @@ class AbstractMessageCell: UICollectionViewCell {
         }
         
         // Hide the Top label every 4 items.
-        if indexPath.item % 4 != 0 {
-            cellTopLabelHeightContraint.constant = 0
-        } else {
-            cellTopLabelHeightContraint.constant = cfg.kDefaultCellTopLabelHeight
-        }
+//        if indexPath.item % 4 != 0 {
+//            self.content?.isDateLabelActive = false
+//            cellTopLabelHeightContraint.constant = 0
+//        } else {
+//            self.content?.isDateLabelActive = true
+//            cellTopLabelHeightContraint.constant = cfg.kDefaultCellTopLabelHeight
+//        }
         // ---
+        
+        if self.content?.isDateLabelActive ?? false {
+            cellTopLabelHeightContraint.constant = cfg.kDefaultCellTopLabelHeight
+        } else {
+            cellTopLabelHeightContraint.constant = 0
+        }
         
         // If the avatar hidden option is true, let's hide the Avatar . Otherwise show it with default values
         if cfg.isAvatarHidden || self.content?.sender.avatar?.image == nil {

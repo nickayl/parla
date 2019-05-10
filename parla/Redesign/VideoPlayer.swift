@@ -25,6 +25,7 @@ public class MobilePlayerVideoPlayer : VideoPlayer {
         
         let videoUrl = videoMessage.videoUrl
         playerVC = MobilePlayerViewController(contentURL: videoUrl)
+        playerVC.shouldAutoplay = false
         playerVC.title = "\(videoMessage.sender.name)'s video"
         playerVC.activityItems = [videoUrl]
 

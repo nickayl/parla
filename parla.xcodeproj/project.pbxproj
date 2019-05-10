@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5226115D22857B1D00AA703E /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5226115C22857B1D00AA703E /* MediaPicker.swift */; };
+		5226115F228587FD00AA703E /* AccessoryActionChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5226115E228587FD00AA703E /* AccessoryActionChooser.swift */; };
 		527994422282C94500ACB791 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994412282C94500ACB791 /* AppDelegate.swift */; };
 		527994472282C94500ACB791 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527994452282C94500ACB791 /* Main.storyboard */; };
 		527994492282C94700ACB791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527994482282C94700ACB791 /* Assets.xcassets */; };
@@ -73,6 +75,8 @@
 		0BCDFCBBE54D94DA41E0869D /* Pods_parlaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parlaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1408B47793C81470808D10E1 /* Pods-parla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parla.release.xcconfig"; path = "Target Support Files/Pods-parla/Pods-parla.release.xcconfig"; sourceTree = "<group>"; };
 		2925BB6411B1F7FD6D0E82FB /* Pods-parlaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parlaTests.debug.xcconfig"; path = "Target Support Files/Pods-parlaTests/Pods-parlaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5226115C22857B1D00AA703E /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
+		5226115E228587FD00AA703E /* AccessoryActionChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryActionChooser.swift; sourceTree = "<group>"; };
 		5279943E2282C94500ACB791 /* parla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		527994412282C94500ACB791 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		527994462282C94500ACB791 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -150,6 +154,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5226115B2285661900AA703E /* Legacy code */ = {
+			isa = PBXGroup;
+			children = (
+				527994922282CAC400ACB791 /* ChatViewController.swift */,
+				527994932282CAC500ACB791 /* ViewController.swift */,
+				527994762282CA4300ACB791 /* Domain */,
+			);
+			path = "Legacy code";
+			sourceTree = "<group>";
+		};
 		527994352282C94500ACB791 = {
 			isa = PBXGroup;
 			children = (
@@ -175,11 +189,9 @@
 			children = (
 				52FB4DC1228414E6001BF14E /* Redesign */,
 				527994A02282E95200ACB791 /* Xib */,
-				527994762282CA4300ACB791 /* Domain */,
+				5226115B2285661900AA703E /* Legacy code */,
 				527994612282C9FE00ACB791 /* Resources */,
 				527994412282C94500ACB791 /* AppDelegate.swift */,
-				527994932282CAC500ACB791 /* ViewController.swift */,
-				527994922282CAC400ACB791 /* ChatViewController.swift */,
 				527994452282C94500ACB791 /* Main.storyboard */,
 				527994482282C94700ACB791 /* Assets.xcassets */,
 				5279944A2282C94700ACB791 /* LaunchScreen.storyboard */,
@@ -278,6 +290,8 @@
 				52FB4DD22284576D001BF14E /* NewViewController.swift */,
 				52FB4DCC22842D67001BF14E /* ImageViewer.swift */,
 				52FB4DD42284AAB0001BF14E /* VideoPlayer.swift */,
+				5226115C22857B1D00AA703E /* MediaPicker.swift */,
+				5226115E228587FD00AA703E /* AccessoryActionChooser.swift */,
 			);
 			path = Redesign;
 			sourceTree = "<group>";
@@ -498,6 +512,7 @@
 				5279948C2282CAA600ACB791 /* BubbleViewCell.swift in Sources */,
 				5279948A2282CAA600ACB791 /* AbstractBubble.swift in Sources */,
 				527994862282CAA600ACB791 /* Extensions.swift in Sources */,
+				5226115D22857B1D00AA703E /* MediaPicker.swift in Sources */,
 				52FB4DCF228433F6001BF14E /* ParlaViewController.swift in Sources */,
 				52FB4DCD22842D67001BF14E /* ImageViewer.swift in Sources */,
 				52FB4DC32284155B001BF14E /* SenderLogic.swift in Sources */,
@@ -510,6 +525,7 @@
 				52FB4DCB22841A60001BF14E /* ParlaConfig.swift in Sources */,
 				5279948B2282CAA600ACB791 /* BubbleTextViewHolder.swift in Sources */,
 				527994952282CAC500ACB791 /* ChatViewController.swift in Sources */,
+				5226115F228587FD00AA703E /* AccessoryActionChooser.swift in Sources */,
 				527994962282CAC500ACB791 /* ViewController.swift in Sources */,
 				52FB4DD52284AAB0001BF14E /* VideoPlayer.swift in Sources */,
 				5279948D2282CAA600ACB791 /* SMessage.swift in Sources */,

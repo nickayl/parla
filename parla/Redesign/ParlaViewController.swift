@@ -21,29 +21,33 @@ protocol ParlaDelegate {
     func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
     func didPressSendButton(withMessage message: PMessage, textField: UITextField, collectionView: UICollectionView)
     func didPresAccessoryButton(button: UIButton, collectionView: UICollectionView)
+    func didStartPickingImage(collectionView: UICollectionView)
+    func didFinishPickingImage(with image:UIImage?, collectionView: UICollectionView)
+    func didFinishPickingVideo(with: URL?, collectionView: UICollectionView)
     
 }
 
-class ParlaViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
+class ParlaViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AccessoryActionChooserDelegate {
+    
 
     var parlaDataSource: ParlaDataSource!
     var parlaDelegate: ParlaDelegate?
+    var config: Parla!
     
     var inputToolbarContainer: UIView?
     var collectionView: UICollectionView!
     var textFieldContainer: UIView!
     var textField: UITextField!
     var chatContainerView: UIView!
-    
+    var accessoryButton: UIButton!
+    var microphoneButton: UIButton!
     var bottom: NSLayoutConstraint!
     
+    
+    ///  ********* ========== Collection View Methods ========== **************  ///
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let message = parlaDataSource.messageForBubbble(at: indexPath, collectionView: collectionView)
-        
-//        if var imageMessage = message as? PImageMessage {
-//            imageMessage.viewController = self
-//        }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: message.cellIdentifier, for: indexPath) as! AbstractMessageCell
         
@@ -53,19 +57,6 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
         cell.initialize()
         
         return cell
-    }
-    
-    @objc func onSendButtonPressed(_ sender: UITapGestureRecognizer) {
-        if !textField.text!.isEmpty {
-         //   let sm = SMessage(senderId: self.sender.id, senderName: self.sender.name, text: textField.text!, date: Date(), senderAvatar: self.sender.avatarImage)
-            
-            let sm = PTextMessageImpl(id: self.parlaDataSource.numberOfMessagesIn(collectionView: collectionView)+1,
-                                      sender: self.parlaDataSource.sender,
-                                      text: textField.text!,
-                                      date: Date())
-            
-            self.parlaDelegate?.didPressSendButton(withMessage: sm, textField: self.textField, collectionView: self.collectionView)
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -89,10 +80,111 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return Parla.config.sectionInsets
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Selected item at index path: \(indexPath)")
+    }
+    /// ************** =========================== ****************** ///
+    
 
+    
+    
+    ///  ********* ========== UI Gesture Recognizers ========== **************  ///
+    @objc func onSendButtonPressed(_ sender: UITapGestureRecognizer) {
+        if !textField.text!.isEmpty {
+            //   let sm = SMessage(senderId: self.sender.id, senderName: self.sender.name, text: textField.text!, date: Date(), senderAvatar: self.sender.avatarImage)
+            
+            let sm = PTextMessageImpl(id: self.parlaDataSource.numberOfMessagesIn(collectionView: collectionView)+1,
+                                      sender: self.parlaDataSource.sender,
+                                      text: textField.text!,
+                                      date: Date())
+            
+            self.parlaDelegate?.didPressSendButton(withMessage: sm, textField: self.textField, collectionView: self.collectionView)
+        }
+    }
+    
+    @objc func onAccessoryButtonPressed(_ sender: UITapGestureRecognizer) {
+        self.parlaDelegate?.didPresAccessoryButton(button: self.accessoryButton, collectionView: collectionView)
+        
+        if !config.accessoryButton.preventDefault {
+            config.accessoryActionChooser?.show()
+        }
+    }
+    /// ************** =========================== ****************** ///
+    
+    
+    
+    
+    ///  ********* ========== Delegate Methods ========== **************  ///
+    
+    func didChooseAccessoryAction(with action: AccessoryAction?, ofType type: AccessoryActionType) {
+        print("Accessory action selected: == >> \(type) << ==")
+        action?()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        // self.inputToolbarContainerHeightConstraint.constant += 19
+        //self.inputToolbarTextFieldHeightConstraint.constant += 19
+        
+        
+        //self.collectionView.layoutIfNeeded()
+        
+        return true
+    }
+    
+    /// ************** =========================== ****************** ///
+
+    private func chooseImageFrom(source: MediaPickerSource)  {
+        self.parlaDelegate?.didStartPickingImage(collectionView: self.collectionView)
+        
+        self.config.mediaPicker?.pickImage(source: source) {
+            self.parlaDelegate?.didFinishPickingImage(with: $0, collectionView: self.collectionView)
+        }
+    }
+    
+    private func chooseVideoFrom(source: MediaPickerSource)  {
+   //     self.parlaDelegate?.didStartPickingImage(collectionView: self.collectionView)
+        
+        self.config.mediaPicker?.pickVideo(source: source) {
+            self.parlaDelegate?.didFinishPickingVideo(with: $0, collectionView: self.collectionView)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        config = Parla.config!
+        config.mediaPicker = SystemMediaPicker(viewController: self)
+        config.accessoryActionChooser = ActionSheetAccessoryActionChooser(viewController: self)
+        config.accessoryActionChooser?.delegate = self
+        
+        config.accessoryActionChooser?.accessoryActions = [
+            .chooseVideoFromGallery :  {  self.chooseVideoFrom(source: .photoLibrary) },
+            .chooseImageFromGallery : {  self.chooseImageFrom(source: .photoLibrary) },
+            .pickImageFromCamera :  {  self.chooseImageFrom(source: .camera) },
+            .pickVideoFromCamera :  {  self.chooseVideoFrom(source: .camera) }
+        ]
+        
+        
+        
+        
+//        config.accessoryActionChooser?.accessoryActions.append(contentsOf: [
+//
+//            AccessoryActionImpl(type: .chooseImageFromGallery, action: {
+//                return self.chooseImageFrom(source: .photoLibrary)
+//            }),
+//
+//            AccessoryActionImpl(type: .pickImageFromCamera, action: {
+//                return self.chooseImageFrom(source: .camera)
+//            }),
+//
+//            AccessoryActionImpl(type: .chooseVideoFromGallery, action: {
+//                self.openImgPicker()
+//            })
+//        ])
+        
         if self.chatContainerView == nil {
             self.chatContainerView = self.view
         }
@@ -119,8 +211,12 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
         self.inputToolbarContainer = chatView.subviews[1]
         self.textFieldContainer = chatView.subviews[1].subviews[2]
         let sendButton = chatView.subviews[1].subviews[1] as! UIButton
+        self.accessoryButton = chatView.subviews[1].subviews[3] as? UIButton
+        self.microphoneButton = chatView.subviews[1].subviews[2].subviews[1] as? UIButton
         
         sendButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onSendButtonPressed(_:))))
+        self.accessoryButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onAccessoryButtonPressed(_:))))
+        
         self.textField = chatView.subviews[1].subviews[2].subviews[0] as? UITextField
         self.textField.delegate = self
         
@@ -158,17 +254,7 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
         UIApplication.shared.isStatusBarHidden = false
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
-        // self.inputToolbarContainerHeightConstraint.constant += 19
-        //self.inputToolbarTextFieldHeightConstraint.constant += 19
-        
-        
-        //self.collectionView.layoutIfNeeded()
-        
-        return true
-    }
+    
     
     @objc func keyboardWillShow(_ notification: NSNotification) {
         // print(notification.userInfo)
@@ -178,6 +264,7 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
         print("keyboard size: \(keyboardSize)")
         
         bottom.constant -= keyboardSize.height + 20
+        self.collectionView.scrollToBottom(animated: true)
     }
     
     @objc func keyboardWillHide(_ notification: NSNotification) {
@@ -191,12 +278,7 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected item at index path: \(indexPath)")
-    }
 
-    
     
     
     /*
