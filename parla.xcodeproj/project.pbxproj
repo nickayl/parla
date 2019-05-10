@@ -7,8 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29673DB6C61741307971DF53 /* Pods_parla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5226119F2285EF2A00AA703E /* Pods_parla.framework */; };
+		361AE318ACE789F3A2AAD5D3 /* Pods_ParlaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E75CA4B14BF60DEDB17CBFC /* Pods_ParlaKit.framework */; };
 		5226115D22857B1D00AA703E /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5226115C22857B1D00AA703E /* MediaPicker.swift */; };
 		5226115F228587FD00AA703E /* AccessoryActionChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5226115E228587FD00AA703E /* AccessoryActionChooser.swift */; };
+		522611732285EA4E00AA703E /* ParlaKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522611722285EA4E00AA703E /* ParlaKitTests.swift */; };
+		522611752285EA4E00AA703E /* ParlaKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 522611672285EA4E00AA703E /* ParlaKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5226117C2285EA6200AA703E /* SenderLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DC22284155B001BF14E /* SenderLogic.swift */; };
+		5226117D2285EA6200AA703E /* MessageLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DC622841875001BF14E /* MessageLogic.swift */; };
+		5226117E2285EA6200AA703E /* ParlaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCA22841A60001BF14E /* ParlaConfig.swift */; };
+		5226117F2285EA6200AA703E /* ParlaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCE228433F6001BF14E /* ParlaViewController.swift */; };
+		522611802285EA6200AA703E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DD0228439DC001BF14E /* MessageCell.swift */; };
+		522611822285EA6200AA703E /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCC22842D67001BF14E /* ImageViewer.swift */; };
+		522611832285EA6200AA703E /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DD42284AAB0001BF14E /* VideoPlayer.swift */; };
+		522611842285EA6200AA703E /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5226115C22857B1D00AA703E /* MediaPicker.swift */; };
+		522611852285EA6200AA703E /* AccessoryActionChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5226115E228587FD00AA703E /* AccessoryActionChooser.swift */; };
+		522611862285EAB700AA703E /* IncomingImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A42282E96300ACB791 /* IncomingImageMessageCell.xib */; };
+		522611872285EAB700AA703E /* IncomingVideoMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FB4DD82284AED0001BF14E /* IncomingVideoMessageCell.xib */; };
+		522611882285EAB700AA703E /* IncomingTextMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A12282E96300ACB791 /* IncomingTextMessageCell.xib */; };
+		522611892285EAB700AA703E /* OutgoingImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A32282E96300ACB791 /* OutgoingImageMessageCell.xib */; };
+		5226118A2285EAB700AA703E /* OutgoingVideoMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FB4DD62284AE89001BF14E /* OutgoingVideoMessageCell.xib */; };
+		5226118B2285EAB700AA703E /* OutgoingTextMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */; };
+		5226118C2285EAB700AA703E /* ParlaCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A22282E96300ACB791 /* ParlaCollectionView.xib */; };
+		5226118D2285EAB700AA703E /* VoiceMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994AB2283079800ACB791 /* VoiceMessageCell.xib */; };
+		5226118F2285EBAC00AA703E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527994482282C94700ACB791 /* Assets.xcassets */; };
+		522611982285EDAF00AA703E /* ParlaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522611652285EA4E00AA703E /* ParlaKit.framework */; };
+		522611A12285F13100AA703E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994792282CAA500ACB791 /* Extensions.swift */; };
+		522611A22285F13300AA703E /* UIPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279947A2282CAA500ACB791 /* UIPaddingLabel.swift */; };
+		522611CE228614C600AA703E /* SKPhotoBrowser.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 522611CC228614C600AA703E /* SKPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		522611CF228614C600AA703E /* MobilePlayer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 522611CD228614C600AA703E /* MobilePlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		527994422282C94500ACB791 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994412282C94500ACB791 /* AppDelegate.swift */; };
 		527994472282C94500ACB791 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527994452282C94500ACB791 /* Main.storyboard */; };
 		527994492282C94700ACB791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527994482282C94700ACB791 /* Assets.xcassets */; };
@@ -62,6 +89,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5226116F2285EA4E00AA703E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 527994362282C94500ACB791 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 522611642285EA4E00AA703E;
+			remoteInfo = ParlaKit;
+		};
 		527994532282C94700ACB791 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 527994362282C94500ACB791 /* Project object */;
@@ -71,12 +105,42 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		522611C92286145800AA703E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				522611CE228614C600AA703E /* SKPhotoBrowser.framework in CopyFiles */,
+				522611CF228614C600AA703E /* MobilePlayer.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0BCDFCBBE54D94DA41E0869D /* Pods_parlaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parlaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1408B47793C81470808D10E1 /* Pods-parla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parla.release.xcconfig"; path = "Target Support Files/Pods-parla/Pods-parla.release.xcconfig"; sourceTree = "<group>"; };
 		2925BB6411B1F7FD6D0E82FB /* Pods-parlaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parlaTests.debug.xcconfig"; path = "Target Support Files/Pods-parlaTests/Pods-parlaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2DB1E79FFEF83A4150A2FA89 /* Pods-ParlaKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParlaKit.debug.xcconfig"; path = "Target Support Files/Pods-ParlaKit/Pods-ParlaKit.debug.xcconfig"; sourceTree = "<group>"; };
 		5226115C22857B1D00AA703E /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		5226115E228587FD00AA703E /* AccessoryActionChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryActionChooser.swift; sourceTree = "<group>"; };
+		522611652285EA4E00AA703E /* ParlaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParlaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		522611672285EA4E00AA703E /* ParlaKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParlaKit.h; sourceTree = "<group>"; };
+		522611682285EA4E00AA703E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5226116D2285EA4E00AA703E /* ParlaKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParlaKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		522611722285EA4E00AA703E /* ParlaKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlaKitTests.swift; sourceTree = "<group>"; };
+		522611742285EA4E00AA703E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		522611912285ECF500AA703E /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		522611932285ED2400AA703E /* MobilePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MobilePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		522611952285ED2800AA703E /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SKPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		522611992285EECF00AA703E /* MobilePlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobilePlayer.framework; path = "../../../Library/Developer/Xcode/DerivedData/parla-dezhnxynwculdscnaijvjpuutdam/Build/Products/Debug-iphonesimulator/MobilePlayer/MobilePlayer.framework"; sourceTree = "<group>"; };
+		5226119B2285EEDA00AA703E /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SKPhotoBrowser.framework; path = "../../../Library/Developer/Xcode/DerivedData/parla-dezhnxynwculdscnaijvjpuutdam/Build/Products/Debug-iphonesimulator/SKPhotoBrowser/SKPhotoBrowser.framework"; sourceTree = "<group>"; };
+		5226119D2285EF2300AA703E /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5226119F2285EF2A00AA703E /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		522611CC228614C600AA703E /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SKPhotoBrowser.framework; sourceTree = "<group>"; };
+		522611CD228614C600AA703E /* MobilePlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobilePlayer.framework; sourceTree = "<group>"; };
 		5279943E2282C94500ACB791 /* parla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		527994412282C94500ACB791 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		527994462282C94500ACB791 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -129,17 +193,36 @@
 		52FB4DD42284AAB0001BF14E /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		52FB4DD62284AE89001BF14E /* OutgoingVideoMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingVideoMessageCell.xib; sourceTree = "<group>"; };
 		52FB4DD82284AED0001BF14E /* IncomingVideoMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingVideoMessageCell.xib; sourceTree = "<group>"; };
+		5E75CA4B14BF60DEDB17CBFC /* Pods_ParlaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParlaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E79302EB35E1A59CAFD2A78 /* Pods-parlaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parlaTests.release.xcconfig"; path = "Target Support Files/Pods-parlaTests/Pods-parlaTests.release.xcconfig"; sourceTree = "<group>"; };
 		BE3841403D16E995C75C0467 /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D25D1C435AAEEA8E8BD9F483 /* Pods-parla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parla.debug.xcconfig"; path = "Target Support Files/Pods-parla/Pods-parla.debug.xcconfig"; sourceTree = "<group>"; };
+		EF8BDEF8DBD5105320B899D7 /* Pods-ParlaKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParlaKit.release.xcconfig"; path = "Target Support Files/Pods-ParlaKit/Pods-ParlaKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		522611622285EA4E00AA703E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				361AE318ACE789F3A2AAD5D3 /* Pods_ParlaKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5226116A2285EA4E00AA703E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				522611982285EDAF00AA703E /* ParlaKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5279943B2282C94500ACB791 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E786FA49560A40F4D442072D /* Pods_parla.framework in Frameworks */,
+				29673DB6C61741307971DF53 /* Pods_parla.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,11 +247,33 @@
 			path = "Legacy code";
 			sourceTree = "<group>";
 		};
+		522611662285EA4E00AA703E /* ParlaKit */ = {
+			isa = PBXGroup;
+			children = (
+				522611672285EA4E00AA703E /* ParlaKit.h */,
+				522611682285EA4E00AA703E /* Info.plist */,
+			);
+			path = ParlaKit;
+			sourceTree = "<group>";
+		};
+		522611712285EA4E00AA703E /* ParlaKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				522611722285EA4E00AA703E /* ParlaKitTests.swift */,
+				522611742285EA4E00AA703E /* Info.plist */,
+			);
+			path = ParlaKitTests;
+			sourceTree = "<group>";
+		};
 		527994352282C94500ACB791 = {
 			isa = PBXGroup;
 			children = (
+				522611CD228614C600AA703E /* MobilePlayer.framework */,
+				522611CC228614C600AA703E /* SKPhotoBrowser.framework */,
 				527994402282C94500ACB791 /* parla */,
 				527994552282C94700ACB791 /* parlaTests */,
+				522611662285EA4E00AA703E /* ParlaKit */,
+				522611712285EA4E00AA703E /* ParlaKitTests */,
 				5279943F2282C94500ACB791 /* Products */,
 				B07FDA34B9D9C56CA3DEAD89 /* Pods */,
 				E200FFB25FAB39FA22F4A7C7 /* Frameworks */,
@@ -180,6 +285,8 @@
 			children = (
 				5279943E2282C94500ACB791 /* parla.app */,
 				527994522282C94700ACB791 /* parlaTests.xctest */,
+				522611652285EA4E00AA703E /* ParlaKit.framework */,
+				5226116D2285EA4E00AA703E /* ParlaKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -233,11 +340,9 @@
 				5279949D2282D3D700ACB791 /* Bubble */,
 				527994972282CAFC00ACB791 /* DebuggingStuff.swift */,
 				527994812282CAA600ACB791 /* CellSizeCalculator.swift */,
-				527994792282CAA500ACB791 /* Extensions.swift */,
 				527994782282CAA500ACB791 /* SConfig.swift */,
 				527994802282CAA600ACB791 /* SMessage.swift */,
 				5279947C2282CAA600ACB791 /* SSender.swift */,
-				5279947A2282CAA500ACB791 /* UIPaddingLabel.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -282,6 +387,8 @@
 		52FB4DC1228414E6001BF14E /* Redesign */ = {
 			isa = PBXGroup;
 			children = (
+				527994792282CAA500ACB791 /* Extensions.swift */,
+				5279947A2282CAA500ACB791 /* UIPaddingLabel.swift */,
 				52FB4DC22284155B001BF14E /* SenderLogic.swift */,
 				52FB4DC622841875001BF14E /* MessageLogic.swift */,
 				52FB4DCA22841A60001BF14E /* ParlaConfig.swift */,
@@ -303,6 +410,8 @@
 				1408B47793C81470808D10E1 /* Pods-parla.release.xcconfig */,
 				2925BB6411B1F7FD6D0E82FB /* Pods-parlaTests.debug.xcconfig */,
 				8E79302EB35E1A59CAFD2A78 /* Pods-parlaTests.release.xcconfig */,
+				2DB1E79FFEF83A4150A2FA89 /* Pods-ParlaKit.debug.xcconfig */,
+				EF8BDEF8DBD5105320B899D7 /* Pods-ParlaKit.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -310,15 +419,72 @@
 		E200FFB25FAB39FA22F4A7C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5226119F2285EF2A00AA703E /* Pods_parla.framework */,
+				5226119D2285EF2300AA703E /* Pods_parla.framework */,
+				5226119B2285EEDA00AA703E /* SKPhotoBrowser.framework */,
+				522611992285EECF00AA703E /* MobilePlayer.framework */,
+				522611952285ED2800AA703E /* SKPhotoBrowser.framework */,
+				522611932285ED2400AA703E /* MobilePlayer.framework */,
+				522611912285ECF500AA703E /* Pods_parla.framework */,
 				BE3841403D16E995C75C0467 /* Pods_parla.framework */,
 				0BCDFCBBE54D94DA41E0869D /* Pods_parlaTests.framework */,
+				5E75CA4B14BF60DEDB17CBFC /* Pods_ParlaKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		522611602285EA4E00AA703E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				522611752285EA4E00AA703E /* ParlaKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		522611642285EA4E00AA703E /* ParlaKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 522611762285EA4E00AA703E /* Build configuration list for PBXNativeTarget "ParlaKit" */;
+			buildPhases = (
+				784CCA52CECC776971832E3A /* [CP] Check Pods Manifest.lock */,
+				522611602285EA4E00AA703E /* Headers */,
+				522611612285EA4E00AA703E /* Sources */,
+				522611622285EA4E00AA703E /* Frameworks */,
+				522611632285EA4E00AA703E /* Resources */,
+				522611C92286145800AA703E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ParlaKit;
+			productName = ParlaKit;
+			productReference = 522611652285EA4E00AA703E /* ParlaKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5226116C2285EA4E00AA703E /* ParlaKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 522611792285EA4E00AA703E /* Build configuration list for PBXNativeTarget "ParlaKitTests" */;
+			buildPhases = (
+				522611692285EA4E00AA703E /* Sources */,
+				5226116A2285EA4E00AA703E /* Frameworks */,
+				5226116B2285EA4E00AA703E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				522611702285EA4E00AA703E /* PBXTargetDependency */,
+			);
+			name = ParlaKitTests;
+			productName = ParlaKitTests;
+			productReference = 5226116D2285EA4E00AA703E /* ParlaKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		5279943D2282C94500ACB791 /* parla */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5279945B2282C94700ACB791 /* Build configuration list for PBXNativeTarget "parla" */;
@@ -367,6 +533,12 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = com.cyclonesword;
 				TargetAttributes = {
+					522611642285EA4E00AA703E = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					5226116C2285EA4E00AA703E = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
 					5279943D2282C94500ACB791 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
@@ -391,11 +563,36 @@
 			targets = (
 				5279943D2282C94500ACB791 /* parla */,
 				527994512282C94700ACB791 /* parlaTests */,
+				522611642285EA4E00AA703E /* ParlaKit */,
+				5226116C2285EA4E00AA703E /* ParlaKitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		522611632285EA4E00AA703E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5226118D2285EAB700AA703E /* VoiceMessageCell.xib in Resources */,
+				5226118B2285EAB700AA703E /* OutgoingTextMessageCell.xib in Resources */,
+				522611862285EAB700AA703E /* IncomingImageMessageCell.xib in Resources */,
+				522611892285EAB700AA703E /* OutgoingImageMessageCell.xib in Resources */,
+				522611882285EAB700AA703E /* IncomingTextMessageCell.xib in Resources */,
+				5226118C2285EAB700AA703E /* ParlaCollectionView.xib in Resources */,
+				522611872285EAB700AA703E /* IncomingVideoMessageCell.xib in Resources */,
+				5226118F2285EBAC00AA703E /* Assets.xcassets in Resources */,
+				5226118A2285EAB700AA703E /* OutgoingVideoMessageCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5226116B2285EA4E00AA703E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5279943C2282C94500ACB791 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -478,6 +675,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		784CCA52CECC776971832E3A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ParlaKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A802CF977D6FA0E729554079 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -505,6 +724,32 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		522611612285EA4E00AA703E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				522611832285EA6200AA703E /* VideoPlayer.swift in Sources */,
+				522611842285EA6200AA703E /* MediaPicker.swift in Sources */,
+				5226117E2285EA6200AA703E /* ParlaConfig.swift in Sources */,
+				522611A22285F13300AA703E /* UIPaddingLabel.swift in Sources */,
+				522611802285EA6200AA703E /* MessageCell.swift in Sources */,
+				5226117D2285EA6200AA703E /* MessageLogic.swift in Sources */,
+				522611A12285F13100AA703E /* Extensions.swift in Sources */,
+				522611852285EA6200AA703E /* AccessoryActionChooser.swift in Sources */,
+				5226117C2285EA6200AA703E /* SenderLogic.swift in Sources */,
+				5226117F2285EA6200AA703E /* ParlaViewController.swift in Sources */,
+				522611822285EA6200AA703E /* ImageViewer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		522611692285EA4E00AA703E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				522611732285EA4E00AA703E /* ParlaKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5279943A2282C94500ACB791 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -551,6 +796,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		522611702285EA4E00AA703E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 522611642285EA4E00AA703E /* ParlaKit */;
+			targetProxy = 5226116F2285EA4E00AA703E /* PBXContainerItemProxy */;
+		};
 		527994542282C94700ACB791 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5279943D2282C94500ACB791 /* parla */;
@@ -578,6 +828,104 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		522611772285EA4E00AA703E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DB1E79FFEF83A4150A2FA89 /* Pods-ParlaKit.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 23PQ7WQ52E;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ParlaKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cyclonesword.ParlaKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		522611782285EA4E00AA703E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF8BDEF8DBD5105320B899D7 /* Pods-ParlaKit.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 23PQ7WQ52E;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ParlaKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cyclonesword.ParlaKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5226117A2285EA4E00AA703E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 23PQ7WQ52E;
+				INFOPLIST_FILE = ParlaKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cyclonesword.ParlaKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5226117B2285EA4E00AA703E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 23PQ7WQ52E;
+				INFOPLIST_FILE = ParlaKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cyclonesword.ParlaKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		527994592282C94700ACB791 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -779,6 +1127,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		522611762285EA4E00AA703E /* Build configuration list for PBXNativeTarget "ParlaKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				522611772285EA4E00AA703E /* Debug */,
+				522611782285EA4E00AA703E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		522611792285EA4E00AA703E /* Build configuration list for PBXNativeTarget "ParlaKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5226117A2285EA4E00AA703E /* Debug */,
+				5226117B2285EA4E00AA703E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		527994392282C94500ACB791 /* Build configuration list for PBXProject "parla" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

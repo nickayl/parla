@@ -11,7 +11,7 @@ import UIKit
 import CoreMedia
 import AVFoundation
 
-extension UIColor {
+public extension UIColor {
     
     convenience init(withRed red: CGFloat, green: CGFloat, blue: CGFloat) {
         self.init(red: CGFloat(red/255.0), green: CGFloat(green/255.0), blue: CGFloat(blue/255.0), alpha: 1.0)
@@ -19,16 +19,16 @@ extension UIColor {
     
 }
 
-extension String {
+public extension String {
 
     /**
      Check if the string is a valid url
      */
-    public func isURL() -> Bool {
+    func isURL() -> Bool {
         return URL(string: self) != nil
     }
     
-    public func length() -> Int {
+    func length() -> Int {
         return self.count
     }
     
@@ -38,7 +38,7 @@ extension String {
         return actualSize.height
     }
     
-    public func isImage() -> Bool {
+    func isImage() -> Bool {
         let imageFormats = ["jpg", "jpeg", "png", "gif"]
         
         if let ext = self.getExtension() {
@@ -52,7 +52,7 @@ extension String {
         return false
     }
     
-    public func isVideo() -> Bool {
+    func isVideo() -> Bool {
         
         let videoFormats = ["mp4", "mov", "m4v", "avi"]
         
@@ -96,7 +96,7 @@ extension String {
     }
 }
 
-extension UIImage {
+public extension UIImage {
     
     /**
      Returns an UIImage with a specified background color.
@@ -119,9 +119,9 @@ extension UIImage {
     }
 }
 
-@objc extension UIButton {
+@objc public extension UIButton {
     
-    public func setBackgroundColor(color: UIColor, forState state: UIControl.State) -> UIButton {
+    func setBackgroundColor(color: UIColor, forState state: UIControl.State) -> UIButton {
         self.setBackgroundImage(UIImage(withBackground: color), for: state)
         return self
     }
@@ -132,7 +132,7 @@ extension UIImage {
 //    }
 }
 
-extension UIView {
+public extension UIView {
     
     /**
      Hide the view with the specified duration.
@@ -141,19 +141,19 @@ extension UIView {
      - parameter duration: The duration of the hide animation.
      
      */
-    public func hide(withDuration duration: Double) {
+     func hide(withDuration duration: Double) {
         UIView.animate(withDuration: TimeInterval(duration)) {
             self.alpha = 0.0
         }
     }
     
-    public func show(withDuration duration: Double) {
+     func show(withDuration duration: Double) {
         UIView.animate(withDuration: TimeInterval(duration)) {
             self.alpha = 1.0
         }
     }
     
-    public func setBorderRadius(radius: Int) {
+     func setBorderRadius(radius: Int) {
         self.layer.cornerRadius = CGFloat(radius)
         self.layer.masksToBounds = true
     }
@@ -161,9 +161,9 @@ extension UIView {
    
 }
 
-extension UICollectionView {
+public extension UICollectionView {
     
-    public func scrollToBottom(animated: Bool) {
+     func scrollToBottom(animated: Bool) {
         let section = self.numberOfSections - 1
         let numberOfItemsInSection = self.numberOfItems(inSection: section) - 1
         self.scrollToItem(at: IndexPath(item: numberOfItemsInSection, section: section), at: .bottom , animated: animated)
@@ -204,9 +204,9 @@ public class Utils {
     
 }
 
-extension URL {
+public extension URL {
     
-    public static func getDocumentsDirectory() -> URL {
+     static func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
         return documentsDirectory

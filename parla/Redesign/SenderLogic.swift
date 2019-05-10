@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+public enum SenderType : String {
+    case Incoming = "Incoming", Outgoing = "Outgoing"
+}
+
 public class PSender : Equatable {
 
     public var id: Int
@@ -16,7 +20,7 @@ public class PSender : Equatable {
     public var avatar: PAvatar?
     public var type: SenderType
     
-    init(senderId: Int, senderName: String, avatar: PAvatar?, type: SenderType) {
+    public init(senderId: Int, senderName: String, avatar: PAvatar?, type: SenderType) {
         self.id = senderId
         self.name = senderName
         self.avatar = avatar
@@ -32,7 +36,7 @@ public class PSender : Equatable {
 public class PAvatar {
     var image: UIImage
     
-    init(withImage image: UIImage) {
+    public init(withImage image: UIImage) {
         self.image = image
     }
 }

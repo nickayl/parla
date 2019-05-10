@@ -12,6 +12,7 @@
 		02D41199E4B9D1B06A6523774B5AA961 /* MLShareButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0FF45652B3DE95858B5F0989E7FA9F /* MLShareButton.png */; };
 		10CFBDB7B808A0C9BF80226BE2FEFF50 /* ElementConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF76588463215CD3C0135270CC0CC1BB /* ElementConfig.swift */; };
 		11418ED422EA33E7C6ACB723C82E5D29 /* YoutubeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448550E8CB87CDE919288FD931CB7FEA /* YoutubeParser.swift */; };
+		15D9D344C41A7CD385860A40E16A5F5F /* Pods-ParlaKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA731B94AE8697CF80E7136D7363F5F /* Pods-ParlaKit-dummy.m */; };
 		17AB9DBC98090D1017E995DC016C3855 /* MLVolumeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B1904CD0133C59C9493479876F2E1EC7 /* MLVolumeButton.png */; };
 		19F99D2147EB35976169094EBD0505CD /* MobilePlayerOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8536126A6B5B14723A9026CE6E6E6CF9 /* MobilePlayerOverlayViewController.swift */; };
 		1C4103DE73958C9D4B7E18CB1FC6ABF6 /* SKPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50D841A65EA9E85B6E44E4035D15FE3 /* SKPhoto.swift */; };
@@ -32,6 +33,7 @@
 		53513073F48A51D5523E9928057EBF1C /* MLPlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5DE9354825C27A681959F67EC5A8DC /* MLPlayButton.png */; };
 		5406ED0AA5B962468618C16243C0D8A7 /* SKZoomingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6E80516C9FDBCF34538548A44356F /* SKZoomingScrollView.swift */; };
 		57CDAD477B268FDA98D5F37EB53E4109 /* MLPauseButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30411421ED5082E474F587E9AFD7AAAC /* MLPauseButton@3x.png */; };
+		585E57454C03F1EF344364AAE38C3834 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD45C87080AA4A6AB80F37EB65B79C52 /* Foundation.framework */; };
 		5B217104E974909C9CFAF97A01647DA5 /* ButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D63AD3A8E482A2682F488C743D194 /* ButtonConfig.swift */; };
 		617DE117F6C98038DCC781FF24FCACA2 /* MobilePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D1B8C02F49B2F2E569DF9654146FA1 /* MobilePlayerViewController.swift */; };
 		66C366DF165162F74CAB1F55D250EBEE /* SKDetectingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC4E619E8E914B9F9735B9EF846346C /* SKDetectingImageView.swift */; };
@@ -50,7 +52,7 @@
 		877272992666172AFB1FBE1635069D54 /* UIView+Radius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3570FC1F4A36648024D1C71C2BF4D5 /* UIView+Radius.swift */; };
 		88E4F1DF648AC015739A4698EC2B97C6 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D506AFD9D7CCCB96564D19E98487D /* ToggleButton.swift */; };
 		8D126C3A26322E7E1BEAD2862DCAC77F /* SKLocalPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F61B5F86C566ACDCCF48C158CA0FDFA /* SKLocalPhoto.swift */; };
-		8D76B9CC96BDE4162343A25EA458D518 /* Pods-parlaTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5321945E9B555023970B71A54BF878B8 /* Pods-parlaTests-dummy.m */; };
+		8D76B9CC96BDE4162343A25EA458D518 /* Pods-parlaTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2AD5822409A1E70BDD521F6EDBA6BE /* Pods-parlaTests-dummy.m */; };
 		8EADFB8A997DF2D3050370D6449DDDBA /* SKPhotoBrowser-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E0FA61D510427AB3274FFD6A6DCBB9 /* SKPhotoBrowser-dummy.m */; };
 		95F39D7DFF580BD42BCE2DD88499C181 /* UIApplication+UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6AFEA9437FA6D74E8DFB89AD2390F6 /* UIApplication+UIWindow.swift */; };
 		96CB34C3B23717E195ADADB7A0065EAE /* SKPhotoBrowserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D507B83AD91DCC56A7FC0E1BFAE814 /* SKPhotoBrowserDelegate.swift */; };
@@ -62,10 +64,10 @@
 		B748B6EB9AF9ED57D8038600594ADA3C /* MLPauseButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39AAA343362D4096A678F7E2A3535F3 /* MLPauseButton@2x.png */; };
 		B773BBAC733B33CB41E0C896CE44EB65 /* SKCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C886D2765639635F35225B51D4259E54 /* SKCache.swift */; };
 		B77BD8680CDA814F63F28C7E1D9FEFAB /* SKActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409D966DA24A303F5853BEEBDAE256B /* SKActionView.swift */; };
-		BA8D377F93C5F7D02CFE1F833943626E /* Pods-parla-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E42223BCAD71D23A57999A32C6A76FCF /* Pods-parla-dummy.m */; };
+		BA8D377F93C5F7D02CFE1F833943626E /* Pods-parla-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B41A138945ED89E6137F9900F1E97DF7 /* Pods-parla-dummy.m */; };
 		BDAA5110A3D32FE689E3F21FD94354C1 /* SliderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886CCCD2699444112AA2806B3162B600 /* SliderConfig.swift */; };
 		C02BF0162F5A871C6FE763A2167714FF /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73F8F7BB5B62539057264B80C509031 /* UIColor+Hex.swift */; };
-		C31ACC56E6634268B5A5CD17C3FB66D1 /* Pods-parlaTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 98E5BCA92CF1D8C4631674866F0C9546 /* Pods-parlaTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C31ACC56E6634268B5A5CD17C3FB66D1 /* Pods-parlaTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DB79D219A5A945B159F705F32A5AADF0 /* Pods-parlaTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C41220BA5C01FFBDA8FFCC1DF7BDDA39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD45C87080AA4A6AB80F37EB65B79C52 /* Foundation.framework */; };
 		C41D8D6CA5FB556BA2DD7C8F4F0863F2 /* WatermarkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91BDC748C14823CEA177117C8C4F288 /* WatermarkConfig.swift */; };
 		C4DEF5B4FB052F6410EAF828A22B2F2F /* MLCloseButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521F0E4B7E3495072A8FD2CB8B241D74 /* MLCloseButton@3x.png */; };
@@ -75,9 +77,10 @@
 		D069EB9949295A16D5D31FCB8403C03F /* MLPauseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C9921F521A3E2E00003B7D4563B048DE /* MLPauseButton.png */; };
 		D72E63D6C87504F08897DE174E18B69E /* SKPagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725078F3A232786A10A83144E938D25 /* SKPagingScrollView.swift */; };
 		D773183E773EC484C9E2AEBC567CA91B /* ClosureSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E2DD464EA8FB6AEE255A150969A2BB /* ClosureSupport.swift */; };
+		DB14CA62F140226A2E4431738C41F729 /* Pods-ParlaKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 471CFE760F2A6A545DDF0AE00DAEFCFD /* Pods-ParlaKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB3A31FEF811A3D4CDC2AF3D60CF5E29 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD45C87080AA4A6AB80F37EB65B79C52 /* Foundation.framework */; };
 		DDDCCC88D10827B2DD0EC7B5CFAABA8E /* SKAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A80ADDB7DD3752150DA6D2651ADB0C1 /* SKAnimator.swift */; };
-		DE867875C4DDD0A123B0EC4CE3711CF6 /* Pods-parla-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D02054C93B25F2E282AB54CFE68DAA1 /* Pods-parla-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE867875C4DDD0A123B0EC4CE3711CF6 /* Pods-parla-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8376E9E3AD52904C7666A36B6A9A0BCC /* Pods-parla-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E46222392A1BD54E72CDABE4A228692E /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48402C9FEF6235672F03E68D78E3D55B /* UIImage+Rotation.swift */; };
 		E61D65768504328467244BF7040F70E1 /* SKIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7A2EC49133816873A8F62F04F382ED /* SKIndicatorView.swift */; };
 		E76231ACA3310D42D60513E2A3664A53 /* BarConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00CEB3FF3A094F7870D38B44AE9F836 /* BarConfig.swift */; };
@@ -90,12 +93,19 @@
 		F0A9ED65ED771B573B1D0FAFA5ACB6B8 /* ToggleButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ED26BC3203D3AC7D697A4393CBF605 /* ToggleButtonConfig.swift */; };
 		F157233471DAD1F8FF16F2E4B343D524 /* SKCaptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61257592DEDB956195069F25B8C18542 /* SKCaptionView.swift */; };
 		F19FF3B1725CF9D82ED35CD12C8704C0 /* MLPlayButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087FE2C9145A217E331E7E5B9BB670A4 /* MLPlayButton@3x.png */; };
-		F397A31FF91E39A961851B077EB8D97F /* MobilePlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F35504A22E733E781CE70D38315C3622 /* MobilePlayer.bundle */; };
+		F397A31FF91E39A961851B077EB8D97F /* MobilePlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0D30AD6F74229D7388A6CFF99C3F980C /* MobilePlayer.bundle */; };
 		F6AB58A774B81021B219DCB9BB3D57F2 /* MobilePlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9118C7B65F27ABE2131BC07D454C031 /* MobilePlayerControlsView.swift */; };
 		FCED97237A04D9FC900EC463F2F42BF7 /* MLPlayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F137C4E812C2E557EC0101369388E3 /* MLPlayButton@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		92633DC0585A05DFDB822A70457FBCD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6F0ECCC316EB617021923C211B022E1D;
+			remoteInfo = MobilePlayer;
+		};
 		9AF2747CACF5DD3F3D1CB4465F817DA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -104,6 +114,13 @@
 			remoteInfo = MobilePlayer;
 		};
 		9B402DD2C3E9F3A689A4B0FDEB6CA887 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1413126E6265379971355987911F074;
+			remoteInfo = SKPhotoBrowser;
+		};
+		B95AF853564F20527B5A6C8DF1FCAEA4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -128,57 +145,63 @@
 
 /* Begin PBXFileReference section */
 		011C2A42423E76769494327E0B917B1A /* Element.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Element.swift; path = MobilePlayer/Views/Element.swift; sourceTree = "<group>"; };
-		044504A1A297BA6CDDACDAD211F524FD /* Pods-parla-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-parla-frameworks.sh"; sourceTree = "<group>"; };
+		036BF6330FF5A63F0C4A6E89A10FC2AE /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_parla.framework; path = "Pods-parla.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F137C4E812C2E557EC0101369388E3 /* MLPlayButton@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLPlayButton@2x.png"; path = "MobilePlayer/Resources/MLPlayButton@2x.png"; sourceTree = "<group>"; };
+		062E2C9F731EFDD4BB6CCCCAA406342E /* Pods-ParlaKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ParlaKit.debug.xcconfig"; sourceTree = "<group>"; };
 		087FE2C9145A217E331E7E5B9BB670A4 /* MLPlayButton@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLPlayButton@3x.png"; path = "MobilePlayer/Resources/MLPlayButton@3x.png"; sourceTree = "<group>"; };
 		0ABBCF947240CCF5B5EFB4CFFD084559 /* MLVolumeButton@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLVolumeButton@3x.png"; path = "MobilePlayer/Resources/MLVolumeButton@3x.png"; sourceTree = "<group>"; };
-		107EBC623A6C2F3197F6216DA1DDF72A /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SKPhotoBrowser.framework; path = SKPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D30AD6F74229D7388A6CFF99C3F980C /* MobilePlayer.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MobilePlayer.bundle; path = "MobilePlayer-MobilePlayer.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D794BAF575E6663A51F8188351EB723 /* Pods-parla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-parla.release.xcconfig"; sourceTree = "<group>"; };
+		14CA003403EF8CC1F9C06858097482C5 /* Pods-parla-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-parla-acknowledgements.plist"; sourceTree = "<group>"; };
 		161BD5605859266AE93F773F0EC14139 /* Bar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Bar.swift; path = MobilePlayer/Views/Bar.swift; sourceTree = "<group>"; };
+		1A79647D3107AD7D540EEB270E853FB5 /* Pods-parlaTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-parlaTests.modulemap"; sourceTree = "<group>"; };
 		1A80ADDB7DD3752150DA6D2651ADB0C1 /* SKAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKAnimator.swift; path = SKPhotoBrowser/SKAnimator.swift; sourceTree = "<group>"; };
 		1B5DE9354825C27A681959F67EC5A8DC /* MLPlayButton.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MLPlayButton.png; path = MobilePlayer/Resources/MLPlayButton.png; sourceTree = "<group>"; };
 		1C2D3A3BABDC870680C68F90BC63AD9C /* SKPhotoBrowserOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKPhotoBrowserOptions.swift; path = SKPhotoBrowser/SKPhotoBrowserOptions.swift; sourceTree = "<group>"; };
-		1F0313B09C8603E6F2B4CEB258E296A3 /* Pods-parlaTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-parlaTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		225929DB9CBDE54567EA9CE99E3DA12D /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_parla.framework; path = "Pods-parla.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		246ABFCD82F56EDDD887974AECDEB163 /* Pods_parlaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_parlaTests.framework; path = "Pods-parlaTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26E6E80516C9FDBCF34538548A44356F /* SKZoomingScrollView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKZoomingScrollView.swift; path = SKPhotoBrowser/SKZoomingScrollView.swift; sourceTree = "<group>"; };
 		27C46452B0E1E7673C1C53CE0D914461 /* SKPaginationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKPaginationView.swift; path = SKPhotoBrowser/SKPaginationView.swift; sourceTree = "<group>"; };
 		28952561F53E0B7A06919F62B124B6E4 /* MobilePlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MobilePlayer-prefix.pch"; sourceTree = "<group>"; };
 		2A71B38BBCD68CA71F60CAD03C8931CE /* MLCloseButton@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLCloseButton@2x.png"; path = "MobilePlayer/Resources/MLCloseButton@2x.png"; sourceTree = "<group>"; };
-		2EC23975E671907892B631A43A5E863C /* Pods-parlaTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-parlaTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		30411421ED5082E474F587E9AFD7AAAC /* MLPauseButton@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLPauseButton@3x.png"; path = "MobilePlayer/Resources/MLPauseButton@3x.png"; sourceTree = "<group>"; };
-		30D29F5955F872D8E0B9E8A61E88E255 /* Pods-parla.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-parla.modulemap"; sourceTree = "<group>"; };
 		341347A5F2F62633349DB2D0CB4EF218 /* MobilePlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MobilePlayer.xcconfig; sourceTree = "<group>"; };
-		36E0207586935F1D200A459BE6A63858 /* Pods-parla-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-parla-acknowledgements.plist"; sourceTree = "<group>"; };
+		3B1EE8E2DEF289EBB087BEACA1297E4E /* Pods-parla.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-parla.modulemap"; sourceTree = "<group>"; };
 		3CBDEB933D72C15B200F77A26D67B10A /* SKToolbar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKToolbar.swift; path = SKPhotoBrowser/SKToolbar.swift; sourceTree = "<group>"; };
 		423AF324459C3D983A38E740299BB977 /* MobilePlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MobilePlayer-dummy.m"; sourceTree = "<group>"; };
+		43C8CEEA4031FB3A083E6ECE5608C061 /* Pods-ParlaKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ParlaKit-Info.plist"; sourceTree = "<group>"; };
 		448550E8CB87CDE919288FD931CB7FEA /* YoutubeParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YoutubeParser.swift; path = MobilePlayer/Parsers/YoutubeParser.swift; sourceTree = "<group>"; };
+		471CFE760F2A6A545DDF0AE00DAEFCFD /* Pods-ParlaKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ParlaKit-umbrella.h"; sourceTree = "<group>"; };
 		48402C9FEF6235672F03E68D78E3D55B /* UIImage+Rotation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+Rotation.swift"; path = "SKPhotoBrowser/extensions/UIImage+Rotation.swift"; sourceTree = "<group>"; };
+		488ED33A32B231565250E5A218C1799C /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SKPhotoBrowser.framework; path = SKPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FD480454B1C0E29304B8A03D1DFBB6 /* SKPhotoBrowser.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SKPhotoBrowser.bundle; path = SKPhotoBrowser/SKPhotoBrowser.bundle; sourceTree = "<group>"; };
 		4DC4E619E8E914B9F9735B9EF846346C /* SKDetectingImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKDetectingImageView.swift; path = SKPhotoBrowser/SKDetectingImageView.swift; sourceTree = "<group>"; };
 		4E0FF45652B3DE95858B5F0989E7FA9F /* MLShareButton.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MLShareButton.png; path = MobilePlayer/Resources/MLShareButton.png; sourceTree = "<group>"; };
 		521F0E4B7E3495072A8FD2CB8B241D74 /* MLCloseButton@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLCloseButton@3x.png"; path = "MobilePlayer/Resources/MLCloseButton@3x.png"; sourceTree = "<group>"; };
-		5321945E9B555023970B71A54BF878B8 /* Pods-parlaTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-parlaTests-dummy.m"; sourceTree = "<group>"; };
 		56E2DD464EA8FB6AEE255A150969A2BB /* ClosureSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClosureSupport.swift; path = MobilePlayer/Extensions/ClosureSupport.swift; sourceTree = "<group>"; };
+		57AF427F75D3E6641967794E6010666B /* Pods-ParlaKit-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ParlaKit-acknowledgements.markdown"; sourceTree = "<group>"; };
 		61257592DEDB956195069F25B8C18542 /* SKCaptionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKCaptionView.swift; path = SKPhotoBrowser/SKCaptionView.swift; sourceTree = "<group>"; };
 		65797ADA7CB9A27D4B2B0E8679BCC105 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
 		6849192692FCFAE24E2495715672A80E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		6FA8853E014A35C6C1DAB13CC74F61E1 /* MobilePlayerNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MobilePlayerNotification.swift; path = MobilePlayer/MobilePlayerNotification.swift; sourceTree = "<group>"; };
 		72E9CDEAF21131C6646826B65828D82B /* LabelConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LabelConfig.swift; path = MobilePlayer/Config/LabelConfig.swift; sourceTree = "<group>"; };
+		7403CFFF0A372296DE628745A9E7D122 /* Pods-parlaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-parlaTests.release.xcconfig"; sourceTree = "<group>"; };
+		78FFF2BCD36CC4F9B848984F9A8BB6DA /* Pods-parla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-parla.debug.xcconfig"; sourceTree = "<group>"; };
 		7A5CF65F955069F59DAE09996AB37F7C /* MLIncreaseVolume.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MLIncreaseVolume.png; path = MobilePlayer/Resources/MLIncreaseVolume.png; sourceTree = "<group>"; };
 		7B7E4AE4469A95A0D0AEBFDD595A2757 /* SKPhotoBrowser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKPhotoBrowser.swift; path = SKPhotoBrowser/SKPhotoBrowser.swift; sourceTree = "<group>"; };
+		7BA614BE58954B93EEDD776BFE665D4D /* Pods-ParlaKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ParlaKit.release.xcconfig"; sourceTree = "<group>"; };
 		7E3C5FF20802DDD573C814C12E011859 /* SKPhotoBrowser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SKPhotoBrowser.h; path = SKPhotoBrowser/SKPhotoBrowser.h; sourceTree = "<group>"; };
-		7E4313454C90115ADF71CDB1985EDBC4 /* Pods-parlaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-parlaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8067D0F2FA9D49E5781DF0884E1E097F /* MobilePlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MobilePlayer.modulemap; sourceTree = "<group>"; };
 		80DBF925C79BAC4D5CF0F27B6A201F37 /* SKPhotoBrowser-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKPhotoBrowser-prefix.pch"; sourceTree = "<group>"; };
 		81D6B3643975D718BD63FD15624F1836 /* MLReduceVolume.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MLReduceVolume.png; path = MobilePlayer/Resources/MLReduceVolume.png; sourceTree = "<group>"; };
 		835B872467667A5044B5DD45FA66254F /* ResourceBundle-MobilePlayer-MobilePlayer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-MobilePlayer-MobilePlayer-Info.plist"; sourceTree = "<group>"; };
+		8376E9E3AD52904C7666A36B6A9A0BCC /* Pods-parla-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-parla-umbrella.h"; sourceTree = "<group>"; };
 		8409D966DA24A303F5853BEEBDAE256B /* SKActionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKActionView.swift; path = SKPhotoBrowser/SKActionView.swift; sourceTree = "<group>"; };
 		8536126A6B5B14723A9026CE6E6E6CF9 /* MobilePlayerOverlayViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MobilePlayerOverlayViewController.swift; path = MobilePlayer/MobilePlayerOverlayViewController.swift; sourceTree = "<group>"; };
 		8863C51B29A7FA03901BA71A91FDC460 /* SKDetectingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKDetectingView.swift; path = SKPhotoBrowser/SKDetectingView.swift; sourceTree = "<group>"; };
 		886CCCD2699444112AA2806B3162B600 /* SliderConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SliderConfig.swift; path = MobilePlayer/Config/SliderConfig.swift; sourceTree = "<group>"; };
 		88D1B8C02F49B2F2E569DF9654146FA1 /* MobilePlayerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MobilePlayerViewController.swift; path = MobilePlayer/MobilePlayerViewController.swift; sourceTree = "<group>"; };
 		8902D030730DAC03DD6235605779443C /* SKButtons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKButtons.swift; path = SKPhotoBrowser/SKButtons.swift; sourceTree = "<group>"; };
-		8D02054C93B25F2E282AB54CFE68DAA1 /* Pods-parla-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-parla-umbrella.h"; sourceTree = "<group>"; };
+		89B78EE0842BB6198453FAADC75D4F82 /* Pods-parla-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-parla-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8B08E7083B923E797F381C4F8958F3C7 /* Pods-parlaTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-parlaTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		8E3570FC1F4A36648024D1C71C2BF4D5 /* UIView+Radius.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Radius.swift"; path = "SKPhotoBrowser/extensions/UIView+Radius.swift"; sourceTree = "<group>"; };
 		8F61B5F86C566ACDCCF48C158CA0FDFA /* SKLocalPhoto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKLocalPhoto.swift; path = SKPhotoBrowser/SKLocalPhoto.swift; sourceTree = "<group>"; };
 		900E7597988EDAC02BDBCC38D3EBCC0A /* MobilePlayerConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MobilePlayerConfig.swift; path = MobilePlayer/Config/MobilePlayerConfig.swift; sourceTree = "<group>"; };
@@ -186,55 +209,58 @@
 		95FDA0A20C7892054055532A035271AF /* WatermarkViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatermarkViewController.swift; path = MobilePlayer/WatermarkViewController.swift; sourceTree = "<group>"; };
 		972EAD5210549B32AE13DF43EF492291 /* MLShareButton@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLShareButton@3x.png"; path = "MobilePlayer/Resources/MLShareButton@3x.png"; sourceTree = "<group>"; };
 		987404B2FC36EABD24A35DB1D9527B55 /* MLReduceVolume@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLReduceVolume@3x.png"; path = "MobilePlayer/Resources/MLReduceVolume@3x.png"; sourceTree = "<group>"; };
-		98E5BCA92CF1D8C4631674866F0C9546 /* Pods-parlaTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-parlaTests-umbrella.h"; sourceTree = "<group>"; };
-		99D9FF68B4CAAAE5AD1E5A4370BA05F9 /* MobilePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MobilePlayer.framework; path = MobilePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A4720297F76790DF12BF23C40B950D69 /* MLIncreaseVolume@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLIncreaseVolume@3x.png"; path = "MobilePlayer/Resources/MLIncreaseVolume@3x.png"; sourceTree = "<group>"; };
 		A50D841A65EA9E85B6E44E4035D15FE3 /* SKPhoto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKPhoto.swift; path = SKPhotoBrowser/SKPhoto.swift; sourceTree = "<group>"; };
+		A8BE0D5F1D68798C4CBEDE80D3260865 /* Pods-parlaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-parlaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A91BDC748C14823CEA177117C8C4F288 /* WatermarkConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatermarkConfig.swift; path = MobilePlayer/Config/WatermarkConfig.swift; sourceTree = "<group>"; };
 		A9B64C2F824477545B076196E1F93046 /* StateHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StateHelper.swift; path = MobilePlayer/Helpers/StateHelper.swift; sourceTree = "<group>"; };
 		A9C72829D872C6F111E4AE99615FB45C /* Button.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Button.swift; path = MobilePlayer/Views/Button.swift; sourceTree = "<group>"; };
 		AB6AFEA9437FA6D74E8DFB89AD2390F6 /* UIApplication+UIWindow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIApplication+UIWindow.swift"; path = "SKPhotoBrowser/UIApplication+UIWindow.swift"; sourceTree = "<group>"; };
 		AC88030997BA53F8C432BFEFACAB77AC /* MobilePlayer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MobilePlayer-Info.plist"; sourceTree = "<group>"; };
-		AE2290164E3A29B778980EF0E6DD2CA6 /* Pods-parlaTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-parlaTests.modulemap"; sourceTree = "<group>"; };
 		B00CEB3FF3A094F7870D38B44AE9F836 /* BarConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarConfig.swift; path = MobilePlayer/Config/BarConfig.swift; sourceTree = "<group>"; };
 		B1904CD0133C59C9493479876F2E1EC7 /* MLVolumeButton.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MLVolumeButton.png; path = MobilePlayer/Resources/MLVolumeButton.png; sourceTree = "<group>"; };
+		B41A138945ED89E6137F9900F1E97DF7 /* Pods-parla-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-parla-dummy.m"; sourceTree = "<group>"; };
 		B6634E5397F20420F0E1B83F456F8D18 /* MLVolumeButton@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLVolumeButton@2x.png"; path = "MobilePlayer/Resources/MLVolumeButton@2x.png"; sourceTree = "<group>"; };
 		B6D507B83AD91DCC56A7FC0E1BFAE814 /* SKPhotoBrowserDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKPhotoBrowserDelegate.swift; path = SKPhotoBrowser/SKPhotoBrowserDelegate.swift; sourceTree = "<group>"; };
 		B725078F3A232786A10A83144E938D25 /* SKPagingScrollView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKPagingScrollView.swift; path = SKPhotoBrowser/SKPagingScrollView.swift; sourceTree = "<group>"; };
 		B73F8F7BB5B62539057264B80C509031 /* UIColor+Hex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIColor+Hex.swift"; path = "MobilePlayer/Extensions/UIColor+Hex.swift"; sourceTree = "<group>"; };
 		B9118C7B65F27ABE2131BC07D454C031 /* MobilePlayerControlsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MobilePlayerControlsView.swift; path = MobilePlayer/Views/MobilePlayerControlsView.swift; sourceTree = "<group>"; };
 		BB9B2F768051BCD916DCB9C7958FA473 /* Label.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Label.swift; path = MobilePlayer/Views/Label.swift; sourceTree = "<group>"; };
-		BEAE4519F565F8F5CB44881A3D4951BB /* Pods-parla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-parla.release.xcconfig"; sourceTree = "<group>"; };
-		C0AE40D3D5F1122408D6690D79AC3F41 /* Pods-parlaTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-parlaTests-Info.plist"; sourceTree = "<group>"; };
+		C1B153828F3B86C91C8868E658935E2D /* Pods_parlaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_parlaTests.framework; path = "Pods-parlaTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2ED26BC3203D3AC7D697A4393CBF605 /* ToggleButtonConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToggleButtonConfig.swift; path = MobilePlayer/Config/ToggleButtonConfig.swift; sourceTree = "<group>"; };
+		C398F5D6AABF25BBEA273B0332E3A06B /* Pods-parla-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-parla-frameworks.sh"; sourceTree = "<group>"; };
+		C42E911589C7E9DABFA5018875A93DE9 /* Pods_ParlaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ParlaKit.framework; path = "Pods-ParlaKit.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C886D2765639635F35225B51D4259E54 /* SKCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKCache.swift; path = SKPhotoBrowser/SKCache.swift; sourceTree = "<group>"; };
 		C8A82D29D3F916C9B17BE3EA2E489752 /* MLIncreaseVolume@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLIncreaseVolume@2x.png"; path = "MobilePlayer/Resources/MLIncreaseVolume@2x.png"; sourceTree = "<group>"; };
 		C966A976910717AE9BF8DC0A138A009C /* SKCacheable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKCacheable.swift; path = SKPhotoBrowser/SKCacheable.swift; sourceTree = "<group>"; };
 		C9921F521A3E2E00003B7D4563B048DE /* MLPauseButton.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MLPauseButton.png; path = MobilePlayer/Resources/MLPauseButton.png; sourceTree = "<group>"; };
+		C9C1C1DA01C0D77E3D98BB7C377A27BC /* Pods-parlaTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-parlaTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		CA46A9EA589C66F5D6C85B2FF65DDBEF /* UIImage+CocoaPods.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+CocoaPods.swift"; path = "MobilePlayer/Extensions/UIImage+CocoaPods.swift"; sourceTree = "<group>"; };
-		CB8F649879733386F4C1C53191904CA8 /* Pods-parla-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-parla-acknowledgements.markdown"; sourceTree = "<group>"; };
-		D031EF7AEDB9F177AA564E85A8FFDFF2 /* Pods-parla-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-parla-Info.plist"; sourceTree = "<group>"; };
+		CDDA4C7E4D8FCB503EA315FD308959F5 /* Pods-parla-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-parla-Info.plist"; sourceTree = "<group>"; };
+		D261773F7E53C83CF82B10FB9D405B0A /* Pods-ParlaKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ParlaKit.modulemap"; sourceTree = "<group>"; };
 		D67FAB0DE9008CF037F78708784E4B70 /* SKPhotoBrowser-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SKPhotoBrowser-Info.plist"; sourceTree = "<group>"; };
 		D7764F292890B1C0D0115503A037E243 /* VolumeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VolumeView.swift; path = MobilePlayer/Views/VolumeView.swift; sourceTree = "<group>"; };
 		D86F690824B1F0EE1E23A634B73F7D93 /* MLReduceVolume@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLReduceVolume@2x.png"; path = "MobilePlayer/Resources/MLReduceVolume@2x.png"; sourceTree = "<group>"; };
 		DA7A2EC49133816873A8F62F04F382ED /* SKIndicatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKIndicatorView.swift; path = SKPhotoBrowser/SKIndicatorView.swift; sourceTree = "<group>"; };
 		DAD0000EB9312B61BD9D79EBFDE30282 /* MLCloseButton.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MLCloseButton.png; path = MobilePlayer/Resources/MLCloseButton.png; sourceTree = "<group>"; };
+		DB79D219A5A945B159F705F32A5AADF0 /* Pods-parlaTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-parlaTests-umbrella.h"; sourceTree = "<group>"; };
 		DD45C87080AA4A6AB80F37EB65B79C52 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		DE2AD5822409A1E70BDD521F6EDBA6BE /* Pods-parlaTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-parlaTests-dummy.m"; sourceTree = "<group>"; };
+		DFA731B94AE8697CF80E7136D7363F5F /* Pods-ParlaKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ParlaKit-dummy.m"; sourceTree = "<group>"; };
 		E26FE7BBF7C575DDD366DDD7ADA5450C /* SKMesurement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SKMesurement.swift; path = SKPhotoBrowser/SKMesurement.swift; sourceTree = "<group>"; };
 		E319319E6C7A68B9EB57172F7A21B835 /* SKPhotoBrowser.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SKPhotoBrowser.xcconfig; sourceTree = "<group>"; };
 		E39AAA343362D4096A678F7E2A3535F3 /* MLPauseButton@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLPauseButton@2x.png"; path = "MobilePlayer/Resources/MLPauseButton@2x.png"; sourceTree = "<group>"; };
-		E42223BCAD71D23A57999A32C6A76FCF /* Pods-parla-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-parla-dummy.m"; sourceTree = "<group>"; };
+		E4510737066AD39B135260384873CAB4 /* Pods-ParlaKit-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ParlaKit-acknowledgements.plist"; sourceTree = "<group>"; };
 		E699183A82C416B6675E816C3A6FD4D7 /* SKPhotoBrowser-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKPhotoBrowser-umbrella.h"; sourceTree = "<group>"; };
 		E9E0FA61D510427AB3274FFD6A6DCBB9 /* SKPhotoBrowser-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SKPhotoBrowser-dummy.m"; sourceTree = "<group>"; };
+		EB9D23CF8AD1A8847632F6E9F3A32366 /* Pods-parlaTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-parlaTests-Info.plist"; sourceTree = "<group>"; };
 		EC3D506AFD9D7CCCB96564D19E98487D /* ToggleButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToggleButton.swift; path = MobilePlayer/Views/ToggleButton.swift; sourceTree = "<group>"; };
 		ED19D5CCDFF73F874638EB613F08FA30 /* Slider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Slider.swift; path = MobilePlayer/Views/Slider.swift; sourceTree = "<group>"; };
 		EDA1F58ACC513417092EDF7AB8FDB409 /* MLShareButton@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MLShareButton@2x.png"; path = "MobilePlayer/Resources/MLShareButton@2x.png"; sourceTree = "<group>"; };
 		EF76588463215CD3C0135270CC0CC1BB /* ElementConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ElementConfig.swift; path = MobilePlayer/Config/ElementConfig.swift; sourceTree = "<group>"; };
-		F35504A22E733E781CE70D38315C3622 /* MobilePlayer.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MobilePlayer.bundle; path = "MobilePlayer-MobilePlayer.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F54D63AD3A8E482A2682F488C743D194 /* ButtonConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ButtonConfig.swift; path = MobilePlayer/Config/ButtonConfig.swift; sourceTree = "<group>"; };
-		F7833491B02951129B08D5342B723BC4 /* Pods-parla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-parla.debug.xcconfig"; sourceTree = "<group>"; };
-		FA82B3863C7D051B7946DCD160A73F0B /* Pods-parlaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-parlaTests.release.xcconfig"; sourceTree = "<group>"; };
+		FDFDC8C7E85A6B343993EC6A1ADC7BA5 /* MobilePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MobilePlayer.framework; path = MobilePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF074E4B489142B47CE6807AF794F7E0 /* MobilePlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MobilePlayer-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -244,6 +270,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE27D2DC8ECC9E3B83C0DD427573AB98 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11E73CAECB40FF202E13B5BD9F5D2A94 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				585E57454C03F1EF344364AAE38C3834 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +324,22 @@
 				0575EEE3485132F52FE962946907C6B6 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		045746B5940CBDEA6ED7AC023E72186B /* Pods-parlaTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A79647D3107AD7D540EEB270E853FB5 /* Pods-parlaTests.modulemap */,
+				C9C1C1DA01C0D77E3D98BB7C377A27BC /* Pods-parlaTests-acknowledgements.markdown */,
+				8B08E7083B923E797F381C4F8958F3C7 /* Pods-parlaTests-acknowledgements.plist */,
+				DE2AD5822409A1E70BDD521F6EDBA6BE /* Pods-parlaTests-dummy.m */,
+				EB9D23CF8AD1A8847632F6E9F3A32366 /* Pods-parlaTests-Info.plist */,
+				DB79D219A5A945B159F705F32A5AADF0 /* Pods-parlaTests-umbrella.h */,
+				A8BE0D5F1D68798C4CBEDE80D3260865 /* Pods-parlaTests.debug.xcconfig */,
+				7403CFFF0A372296DE628745A9E7D122 /* Pods-parlaTests.release.xcconfig */,
+			);
+			name = "Pods-parlaTests";
+			path = "Target Support Files/Pods-parlaTests";
 			sourceTree = "<group>";
 		};
 		0575EEE3485132F52FE962946907C6B6 /* iOS */ = {
@@ -360,49 +410,37 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		5BB300B7A9EE07E8363D8455C4881F2D /* Products */ = {
+		5DF6D5486D73414A64411F5AACFEC027 /* Pods-parla */ = {
 			isa = PBXGroup;
 			children = (
-				F35504A22E733E781CE70D38315C3622 /* MobilePlayer.bundle */,
-				99D9FF68B4CAAAE5AD1E5A4370BA05F9 /* MobilePlayer.framework */,
-				225929DB9CBDE54567EA9CE99E3DA12D /* Pods_parla.framework */,
-				246ABFCD82F56EDDD887974AECDEB163 /* Pods_parlaTests.framework */,
-				107EBC623A6C2F3197F6216DA1DDF72A /* SKPhotoBrowser.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		769B5382F38FB43963AB2EC3844892E4 /* Pods-parla */ = {
-			isa = PBXGroup;
-			children = (
-				30D29F5955F872D8E0B9E8A61E88E255 /* Pods-parla.modulemap */,
-				CB8F649879733386F4C1C53191904CA8 /* Pods-parla-acknowledgements.markdown */,
-				36E0207586935F1D200A459BE6A63858 /* Pods-parla-acknowledgements.plist */,
-				E42223BCAD71D23A57999A32C6A76FCF /* Pods-parla-dummy.m */,
-				044504A1A297BA6CDDACDAD211F524FD /* Pods-parla-frameworks.sh */,
-				D031EF7AEDB9F177AA564E85A8FFDFF2 /* Pods-parla-Info.plist */,
-				8D02054C93B25F2E282AB54CFE68DAA1 /* Pods-parla-umbrella.h */,
-				F7833491B02951129B08D5342B723BC4 /* Pods-parla.debug.xcconfig */,
-				BEAE4519F565F8F5CB44881A3D4951BB /* Pods-parla.release.xcconfig */,
+				3B1EE8E2DEF289EBB087BEACA1297E4E /* Pods-parla.modulemap */,
+				89B78EE0842BB6198453FAADC75D4F82 /* Pods-parla-acknowledgements.markdown */,
+				14CA003403EF8CC1F9C06858097482C5 /* Pods-parla-acknowledgements.plist */,
+				B41A138945ED89E6137F9900F1E97DF7 /* Pods-parla-dummy.m */,
+				C398F5D6AABF25BBEA273B0332E3A06B /* Pods-parla-frameworks.sh */,
+				CDDA4C7E4D8FCB503EA315FD308959F5 /* Pods-parla-Info.plist */,
+				8376E9E3AD52904C7666A36B6A9A0BCC /* Pods-parla-umbrella.h */,
+				78FFF2BCD36CC4F9B848984F9A8BB6DA /* Pods-parla.debug.xcconfig */,
+				0D794BAF575E6663A51F8188351EB723 /* Pods-parla.release.xcconfig */,
 			);
 			name = "Pods-parla";
 			path = "Target Support Files/Pods-parla";
 			sourceTree = "<group>";
 		};
-		8531D120759E846A1E4DB8A1C665FB79 /* Pods-parlaTests */ = {
+		8F17FE4E8E46C8FDD8A3328DC2957EAD /* Pods-ParlaKit */ = {
 			isa = PBXGroup;
 			children = (
-				AE2290164E3A29B778980EF0E6DD2CA6 /* Pods-parlaTests.modulemap */,
-				1F0313B09C8603E6F2B4CEB258E296A3 /* Pods-parlaTests-acknowledgements.markdown */,
-				2EC23975E671907892B631A43A5E863C /* Pods-parlaTests-acknowledgements.plist */,
-				5321945E9B555023970B71A54BF878B8 /* Pods-parlaTests-dummy.m */,
-				C0AE40D3D5F1122408D6690D79AC3F41 /* Pods-parlaTests-Info.plist */,
-				98E5BCA92CF1D8C4631674866F0C9546 /* Pods-parlaTests-umbrella.h */,
-				7E4313454C90115ADF71CDB1985EDBC4 /* Pods-parlaTests.debug.xcconfig */,
-				FA82B3863C7D051B7946DCD160A73F0B /* Pods-parlaTests.release.xcconfig */,
+				D261773F7E53C83CF82B10FB9D405B0A /* Pods-ParlaKit.modulemap */,
+				57AF427F75D3E6641967794E6010666B /* Pods-ParlaKit-acknowledgements.markdown */,
+				E4510737066AD39B135260384873CAB4 /* Pods-ParlaKit-acknowledgements.plist */,
+				DFA731B94AE8697CF80E7136D7363F5F /* Pods-ParlaKit-dummy.m */,
+				43C8CEEA4031FB3A083E6ECE5608C061 /* Pods-ParlaKit-Info.plist */,
+				471CFE760F2A6A545DDF0AE00DAEFCFD /* Pods-ParlaKit-umbrella.h */,
+				062E2C9F731EFDD4BB6CCCCAA406342E /* Pods-ParlaKit.debug.xcconfig */,
+				7BA614BE58954B93EEDD776BFE665D4D /* Pods-ParlaKit.release.xcconfig */,
 			);
-			name = "Pods-parlaTests";
-			path = "Target Support Files/Pods-parlaTests";
+			name = "Pods-ParlaKit";
+			path = "Target Support Files/Pods-ParlaKit";
 			sourceTree = "<group>";
 		};
 		9B909C7229A3571F4273094A809A9E8C /* Pods */ = {
@@ -412,6 +450,29 @@
 				B4A8E7B237B6E5C2DD7B05327969B36B /* SKPhotoBrowser */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A220FFB35FBF69E901A53D268457D18C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0D30AD6F74229D7388A6CFF99C3F980C /* MobilePlayer.bundle */,
+				FDFDC8C7E85A6B343993EC6A1ADC7BA5 /* MobilePlayer.framework */,
+				036BF6330FF5A63F0C4A6E89A10FC2AE /* Pods_parla.framework */,
+				C42E911589C7E9DABFA5018875A93DE9 /* Pods_ParlaKit.framework */,
+				C1B153828F3B86C91C8868E658935E2D /* Pods_parlaTests.framework */,
+				488ED33A32B231565250E5A218C1799C /* SKPhotoBrowser.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AE698225DEAA57ACD4D84438DABCB191 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DF6D5486D73414A64411F5AACFEC027 /* Pods-parla */,
+				8F17FE4E8E46C8FDD8A3328DC2957EAD /* Pods-ParlaKit */,
+				045746B5940CBDEA6ED7AC023E72186B /* Pods-parlaTests */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		B4A8E7B237B6E5C2DD7B05327969B36B /* SKPhotoBrowser */ = {
@@ -475,23 +536,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		C77C55D068506AA52C4B85CC9244706D /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				769B5382F38FB43963AB2EC3844892E4 /* Pods-parla */,
-				8531D120759E846A1E4DB8A1C665FB79 /* Pods-parlaTests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				03C5C200A0787E300053CFA8F53CA094 /* Frameworks */,
 				9B909C7229A3571F4273094A809A9E8C /* Pods */,
-				5BB300B7A9EE07E8363D8455C4881F2D /* Products */,
-				C77C55D068506AA52C4B85CC9244706D /* Targets Support Files */,
+				A220FFB35FBF69E901A53D268457D18C /* Products */,
+				AE698225DEAA57ACD4D84438DABCB191 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -545,6 +597,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E9E2311ECCE2BEA1681DB875CE9A12CB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB14CA62F140226A2E4431738C41F729 /* Pods-ParlaKit-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -562,7 +622,7 @@
 			);
 			name = "MobilePlayer-MobilePlayer";
 			productName = "MobilePlayer-MobilePlayer";
-			productReference = F35504A22E733E781CE70D38315C3622 /* MobilePlayer.bundle */;
+			productReference = 0D30AD6F74229D7388A6CFF99C3F980C /* MobilePlayer.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		6F0ECCC316EB617021923C211B022E1D /* MobilePlayer */ = {
@@ -581,7 +641,27 @@
 			);
 			name = MobilePlayer;
 			productName = MobilePlayer;
-			productReference = 99D9FF68B4CAAAE5AD1E5A4370BA05F9 /* MobilePlayer.framework */;
+			productReference = FDFDC8C7E85A6B343993EC6A1ADC7BA5 /* MobilePlayer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7D346842C0A6B327FEC89E9C63A30917 /* Pods-ParlaKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A456BFAFC1A196289EBDC62272914EE1 /* Build configuration list for PBXNativeTarget "Pods-ParlaKit" */;
+			buildPhases = (
+				E9E2311ECCE2BEA1681DB875CE9A12CB /* Headers */,
+				60385A56B3346FDAE4368F1241584322 /* Sources */,
+				11E73CAECB40FF202E13B5BD9F5D2A94 /* Frameworks */,
+				A2F6F1DC629911A1B81CDD37D6A3EDD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3191B0FC1FB5FAADA3D218BAA3173705 /* PBXTargetDependency */,
+				892FA87971A7A8B90AE4C04C7FA06776 /* PBXTargetDependency */,
+			);
+			name = "Pods-ParlaKit";
+			productName = "Pods-ParlaKit";
+			productReference = C42E911589C7E9DABFA5018875A93DE9 /* Pods_ParlaKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AB361FB82AAED935058390515A7DFD83 /* Pods-parlaTests */ = {
@@ -600,7 +680,7 @@
 			);
 			name = "Pods-parlaTests";
 			productName = "Pods-parlaTests";
-			productReference = 246ABFCD82F56EDDD887974AECDEB163 /* Pods_parlaTests.framework */;
+			productReference = C1B153828F3B86C91C8868E658935E2D /* Pods_parlaTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D9E703DC75F4705A6B16341FE76DE8DA /* Pods-parla */ = {
@@ -620,7 +700,7 @@
 			);
 			name = "Pods-parla";
 			productName = "Pods-parla";
-			productReference = 225929DB9CBDE54567EA9CE99E3DA12D /* Pods_parla.framework */;
+			productReference = 036BF6330FF5A63F0C4A6E89A10FC2AE /* Pods_parla.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		E1413126E6265379971355987911F074 /* SKPhotoBrowser */ = {
@@ -638,7 +718,7 @@
 			);
 			name = SKPhotoBrowser;
 			productName = SKPhotoBrowser;
-			productReference = 107EBC623A6C2F3197F6216DA1DDF72A /* SKPhotoBrowser.framework */;
+			productReference = 488ED33A32B231565250E5A218C1799C /* SKPhotoBrowser.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -658,13 +738,14 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 5BB300B7A9EE07E8363D8455C4881F2D /* Products */;
+			productRefGroup = A220FFB35FBF69E901A53D268457D18C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				6F0ECCC316EB617021923C211B022E1D /* MobilePlayer */,
 				5C54E3FFDC6AA6CB363CB6B603997AE2 /* MobilePlayer-MobilePlayer */,
 				D9E703DC75F4705A6B16341FE76DE8DA /* Pods-parla */,
+				7D346842C0A6B327FEC89E9C63A30917 /* Pods-ParlaKit */,
 				AB361FB82AAED935058390515A7DFD83 /* Pods-parlaTests */,
 				E1413126E6265379971355987911F074 /* SKPhotoBrowser */,
 			);
@@ -720,6 +801,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F397A31FF91E39A961851B077EB8D97F /* MobilePlayer.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2F6F1DC629911A1B81CDD37D6A3EDD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -803,6 +891,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		60385A56B3346FDAE4368F1241584322 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15D9D344C41A7CD385860A40E16A5F5F /* Pods-ParlaKit-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B5208F999BE4324732E8EA768D552005 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -822,6 +918,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3191B0FC1FB5FAADA3D218BAA3173705 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MobilePlayer;
+			target = 6F0ECCC316EB617021923C211B022E1D /* MobilePlayer */;
+			targetProxy = 92633DC0585A05DFDB822A70457FBCD5 /* PBXContainerItemProxy */;
+		};
 		5A0E43F0EA4FB5531F9D7F643348FB6E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MobilePlayer;
@@ -839,6 +941,12 @@
 			name = SKPhotoBrowser;
 			target = E1413126E6265379971355987911F074 /* SKPhotoBrowser */;
 			targetProxy = 9B402DD2C3E9F3A689A4B0FDEB6CA887 /* PBXContainerItemProxy */;
+		};
+		892FA87971A7A8B90AE4C04C7FA06776 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SKPhotoBrowser;
+			target = E1413126E6265379971355987911F074 /* SKPhotoBrowser */;
+			targetProxy = B95AF853564F20527B5A6C8DF1FCAEA4 /* PBXContainerItemProxy */;
 		};
 		9EA0DF0E3C82B5FFB36E423566C5B4A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -951,7 +1059,7 @@
 		};
 		1537959EB4CC3BB6ED882F32B27291F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E4313454C90115ADF71CDB1985EDBC4 /* Pods-parlaTests.debug.xcconfig */;
+			baseConfigurationReference = A8BE0D5F1D68798C4CBEDE80D3260865 /* Pods-parlaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -988,7 +1096,7 @@
 		};
 		252C578BB987F10589C6B073BF026733 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7833491B02951129B08D5342B723BC4 /* Pods-parla.debug.xcconfig */;
+			baseConfigurationReference = 78FFF2BCD36CC4F9B848984F9A8BB6DA /* Pods-parla.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -1060,7 +1168,7 @@
 		};
 		3B13A5A1742E528664CC0F2DCF1C3723 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA82B3863C7D051B7946DCD160A73F0B /* Pods-parlaTests.release.xcconfig */;
+			baseConfigurationReference = 7403CFFF0A372296DE628745A9E7D122 /* Pods-parlaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -1134,7 +1242,7 @@
 		};
 		4421C4A457A824A5898D3F9BED89A85D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BEAE4519F565F8F5CB44881A3D4951BB /* Pods-parla.release.xcconfig */;
+			baseConfigurationReference = 0D794BAF575E6663A51F8188351EB723 /* Pods-parla.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -1156,6 +1264,44 @@
 				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-parla/Pods-parla.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		471592B8B0B9D572A3ACCB5668471075 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BA614BE58954B93EEDD776BFE665D4D /* Pods-ParlaKit.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ParlaKit/Pods-ParlaKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ParlaKit/Pods-ParlaKit.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -1297,6 +1443,43 @@
 			};
 			name = Debug;
 		};
+		F8AB0D4BE3657B5DA77236B54FCC69F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 062E2C9F731EFDD4BB6CCCCAA406342E /* Pods-ParlaKit.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ParlaKit/Pods-ParlaKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ParlaKit/Pods-ParlaKit.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1323,6 +1506,15 @@
 			buildConfigurations = (
 				A9A0640FE3BECDDCA2F3C3053438D523 /* Debug */,
 				0BAB30CAB97F0C3CE8CA24B524C87079 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A456BFAFC1A196289EBDC62272914EE1 /* Build configuration list for PBXNativeTarget "Pods-ParlaKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8AB0D4BE3657B5DA77236B54FCC69F1 /* Debug */,
+				471592B8B0B9D572A3ACCB5668471075 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

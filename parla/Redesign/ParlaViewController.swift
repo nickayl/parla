@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ParlaDataSource {
+public protocol ParlaDataSource {
     var sender: PSender! { get set }
     
    // func bubbleViewForItem(at indexPath: IndexPath) -> AbstractMessageCell
@@ -16,23 +16,20 @@ protocol ParlaDataSource {
     func numberOfMessagesIn(collectionView: UICollectionView) -> Int
 }
 
-protocol ParlaDelegate {
-    
+public protocol ParlaDelegate {
     func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
     func didPressSendButton(withMessage message: PMessage, textField: UITextField, collectionView: UICollectionView)
     func didPresAccessoryButton(button: UIButton, collectionView: UICollectionView)
     func didStartPickingImage(collectionView: UICollectionView)
     func didFinishPickingImage(with image:UIImage?, collectionView: UICollectionView)
     func didFinishPickingVideo(with: URL?, collectionView: UICollectionView)
-    
 }
 
-class ParlaViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AccessoryActionChooserDelegate {
-    
+open class ParlaViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate {
 
-    var parlaDataSource: ParlaDataSource!
-    var parlaDelegate: ParlaDelegate?
-    var config: Parla!
+    public var parlaDataSource: ParlaDataSource!
+    public var parlaDelegate: ParlaDelegate?
+    public var config: Parla!
     
     var inputToolbarContainer: UIView?
     var collectionView: UICollectionView!
@@ -45,7 +42,7 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     
     ///  ********* ========== Collection View Methods ========== **************  ///
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public final func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let message = parlaDataSource.messageForBubbble(at: indexPath, collectionView: collectionView)
         
@@ -59,38 +56,37 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public final func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return self.parlaDataSource
             .messageForBubbble(at: indexPath, collectionView: collectionView)
             .displaySize(frameWidth: collectionView.frame.width)
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    public final func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public final func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return parlaDataSource.numberOfMessagesIn(collectionView: collectionView)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    public final func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return Parla.config.sectionInsets.left
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    public final func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return Parla.config.sectionInsets
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected item at index path: \(indexPath)")
     }
     /// ************** =========================== ****************** ///
     
 
     
-    
     ///  ********* ========== UI Gesture Recognizers ========== **************  ///
-    @objc func onSendButtonPressed(_ sender: UITapGestureRecognizer) {
+    @objc private func onSendButtonPressed(_ sender: UITapGestureRecognizer) {
         if !textField.text!.isEmpty {
             //   let sm = SMessage(senderId: self.sender.id, senderName: self.sender.name, text: textField.text!, date: Date(), senderAvatar: self.sender.avatarImage)
             
@@ -103,7 +99,7 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
     }
     
-    @objc func onAccessoryButtonPressed(_ sender: UITapGestureRecognizer) {
+    @objc private func onAccessoryButtonPressed(_ sender: UITapGestureRecognizer) {
         self.parlaDelegate?.didPresAccessoryButton(button: self.accessoryButton, collectionView: collectionView)
         
         if !config.accessoryButton.preventDefault {
@@ -117,12 +113,12 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     ///  ********* ========== Delegate Methods ========== **************  ///
     
-    func didChooseAccessoryAction(with action: AccessoryAction?, ofType type: AccessoryActionType) {
+    public func didChooseAccessoryAction(with action: AccessoryAction?, ofType type: AccessoryActionType) {
         print("Accessory action selected: == >> \(type) << ==")
         action?()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
         // self.inputToolbarContainerHeightConstraint.constant += 19
@@ -152,7 +148,7 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
     }
     
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         config = Parla.config!
@@ -166,30 +162,14 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
             .pickImageFromCamera :  {  self.chooseImageFrom(source: .camera) },
             .pickVideoFromCamera :  {  self.chooseVideoFrom(source: .camera) }
         ]
-        
-        
-        
-        
-//        config.accessoryActionChooser?.accessoryActions.append(contentsOf: [
-//
-//            AccessoryActionImpl(type: .chooseImageFromGallery, action: {
-//                return self.chooseImageFrom(source: .photoLibrary)
-//            }),
-//
-//            AccessoryActionImpl(type: .pickImageFromCamera, action: {
-//                return self.chooseImageFrom(source: .camera)
-//            }),
-//
-//            AccessoryActionImpl(type: .chooseVideoFromGallery, action: {
-//                self.openImgPicker()
-//            })
-//        ])
-        
+  
         if self.chatContainerView == nil {
             self.chatContainerView = self.view
         }
         
-        let b = Bundle.main
+        //let b = Bundle.main
+        
+        let b = Bundle(for: ParlaViewController.self)
         
         let nib = UINib(nibName: "ParlaCollectionView", bundle: b)
         let chatView = nib.instantiate(withOwner: self, options: nil).first as! UIView
@@ -248,7 +228,7 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
         UIApplication.shared.isStatusBarHidden = false
@@ -256,7 +236,7 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     
     
-    @objc func keyboardWillShow(_ notification: NSNotification) {
+    @objc public  func keyboardWillShow(_ notification: NSNotification) {
         // print(notification.userInfo)
         
         // We need the  keyboard height
@@ -267,14 +247,14 @@ class ParlaViewController: UIViewController, UICollectionViewDataSource, UIColle
         self.collectionView.scrollToBottom(animated: true)
     }
     
-    @objc func keyboardWillHide(_ notification: NSNotification) {
+    @objc public func keyboardWillHide(_ notification: NSNotification) {
         
        // let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
     
         bottom.constant = -35
     }
     
-    override func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

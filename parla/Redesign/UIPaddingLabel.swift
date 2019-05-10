@@ -11,13 +11,13 @@ import UIKit
 @IBDesignable
 public class UIPaddingLabel: UILabel {
 
-    var padding: UIEdgeInsets?
-    var canCopyText: Bool = true
+   public var  padding: UIEdgeInsets?
+    public var canCopyText: Bool = true
     
-    @IBInspectable var paddingLeft: CGFloat = 0
-    @IBInspectable var paddingRight: CGFloat = 0
-    @IBInspectable var paddingTop: CGFloat = 0
-    @IBInspectable var paddingBottom: CGFloat = 0
+    @IBInspectable public  var paddingLeft: CGFloat = 0
+    @IBInspectable public var paddingRight: CGFloat = 0
+    @IBInspectable public var paddingTop: CGFloat = 0
+    @IBInspectable public var paddingBottom: CGFloat = 0
     
     override public func drawText(in rect: CGRect) {
         

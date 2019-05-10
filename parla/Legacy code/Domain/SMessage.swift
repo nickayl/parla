@@ -9,14 +9,6 @@
 import Foundation
 import UIKit
 
-public enum MessageType {
-    case ImageMessage, VideoMessage, TextMessage, VoiceMessage
-}
-
-public enum SenderType : String {
-    case Incoming = "Incoming", Outgoing = "Outgoing"
-}
-
 class SMessage {
     
     var senderId: String

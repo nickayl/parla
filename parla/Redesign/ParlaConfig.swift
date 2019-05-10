@@ -47,12 +47,12 @@ public class Parla {
     
     public static var config: Parla!
     
-    init(withSender sender: PSender) {
+    public init(withSender sender: PSender) {
         self.sender = sender
     }
     
     public class AccessoryButtonConfig {
-        var preventDefault = false
+        public var preventDefault = false
         fileprivate init() { }
     }
 }

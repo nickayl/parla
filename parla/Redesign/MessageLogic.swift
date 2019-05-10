@@ -18,6 +18,10 @@ let incomingVoiceMessageXibName = "VoiceMessageCell", incomingVoiceMessageReuseI
 let outgoingVideoMessageXibName = "OutgoingVideoMessageCell", outgoingVideoMessageReuseIdentifier = "VideoOutgoingXib"
 let incomingVideoMessageXibName = "IncomingVideoMessageCell", incomingVideoMessageReuseIdentifier = "VideoIncomingXib"
 
+public enum MessageType {
+    case ImageMessage, VideoMessage, TextMessage, VoiceMessage
+}
+
 public protocol PMessage {
     var messageId: Int { get set }
     var date: Date { get set }
@@ -138,7 +142,7 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
         self.content = text
     }
     
-    convenience init(id: Int, sender: PSender, text: String, date: Date = Date(), label: UIPaddingLabel) {
+    public convenience init(id: Int, sender: PSender, text: String, date: Date = Date(), label: UIPaddingLabel) {
         self.init(id: id, sender: sender, text: text, date: date)
         self.label = label
         self.label?.canCopyText = enableCopyOnLongTouch
