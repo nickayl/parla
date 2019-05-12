@@ -11,38 +11,55 @@ import UIKit
 import SKPhotoBrowser
 
 public protocol ImageViewer {
-    var image: UIImage { get set }
-    func show()
+   // var image: UIImage { get set }
+    func show(image: UIImage)
     func hide()
-    init(withImage image: UIImage, withViewController viewController: UIViewController)
+  //  init(withImage image: UIImage, withViewController viewController: UIViewController)
 }
 
 public class SKPhotoBrowserImageViewer : ImageViewer {
     
-    public var image: UIImage
+   // public var image: UIImage
+    // private var photo: SKPhoto?
     
     private var viewController: UIViewController
-    private var photo: SKPhoto?
-    private var browser: SKPhotoBrowser!
+    private var browser: SKPhotoBrowser?
+    private static var instance: ImageViewer?
     
-    public required init(withImage image: UIImage, withViewController viewController: UIViewController) {
-        self.image = image
+    
+    private init(viewController: UIViewController) {
         self.viewController = viewController
+        
     }
     
-    public func show() {
-        
-        if photo == nil {
-            photo = SKPhoto.photoWithImage(image)
-            browser = SKPhotoBrowser(photos: [photo!])
+    public static func getInstance(for viewController: UIViewController) -> ImageViewer {
+        if instance == nil {
+            instance = SKPhotoBrowserImageViewer(viewController: viewController)
         }
+        return instance!
+    }
     
-        browser.initializePageIndex(0)
-        self.viewController.present(browser, animated: true, completion: nil)
+//    public required init(withImage image: UIImage, withViewController viewController: UIViewController) {
+//        self.image = image
+//        self.viewController = viewController
+//    }
+    
+    public func show(image: UIImage) {
+        let photo = SKPhoto.photoWithImage(image)
+        
+        if browser == nil {
+            self.browser = SKPhotoBrowser(photos: [photo])
+        } else {
+            browser?.photos.removeAll()
+            browser?.addPhotos(photos: [photo])
+        }
+        
+        browser?.initializePageIndex(0)
+        self.viewController.present(browser!, animated: true, completion: nil)
     }
     
     public func hide() {
-        browser.determineAndClose()
+        browser?.determineAndClose()
     }
     
 }

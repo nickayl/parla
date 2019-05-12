@@ -10,6 +10,7 @@ import UIKit
 
 class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate {
     
+
     var sender: PSender!
     var otherSender: PSender!
     
@@ -33,8 +34,10 @@ class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate {
         config.accessoryButton.preventDefault = false
         
         let testVideo = Bundle.main.url(forResource: "video", withExtension: "mp4")!
+        let voiceTest = Bundle.main.url(forResource: "Imagine", withExtension: "mp3")!
         
         self.messages = [
+            PVoiceMessageImpl(id: 5, sender: sender, date: Date(), voiceUrl: voiceTest),
             PTextMessageImpl(id: 1, sender: sender, text: "Ciao ciccio!", date: Date()),
             PTextMessageImpl(id: 2, sender: otherSender, text: "Ciao Domenico! Come butta?"),
             PImageMessageImpl(id: 3, sender: sender, image: UIImage(named: "doc.jpg")!, date: Date()),
@@ -94,7 +97,19 @@ class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate {
         }
     }
     
-    func didPresAccessoryButton(button: UIButton, collectionView: UICollectionView) {
+    func didStartRecordingVoiceMessage(atUrl url: URL) {
+        
+    }
+    
+    func didFinishRecordingVoiceMessage(atUrl url: URL) {
+        print("did finish recording voice")
+        let msg = PVoiceMessageImpl(id: messages.count+1, sender: sender, date: Date(), voiceUrl: url)
+        messages.append(msg)
+        collectionView.reloadData()
+        collectionView.scrollToBottom(animated: true)
+    }
+    
+    func didPressAccessoryButton(button: UIButton, collectionView: UICollectionView) {
         print("Did press accessory button")
     }
     

@@ -9,7 +9,65 @@
 import Foundation
 
 import UIKit
-import AVFoundation
+import AVKit
+
+class VoiceMessageCell : AbstractMessageCell, PAudioPlayerDelegate {
+    
+    var message: PVoiceMessage!
+    
+    @IBOutlet var playPauseButton: UIButton!
+    @IBOutlet var progressView: UIProgressView!
+    @IBOutlet var container: UIView!
+    
+    private lazy var playImage = UIImage(named: "play100")
+    private lazy var pauseImage = UIImage(named: "pause100")
+    
+    override var content: PMessage? {
+        get { return message }
+        
+        set {
+            if let v = newValue as? PVoiceMessage {
+                self.message = v
+            }
+        }
+    }
+    
+    override func initialize() {
+        super.initialize()
+        
+        container.setBorderRadius(radius: 20)
+        message.player?.delegate = self
+        
+        let cellWidth = frame.width
+        leadingOrTrailingConstraint.constant = cellWidth - (cfg.kDefaultImageBubbleSize.width + cfg.avatarSize.width)
+        progressView.progress = 0
+        
+    }
+    
+    @IBAction func onPlayPauseButtonPressed(_ sender: UIButton) {
+        message.player?.toggle()
+    }
+    
+    public func didStartPlayingAudio(with url: URL?, atSecondsFromStart: Int) {
+        print("Did start playing audio")
+        playPauseButton.isSelected = true
+      //  playPauseButton.setImage(pauseImage, for: .selected)
+    }
+    
+    public func didStopPlayingAudio(with url: URL?, atSecondsFromStart: Int) {
+        print("Did stop playing audio")
+        playPauseButton.isSelected = false
+      //  playPauseButton.setImage(playImage, for: .normal)
+    }
+    
+    public func audioCurrentlyPlayingWith(currentTime time: Int, totalDuration duration: Int) {
+        print("audio playing: \(time)")
+        progressView.progress = Float(time/duration)
+    }
+    
+    
+    
+}
 
 class VideoMessageCell : AbstractMessageCell {
     

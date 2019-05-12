@@ -19,32 +19,33 @@ public protocol VideoPlayer {
 public class MobilePlayerVideoPlayer : VideoPlayer {
     
     private let viewController: UIViewController? = Parla.config?.containerViewController
-    private let playerVC: MobilePlayerViewController
+    private var playerVC: MobilePlayerViewController?
+    private var videoMessage: PVideoMessage
     
     init(with videoMessage: PVideoMessage) {
-        
-        let videoUrl = videoMessage.videoUrl
-        playerVC = MobilePlayerViewController(contentURL: videoUrl)
-        playerVC.shouldAutoplay = false
-        playerVC.title = "\(videoMessage.sender.name)'s video"
-        playerVC.activityItems = [videoUrl]
-
+       self.videoMessage = videoMessage
     }
     
     public func play() {
+        if playerVC == nil {
+            playerVC = MobilePlayerViewController(contentURL: videoMessage.videoUrl)
+            playerVC!.shouldAutoplay = false
+            playerVC!.title = "\(videoMessage.sender.name)'s video"
+            playerVC!.activityItems = [videoMessage.videoUrl]
+        }
         viewController?.presentMoviePlayerViewControllerAnimated(playerVC)
     }
     
     public func pause() {
-       playerVC.pause()
+       playerVC?.pause()
     }
     
     public func stop() {
-        playerVC.stop()
+        playerVC?.stop()
     }
     
     public func close() {
-         playerVC.dismiss(animated: true, completion: nil)
+         playerVC?.dismiss(animated: true, completion: nil)
     }
     
 }

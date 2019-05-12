@@ -19,6 +19,20 @@ public extension UIColor {
     
 }
 
+extension UIDevice {
+    
+    var modelName: String {
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let identifier = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        return identifier
+    }
+}
+
 public extension String {
 
     /**
@@ -173,6 +187,19 @@ public extension UICollectionView {
 
 public class Utils {
     
+    public static func getModelNumber() -> (Int, Int) {
+        let submodel: [String.SubSequence] = UIDevice.current.modelName.replacingOccurrences(of: "iPhone", with: "").split(separator: ",")
+        
+        if submodel.count == 2 {
+            let modelNumber = Int(submodel[0])
+            let secondNumber = Int(submodel[1])
+            
+            print("Submodel: \(submodel) - modelNumber: \(modelNumber) - secondNumber: \(secondNumber)")
+            return (modelNumber!, secondNumber!)
+        }
+        return  (11, 11)
+    }
+    
     public static func thumbnailImageForVideo(withUrl url: URL, atTime time:TimeInterval) -> UIImage? {
         
         let asset: AVURLAsset = AVURLAsset(url: url, options: nil)
@@ -206,10 +233,36 @@ public class Utils {
 
 public extension URL {
     
-     static func getDocumentsDirectory() -> URL {
+    static var documentsDirectory: URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
+        return paths[0]
+    }
+    
+}
+
+internal extension Date {
+    
+    static func fromString(_ string: String, withFormat format: String = getDateTimeFormat()) -> Date? {
+        let df = DateFormatter()
+        df.dateFormat = format
+        return df.date(from: string)
+    }
+    
+    func toString(withFormat format: String = getDateTimeFormat()) -> String? {
+        let df = DateFormatter()
+        df.dateFormat = format
+        return df.string(from: self)
+    }
+    
+    static func getDateTimeFormat() -> String {
+        // 06/01/2019 10:04:20
+        
+        return "dd.MM.yyyy_H.mm.ss"
+        //   return "yyyy-MM-dd hh:mm:ss"
+    }
+    
+    static func getDateFormat() -> String {
+        return "dd.MM.yyyy"
     }
     
 }

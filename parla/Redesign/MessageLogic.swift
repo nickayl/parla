@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVKit
 
 
 let incomingTextMessageXibName = "IncomingTextMessageCell", incomingTextMessageReuseIdentifier = "TextIncomingXib"
@@ -17,6 +18,7 @@ let outgoingImageMessageXibName = "OutgoingImageMessageCell", outgoingImageMessa
 let incomingVoiceMessageXibName = "VoiceMessageCell", incomingVoiceMessageReuseIdenfitier = "VoiceIncomingXib"
 let outgoingVideoMessageXibName = "OutgoingVideoMessageCell", outgoingVideoMessageReuseIdentifier = "VideoOutgoingXib"
 let incomingVideoMessageXibName = "IncomingVideoMessageCell", incomingVideoMessageReuseIdentifier = "VideoIncomingXib"
+let voiceMessageReuseIdentifier = "VoiceMessageCellXib"
 
 public enum MessageType {
     case ImageMessage, VideoMessage, TextMessage, VoiceMessage
@@ -49,6 +51,14 @@ public protocol PVideoMessage : PMessage {
     init(id: Int, sender: PSender, videoUrl: URL, thumbnail: UIImage?, date: Date)
 }
 
+
+
+public protocol PVoiceMessage : PMessage {
+    var duration: Int { get }
+    var voiceUrl: URL { get set }
+    var player: PAudioPlayer? { get set }
+}
+
 public protocol PImageMessage : PMessage {
     var image: UIImage { get set }
   //  var viewController: UIViewController! { get set }
@@ -56,6 +66,28 @@ public protocol PImageMessage : PMessage {
     func show()
     func hide()
     init(id: Int, sender: PSender, image: UIImage, date: Date)
+}
+
+public class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage {
+    
+    public var duration: Int = 0
+    public var voiceUrl: URL
+    public var player: PAudioPlayer?
+    
+    public override var cellIdentifier: String {
+        return voiceMessageReuseIdentifier
+    }
+    
+    public init(id: Int, sender: PSender, date: Date = Date(), voiceUrl: URL) {
+        self.voiceUrl = voiceUrl
+        super.init(id: id, sender: sender, date: date, type: .VoiceMessage)
+        self.player = DefaultPAudioPlayer(voiceUrl: voiceUrl, delegate: nil)
+    }
+    
+    public override func displaySize(frameWidth: CGFloat) -> CGSize {
+        let cfg = Parla.config!
+        return CGSize(width: frameWidth - (cfg.sectionInsets.left + cfg.sectionInsets.right), height: 72)
+    }
 }
 
 public class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
@@ -101,7 +133,7 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     
     public required init(id: Int, sender: PSender, image: UIImage, date: Date = Date()) {
         self.image = image
-        self.viewer = SKPhotoBrowserImageViewer(withImage: image, withViewController: viewController)
+        self.viewer = SKPhotoBrowserImageViewer.getInstance(for: viewController)
         super.init(id: id, sender: sender, date: date, type: .ImageMessage)
     }
     
@@ -118,7 +150,7 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     }
     
     public func show() {
-        self.viewer.show()
+        self.viewer.show(image: image)
     }
     
     public func hide() {
@@ -187,7 +219,7 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
     
 }
 
-public class AbstractPMessage<T> : PMessage, Equatable, Comparable {
+public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     
     public var isDateLabelActive: Bool = false
     public var messageId: Int = 0

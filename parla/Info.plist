@@ -45,6 +45,8 @@
 	<string>You can select photos to attach to reports.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app will use camera.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>To record a video, it is necessary to use the microphone. Please accept to continue.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Please allow access to save photo in your photo library</string>
 </dict>

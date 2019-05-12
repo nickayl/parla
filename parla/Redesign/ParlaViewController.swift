@@ -19,7 +19,13 @@ public protocol ParlaDataSource {
 public protocol ParlaDelegate {
     func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
     func didPressSendButton(withMessage message: PMessage, textField: UITextField, collectionView: UICollectionView)
-    func didPresAccessoryButton(button: UIButton, collectionView: UICollectionView)
+    
+    // Voice message delegate functions
+    func didStartRecordingVoiceMessage(atUrl url: URL)
+    func didFinishRecordingVoiceMessage(atUrl url: URL)
+    
+    // Accessory button delegate functions
+    func didPressAccessoryButton(button: UIButton, collectionView: UICollectionView)
     func didStartPickingImage(collectionView: UICollectionView)
     func didFinishPickingImage(with image:UIImage?, collectionView: UICollectionView)
     func didFinishPickingVideo(with: URL?, collectionView: UICollectionView)
@@ -29,6 +35,7 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
 
     public var parlaDataSource: ParlaDataSource!
     public var parlaDelegate: ParlaDelegate?
+    public var recorder: VoiceRecorder?
     public var config: Parla!
     
     var inputToolbarContainer: UIView?
@@ -100,7 +107,7 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     @objc private func onAccessoryButtonPressed(_ sender: UITapGestureRecognizer) {
-        self.parlaDelegate?.didPresAccessoryButton(button: self.accessoryButton, collectionView: collectionView)
+        self.parlaDelegate?.didPressAccessoryButton(button: self.accessoryButton, collectionView: collectionView)
         
         if !config.accessoryButton.preventDefault {
             config.accessoryActionChooser?.show()
@@ -148,9 +155,32 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         }
     }
     
+    private var keyboardDefaultBottomConstraintMargin = CGFloat(-35)
+    private var keyboardStarterBottomMargin = CGFloat(20)
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
 
+        if parlaDataSource == nil || parlaDataSource.sender == nil {
+            assertionFailure("Fatal error: You must provide a dataSource and a sender to your viewController class (Implement the ParlaDataSource protocol and assign a valid sender instance to the sender property)")
+            return ;
+        }
+        recorder = DefaultVoiceRecorder()
+        
+        let model = Utils.getModelNumber()
+        
+        if model.0 < 10 {
+            keyboardDefaultBottomConstraintMargin = 0
+            keyboardStarterBottomMargin = 0
+        } else if model.0 > 10 && (model.1 < 5 && model.1 != 3) {
+            keyboardDefaultBottomConstraintMargin = 0
+            keyboardStarterBottomMargin = 0
+        }
+        
+        print("\(model) == c: \(keyboardDefaultBottomConstraintMargin)")
+        
+        print("Currently running on iPhone model \(UIDevice.current.modelName)")
+        
         config = Parla.config!
         config.mediaPicker = SystemMediaPicker(viewController: self)
         config.accessoryActionChooser = ActionSheetAccessoryActionChooser(viewController: self)
@@ -175,8 +205,8 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         let chatView = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
         self.chatContainerView.addSubview(chatView)
-        self.bottom = NSLayoutConstraint(item: chatView, attribute: .bottom, relatedBy: .equal, toItem: self.chatContainerView, attribute: .bottom, multiplier: 1, constant: -35)
-        let top = NSLayoutConstraint(item: chatView, attribute: .top, relatedBy: .equal, toItem: self.chatContainerView, attribute: .top, multiplier: 1, constant: 35)
+        self.bottom = NSLayoutConstraint(item: chatView, attribute: .bottom, relatedBy: .equal, toItem: self.chatContainerView, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin)
+        let top = NSLayoutConstraint(item: chatView, attribute: .top, relatedBy: .equal, toItem: self.chatContainerView, attribute: .top, multiplier: 1, constant: -keyboardDefaultBottomConstraintMargin)
         
         self.chatContainerView.addConstraints([
             self.bottom,
@@ -196,6 +226,8 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         
         sendButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onSendButtonPressed(_:))))
         self.accessoryButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onAccessoryButtonPressed(_:))))
+        self.microphoneButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMicrophoneButtonPressed(_:))))
+        
         
         self.textField = chatView.subviews[1].subviews[2].subviews[0] as? UITextField
         self.textField.delegate = self
@@ -207,16 +239,12 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         collectionView.register(UINib(nibName: incomingVideoMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingVideoMessageReuseIdentifier)
         collectionView.register(UINib(nibName: outgoingVideoMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingVideoMessageReuseIdentifier)
         collectionView.register(UINib(nibName: incomingVoiceMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingVoiceMessageReuseIdenfitier)
+        collectionView.register(UINib(nibName: "VoiceMessageCell", bundle: b), forCellWithReuseIdentifier: voiceMessageReuseIdentifier)
         
         chatView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         //   self.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        if parlaDataSource.sender.id < 0 || parlaDataSource.sender.name.isEmpty {
-            assertionFailure("Fatal error: You must specify a senderId and a senderName by subclassing sender() medthod.")
-            return ;
-        }
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
@@ -235,6 +263,23 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     
+    var started = false
+    
+    @objc func onMicrophoneButtonPressed(_ sender: UITapGestureRecognizer) {
+        recorder?.audioFilename = "voice_\(parlaDataSource.sender.name)\(Date().toString()!).m4a"
+        
+        do {
+            if let result = try recorder?.toggle(onStart: {
+                self.parlaDelegate?.didStartRecordingVoiceMessage(atUrl: self.recorder!.audioUrl)
+            }) {
+                print("Successfully recorded voice at path \(result.absoluteString)")
+                self.parlaDelegate?.didFinishRecordingVoiceMessage(atUrl: result)
+            }
+        } catch {
+            print("An error occurred recording voice message: \(error)")
+        }
+        
+    }
     
     @objc public  func keyboardWillShow(_ notification: NSNotification) {
         // print(notification.userInfo)
@@ -243,7 +288,7 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
         print("keyboard size: \(keyboardSize)")
         
-        bottom.constant -= keyboardSize.height + 20
+        bottom.constant -= keyboardSize.height + keyboardStarterBottomMargin
         self.collectionView.scrollToBottom(animated: true)
     }
     
@@ -251,7 +296,7 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         
        // let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
     
-        bottom.constant = -35
+        bottom.constant = CGFloat(keyboardDefaultBottomConstraintMargin)
     }
     
     override open func didReceiveMemoryWarning() {

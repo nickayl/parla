@@ -225,7 +225,7 @@ class ChatViewController : UIViewController, UICollectionViewDelegate, UITextFie
     
     private var recordingSession: AVAudioSession!
     private var audioRecorder: AVAudioRecorder!
-    let audioFilename = URL.getDocumentsDirectory().appendingPathComponent("voice.m4a")
+    let audioFilename = URL.documentsDirectory.appendingPathComponent("voice.m4a")
     
     private func recordVoiceMessage() {
         recordingSession = AVAudioSession.sharedInstance()
