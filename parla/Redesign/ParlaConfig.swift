@@ -30,6 +30,8 @@ public class Parla {
     public let kDefaultImageBubbleSize: CGSize = CGSize(width: 170, height: 150)
     public let kAddFactor:CGFloat = 1.367
     
+    public let kDefaultVoiceMessageWidth:CGFloat = 200
+    
     public var cellBottomLabelHidden:Bool = false
     public var isAvatarHidden = false
     public var avatarBackgroundColor = UIColor.lightGray

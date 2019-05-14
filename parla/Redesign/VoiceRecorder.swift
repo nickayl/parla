@@ -10,13 +10,20 @@ import Foundation
 import AVKit
 
 public protocol VoiceRecorder {
-    var audioFilename: String { get set }
-    var audioUrl: URL { get }
+  //  var audioFilename: String { get set }
+    var audioUrl: URL { get set }
+    var delegate: VoiceRecorderDelegate? { get set }
+    var isRecording: Bool { get }
     
     func startAsynch(onRecordBegin: @escaping () -> Void) throws
     func stop() -> URL?
-    func toggle(onStart: (() -> Void)?) throws -> URL?
+    func toggle() throws
     init(withFilename: String?)
+}
+
+public protocol VoiceRecorderDelegate {
+    func voiceRecorderDidStartRecording(at url: URL, voiceRecorder: VoiceRecorder)
+    func voiceRecorderDidEndRecording(at url: URL, voiceRecorder: VoiceRecorder)
 }
 
 public enum VoiceRecorderError : Error {
@@ -25,35 +32,37 @@ public enum VoiceRecorderError : Error {
 
 public class DefaultVoiceRecorder : NSObject, VoiceRecorder, AVAudioRecorderDelegate {
     
+    
+    public var delegate: VoiceRecorderDelegate?
     private var recordingSession: AVAudioSession?
     private var audioRecorder: AVAudioRecorder?
     public var audioUrl: URL
-    public var audioFilename: String {
-        didSet {
-            self.audioUrl = URL.documentsDirectory.appendingPathComponent(audioFilename)
-        }
+    public var isRecording: Bool {
+        return audioRecorder?.isRecording ?? false
     }
+//    public var audioFilename: String {
+//        didSet {
+//            self.audioUrl = URL.documentsDirectory.appendingPathComponent(audioFilename)
+//        }
+//    }
     
     public required init(withFilename name: String? = nil) {
-        self.audioFilename = name ?? "voice_\(Date().toString()!)"
-        self.audioUrl = URL.documentsDirectory.appendingPathComponent(audioFilename)
+      //  self.audioFilename = name ?? "voice_\(Date().toString()!)"
+        self.audioUrl = URL.documentsDirectory.appendingPathComponent("voice_default.m4a")
+        super.init()
+        
+        recordingSession = AVAudioSession.sharedInstance()
+     //   try? recordingSession?.setCategory(AVAudioSession.Category.playAndRecord)
     }
     
 
     public func startAsynch(onRecordBegin: @escaping () -> Void) throws {
-        
-        do {
-            recordingSession = AVAudioSession.sharedInstance()
-            try recordingSession?.setCategory(AVAudioSession.Category.playAndRecord)
-            try recordingSession?.setActive(true)
-        } catch {
-            throw VoiceRecorderError.recordingError
-        }
+        try? recordingSession?.setCategory(AVAudioSession.Category.playAndRecord)
+        try recordingSession?.setActive(true)
         
         recordingSession?.requestRecordPermission() { [unowned self] allowed in
             DispatchQueue.main.async {
                 if !allowed { return }
-                
                 print("Allowed to register audio")
                 
                 let settings = [
@@ -64,12 +73,13 @@ public class DefaultVoiceRecorder : NSObject, VoiceRecorder, AVAudioRecorderDele
                 
                 self.audioRecorder = try? AVAudioRecorder(url: self.audioUrl, settings: settings)
                 self.audioRecorder?.delegate = self
+                self.audioRecorder?.prepareToRecord()
+                self.audioRecorder?.record()
                 
-                if let r = self.audioRecorder, !r.isRecording {
-                    r.record()
+                if self.audioRecorder != nil {
                     onRecordBegin()
+                    self.delegate?.voiceRecorderDidStartRecording(at: self.audioUrl, voiceRecorder: self)
                 }
-                
             }
         }
     }
@@ -77,19 +87,18 @@ public class DefaultVoiceRecorder : NSObject, VoiceRecorder, AVAudioRecorderDele
  
     public func stop() -> URL? {
         audioRecorder?.stop()
-        print("Stopped voice recording and save file as \(self.audioFilename)")
-        return audioUrl
+      //  try? recordingSession?.setActive(false)
+        print("Stopped voice recording and save file as \(self.audioUrl.absoluteString)")
+        self.delegate?.voiceRecorderDidEndRecording(at: self.audioUrl, voiceRecorder: self)
+        return self.audioUrl
     }
     
-    public func toggle(onStart: (() -> Void)?) throws -> URL? {
-        if audioRecorder != nil {
-           return stop()
+    public func toggle() throws {
+        if let a = audioRecorder, a.isRecording {
+            stop()
         } else {
-            try startAsynch(onRecordBegin: {
-                onStart?()
-            })
+            try startAsynch(onRecordBegin: { })
         }
-        return nil
     }
     
     public func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {

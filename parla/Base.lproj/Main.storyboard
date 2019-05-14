@@ -25,5 +25,77 @@
             </objects>
             <point key="canvasLocation" x="505.79710144927537" y="132.58928571428572"/>
         </scene>
+        <!--Test View Controller-->
+        <scene sceneID="r21-ez-Qal">
+            <objects>
+                <viewController id="vwK-rH-byG" customClass="TestViewController" customModule="parla" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dDK-88-be7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q8Z-FA-lE0" customClass="UIPaintableImageView" customModule="parla" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="298" width="414" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="as5-ix-E5Z"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3P-K6-3PA">
+                                <rect key="frame" x="20" y="133" width="30" height="30"/>
+                                <state key="normal" title="Red"/>
+                                <connections>
+                                    <action selector="red:" destination="vwK-rH-byG" eventType="touchUpInside" id="0yn-Oj-rJF"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UyZ-Yd-JRc">
+                                <rect key="frame" x="174" y="85" width="220" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="gnC-V6-a8t"/>
+                                    <constraint firstAttribute="height" constant="128" id="iJN-hi-3Gx"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBJ-BQ-syX">
+                                <rect key="frame" x="64" y="183" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Ok"/>
+                                <connections>
+                                    <action selector="ok:" destination="vwK-rH-byG" eventType="touchUpInside" id="CPa-0K-ePg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gt-CG-xhV">
+                                <rect key="frame" x="80" y="132" width="47" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="47" id="dKI-rt-09x"/>
+                                    <constraint firstAttribute="height" constant="30" id="gze-2F-zmL"/>
+                                </constraints>
+                                <state key="normal" title="Erease"/>
+                                <connections>
+                                    <action selector="erease:" destination="vwK-rH-byG" eventType="touchUpInside" id="APx-S4-0fR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7gt-CG-xhV" firstAttribute="top" secondItem="I1Q-8B-vlh" secondAttribute="top" constant="88" id="1RW-zg-FWx"/>
+                            <constraint firstItem="q8Z-FA-lE0" firstAttribute="centerX" secondItem="dDK-88-be7" secondAttribute="centerX" id="AA5-t8-bfF"/>
+                            <constraint firstItem="7gt-CG-xhV" firstAttribute="leading" secondItem="q3P-K6-3PA" secondAttribute="trailing" constant="30" id="ARR-E9-z3B"/>
+                            <constraint firstItem="q8Z-FA-lE0" firstAttribute="centerY" secondItem="dDK-88-be7" secondAttribute="centerY" id="CrN-UM-qhp"/>
+                            <constraint firstItem="I1Q-8B-vlh" firstAttribute="trailing" secondItem="UyZ-Yd-JRc" secondAttribute="trailing" constant="20" id="MwH-bk-rCu"/>
+                            <constraint firstItem="q3P-K6-3PA" firstAttribute="leading" secondItem="I1Q-8B-vlh" secondAttribute="leading" constant="20" id="SYl-2M-nOP"/>
+                            <constraint firstItem="q8Z-FA-lE0" firstAttribute="trailing" secondItem="I1Q-8B-vlh" secondAttribute="trailing" id="UVL-7F-V42"/>
+                            <constraint firstItem="q3P-K6-3PA" firstAttribute="top" secondItem="I1Q-8B-vlh" secondAttribute="top" constant="89" id="buQ-Jd-xtx"/>
+                            <constraint firstItem="q8Z-FA-lE0" firstAttribute="leading" secondItem="I1Q-8B-vlh" secondAttribute="leading" id="mbU-al-r93"/>
+                            <constraint firstItem="UyZ-Yd-JRc" firstAttribute="top" secondItem="I1Q-8B-vlh" secondAttribute="top" constant="41" id="xcY-33-bbk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="I1Q-8B-vlh"/>
+                    </view>
+                    <connections>
+                        <outlet property="paintableImageView" destination="q8Z-FA-lE0" id="2Sl-14-CNd"/>
+                        <outlet property="resultImageview" destination="UyZ-Yd-JRc" id="65g-1J-AC8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I2j-rZ-RDj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1407" y="133"/>
+        </scene>
     </scenes>
 </document>

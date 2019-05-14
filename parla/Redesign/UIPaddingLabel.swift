@@ -8,11 +8,22 @@
 
 import UIKit
 
-@IBDesignable
-public class UIPaddingLabel: UILabel {
+public protocol CopyableText {
+    var canCopyText: Bool { get set }
+}
 
-   public var  padding: UIEdgeInsets?
-    public var canCopyText: Bool = true
+@IBDesignable
+public class UIPaddingLabel: UILabel, CopyableText {
+
+    public var  padding: UIEdgeInsets?
+    public var canCopyText: Bool = true {
+        didSet {
+            if canCopyText {
+                self.isUserInteractionEnabled = true
+                self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.longPressAction(_:))))
+            }
+        }
+    }
     
     @IBInspectable public  var paddingLeft: CGFloat = 0
     @IBInspectable public var paddingRight: CGFloat = 0
@@ -28,9 +39,6 @@ public class UIPaddingLabel: UILabel {
             super.drawText(in: rect.inset(by: padding!))
         }
         
-        self.isUserInteractionEnabled = true
-        self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.longPressAction(_:))))
-
     }
     
     @objc public func longPressAction(_ recognizer: UIGestureRecognizer) {

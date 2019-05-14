@@ -11,32 +11,42 @@ import UIKit
 public protocol ParlaDataSource {
     var sender: PSender! { get set }
     
-   // func bubbleViewForItem(at indexPath: IndexPath) -> AbstractMessageCell
-    func messageForBubbble(at indexPath: IndexPath, collectionView: UICollectionView) -> PMessage
+    func messageForCell(at indexPath: IndexPath, collectionView: UICollectionView) -> PMessage
     func numberOfMessagesIn(collectionView: UICollectionView) -> Int
 }
 
-public protocol ParlaDelegate {
-    func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
-    func didPressSendButton(withMessage message: PMessage, textField: UITextField, collectionView: UICollectionView)
+@objc public protocol ParlaDelegate {
     
-    // Voice message delegate functions
-    func didStartRecordingVoiceMessage(atUrl url: URL)
-    func didFinishRecordingVoiceMessage(atUrl url: URL)
+    // General delegate functions
+    func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
+    func didLongTouchMessage(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
+    func didPressSendButton(withMessage message: PMessage, textField: UITextField, collectionView: UICollectionView)
+    func didPressAccessoryButton(button: UIButton, collectionView: UICollectionView)
+    // ==========
+    
+    // === Optional functions ======= //
     
     // Accessory button delegate functions
-    func didPressAccessoryButton(button: UIButton, collectionView: UICollectionView)
-    func didStartPickingImage(collectionView: UICollectionView)
-    func didFinishPickingImage(with image:UIImage?, collectionView: UICollectionView)
-    func didFinishPickingVideo(with: URL?, collectionView: UICollectionView)
+    
+    @objc optional func didStartPickingImage(collectionView: UICollectionView)
+    @objc optional func didFinishPickingImage(with image:UIImage?, collectionView: UICollectionView)
+    
+    @objc optional func didStartPickingVideo(with: URL?, collectionView: UICollectionView)
+    @objc optional func didFinishPickingVideo(with: URL?, collectionView: UICollectionView)
+    // ==========
+    
 }
 
-open class ParlaViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate {
+open class ParlaViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate  {
 
     public var parlaDataSource: ParlaDataSource!
     public var parlaDelegate: ParlaDelegate?
-    public var recorder: VoiceRecorder?
     public var config: Parla!
+    public var voiceRecorderDelegate: VoiceRecorderDelegate? {
+        willSet {
+            self.recorder?.delegate = newValue
+        }
+    }
     
     var inputToolbarContainer: UIView?
     var collectionView: UICollectionView!
@@ -45,13 +55,21 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
     var chatContainerView: UIView!
     var accessoryButton: UIButton!
     var microphoneButton: UIButton!
-    var bottom: NSLayoutConstraint!
+    var bottomConstraint: NSLayoutConstraint!
     
+    private var keyboardDefaultBottomConstraintMargin = CGFloat(-35)
+    private var keyboardStarterBottomMargin = CGFloat(20)
+    private var recorder: VoiceRecorder?
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.recorder = DefaultVoiceRecorder()
+    }
     
     ///  ********* ========== Collection View Methods ========== **************  ///
     public final func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let message = parlaDataSource.messageForBubbble(at: indexPath, collectionView: collectionView)
+        let message = parlaDataSource.messageForCell(at: indexPath, collectionView: collectionView)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: message.cellIdentifier, for: indexPath) as! AbstractMessageCell
         
@@ -65,7 +83,7 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
     
     public final func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return self.parlaDataSource
-            .messageForBubbble(at: indexPath, collectionView: collectionView)
+            .messageForCell(at: indexPath, collectionView: collectionView)
             .displaySize(frameWidth: collectionView.frame.width)
     }
     
@@ -95,8 +113,6 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
     ///  ********* ========== UI Gesture Recognizers ========== **************  ///
     @objc private func onSendButtonPressed(_ sender: UITapGestureRecognizer) {
         if !textField.text!.isEmpty {
-            //   let sm = SMessage(senderId: self.sender.id, senderName: self.sender.name, text: textField.text!, date: Date(), senderAvatar: self.sender.avatarImage)
-            
             let sm = PTextMessageImpl(id: self.parlaDataSource.numberOfMessagesIn(collectionView: collectionView)+1,
                                       sender: self.parlaDataSource.sender,
                                       text: textField.text!,
@@ -112,6 +128,23 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         if !config.accessoryButton.preventDefault {
             config.accessoryActionChooser?.show()
         }
+    }
+    
+    @objc private func onMicrophoneButtonPressed(_ sender: UITapGestureRecognizer) {
+        
+        if let r = recorder, !r.isRecording {
+            let fname = "voice_\(config.sender.name)_\(Date().timeIntervalSince1970).m4a"
+            self.recorder?.audioUrl = URL.documentsDirectory.appendingPathComponent(fname)
+            print(fname)
+        }
+        
+        
+        do {
+            try self.recorder?.toggle()
+        } catch {
+            print("An error occurred recording voice message: \(error)")
+        }
+        
     }
     /// ************** =========================== ****************** ///
     
@@ -140,10 +173,10 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
     /// ************** =========================== ****************** ///
 
     private func chooseImageFrom(source: MediaPickerSource)  {
-        self.parlaDelegate?.didStartPickingImage(collectionView: self.collectionView)
+        self.parlaDelegate?.didStartPickingImage?(collectionView: self.collectionView)
         
         self.config.mediaPicker?.pickImage(source: source) {
-            self.parlaDelegate?.didFinishPickingImage(with: $0, collectionView: self.collectionView)
+            self.parlaDelegate?.didFinishPickingImage?(with: $0, collectionView: self.collectionView)
         }
     }
     
@@ -151,12 +184,10 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
    //     self.parlaDelegate?.didStartPickingImage(collectionView: self.collectionView)
         
         self.config.mediaPicker?.pickVideo(source: source) {
-            self.parlaDelegate?.didFinishPickingVideo(with: $0, collectionView: self.collectionView)
+            self.parlaDelegate?.didFinishPickingVideo?(with: $0, collectionView: self.collectionView)
         }
     }
     
-    private var keyboardDefaultBottomConstraintMargin = CGFloat(-35)
-    private var keyboardStarterBottomMargin = CGFloat(20)
     
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -165,7 +196,6 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
             assertionFailure("Fatal error: You must provide a dataSource and a sender to your viewController class (Implement the ParlaDataSource protocol and assign a valid sender instance to the sender property)")
             return ;
         }
-        recorder = DefaultVoiceRecorder()
         
         let model = Utils.getModelNumber()
         
@@ -205,11 +235,11 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         let chatView = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
         self.chatContainerView.addSubview(chatView)
-        self.bottom = NSLayoutConstraint(item: chatView, attribute: .bottom, relatedBy: .equal, toItem: self.chatContainerView, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin)
+        self.bottomConstraint = NSLayoutConstraint(item: chatView, attribute: .bottom, relatedBy: .equal, toItem: self.chatContainerView, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin)
         let top = NSLayoutConstraint(item: chatView, attribute: .top, relatedBy: .equal, toItem: self.chatContainerView, attribute: .top, multiplier: 1, constant: -keyboardDefaultBottomConstraintMargin)
         
         self.chatContainerView.addConstraints([
-            self.bottom,
+            self.bottomConstraint,
             NSLayoutConstraint(item: chatView, attribute: .leading, relatedBy: .equal, toItem: self.chatContainerView, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: chatView, attribute: .trailing, relatedBy: .equal, toItem: self.chatContainerView, attribute: .trailing, multiplier: 1, constant: 0),
             top
@@ -239,7 +269,7 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         collectionView.register(UINib(nibName: incomingVideoMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingVideoMessageReuseIdentifier)
         collectionView.register(UINib(nibName: outgoingVideoMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingVideoMessageReuseIdentifier)
         collectionView.register(UINib(nibName: incomingVoiceMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingVoiceMessageReuseIdenfitier)
-        collectionView.register(UINib(nibName: "VoiceMessageCell", bundle: b), forCellWithReuseIdentifier: voiceMessageReuseIdentifier)
+        collectionView.register(UINib(nibName: "VoiceMessageCell", bundle: b), forCellWithReuseIdentifier: voiceMessageReuseIdentifier )
         
         chatView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -263,47 +293,23 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     
-    var started = false
-    
-    @objc func onMicrophoneButtonPressed(_ sender: UITapGestureRecognizer) {
-        recorder?.audioFilename = "voice_\(parlaDataSource.sender.name)\(Date().toString()!).m4a"
-        
-        do {
-            if let result = try recorder?.toggle(onStart: {
-                self.parlaDelegate?.didStartRecordingVoiceMessage(atUrl: self.recorder!.audioUrl)
-            }) {
-                print("Successfully recorded voice at path \(result.absoluteString)")
-                self.parlaDelegate?.didFinishRecordingVoiceMessage(atUrl: result)
-            }
-        } catch {
-            print("An error occurred recording voice message: \(error)")
-        }
-        
-    }
-    
-    @objc public  func keyboardWillShow(_ notification: NSNotification) {
+    @objc public final func keyboardWillShow(_ notification: NSNotification) {
         // print(notification.userInfo)
         
         // We need the  keyboard height
         let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
         print("keyboard size: \(keyboardSize)")
         
-        bottom.constant -= keyboardSize.height + keyboardStarterBottomMargin
+        bottomConstraint.constant -= keyboardSize.height + keyboardStarterBottomMargin
         self.collectionView.scrollToBottom(animated: true)
     }
     
-    @objc public func keyboardWillHide(_ notification: NSNotification) {
+    @objc public final func keyboardWillHide(_ notification: NSNotification) {
         
        // let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
     
-        bottom.constant = CGFloat(keyboardDefaultBottomConstraintMargin)
+        bottomConstraint.constant = CGFloat(keyboardDefaultBottomConstraintMargin)
     }
-    
-    override open func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     
     
     /*

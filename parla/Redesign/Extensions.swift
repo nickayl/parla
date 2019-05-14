@@ -108,6 +108,12 @@ public extension String {
             return nil
         }
     }
+    
+    static func randomString(length: Int) -> String {
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        return String((0..<length).map{ _ in letters.randomElement()! })
+    }
+
 }
 
 public extension UIImage {
@@ -234,8 +240,8 @@ public class Utils {
 public extension URL {
     
     static var documentsDirectory: URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
+        let paths = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        return paths
     }
     
 }
@@ -257,12 +263,12 @@ internal extension Date {
     static func getDateTimeFormat() -> String {
         // 06/01/2019 10:04:20
         
-        return "dd.MM.yyyy_H.mm.ss"
+        return "dd_MM_yyyy__H_mm_ss"
         //   return "yyyy-MM-dd hh:mm:ss"
     }
     
     static func getDateFormat() -> String {
-        return "dd.MM.yyyy"
+        return "dd_MM_yyyy"
     }
     
 }

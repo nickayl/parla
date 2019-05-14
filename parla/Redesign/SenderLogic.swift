@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-public enum SenderType : String {
-    case Incoming = "Incoming", Outgoing = "Outgoing"
+@objc public enum SenderType : Int {
+    case Incoming, Outgoing
 }
 
-public class PSender : Equatable {
+@objc public class PSender : NSObject {
 
     public var id: Int
     public var name: String

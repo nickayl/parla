@@ -20,11 +20,15 @@ let outgoingVideoMessageXibName = "OutgoingVideoMessageCell", outgoingVideoMessa
 let incomingVideoMessageXibName = "IncomingVideoMessageCell", incomingVideoMessageReuseIdentifier = "VideoIncomingXib"
 let voiceMessageReuseIdentifier = "VoiceMessageCellXib"
 
-public enum MessageType {
+@objc public enum MessageType : Int {
     case ImageMessage, VideoMessage, TextMessage, VoiceMessage
 }
 
-public protocol PMessage {
+@objc public protocol ToStringRepresentable {
+    var toString: String { get }
+}
+
+@objc public protocol PMessage : ToStringRepresentable {
     var messageId: Int { get set }
     var date: Date { get set }
     var sender: PSender { get set }
@@ -32,8 +36,8 @@ public protocol PMessage {
     var senderType: SenderType { get }
     var cellIdentifier: String { get }
     var isDateLabelActive: Bool { get set }
-    func displaySize(frameWidth: CGFloat) -> CGSize
     
+    func displaySize(frameWidth: CGFloat) -> CGSize
     func triggerSelection()
 }
 
@@ -51,10 +55,8 @@ public protocol PVideoMessage : PMessage {
     init(id: Int, sender: PSender, videoUrl: URL, thumbnail: UIImage?, date: Date)
 }
 
-
-
 public protocol PVoiceMessage : PMessage {
-    var duration: Int { get }
+    var duration: Float { get }
     var voiceUrl: URL { get set }
     var player: PAudioPlayer? { get set }
 }
@@ -68,9 +70,9 @@ public protocol PImageMessage : PMessage {
     init(id: Int, sender: PSender, image: UIImage, date: Date)
 }
 
-public class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage {
+public class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPlayerOptionalDelegate {
     
-    public var duration: Int = 0
+    public var duration: Float = 0
     public var voiceUrl: URL
     public var player: PAudioPlayer?
     
@@ -82,11 +84,17 @@ public class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage {
         self.voiceUrl = voiceUrl
         super.init(id: id, sender: sender, date: date, type: .VoiceMessage)
         self.player = DefaultPAudioPlayer(voiceUrl: voiceUrl, delegate: nil)
+        self.player?.optionalDelegate = self
+        self.content = voiceUrl
     }
     
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
         let cfg = Parla.config!
         return CGSize(width: frameWidth - (cfg.sectionInsets.left + cfg.sectionInsets.right), height: 72)
+    }
+    
+    public func didInitializeAVAudioPlayer(with: AVAudioPlayer) {
+        self.duration = Float(with.duration)
     }
 }
 
@@ -105,6 +113,7 @@ public class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
         self.videoUrl = videoUrl
         self.thumbnail = thumbnail
         super.init(id: id, sender: sender, date: date, type: .VideoMessage)
+        self.content = videoUrl
         
         self.player = MobilePlayerVideoPlayer(with: self)
     }
@@ -135,6 +144,7 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
         self.image = image
         self.viewer = SKPhotoBrowserImageViewer.getInstance(for: viewController)
         super.init(id: id, sender: sender, date: date, type: .ImageMessage)
+        self.content = image
     }
     
     public override func triggerSelection() {
@@ -162,7 +172,16 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
 public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
     
     public var text: String
-    private var label: UIPaddingLabel?
+    public var label: CopyableText?
+    
+    public var enableCopyOnLongTouch: Bool = true {
+        didSet {
+                label?.canCopyText = self.enableCopyOnLongTouch
+//            } else {
+//                print("WARNING ==> CANNOT COPY TEXT WITHOUT AN ASSIGNED UIPaddingLabel. Please use the correct initializer. <== ")
+//            }
+        }
+    }
     
     public override var cellIdentifier: String {
         return senderType == .Incoming ? incomingTextMessageReuseIdentifier : outgoingTextMessageReuseIdentifier
@@ -172,11 +191,6 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
         self.text = text
         super.init(id: id, sender: sender, date: date, type: .TextMessage)
         self.content = text
-    }
-    
-    public convenience init(id: Int, sender: PSender, text: String, date: Date = Date(), label: UIPaddingLabel) {
-        self.init(id: id, sender: sender, text: text, date: date)
-        self.label = label
         self.label?.canCopyText = enableCopyOnLongTouch
     }
 
@@ -203,15 +217,7 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
         return CGSize(width: cellWidth, height: bubbleHeight)
     }
     
-    public var enableCopyOnLongTouch: Bool = true {
-        willSet {
-            if newValue && label != nil {
-                label?.canCopyText = true
-            } else {
-                print("WARNING ==> CANNOT COPY TEXT WITHOUT AN ASSIGNED UIPaddingLabel. Please use the correct initializer. <== ")
-            }
-        }
-    }
+    
     
     public override func triggerSelection() {
         print("TextMessage does nothing when is tapped")
@@ -227,6 +233,9 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     public var sender: PSender
     public var messageType: MessageType
     public var content: T?
+    public var toString: String {
+        return "[messageType: \(messageType.rawValue) sender: \(sender.name) content: \(content)]"
+    }
     
     public var senderType: SenderType {
         return sender == Parla.config.sender ? .Outgoing : .Incoming

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate {
+class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate, VoiceRecorderDelegate  {
     
 
     var sender: PSender!
@@ -20,8 +20,9 @@ class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate {
 
       //  let avatar = PAvatar(withImage: UIImage(withBackground: UIColor.green))
         let avatar = PAvatar(withImage: UIImage(named: "avatarDefault")!)
+        super.voiceRecorderDelegate = self
         
-        self.sender = PSender(senderId: 0, senderName: "Domenico", avatar: nil, type: .Outgoing)
+        self.sender = PSender(senderId: 0, senderName: "Gabriele", avatar: nil, type: .Outgoing)
         self.otherSender = PSender(senderId: 1, senderName: "Ciccio", avatar: avatar, type: .Incoming)
         
         Parla.config = Parla(withSender: sender)
@@ -39,7 +40,7 @@ class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate {
         self.messages = [
             PVoiceMessageImpl(id: 5, sender: sender, date: Date(), voiceUrl: voiceTest),
             PTextMessageImpl(id: 1, sender: sender, text: "Ciao ciccio!", date: Date()),
-            PTextMessageImpl(id: 2, sender: otherSender, text: "Ciao Domenico! Come butta?"),
+            PTextMessageImpl(id: 2, sender: otherSender, text: "Ciao Gabri! Come va?"),
             PImageMessageImpl(id: 3, sender: sender, image: UIImage(named: "doc.jpg")!, date: Date()),
             PVideoMessageImpl(id: 4, sender: sender, videoUrl: testVideo)
         ]
@@ -65,7 +66,12 @@ class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate {
     
     func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView) {
         message.triggerSelection()
+        print("===>> DID TAP MESSAGE BUBBLE \(message.toString) << ===")
         
+    }
+    
+    func didLongTouchMessage(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView) {
+        print("===>> DID LONG TOUCH MESSAGE BUBBLE: \(message.toString) << ===")
     }
     
     func didPressSendButton(withMessage message: PMessage, textField: UITextField, collectionView: UICollectionView) {
@@ -97,11 +103,8 @@ class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate {
         }
     }
     
-    func didStartRecordingVoiceMessage(atUrl url: URL) {
-        
-    }
-    
-    func didFinishRecordingVoiceMessage(atUrl url: URL) {
+
+    func voiceRecorderDidEndRecording(at url: URL, voiceRecorder: VoiceRecorder) {
         print("did finish recording voice")
         let msg = PVoiceMessageImpl(id: messages.count+1, sender: sender, date: Date(), voiceUrl: url)
         messages.append(msg)
@@ -109,11 +112,16 @@ class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate {
         collectionView.scrollToBottom(animated: true)
     }
     
+    func voiceRecorderDidStartRecording(at url: URL, voiceRecorder: VoiceRecorder) {
+        print("Voice recording  START")
+    }
+    
+    
     func didPressAccessoryButton(button: UIButton, collectionView: UICollectionView) {
         print("Did press accessory button")
     }
     
-    func messageForBubbble(at indexPath: IndexPath, collectionView: UICollectionView) -> PMessage {
+    func messageForCell(at indexPath: IndexPath, collectionView: UICollectionView) -> PMessage {
         return self.messages[indexPath.row]
     }
     
