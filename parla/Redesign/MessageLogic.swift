@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import AVKit
+import CoreLocation
+import MapKit
 
 let incomingTextMessageXibName = "IncomingTextMessageCell", incomingTextMessageReuseIdentifier = "TextIncomingXib"
 let outgoingTextMessageXibName = "OutgoingTextMessageCell", outgoingTextMessageReuseIdentifier = "TextOutgoingXib"
@@ -20,7 +22,7 @@ let incomingVideoMessageXibName = "IncomingVideoMessageCell", incomingVideoMessa
 let voiceMessageReuseIdentifier = "VoiceMessageCellXib"
 
 @objc public enum MessageType : Int {
-    case ImageMessage, VideoMessage, TextMessage, VoiceMessage
+    case ImageMessage, VideoMessage, TextMessage, VoiceMessage, MapMessage
 }
 
 @objc public protocol ToStringRepresentable {
@@ -34,7 +36,7 @@ let voiceMessageReuseIdentifier = "VoiceMessageCellXib"
     var messageType: MessageType { get }
     var senderType: SenderType { get }
     var cellIdentifier: String { get }
-    var isDateLabelActive: Bool { get set }
+    var isTopLabelActive: Bool { get set }
     
     func displaySize(frameWidth: CGFloat) -> CGSize
     func triggerSelection()
@@ -60,13 +62,81 @@ public protocol PVoiceMessage : PMessage {
     var player: PAudioPlayer? { get set }
 }
 
-public protocol PImageMessage : PMessage {
-    var image: UIImage { get set }
+@objc public protocol PImageMessage : PMessage {
+    var image: UIImage! { get set }
+    var imageDescription: String?  { get set }
   //  var viewController: UIViewController! { get set }
-    var viewer: ImageViewer { get set }
-    func show()
-    func hide()
-    init(id: Int, sender: PSender, image: UIImage, date: Date)
+    var viewer: ImageViewer? { get set }
+//    init(id: Int, sender: PSender, image: UIImage, date: Date)
+}
+
+@objc public protocol PMapMessage : PImageMessage {
+    var mapImageGenerator: MapImageGenerator? { get set }
+    var coordinates: CLLocationCoordinate2D { get set }
+    var address: String? { get set }
+    var shouldDisplayLabel: Bool { get set }
+    
+  //  func openToExternalMapApp()
+    func startAsynch(onImageReady: @escaping () -> Void, onAddressReady: @escaping () -> Void)
+}
+
+public class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageMessage, PMapMessage {
+    
+    public var image: UIImage!
+    public var imageDescription: String?
+    public var viewer: ImageViewer?
+    public var mapImageGenerator: MapImageGenerator?
+    public var coordinates: CLLocationCoordinate2D
+    public var shouldDisplayLabel: Bool = true
+    public var address: String? {
+        didSet {
+            self.imageDescription = address
+        }
+    }
+    private lazy var geocoder = CLGeocoder()
+    
+    public init(id: Int, sender: PSender, date: Date = Date(), coordinates: CLLocationCoordinate2D) {
+        self.coordinates = coordinates
+        self.mapImageGenerator = MapKitImageGenerator()
+        super.init(id: id, sender: sender, type: .MapMessage)
+        self.content = coordinates
+        self.isTopLabelActive = true
+    }
+    
+    public override func triggerSelection() {
+        print("Open to external map app")
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = self.address
+        mapItem.openInMaps(launchOptions: nil)
+    }
+    
+    public func startAsynch(onImageReady: @escaping () -> Void, onAddressReady: @escaping () -> Void) {
+        let location = CLLocation(latitude: CLLocationDegrees(coordinates.latitude), longitude: CLLocationDegrees(coordinates.longitude))
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if let l = placemarks?.first {
+                self.address = "\(l.thoroughfare ?? "") \(l.subThoroughfare ?? "") \(l.postalCode ?? ""), \(l.locality ?? "") - \(l.country ?? "")"
+                onAddressReady()
+            }
+            
+        }
+        
+        self.mapImageGenerator?.generateImageFor(coordinates: coordinates, withPlacemark: true) {
+            print("Finished loading image...")
+            self.image = $0!
+            onImageReady()
+        }
+    }
+    
+    public override func displaySize(frameWidth: CGFloat) -> CGSize {
+        let cfg = Parla.config!
+        return CGSize(width: frameWidth - (cfg.sectionInsets.left + cfg.sectionInsets.right), height: 160)
+    }
+    
+    public override var cellIdentifier: String {
+        return senderType == .Incoming ? incomingImageMessageReuseIdentifier : outgoingImageMessageReuseIdentifier
+    }
+    
 }
 
 public class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPlayerOptionalDelegate {
@@ -129,17 +199,17 @@ public class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
 
 public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     
-    public var image: UIImage
-    public var viewer: ImageViewer
+    public var image: UIImage!
+    public var imageDescription: String?
+    public var viewer: ImageViewer?
     
-   // public var viewController: UIViewController!
     private let viewController = Parla.config!.containerViewController!
     
     public override var cellIdentifier: String {
         return senderType == .Incoming ? incomingImageMessageReuseIdentifier : outgoingImageMessageReuseIdentifier
     }
     
-    public required init(id: Int, sender: PSender, image: UIImage, date: Date = Date()) {
+    public init(id: Int, sender: PSender, image: UIImage, date: Date = Date()) {
         self.image = image
         self.viewer = SKPhotoBrowserImageViewer.getInstance(for: viewController)
         super.init(id: id, sender: sender, date: date, type: .ImageMessage)
@@ -147,24 +217,21 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     }
     
     public override func triggerSelection() {
-        show()
+        self.viewer?.show(image: image)
     }
     
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
-//        let size = Parla.config!.kDefaultImageBubbleSize
-//        print("returning \(size) from image message displaySize")
-//        return size
         let cfg = Parla.config!
         return CGSize(width: frameWidth - (cfg.sectionInsets.left + cfg.sectionInsets.right), height: 160)
     }
     
-    public func show() {
-        self.viewer.show(image: image)
-    }
-    
-    public func hide() {
-        self.viewer.hide()
-    }
+//    public func show() {
+//
+//    }
+//
+//    public func hide() {
+//        self.viewer?.hide()
+//    }
     
 }
 
@@ -211,7 +278,7 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
             bubbleHeight = bubbleHeight < baseHeight ? baseHeight : bubbleHeight
         }
         
-        bubbleHeight += isDateLabelActive ? 19 : 0
+        bubbleHeight += isTopLabelActive ? 19 : 0
         
         return CGSize(width: cellWidth, height: bubbleHeight)
     }
@@ -225,7 +292,7 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
 
 public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     
-    public var isDateLabelActive: Bool = false
+    public var isTopLabelActive: Bool = false
     public var messageId: Int = 0
     public var date: Date
     public var sender: PSender

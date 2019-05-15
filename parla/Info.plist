@@ -49,5 +49,11 @@
 	<string>To record a video, it is necessary to use the microphone. Please accept to continue.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Please allow access to save photo in your photo library</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Please allow to send a map message</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please accept to send a map message</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Please allow to send a map message</string>
 </dict>
 </plist>

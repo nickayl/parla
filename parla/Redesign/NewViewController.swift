@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import CoreLocation
 
-class NewViewController : UIViewController, ParlaDataSource, ParlaDelegate, VoiceRecorderDelegate  {
+class NewViewController : UIViewController, ParlaDataSource, ParlaDelegate, VoiceRecorderDelegate, CLLocationManagerDelegate  {
     
     var sender: PSender!
     var otherSender: PSender!
     var attachedViewController: UIViewController!
     private var collectionView: UICollectionView!
+    private var locationManager: CLLocationManager!
     
     var messages: [PMessage]!
     
@@ -22,7 +24,7 @@ class NewViewController : UIViewController, ParlaDataSource, ParlaDelegate, Voic
     override func viewDidLoad() {
 
         // Initialization of ParlaView class
-        self.collectionView = parlaView.collectionView
+       
         self.attachedViewController = self
         self.parlaView.parlaDelegate = self
         self.parlaView.parlaDataSource = self
@@ -63,11 +65,14 @@ class NewViewController : UIViewController, ParlaDataSource, ParlaDelegate, Voic
         }
         
         for i in 0 ..< messages.count {
-            messages[i].isDateLabelActive = (i % 4 == 0)
+            messages[i].isTopLabelActive = (i % 4 == 0)
         }
         
         self.parlaView.initialize()
+        self.collectionView = parlaView.collectionView
+   //     locationManager.requestWhenInUseAuthorization()
     }
+    
     
     func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView) {
         message.triggerSelection()
@@ -77,6 +82,11 @@ class NewViewController : UIViewController, ParlaDataSource, ParlaDelegate, Voic
     
     func didLongTouchMessage(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView) {
         print("===>> DID LONG TOUCH MESSAGE BUBBLE: \(message.toString) << ===")
+    }
+    
+    func didFinishBuildingCurrentLocationMessage(with coordinates: CLLocationCoordinate2D, with message: PMapMessage) {
+        self.messages.append(message)
+        self.parlaView.refreshCollection(animated: true)
     }
     
     func didPressSendButton(withMessage message: PMessage, textField: UITextField, collectionView: UICollectionView) {

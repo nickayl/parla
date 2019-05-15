@@ -172,6 +172,11 @@ class ImageMessageCell: AbstractMessageCell {
         addDefaultTapGestureRecognizer()
         addDefaultLongTouchGestureRecognizer()
         
+        if message.isTopLabelActive {
+            self.topLabel.text = message.imageDescription
+            self.topLabel.textAlignment = (message.sender.type == .Incoming ? .left : .right)
+        }
+        
 //        imageView.addGestureRecognizer(
 //            UITapGestureRecognizer(target: self, action: #selector(bubbleImageSelected(sender:)))
       //  )
@@ -305,7 +310,7 @@ class AbstractMessageCell: UICollectionViewCell {
 //        }
         // ---
         
-        if self.content?.isDateLabelActive ?? false {
+        if self.content?.isTopLabelActive ?? false {
             cellTopLabelHeightContraint.constant = cfg.kDefaultCellTopLabelHeight
         } else {
             cellTopLabelHeightContraint.constant = 0
@@ -346,7 +351,7 @@ class AbstractMessageCell: UICollectionViewCell {
         }
         
         self.avatarBubbleImage.image = self.content?.sender.avatar?.image
-      //  return CGSize(width: 0, height: 0)
+        self.bottomLabel.textAlignment = (content?.sender.type == .Incoming ? .left : .right)
     }
     
     

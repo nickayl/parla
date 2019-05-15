@@ -9,43 +9,14 @@
 import Foundation
 import UIKit
 
-//@objc public enum AccessoryAction : Int {
-//    case choosePhotoFromGallery
-//    case chooseVideoFromGallery
-//    case pickPhotoFromCamera
-//    case pickVideoFromCamera
-//}
-
 
 @objc public enum AccessoryActionType: Int {
-    case chooseImageFromGallery = 0
-    case chooseVideoFromGallery = 1
-    case pickImageFromCamera = 2
-    case pickVideoFromCamera = 3
+    case chooseImageFromGallery
+    case chooseVideoFromGallery
+    case pickImageFromCamera
+    case pickVideoFromCamera
+    case sendPosition
 }
-
-//@objc public protocol AccessoryAction {
-//    var type: AccessoryActionType { get }
-//    var content: Any? { get }
-//    func executeAction()
-//}
-
-//@objc public class AccessoryActionImpl : NSObject, AccessoryAction {
-//
-//    public var type: AccessoryActionType
-//    private var action: () -> Any?
-//    public var content: Any?
-//
-//    public init(type: AccessoryActionType, content: Any? = nil, action: @escaping () -> Any?) {
-//        self.type = type
-//        self.action = action
-//        self.content = content
-//    }
-//
-//    public func executeAction() {
-//        self.content = action()
-//    }
-//}
 
 public typealias AccessoryAction = () -> Void
 
@@ -100,7 +71,9 @@ public class ActionSheetAccessoryActionChooser : AccessoryActionChooser {
             
         }))
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: "Default action"), style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Send position", comment: "Default action"), style: .default, handler: { _ in
+            let action = self.accessoryActions[.sendPosition]
+            self.delegate?.didChooseAccessoryAction(with: action, ofType: .sendPosition)
             
         }))
         

@@ -44,6 +44,7 @@
 		522611A22285F13300AA703E /* UIPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279947A2282CAA500ACB791 /* UIPaddingLabel.swift */; };
 		522611CE228614C600AA703E /* SKPhotoBrowser.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 522611CC228614C600AA703E /* SKPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		522611CF228614C600AA703E /* MobilePlayer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 522611CD228614C600AA703E /* MobilePlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		523D8C88228C651F00EE3736 /* MapImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8C87228C651F00EE3736 /* MapImageGenerator.swift */; };
 		527994422282C94500ACB791 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994412282C94500ACB791 /* AppDelegate.swift */; };
 		527994472282C94500ACB791 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527994452282C94500ACB791 /* Main.storyboard */; };
 		527994492282C94700ACB791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527994482282C94700ACB791 /* Assets.xcassets */; };
@@ -156,6 +157,7 @@
 		5226119F2285EF2A00AA703E /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		522611CC228614C600AA703E /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SKPhotoBrowser.framework; sourceTree = "<group>"; };
 		522611CD228614C600AA703E /* MobilePlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobilePlayer.framework; sourceTree = "<group>"; };
+		523D8C87228C651F00EE3736 /* MapImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapImageGenerator.swift; sourceTree = "<group>"; };
 		5279943E2282C94500ACB791 /* parla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		527994412282C94500ACB791 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		527994462282C94500ACB791 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				5226115E228587FD00AA703E /* AccessoryActionChooser.swift */,
 				52F7C70E2288275000459833 /* VoiceRecorder.swift */,
 				52F7C7102288300B00459833 /* VoicePlayer.swift */,
+				523D8C87228C651F00EE3736 /* MapImageGenerator.swift */,
 			);
 			path = Redesign;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				5279949C2282D11A00ACB791 /* BubbleDelegate.swift in Sources */,
 				52FB4DD1228439DC001BF14E /* MessageCell.swift in Sources */,
 				527994872282CAA600ACB791 /* UIPaddingLabel.swift in Sources */,
+				523D8C88228C651F00EE3736 /* MapImageGenerator.swift in Sources */,
 				527994422282C94500ACB791 /* AppDelegate.swift in Sources */,
 				527994992282CAFC00ACB791 /* DebuggingStuff.swift in Sources */,
 				52FB4DC722841875001BF14E /* MessageLogic.swift in Sources */,

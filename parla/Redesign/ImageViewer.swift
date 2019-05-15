@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 import SKPhotoBrowser
 
-public protocol ImageViewer {
+@objc public protocol ImageViewer {
    // var image: UIImage { get set }
     func show(image: UIImage)
     func hide()
   //  init(withImage image: UIImage, withViewController viewController: UIViewController)
 }
 
-public class SKPhotoBrowserImageViewer : ImageViewer {
+@objc public class SKPhotoBrowserImageViewer : NSObject, ImageViewer {
     
    // public var image: UIImage
     // private var photo: SKPhoto?

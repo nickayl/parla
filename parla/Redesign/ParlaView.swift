@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 public protocol ParlaDataSource {
     var sender: PSender! { get set }
@@ -34,26 +35,31 @@ public protocol ParlaDataSource {
     
     @objc optional func didStartPickingVideo(with: URL?, collectionView: UICollectionView)
     @objc optional func didFinishPickingVideo(with: URL?, collectionView: UICollectionView)
+    
+    @objc optional func didFinishBuildingCurrentLocationMessage(with coordinates: CLLocationCoordinate2D, with message: PMapMessage)
     // ==========
     
 }
 
-open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate  {
+open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate, CLLocationManagerDelegate  {
 
     public var parlaDataSource: ParlaDataSource!
     public var parlaDelegate: ParlaDelegate?
     public var config: Parla!
     
     private var viewController: UIViewController {
-        get {
-            return parlaDataSource.attachedViewController
-        }
+        return parlaDataSource.attachedViewController
     }
     
     public var voiceRecorderDelegate: VoiceRecorderDelegate? {
         willSet {
             self.recorder?.delegate = newValue
         }
+    }
+    
+    public func refreshCollection(animated: Bool) {
+        self.collectionView.reloadData()
+        self.collectionView.scrollToBottom(animated: animated)
     }
     
     var inputToolbarContainer: UIView?
@@ -68,6 +74,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     private var keyboardDefaultBottomConstraintMargin = CGFloat(-35)
     private var keyboardStarterBottomMargin = CGFloat(20)
     private var recorder: VoiceRecorder?
+    private var locationManager: CLLocationManager?
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -78,7 +85,6 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     public final func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let message = parlaDataSource.messageForCell(at: indexPath, collectionView: collectionView)
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: message.cellIdentifier, for: indexPath) as! AbstractMessageCell
         
         cell.viewController = self
@@ -117,7 +123,6 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     /// ************** =========================== ****************** ///
     
 
-    
     ///  ********* ========== UI Gesture Recognizers ========== **************  ///
     @objc private func onSendButtonPressed(_ sender: UITapGestureRecognizer) {
         if !textField.text!.isEmpty {
@@ -146,7 +151,6 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
             print(fname)
         }
         
-        
         do {
             try self.recorder?.toggle()
         } catch {
@@ -163,6 +167,9 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     public func didChooseAccessoryAction(with action: AccessoryAction?, ofType type: AccessoryActionType) {
         print("Accessory action selected: == >> \(type) << ==")
+        
+        // Do additional setup here before invoking the function.
+        
         action?()
     }
     
@@ -187,6 +194,42 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         
         self.config.mediaPicker?.pickVideo(source: source) {
             self.parlaDelegate?.didFinishPickingVideo?(with: $0, collectionView: self.collectionView)
+        }
+    }
+    
+    private func sendPosition() {
+        if self.locationManager == nil {
+            locationManager = CLLocationManager()
+            locationManager!.requestWhenInUseAuthorization()
+            locationManager!.delegate = self;
+            locationManager!.distanceFilter = kCLDistanceFilterNone;
+            locationManager!.desiredAccuracy = kCLLocationAccuracyBest;
+        }
+        locationManager!.startUpdatingLocation()
+        alreadyCalled = false
+//        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true)  { _ in
+//
+//        }
+    }
+    
+   // private var timer: Timer?
+    private var alreadyCalled = false
+    public final func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if !alreadyCalled, let coords = locations.last?.coordinate {
+            locationManager?.stopUpdatingLocation()
+            alreadyCalled = true
+            let mapMsg = PMapMessageImpl(id: 10, sender: config.sender, coordinates: coords)
+            
+            mapMsg.startAsynch(onImageReady: {
+                self.parlaDelegate?.didFinishBuildingCurrentLocationMessage?(with: coords, with: mapMsg)
+            }, onAddressReady: {
+                self.collectionView.reloadData()
+            })
+                
+            
+        } else {
+            print("No coordinates available")
         }
     }
     
@@ -221,7 +264,8 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
             .chooseVideoFromGallery :  {  self.chooseVideoFrom(source: .photoLibrary) },
             .chooseImageFromGallery : {  self.chooseImageFrom(source: .photoLibrary) },
             .pickImageFromCamera :  {  self.chooseImageFrom(source: .camera) },
-            .pickVideoFromCamera :  {  self.chooseVideoFrom(source: .camera) }
+            .pickVideoFromCamera :  {  self.chooseVideoFrom(source: .camera) },
+            .sendPosition : { self.sendPosition() }
         ]
   
         if self.chatContainerView == nil {
