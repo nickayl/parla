@@ -10,6 +10,7 @@ import UIKit
 
 public protocol ParlaDataSource {
     var sender: PSender! { get set }
+    var attachedViewController: UIViewController! { get set }
     
     func messageForCell(at indexPath: IndexPath, collectionView: UICollectionView) -> PMessage
     func numberOfMessagesIn(collectionView: UICollectionView) -> Int
@@ -37,11 +38,18 @@ public protocol ParlaDataSource {
     
 }
 
-open class ParlaViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate  {
+open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate  {
 
     public var parlaDataSource: ParlaDataSource!
     public var parlaDelegate: ParlaDelegate?
     public var config: Parla!
+    
+    private var viewController: UIViewController {
+        get {
+            return parlaDataSource.attachedViewController
+        }
+    }
+    
     public var voiceRecorderDelegate: VoiceRecorderDelegate? {
         willSet {
             self.recorder?.delegate = newValue
@@ -161,12 +169,6 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-        // self.inputToolbarContainerHeightConstraint.constant += 19
-        //self.inputToolbarTextFieldHeightConstraint.constant += 19
-        
-        
-        //self.collectionView.layoutIfNeeded()
-        
         return true
     }
     
@@ -189,8 +191,7 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     
-    override open func viewDidLoad() {
-        super.viewDidLoad()
+    open func initialize() {
 
         if parlaDataSource == nil || parlaDataSource.sender == nil {
             assertionFailure("Fatal error: You must provide a dataSource and a sender to your viewController class (Implement the ParlaDataSource protocol and assign a valid sender instance to the sender property)")
@@ -212,8 +213,8 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         print("Currently running on iPhone model \(UIDevice.current.modelName)")
         
         config = Parla.config!
-        config.mediaPicker = SystemMediaPicker(viewController: self)
-        config.accessoryActionChooser = ActionSheetAccessoryActionChooser(viewController: self)
+        config.mediaPicker = SystemMediaPicker(viewController: self.viewController)
+        config.accessoryActionChooser = ActionSheetAccessoryActionChooser(viewController: self.viewController)
         config.accessoryActionChooser?.delegate = self
         
         config.accessoryActionChooser?.accessoryActions = [
@@ -224,12 +225,12 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         ]
   
         if self.chatContainerView == nil {
-            self.chatContainerView = self.view
+            self.chatContainerView = self
         }
         
         //let b = Bundle.main
         
-        let b = Bundle(for: ParlaViewController.self)
+        let b = Bundle(for: ParlaView.self)
         
         let nib = UINib(nibName: "ParlaCollectionView", bundle: b)
         let chatView = nib.instantiate(withOwner: self, options: nil).first as! UIView
@@ -282,15 +283,13 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         self.textField.setBorderRadius(radius: 6)
         
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(12, 0, 0);
-        
-        // Do any additional setup after loading the view.
     }
     
-    override open func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        UIApplication.shared.isStatusBarHidden = false
-    }
+//    override open func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//
+//       // UIApplication.shared.isStatusBarHidden = false
+//    }
     
     
     @objc public final func keyboardWillShow(_ notification: NSNotification) {
@@ -311,15 +310,5 @@ open class ParlaViewController: UIViewController, UICollectionViewDataSource, UI
         bottomConstraint.constant = CGFloat(keyboardDefaultBottomConstraintMargin)
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

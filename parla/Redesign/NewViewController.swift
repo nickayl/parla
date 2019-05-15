@@ -8,19 +8,28 @@
 
 import UIKit
 
-class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate, VoiceRecorderDelegate  {
+class NewViewController : UIViewController, ParlaDataSource, ParlaDelegate, VoiceRecorderDelegate  {
     
-
     var sender: PSender!
     var otherSender: PSender!
+    var attachedViewController: UIViewController!
+    private var collectionView: UICollectionView!
     
     var messages: [PMessage]!
     
+    @IBOutlet var parlaView: ParlaView!
+    
     override func viewDidLoad() {
 
+        // Initialization of ParlaView class
+        self.collectionView = parlaView.collectionView
+        self.attachedViewController = self
+        self.parlaView.parlaDelegate = self
+        self.parlaView.parlaDataSource = self
+        
       //  let avatar = PAvatar(withImage: UIImage(withBackground: UIColor.green))
         let avatar = PAvatar(withImage: UIImage(named: "avatarDefault")!)
-        super.voiceRecorderDelegate = self
+        self.parlaView.voiceRecorderDelegate = self
         
         self.sender = PSender(senderId: 0, senderName: "Gabriele", avatar: nil, type: .Outgoing)
         self.otherSender = PSender(senderId: 1, senderName: "Ciccio", avatar: avatar, type: .Incoming)
@@ -57,11 +66,7 @@ class NewViewController: ParlaViewController, ParlaDataSource, ParlaDelegate, Vo
             messages[i].isDateLabelActive = (i % 4 == 0)
         }
         
-        self.parlaDelegate = self
-        self.parlaDataSource = self
-        
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.parlaView.initialize()
     }
     
     func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView) {

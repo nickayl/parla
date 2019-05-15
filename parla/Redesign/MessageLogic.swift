@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import AVKit
 
-
 let incomingTextMessageXibName = "IncomingTextMessageCell", incomingTextMessageReuseIdentifier = "TextIncomingXib"
 let outgoingTextMessageXibName = "OutgoingTextMessageCell", outgoingTextMessageReuseIdentifier = "TextOutgoingXib"
 let incomingImageMessageXibName = "IncomingImageMessageCell", incomingImageMessageReuseIdentifier = "ImageIncomingXib"
@@ -216,7 +215,6 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
         
         return CGSize(width: cellWidth, height: bubbleHeight)
     }
-    
     
     
     public override func triggerSelection() {

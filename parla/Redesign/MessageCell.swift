@@ -269,7 +269,7 @@ class AbstractMessageCell: UICollectionViewCell {
     @IBOutlet var cellLeadingConstraint: NSLayoutConstraint!
     
     var leadingOrTrailingConstraint: NSLayoutConstraint!
-    var viewController: ParlaViewController!
+    var viewController: ParlaView!
     var indexPath: IndexPath!
     var content: PMessage? {
         get { return nil }

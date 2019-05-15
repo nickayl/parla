@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "parla/Redesign/MessageCell.swift"
-            timestampString = "579557374.892872"
+            timestampString = "579611174.558394"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -330,7 +330,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "parla/Redesign/MessageCell.swift"
-            timestampString = "579557374.893896"
+            timestampString = "579611174.558689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -346,7 +346,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "parla/Redesign/MessageCell.swift"
-            timestampString = "579557374.893949"
+            timestampString = "579611174.558735"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
@@ -401,6 +401,38 @@
             endingLineNumber = "100"
             landmarkName = "toggle()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "parla.DefaultVoiceRecorder.toggle() throws -&gt; ()"
+                  moduleName = "parla"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/MacBookPro/Desktop/xcode%20projects/parla/parla/Redesign/VoiceRecorder.swift"
+                  timestampString = "579610845.929387"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "258">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in parla.DefaultVoiceRecorder.toggle() throws -&gt; ()"
+                  moduleName = "parla"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/MacBookPro/Desktop/xcode%20projects/parla/parla/Redesign/VoiceRecorder.swift"
+                  timestampString = "579610845.931398"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -422,31 +454,31 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "parla.DefaultVoiceRecorder.toggle(onStart: Swift.Optional&lt;() -&gt; ()&gt;) throws -&gt; Swift.Optional&lt;Foundation.URL&gt;"
+                  symbolName = "parla.DefaultVoiceRecorder.toggle() throws -&gt; ()"
                   moduleName = "parla"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/MacBookPro/Desktop/xcode%20projects/parla/parla/Redesign/VoiceRecorder.swift"
-                  timestampString = "579549351.864652"
+                  timestampString = "579610845.935871"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "84"
-                  endingLineNumber = "84"
-                  offsetFromSymbolStart = "345">
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "258">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in parla.DefaultVoiceRecorder.toggle(onStart: Swift.Optional&lt;() -&gt; ()&gt;) throws -&gt; Swift.Optional&lt;Foundation.URL&gt;"
+                  symbolName = "closure #1 () -&gt; () in parla.DefaultVoiceRecorder.toggle() throws -&gt; ()"
                   moduleName = "parla"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/MacBookPro/Desktop/xcode%20projects/parla/parla/Redesign/VoiceRecorder.swift"
-                  timestampString = "579549351.8663501"
+                  timestampString = "579610845.937554"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "85"
-                  endingLineNumber = "85"
-                  offsetFromSymbolStart = "57">
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "4">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -618,11 +650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "parla/Redesign/MessageLogic.swift"
-            timestampString = "579557374.894442"
+            timestampString = "579611174.5589271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "enableCopyOnLongTouch"
             landmarkType = "24">
          </BreakpointContent>
@@ -634,7 +666,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "parla/Redesign/MessageCell.swift"
-            timestampString = "579557374.894502"
+            timestampString = "579611174.558971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "249"

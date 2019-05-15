@@ -14,12 +14,15 @@
         <scene sceneID="EVG-Fj-ZYV">
             <objects>
                 <viewController id="iC1-VP-cvW" customClass="NewViewController" customModule="parla" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6sA-71-XIx">
+                    <view key="view" contentMode="scaleToFill" id="6sA-71-XIx" customClass="ParlaView" customModule="parla" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="leE-l0-B64"/>
                     </view>
+                    <connections>
+                        <outlet property="parlaView" destination="6sA-71-XIx" id="JrF-iS-VDy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rn8-tj-JqY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
