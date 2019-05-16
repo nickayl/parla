@@ -85,6 +85,12 @@ class NewViewController : UIViewController, ParlaDataSource, ParlaDelegate, Voic
     }
     
     func didFinishBuildingCurrentLocationMessage(with coordinates: CLLocationCoordinate2D, with message: PMapMessage) {
+        print("END building current location message")
+       
+    }
+    
+    func didStartBuildingCurrentLocationMessage(with coordinates: CLLocationCoordinate2D, with message: PMapMessage) {
+        print("START building current location message")
         self.messages.append(message)
         self.parlaView.refreshCollection(animated: true)
     }

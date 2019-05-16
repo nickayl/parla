@@ -161,13 +161,13 @@ public extension UIView {
      - parameter duration: The duration of the hide animation.
      
      */
-     func hide(withDuration duration: Double) {
+     func hide(withDuration duration: Double = 0.2) {
         UIView.animate(withDuration: TimeInterval(duration)) {
             self.alpha = 0.0
         }
     }
     
-     func show(withDuration duration: Double) {
+     func show(withDuration duration: Double = 0.2) {
         UIView.animate(withDuration: TimeInterval(duration)) {
             self.alpha = 1.0
         }

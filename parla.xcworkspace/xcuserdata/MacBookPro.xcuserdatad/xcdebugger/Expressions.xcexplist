@@ -41,6 +41,14 @@
          contextName = "closure #1 in closure #1 in DefaultVoiceRecorder.start():VoiceRecorder.swift">
       </ContextState>
       <ContextState
+         contextName = "UIMicrophoneView.awakeFromNib():UIMicrophoneView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frame.origin.x">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "VoiceMessageCell.initialize():MessageCell.swift">
       </ContextState>
       <ContextState

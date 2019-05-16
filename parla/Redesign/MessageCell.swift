@@ -139,9 +139,10 @@ class VideoMessageCell : AbstractMessageCell {
     
 }
 
-class ImageMessageCell: AbstractMessageCell {
+class ImageMessageCell: AbstractMessageCell, PMessageDelegate {
     
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     var message: PImageMessage! {
         didSet {
@@ -166,7 +167,14 @@ class ImageMessageCell: AbstractMessageCell {
         
         leadingOrTrailingConstraint.constant = cellWidth - (cfg.kDefaultImageBubbleSize.width + cfg.avatarSize.width)
     
-        imageView.image = self.message.image
+        self.message.delegate = self
+        
+        if self.message.isReadyToUse {
+            imageView.image = self.message.image
+        } else {
+            self.activityIndicator.startAnimating()
+        }
+        
         imageView.setBorderRadius(radius: 13)
 
         addDefaultTapGestureRecognizer()
@@ -177,11 +185,28 @@ class ImageMessageCell: AbstractMessageCell {
             self.topLabel.textAlignment = (message.sender.type == .Incoming ? .left : .right)
         }
         
-//        imageView.addGestureRecognizer(
-//            UITapGestureRecognizer(target: self, action: #selector(bubbleImageSelected(sender:)))
-      //  )
     }
     
+    func messageIsReadyToBeConsumed(message: PMessage) {
+        self.activityIndicator.stopAnimating()
+        self.viewController.collectionView.scrollToBottom(animated: true)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.imageView.alpha = 0
+        }) { _ in
+            self.imageView.image = self.message.image
+        }
+        
+        UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseOut, animations: {
+            self.imageView.alpha = 1
+            self.topLabel.text = (message as? PMapMessage)?.address ?? self.topLabel.text
+        }, completion: nil)
+        
+      //  self.viewController.refreshCollection(animated: true)
+    }
+    //        imageView.addGestureRecognizer(
+    //            UITapGestureRecognizer(target: self, action: #selector(bubbleImageSelected(sender:)))
+    //  )
 //    @objc func bubbleImageSelected(sender: UITapGestureRecognizer) {
 //        viewController.parlaDelegate?.didTapMessageBubble(at: indexPath, message: self.message, collectionView: viewController.collectionView)
 //    }

@@ -37,11 +37,12 @@ public protocol ParlaDataSource {
     @objc optional func didFinishPickingVideo(with: URL?, collectionView: UICollectionView)
     
     @objc optional func didFinishBuildingCurrentLocationMessage(with coordinates: CLLocationCoordinate2D, with message: PMapMessage)
+    @objc optional func didStartBuildingCurrentLocationMessage(with coordinates: CLLocationCoordinate2D, with message: PMapMessage)
     // ==========
     
 }
 
-open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate, CLLocationManagerDelegate  {
+open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate, CLLocationManagerDelegate, UIMicrophoneViewDelegate  {
 
     public var parlaDataSource: ParlaDataSource!
     public var parlaDelegate: ParlaDelegate?
@@ -66,10 +67,10 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     var collectionView: UICollectionView!
     var textFieldContainer: UIView!
     var textField: UITextField!
-    var chatContainerView: UIView!
     var accessoryButton: UIButton!
-    var microphoneButton: UIButton!
+    var microphoneButton: UIMicrophoneView!
     var bottomConstraint: NSLayoutConstraint!
+    var sendButton: UIButton!
     
     private var keyboardDefaultBottomConstraintMargin = CGFloat(-35)
     private var keyboardStarterBottomMargin = CGFloat(20)
@@ -132,6 +133,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
                                       date: Date())
             
             self.parlaDelegate?.didPressSendButton(withMessage: sm, textField: self.textField, collectionView: self.collectionView)
+            toggleSendButton()
         }
     }
     
@@ -143,21 +145,21 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
-    @objc private func onMicrophoneButtonPressed(_ sender: UITapGestureRecognizer) {
+  //  @objc private func onMicrophoneButtonPressed(_ sender: UITapGestureRecognizer) {
         
-        if let r = recorder, !r.isRecording {
-            let fname = "voice_\(config.sender.name)_\(Date().timeIntervalSince1970).m4a"
-            self.recorder?.audioUrl = URL.documentsDirectory.appendingPathComponent(fname)
-            print(fname)
-        }
+//        if let r = recorder, !r.isRecording {
+//            let fname = "voice_\(config.sender.name)_\(Date().timeIntervalSince1970).m4a"
+//            self.recorder?.audioUrl = URL.documentsDirectory.appendingPathComponent(fname)
+//            print(fname)
+//        }
+//        
+//        do {
+//            try self.recorder?.toggle()
+//        } catch {
+//            print("An error occurred recording voice message: \(error)")
+//        }
         
-        do {
-            try self.recorder?.toggle()
-        } catch {
-            print("An error occurred recording voice message: \(error)")
-        }
-        
-    }
+   // }
     /// ************** =========================== ****************** ///
     
     
@@ -177,6 +179,29 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         textField.resignFirstResponder()
         
         return true
+    }
+    
+    public func didStartMicrophoneTouch() {
+        
+        if let r = recorder, !r.isRecording {
+            let fname = "voice_\(config.sender.name)_\(Date().timeIntervalSince1970).m4a"
+            self.recorder?.audioUrl = URL.documentsDirectory.appendingPathComponent(fname)
+            print(fname)
+        }
+
+        do {
+            try self.recorder?.toggle()
+        } catch {
+            print("An error occurred starting recording voice message: \(error)")
+        }
+    }
+    
+    public func didEndMicrophoneTouch(withDuration duration: TimeInterval) {
+        do {
+            try self.recorder?.toggle()
+        } catch {
+            print("An error occurred end recording voice message: \(error)")
+        }
     }
     
     /// ************** =========================== ****************** ///
@@ -207,29 +232,25 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         }
         locationManager!.startUpdatingLocation()
         alreadyCalled = false
-//        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true)  { _ in
-//
-//        }
+
     }
     
-   // private var timer: Timer?
     private var alreadyCalled = false
     public final func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if !alreadyCalled, let coords = locations.last?.coordinate {
+            print("locationManager locations: \(locations)")
+            
             locationManager?.stopUpdatingLocation()
             alreadyCalled = true
             let mapMsg = PMapMessageImpl(id: 10, sender: config.sender, coordinates: coords)
             
-            mapMsg.startAsynch(onImageReady: {
-                self.parlaDelegate?.didFinishBuildingCurrentLocationMessage?(with: coords, with: mapMsg)
-            }, onAddressReady: {
-                self.collectionView.reloadData()
-            })
-                
+            self.parlaDelegate?.didStartBuildingCurrentLocationMessage?(with: coords, with: mapMsg)
             
-        } else {
-            print("No coordinates available")
+            mapMsg.startAsynch {
+                self.parlaDelegate?.didFinishBuildingCurrentLocationMessage?(with: coords, with: mapMsg)
+            }
+            
         }
     }
     
@@ -267,10 +288,6 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
             .pickVideoFromCamera :  {  self.chooseVideoFrom(source: .camera) },
             .sendPosition : { self.sendPosition() }
         ]
-  
-        if self.chatContainerView == nil {
-            self.chatContainerView = self
-        }
         
         //let b = Bundle.main
         
@@ -279,14 +296,14 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         let nib = UINib(nibName: "ParlaCollectionView", bundle: b)
         let chatView = nib.instantiate(withOwner: self, options: nil).first as! UIView
         
-        self.chatContainerView.addSubview(chatView)
-        self.bottomConstraint = NSLayoutConstraint(item: chatView, attribute: .bottom, relatedBy: .equal, toItem: self.chatContainerView, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin)
-        let top = NSLayoutConstraint(item: chatView, attribute: .top, relatedBy: .equal, toItem: self.chatContainerView, attribute: .top, multiplier: 1, constant: -keyboardDefaultBottomConstraintMargin)
+        self.addSubview(chatView)
+        self.bottomConstraint = NSLayoutConstraint(item: chatView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin)
+        let top = NSLayoutConstraint(item: chatView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -keyboardDefaultBottomConstraintMargin)
         
-        self.chatContainerView.addConstraints([
+        self.addConstraints([
             self.bottomConstraint,
-            NSLayoutConstraint(item: chatView, attribute: .leading, relatedBy: .equal, toItem: self.chatContainerView, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: chatView, attribute: .trailing, relatedBy: .equal, toItem: self.chatContainerView, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: chatView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: chatView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
             top
             ])
         
@@ -295,13 +312,13 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         self.collectionView.dataSource = self
         self.inputToolbarContainer = chatView.subviews[1]
         self.textFieldContainer = chatView.subviews[1].subviews[2]
-        let sendButton = chatView.subviews[1].subviews[1] as! UIButton
+        self.sendButton = chatView.subviews[1].subviews[1] as? UIButton
         self.accessoryButton = chatView.subviews[1].subviews[3] as? UIButton
-        self.microphoneButton = chatView.subviews[1].subviews[2].subviews[1] as? UIButton
+        self.microphoneButton = chatView.subviews[2] as? UIMicrophoneView
         
         sendButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onSendButtonPressed(_:))))
         self.accessoryButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onAccessoryButtonPressed(_:))))
-        self.microphoneButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMicrophoneButtonPressed(_:))))
+   //     self.microphoneButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMicrophoneButtonPressed(_:))))
         
         
         self.textField = chatView.subviews[1].subviews[2].subviews[0] as? UITextField
@@ -327,7 +344,27 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         self.textField.setBorderRadius(radius: 6)
         
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(12, 0, 0);
+        self.microphoneButton.delegate = self
+        
+        self.textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: UIControl.Event.editingChanged)
+        
     }
+    
+    @objc func textFieldEditingChanged(_ sender: Any) {
+        toggleSendButton()
+    }
+    
+    private func toggleSendButton() {
+        if textField.text?.count == 0 {
+            self.sendButton.hide()
+            self.microphoneButton.show()
+            
+        } else {
+            self.sendButton.show()
+            self.microphoneButton.hide()
+        }
+    }
+    
     
 //    override open func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(true)

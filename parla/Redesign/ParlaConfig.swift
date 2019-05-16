@@ -18,7 +18,11 @@ public class Parla {
     final public var kDefaultBubbleViewOutgoingColor: UIColor = UIColor(withRed: 0.0, green: 122.0, blue: 255.0)
     final public var kDefaultBubbleViewIncomingColor: UIColor = UIColor(withRed: 230.0, green: 229.0, blue: 234.0)
     
-    public var containerViewController: UIViewController!
+    public var containerViewController: UIViewController! {
+        didSet {
+            self.kDefaultImageMessageViewer = SKPhotoBrowserImageViewer.getInstance(for: self.containerViewController)
+        }
+    }
     
     public let kDefaultTextIncomingColor = UIColor.black
     public let kDefaultTextOutgoingColor = UIColor.white
@@ -31,6 +35,8 @@ public class Parla {
     public let kAddFactor:CGFloat = 1.367
     
     public let kDefaultVoiceMessageWidth:CGFloat = 200
+    
+    public var kDefaultImageMessageViewer: ImageViewer?
     
     public var cellBottomLabelHidden:Bool = false
     public var isAvatarHidden = false

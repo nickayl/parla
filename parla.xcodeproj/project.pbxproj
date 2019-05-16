@@ -85,6 +85,7 @@
 		527994AC2283079800ACB791 /* VoiceMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994AB2283079800ACB791 /* VoiceMessageCell.xib */; };
 		52B15A1422897B6800690FC8 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B15A1322897B6800690FC8 /* DrawingViewController.swift */; };
 		52B15A162289F9F200690FC8 /* UIPaintableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B15A152289F9F200690FC8 /* UIPaintableImageView.swift */; };
+		52BB818E228D71BD00D3904C /* UIMicrophoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */; };
 		52F7C70F2288275000459833 /* VoiceRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7C70E2288275000459833 /* VoiceRecorder.swift */; };
 		52F7C7112288300B00459833 /* VoicePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7C7102288300B00459833 /* VoicePlayer.swift */; };
 		52FB4DC32284155B001BF14E /* SenderLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DC22284155B001BF14E /* SenderLogic.swift */; };
@@ -202,6 +203,7 @@
 		527994AB2283079800ACB791 /* VoiceMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoiceMessageCell.xib; sourceTree = "<group>"; };
 		52B15A1322897B6800690FC8 /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		52B15A152289F9F200690FC8 /* UIPaintableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPaintableImageView.swift; sourceTree = "<group>"; };
+		52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMicrophoneView.swift; sourceTree = "<group>"; };
 		52F7C70E2288275000459833 /* VoiceRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorder.swift; sourceTree = "<group>"; };
 		52F7C7102288300B00459833 /* VoicePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePlayer.swift; sourceTree = "<group>"; };
 		52FB4DC22284155B001BF14E /* SenderLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SenderLogic.swift; path = parla/Redesign/SenderLogic.swift; sourceTree = SOURCE_ROOT; };
@@ -436,6 +438,7 @@
 				52F7C70E2288275000459833 /* VoiceRecorder.swift */,
 				52F7C7102288300B00459833 /* VoicePlayer.swift */,
 				523D8C87228C651F00EE3736 /* MapImageGenerator.swift */,
+				52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */,
 			);
 			path = Redesign;
 			sourceTree = "<group>";
@@ -815,6 +818,7 @@
 				52F7C7112288300B00459833 /* VoicePlayer.swift in Sources */,
 				527994892282CAA600ACB791 /* SSender.swift in Sources */,
 				52FB4DCB22841A60001BF14E /* ParlaConfig.swift in Sources */,
+				52BB818E228D71BD00D3904C /* UIMicrophoneView.swift in Sources */,
 				5279948B2282CAA600ACB791 /* BubbleTextViewHolder.swift in Sources */,
 				527994952282CAC500ACB791 /* ChatViewController.swift in Sources */,
 				5226115F228587FD00AA703E /* AccessoryActionChooser.swift in Sources */,

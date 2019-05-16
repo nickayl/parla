@@ -22,7 +22,7 @@ import SKPhotoBrowser
    // public var image: UIImage
     // private var photo: SKPhoto?
     
-    private var viewController: UIViewController
+    private var viewController: UIViewController?
     private var browser: SKPhotoBrowser?
     private static var instance: ImageViewer?
     
@@ -55,7 +55,7 @@ import SKPhotoBrowser
         }
         
         browser?.initializePageIndex(0)
-        self.viewController.present(browser!, animated: true, completion: nil)
+        self.viewController?.present(browser!, animated: true, completion: nil)
     }
     
     public func hide() {

@@ -29,14 +29,20 @@ let voiceMessageReuseIdentifier = "VoiceMessageCellXib"
     var toString: String { get }
 }
 
+@objc public protocol PMessageDelegate {
+    func messageIsReadyToBeConsumed(message: PMessage)
+}
+
 @objc public protocol PMessage : ToStringRepresentable {
     var messageId: Int { get set }
+    var delegate: PMessageDelegate? { get set }
     var date: Date { get set }
     var sender: PSender { get set }
     var messageType: MessageType { get }
     var senderType: SenderType { get }
     var cellIdentifier: String { get }
     var isTopLabelActive: Bool { get set }
+    var isReadyToUse: Bool { get }
     
     func displaySize(frameWidth: CGFloat) -> CGSize
     func triggerSelection()
@@ -77,7 +83,7 @@ public protocol PVoiceMessage : PMessage {
     var shouldDisplayLabel: Bool { get set }
     
   //  func openToExternalMapApp()
-    func startAsynch(onImageReady: @escaping () -> Void, onAddressReady: @escaping () -> Void)
+    func startAsynch(completitionHandler: @escaping () -> Void)
 }
 
 public class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageMessage, PMapMessage {
@@ -101,6 +107,7 @@ public class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageM
         super.init(id: id, sender: sender, type: .MapMessage)
         self.content = coordinates
         self.isTopLabelActive = true
+        self.isReadyToUse = false
     }
     
     public override func triggerSelection() {
@@ -111,12 +118,19 @@ public class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageM
         mapItem.openInMaps(launchOptions: nil)
     }
     
-    public func startAsynch(onImageReady: @escaping () -> Void, onAddressReady: @escaping () -> Void) {
+    public func startAsynch(completitionHandler: @escaping () -> Void) {
         let location = CLLocation(latitude: CLLocationDegrees(coordinates.latitude), longitude: CLLocationDegrees(coordinates.longitude))
+        var c = false
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
             if let l = placemarks?.first {
+                print("Finished reverse geolocation")
                 self.address = "\(l.thoroughfare ?? "") \(l.subThoroughfare ?? "") \(l.postalCode ?? ""), \(l.locality ?? "") - \(l.country ?? "")"
-                onAddressReady()
+                if !c { c = true }
+                else {
+                    self.isReadyToUse = true
+                    self.delegate?.messageIsReadyToBeConsumed(message: self)
+                    completitionHandler()
+                }
             }
             
         }
@@ -124,7 +138,12 @@ public class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageM
         self.mapImageGenerator?.generateImageFor(coordinates: coordinates, withPlacemark: true) {
             print("Finished loading image...")
             self.image = $0!
-            onImageReady()
+            if !c { c = true }
+            else {
+                self.isReadyToUse = true
+                self.delegate?.messageIsReadyToBeConsumed(message: self)
+                completitionHandler()
+            }
         }
     }
     
@@ -204,6 +223,7 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     public var viewer: ImageViewer?
     
     private let viewController = Parla.config!.containerViewController!
+    private let config = Parla.config!
     
     public override var cellIdentifier: String {
         return senderType == .Incoming ? incomingImageMessageReuseIdentifier : outgoingImageMessageReuseIdentifier
@@ -211,7 +231,7 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     
     public init(id: Int, sender: PSender, image: UIImage, date: Date = Date()) {
         self.image = image
-        self.viewer = SKPhotoBrowserImageViewer.getInstance(for: viewController)
+        self.viewer = config.kDefaultImageMessageViewer
         super.init(id: id, sender: sender, date: date, type: .ImageMessage)
         self.content = image
     }
@@ -221,17 +241,8 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     }
     
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
-        let cfg = Parla.config!
-        return CGSize(width: frameWidth - (cfg.sectionInsets.left + cfg.sectionInsets.right), height: 160)
+        return CGSize(width: frameWidth - (config.sectionInsets.left + config.sectionInsets.right), height: 160)
     }
-    
-//    public func show() {
-//
-//    }
-//
-//    public func hide() {
-//        self.viewer?.hide()
-//    }
     
 }
 
@@ -298,6 +309,9 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     public var sender: PSender
     public var messageType: MessageType
     public var content: T?
+    public var isReadyToUse: Bool = true
+    public var delegate: PMessageDelegate?
+    
     public var toString: String {
         return "[messageType: \(messageType.rawValue) sender: \(sender.name) content: \(content)]"
     }
