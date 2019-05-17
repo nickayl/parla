@@ -83,6 +83,7 @@
                 <outlet property="cellBottomLabelHeightConstraint" destination="JkZ-jl-IWT" id="TjY-Fm-55f"/>
                 <outlet property="cellLeadingConstraint" destination="lZy-BU-4uE" id="6Ap-Sk-4IE"/>
                 <outlet property="cellTopLabelHeightContraint" destination="Q4a-gN-qsD" id="7yo-zO-tL0"/>
+                <outlet property="cellTrailingConstraint" destination="4tT-Sx-V2I" id="QJv-gF-pk1"/>
                 <outlet property="textLabel" destination="gtL-0o-fBJ" id="xIB-A9-ByC"/>
                 <outlet property="textLabelHeightConstraint" destination="rB8-A3-g49" id="Omu-OE-jHF"/>
                 <outlet property="topLabel" destination="BuB-zC-AJd" id="9NJ-jn-GEl"/>

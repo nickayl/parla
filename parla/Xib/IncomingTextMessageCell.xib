@@ -89,6 +89,7 @@
                 <outlet property="cellAvatarImageHeightConstraint" destination="7jv-xZ-S5Z" id="3lr-az-G2e"/>
                 <outlet property="cellAvatarImageWidthConstraint" destination="HKU-KT-MEw" id="4IS-w6-Ccq"/>
                 <outlet property="cellBottomLabelHeightConstraint" destination="ZeG-mF-nuf" id="XXI-5h-arG"/>
+                <outlet property="cellLeadingConstraint" destination="RO7-Jl-rju" id="DmX-Em-GR0"/>
                 <outlet property="cellTopLabelHeightContraint" destination="3dh-sw-YXu" id="AUI-Af-99k"/>
                 <outlet property="cellTrailingConstraint" destination="zB6-A7-XK7" id="bzF-kg-EQN"/>
                 <outlet property="textLabel" destination="MiU-I1-H4a" id="fvA-ix-aCG"/>

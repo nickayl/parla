@@ -87,7 +87,7 @@ public protocol PVoiceMessage : PMessage {
 
 public class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageMessage, PMapMessage {
     
-    public var image: UIImage!
+    public var image: UIImage?
     public var imageDescription: String?
     public var viewer: ImageViewer?
     public var mapImageGenerator: MapImageGenerator?
@@ -130,7 +130,7 @@ public class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageM
         
         self.mapImageGenerator?.generateImageFor(coordinates: coordinates, withPlacemark: true) {
             print("Finished loading image...")
-            self.image = $0!
+            self.image = $0
             if !c { c = true }
             else {
                 self.isReadyToUse = true
@@ -180,7 +180,7 @@ public class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPla
     
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
         let cfg = Parla.config
-        return CGSize(width: frameWidth - (cfg.cell.sectionInsets.left + cfg.cell.sectionInsets.right), height: 72)
+        return CGSize(width: frameWidth - (cfg.cell.sectionInsets.left + cfg.cell.sectionInsets.right), height: 60)
     }
     
     public func didInitializeAVAudioPlayer(with: AVAudioPlayer) {
@@ -219,7 +219,7 @@ public class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
     
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
         let cfg = Parla.config
-        return CGSize(width: frameWidth - (cfg.cell.sectionInsets.left + cfg.cell.sectionInsets.right), height: 160)
+        return CGSize(width: frameWidth - (cfg.cell.sectionInsets.left + cfg.cell.sectionInsets.right), height: Parla.config.cell.kDefaultVideoBubbleSize.height)
     }
 }
 
@@ -248,7 +248,7 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     }
     
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
-        return CGSize(width: frameWidth - (config.cell.sectionInsets.left + config.cell.sectionInsets.right), height: 160)
+        return CGSize(width: frameWidth - (config.cell.sectionInsets.left + config.cell.sectionInsets.right), height: Parla.config.cell.kDefaultImageBubbleSize.height)
     }
     
 }

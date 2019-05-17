@@ -101,7 +101,7 @@ public class CellBubble : NSObject {
             
             if let url = message.video {
                 DispatchQueue.global(qos: .userInitiated).async {
-                    let thumbnailImage = Utils.thumbnailImageForVideo(withUrl: url, atTime: 1)
+                    let thumbnailImage = Utils.thumbnailImageForVideo(withUrl: url, atTime: 12)
                     // Bounce back to the main thread to update the UI
                     DispatchQueue.main.async {
                         cell.bubbleImage.image = thumbnailImage

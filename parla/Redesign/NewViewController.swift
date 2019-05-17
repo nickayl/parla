@@ -12,10 +12,12 @@ import CoreLocation
 class NewViewController : UIViewController, ParlaViewDataSource, ParlaViewDelegate, VoiceRecorderDelegate, CLLocationManagerDelegate  {
     
     var sender: PSender!
-    var otherSender: PSender!
-    var attachedViewController: UIViewController!
+//    var otherSender: PSender!
+   // var attachedViewController: UIViewController!
+    
     private var collectionView: UICollectionView!
     private var locationManager: CLLocationManager!
+    private var domenico: PSender!
     
     var messages: [PMessage]!
     
@@ -25,7 +27,7 @@ class NewViewController : UIViewController, ParlaViewDataSource, ParlaViewDelega
 
         // Initialization of ParlaView class
        
-        self.attachedViewController = self
+    //    self.attachedViewController = self
         self.parlaView.delegate = self
         self.parlaView.dataSource = self
         
@@ -42,34 +44,53 @@ class NewViewController : UIViewController, ParlaViewDataSource, ParlaViewDelega
         let avatar = PAvatar(withImage: UIImage(named: "avatarDefault")!)
         self.parlaView.voiceRecorderDelegate = self
         
-        self.sender = PSender(senderId: 0, senderName: "Gabriele", avatar: nil, type: .Outgoing)
-        self.otherSender = PSender(senderId: 1, senderName: "Ciccio", avatar: avatar, type: .Incoming)
+//        self.sender = PSender(senderId: 0, senderName: "Gabriele", avatar: nil, type: .Outgoing)
+//        self.otherSender = PSender(senderId: 1, senderName: "Ciccio", avatar: avatar, type: .Incoming)
         
         let config = Parla.config
-        config.sender = sender
-        config.containerViewController = self
-        config.accessoryButton.preventDefault = false
         
+      //  config.containerViewController = self
+        config.accessoryButton.preventDefault = false
         config.cell.cellBottomLabelHidden = false
         config.avatar.isAvatarHidden = false
         config.avatar.avatarBackgroundColor = UIColor.black
         
-        let testVideo = Bundle.main.url(forResource: "video", withExtension: "mp4")!
-        let voiceTest = Bundle.main.url(forResource: "Imagine", withExtension: "mp3")!
+        
+//        let testVideo = Bundle.main.url(forResource: "video", withExtension: "mp4")!
+//        let voiceTest = Bundle.main.url(forResource: "Imagine", withExtension: "mp3")!
+        
+//        self.messages = [
+//            PVoiceMessageImpl(id: 5, sender: sender, date: Date(), voiceUrl: voiceTest),
+//            PTextMessageImpl(id: 1, sender: sender, text: "Ciao ciccio!", date: Date()),
+//            PTextMessageImpl(id: 2, sender: otherSender, text: "Ciao Gabri! Come va?"),
+//            PImageMessageImpl(id: 3, sender: sender, image: UIImage(named: "doc.jpg")!, date: Date()),
+//            PVideoMessageImpl(id: 4, sender: sender, videoUrl: testVideo)
+//        ]
+        
+        
+        let domenicoAvatar = PAvatar(withImage: UIImage(named: "domenico.jpeg")!)
+        let chiaraAvatar = PAvatar(withImage: UIImage(named: "chiara.jpg")!)
+        let mondello = Bundle.main.url(forResource: "mondello", withExtension: "mp4")!
+        
+        domenico = PSender(senderId: 10, senderName: "Domenico", avatar: domenicoAvatar, type: .Outgoing)
+        let chiara = PSender(senderId: 11, senderName: "Chiara", avatar: chiaraAvatar, type: .Incoming)
+        
+        config.sender = domenico
+        sender = domenico
         
         self.messages = [
-            PVoiceMessageImpl(id: 5, sender: sender, date: Date(), voiceUrl: voiceTest),
-            PTextMessageImpl(id: 1, sender: sender, text: "Ciao ciccio!", date: Date()),
-            PTextMessageImpl(id: 2, sender: otherSender, text: "Ciao Gabri! Come va?"),
-            PImageMessageImpl(id: 3, sender: sender, image: UIImage(named: "doc.jpg")!, date: Date()),
-            PVideoMessageImpl(id: 4, sender: sender, videoUrl: testVideo)
+            PTextMessageImpl(id: 1, sender: domenico, text: "Hi Chiara! How are you? :)"),
+            PTextMessageImpl(id: 2, sender: chiara, text: "Hi Domenico, all right! I'm sitting on a deckchiar here in the wonderful beach of Mondello, in Palermo (Italy) ! :)"),
+            PTextMessageImpl(id: 3, sender: domenico, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
+            PImageMessageImpl(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
+            PVideoMessageImpl(id: 5, sender: chiara, videoUrl: mondello),
         ]
         
         for i in 0 ..< a.count {
             if i % 2 == 0 {
-                self.messages.append(PTextMessageImpl(id: i+4, sender: sender, text: a[i]))
+              //  self.messages.append(PTextMessageImpl(id: i+4, sender: sender, text: a[i]))
             } else {
-                self.messages.append(PTextMessageImpl(id: i+4, sender: otherSender, text: a[i]))
+             //   self.messages.append(PTextMessageImpl(id: i+4, sender: otherSender, text: a[i]))
             }
         }
         
@@ -131,6 +152,10 @@ class NewViewController : UIViewController, ParlaViewDataSource, ParlaViewDelega
             collectionView.reloadData()
             collectionView.scrollToBottom(animated: true)
         }
+    }
+    
+    func mainSender() -> PSender {
+        return domenico
     }
     
 

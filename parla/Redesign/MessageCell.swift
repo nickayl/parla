@@ -111,10 +111,10 @@ class VideoMessageCell : AbstractMessageCell {
 
         let cellWidth = frame.width
         
-        leadingOrTrailingConstraint.constant = cellWidth - (cfg.cell.kDefaultImageBubbleSize.width + message.sender.avatar.size.width)
+        leadingOrTrailingConstraint.constant = cellWidth - (cfg.cell.kDefaultVideoBubbleSize.width + message.sender.avatar.size.width)
         
         blackBackgroundVideoView.isHidden = false
-        imageView.setBorderRadius(radius: 13)
+        imageView.setBorderRadius(radius: 16)
         blackBackgroundVideoView.setBorderRadius(radius: 13)
         
         DispatchQueue.global(qos: .userInitiated).async {
@@ -176,7 +176,7 @@ class ImageMessageCell: AbstractMessageCell, PMessageDelegate {
             self.activityIndicator.startAnimating()
         }
         
-        imageView.setBorderRadius(radius: 13)
+        imageView.setBorderRadius(radius: 16)
 
         addDefaultTapGestureRecognizer()
         addDefaultLongTouchGestureRecognizer()

@@ -89,8 +89,8 @@ public final class Parla {
         
         // ========
         // Message text color default constant values
-        public static let kDefaultVoiceIncomingColor = UIColor.lightGray
-        public static let kDefaultVoiceOutgoingColor = UIColor.blue
+        public static let kDefaultVoiceIncomingColor = CellConfig.kDefaultBubbleViewIncomingColor
+        public static let kDefaultVoiceOutgoingColor = CellConfig.kDefaultBubbleViewOutgoingColor
         
         // Effective used variables
         public var voiceIncomingColor = CellConfig.kDefaultVoiceIncomingColor
@@ -106,7 +106,8 @@ public final class Parla {
         public var topLabelHeight = 16
         
         public let kDefaultBubbleMargins: CGFloat = 20
-        public let kDefaultImageBubbleSize: CGSize = CGSize(width: 170, height: 150)
+        public let kDefaultImageBubbleSize: CGSize = CGSize(width: 200, height: 180)
+        public let kDefaultVideoBubbleSize: CGSize = CGSize(width: 200, height: 180)
         public let kDefaultVoiceMessageWidth:CGFloat = 200
         public let kDefaultTextFont: UIFont = UIFont(name: "AvenirNext-Regular", size: 16.0)!
         

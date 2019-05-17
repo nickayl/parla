@@ -10,11 +10,12 @@ import UIKit
 import CoreLocation
 
 public protocol ParlaViewDataSource {
-    var sender: PSender! { get set }
-    var attachedViewController: UIViewController! { get set }
+//    var sender: PSender! { get set }
+//    var attachedViewController: UIViewController! { get set }
     
     func messageForCell(at indexPath: IndexPath, collectionView: UICollectionView) -> PMessage
     func numberOfMessagesIn(collectionView: UICollectionView) -> Int
+    func mainSender() -> PSender
 }
 
 @objc public protocol ParlaViewDelegate {
@@ -48,9 +49,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     public var delegate: ParlaViewDelegate?
     private let config = Parla.config
     
-    private var viewController: UIViewController {
-        return dataSource.attachedViewController
-    }
+    private var viewController: UIViewController!
     
     public var voiceRecorderDelegate: VoiceRecorderDelegate? {
         willSet {
@@ -128,7 +127,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     @objc private func onSendButtonPressed(_ sender: UITapGestureRecognizer) {
         if !textField.text!.isEmpty {
             let sm = PTextMessageImpl(id: self.dataSource.numberOfMessagesIn(collectionView: collectionView)+1,
-                                      sender: self.dataSource.sender,
+                                      sender: self.dataSource.mainSender(),
                                       text: textField.text!,
                                       date: Date())
             
@@ -145,21 +144,11 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
-  //  @objc private func onMicrophoneButtonPressed(_ sender: UITapGestureRecognizer) {
-        
-//        if let r = recorder, !r.isRecording {
-//            let fname = "voice_\(config.sender.name)_\(Date().timeIntervalSince1970).m4a"
-//            self.recorder?.audioUrl = URL.documentsDirectory.appendingPathComponent(fname)
-//            print(fname)
-//        }
-//        
-//        do {
-//            try self.recorder?.toggle()
-//        } catch {
-//            print("An error occurred recording voice message: \(error)")
-//        }
-        
-   // }
+    open override func awakeFromNib() {
+        self.viewController = self.parentViewController
+        Parla.config.containerViewController = self.viewController
+    }
+    
     /// ************** =========================== ****************** ///
     
     
@@ -258,7 +247,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     open func initialize() {
 
-        if dataSource == nil || dataSource.sender == nil {
+        if dataSource == nil || dataSource.mainSender() == nil {
             assertionFailure("Fatal error: You must provide a dataSource and a sender to your viewController class (Implement the ParlaDataSource protocol and assign a valid sender instance to the sender property)")
             return ;
         }

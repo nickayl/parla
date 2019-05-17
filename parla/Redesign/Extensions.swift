@@ -155,6 +155,17 @@ public extension UIImage {
 
 public extension UIView {
     
+    var parentViewController: UIViewController? {
+        var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder!.next
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+        }
+        return nil
+    }
+    
     /**
      Hide the view with the specified duration.
      This method will set the alpha value to 0.
