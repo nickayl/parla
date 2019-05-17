@@ -18,7 +18,7 @@ public protocol VideoPlayer {
 
 public class MobilePlayerVideoPlayer : VideoPlayer {
     
-    private let viewController: UIViewController? = Parla.config?.containerViewController
+    private let viewController: UIViewController? = Parla.config.containerViewController
     private var playerVC: MobilePlayerViewController?
     private var videoMessage: PVideoMessage
     

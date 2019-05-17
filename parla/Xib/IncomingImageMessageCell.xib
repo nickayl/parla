@@ -98,6 +98,7 @@
                 <outlet property="activityIndicator" destination="TwO-6U-Tq8" id="OFd-SB-NJh"/>
                 <outlet property="avatarBubbleImage" destination="g6f-W1-Pxh" id="IAG-JK-3vW"/>
                 <outlet property="bottomLabel" destination="YO7-hK-XkR" id="KmM-fz-tFR"/>
+                <outlet property="cellAvatarImageHeightConstraint" destination="K27-S9-o7y" id="AkB-28-KbA"/>
                 <outlet property="cellAvatarImageWidthConstraint" destination="hwU-ZM-pb9" id="3JL-9J-fSm"/>
                 <outlet property="cellBottomLabelHeightConstraint" destination="TQ1-54-OJE" id="SoR-D9-nCI"/>
                 <outlet property="cellLeadingConstraint" destination="azA-IB-p12" id="hGM-hD-jAP"/>

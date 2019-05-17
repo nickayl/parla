@@ -23,7 +23,7 @@
 		522611752285EA4E00AA703E /* ParlaKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 522611672285EA4E00AA703E /* ParlaKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5226117C2285EA6200AA703E /* SenderLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DC22284155B001BF14E /* SenderLogic.swift */; };
 		5226117D2285EA6200AA703E /* MessageLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DC622841875001BF14E /* MessageLogic.swift */; };
-		5226117E2285EA6200AA703E /* ParlaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCA22841A60001BF14E /* ParlaConfig.swift */; };
+		5226117E2285EA6200AA703E /* Parla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCA22841A60001BF14E /* Parla.swift */; };
 		5226117F2285EA6200AA703E /* ParlaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCE228433F6001BF14E /* ParlaView.swift */; };
 		522611802285EA6200AA703E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DD0228439DC001BF14E /* MessageCell.swift */; };
 		522611822285EA6200AA703E /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCC22842D67001BF14E /* ImageViewer.swift */; };
@@ -90,7 +90,7 @@
 		52F7C7112288300B00459833 /* VoicePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7C7102288300B00459833 /* VoicePlayer.swift */; };
 		52FB4DC32284155B001BF14E /* SenderLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DC22284155B001BF14E /* SenderLogic.swift */; };
 		52FB4DC722841875001BF14E /* MessageLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DC622841875001BF14E /* MessageLogic.swift */; };
-		52FB4DCB22841A60001BF14E /* ParlaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCA22841A60001BF14E /* ParlaConfig.swift */; };
+		52FB4DCB22841A60001BF14E /* Parla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCA22841A60001BF14E /* Parla.swift */; };
 		52FB4DCD22842D67001BF14E /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCC22842D67001BF14E /* ImageViewer.swift */; };
 		52FB4DCF228433F6001BF14E /* ParlaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCE228433F6001BF14E /* ParlaView.swift */; };
 		52FB4DD1228439DC001BF14E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DD0228439DC001BF14E /* MessageCell.swift */; };
@@ -208,7 +208,7 @@
 		52F7C7102288300B00459833 /* VoicePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePlayer.swift; sourceTree = "<group>"; };
 		52FB4DC22284155B001BF14E /* SenderLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SenderLogic.swift; path = parla/Redesign/SenderLogic.swift; sourceTree = SOURCE_ROOT; };
 		52FB4DC622841875001BF14E /* MessageLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLogic.swift; sourceTree = "<group>"; };
-		52FB4DCA22841A60001BF14E /* ParlaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlaConfig.swift; sourceTree = "<group>"; };
+		52FB4DCA22841A60001BF14E /* Parla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parla.swift; sourceTree = "<group>"; };
 		52FB4DCC22842D67001BF14E /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		52FB4DCE228433F6001BF14E /* ParlaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlaView.swift; sourceTree = "<group>"; };
 		52FB4DD0228439DC001BF14E /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -427,7 +427,7 @@
 				5279947A2282CAA500ACB791 /* UIPaddingLabel.swift */,
 				52FB4DC22284155B001BF14E /* SenderLogic.swift */,
 				52FB4DC622841875001BF14E /* MessageLogic.swift */,
-				52FB4DCA22841A60001BF14E /* ParlaConfig.swift */,
+				52FB4DCA22841A60001BF14E /* Parla.swift */,
 				52FB4DCE228433F6001BF14E /* ParlaView.swift */,
 				52FB4DD0228439DC001BF14E /* MessageCell.swift */,
 				52FB4DD22284576D001BF14E /* NewViewController.swift */,
@@ -773,7 +773,7 @@
 				522611832285EA6200AA703E /* VideoPlayer.swift in Sources */,
 				52090703228B2782001BC7A8 /* UIPaintView.swift in Sources */,
 				522611842285EA6200AA703E /* MediaPicker.swift in Sources */,
-				5226117E2285EA6200AA703E /* ParlaConfig.swift in Sources */,
+				5226117E2285EA6200AA703E /* Parla.swift in Sources */,
 				522611A22285F13300AA703E /* UIPaddingLabel.swift in Sources */,
 				522611802285EA6200AA703E /* MessageCell.swift in Sources */,
 				5226117D2285EA6200AA703E /* MessageLogic.swift in Sources */,
@@ -817,7 +817,7 @@
 				527994942282CAC500ACB791 /* CellBubble.swift in Sources */,
 				52F7C7112288300B00459833 /* VoicePlayer.swift in Sources */,
 				527994892282CAA600ACB791 /* SSender.swift in Sources */,
-				52FB4DCB22841A60001BF14E /* ParlaConfig.swift in Sources */,
+				52FB4DCB22841A60001BF14E /* Parla.swift in Sources */,
 				52BB818E228D71BD00D3904C /* UIMicrophoneView.swift in Sources */,
 				5279948B2282CAA600ACB791 /* BubbleTextViewHolder.swift in Sources */,
 				527994952282CAC500ACB791 /* ChatViewController.swift in Sources */,

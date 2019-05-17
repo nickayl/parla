@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-public protocol ParlaDataSource {
+public protocol ParlaViewDataSource {
     var sender: PSender! { get set }
     var attachedViewController: UIViewController! { get set }
     
@@ -17,7 +17,7 @@ public protocol ParlaDataSource {
     func numberOfMessagesIn(collectionView: UICollectionView) -> Int
 }
 
-@objc public protocol ParlaDelegate {
+@objc public protocol ParlaViewDelegate {
     
     // General delegate functions
     func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
@@ -44,12 +44,12 @@ public protocol ParlaDataSource {
 
 open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate, CLLocationManagerDelegate, UIMicrophoneViewDelegate  {
 
-    public var parlaDataSource: ParlaDataSource!
-    public var parlaDelegate: ParlaDelegate?
-    public var config: Parla!
+    public var dataSource: ParlaViewDataSource!
+    public var delegate: ParlaViewDelegate?
+    private let config = Parla.config
     
     private var viewController: UIViewController {
-        return parlaDataSource.attachedViewController
+        return dataSource.attachedViewController
     }
     
     public var voiceRecorderDelegate: VoiceRecorderDelegate? {
@@ -85,7 +85,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     ///  ********* ========== Collection View Methods ========== **************  ///
     public final func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let message = parlaDataSource.messageForCell(at: indexPath, collectionView: collectionView)
+        let message = dataSource.messageForCell(at: indexPath, collectionView: collectionView)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: message.cellIdentifier, for: indexPath) as! AbstractMessageCell
         
         cell.viewController = self
@@ -97,7 +97,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     public final func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return self.parlaDataSource
+        return self.dataSource
             .messageForCell(at: indexPath, collectionView: collectionView)
             .displaySize(frameWidth: collectionView.frame.width)
     }
@@ -107,15 +107,15 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     public final func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return parlaDataSource.numberOfMessagesIn(collectionView: collectionView)
+        return dataSource.numberOfMessagesIn(collectionView: collectionView)
     }
     
     public final func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return Parla.config.sectionInsets.left
+        return Parla.config.cell.sectionInsets.left
     }
     
     public final func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return Parla.config.sectionInsets
+        return Parla.config.cell.sectionInsets
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -127,18 +127,18 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     ///  ********* ========== UI Gesture Recognizers ========== **************  ///
     @objc private func onSendButtonPressed(_ sender: UITapGestureRecognizer) {
         if !textField.text!.isEmpty {
-            let sm = PTextMessageImpl(id: self.parlaDataSource.numberOfMessagesIn(collectionView: collectionView)+1,
-                                      sender: self.parlaDataSource.sender,
+            let sm = PTextMessageImpl(id: self.dataSource.numberOfMessagesIn(collectionView: collectionView)+1,
+                                      sender: self.dataSource.sender,
                                       text: textField.text!,
                                       date: Date())
             
-            self.parlaDelegate?.didPressSendButton(withMessage: sm, textField: self.textField, collectionView: self.collectionView)
+            self.delegate?.didPressSendButton(withMessage: sm, textField: self.textField, collectionView: self.collectionView)
             toggleSendButton()
         }
     }
     
     @objc private func onAccessoryButtonPressed(_ sender: UITapGestureRecognizer) {
-        self.parlaDelegate?.didPressAccessoryButton(button: self.accessoryButton, collectionView: collectionView)
+        self.delegate?.didPressAccessoryButton(button: self.accessoryButton, collectionView: collectionView)
         
         if !config.accessoryButton.preventDefault {
             config.accessoryActionChooser?.show()
@@ -197,6 +197,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     public func didEndMicrophoneTouch(withDuration duration: TimeInterval) {
+        print("Total duration of microphone touch: \(duration)")
         do {
             try self.recorder?.toggle()
         } catch {
@@ -207,10 +208,10 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     /// ************** =========================== ****************** ///
 
     private func chooseImageFrom(source: MediaPickerSource)  {
-        self.parlaDelegate?.didStartPickingImage?(collectionView: self.collectionView)
+        self.delegate?.didStartPickingImage?(collectionView: self.collectionView)
         
         self.config.mediaPicker?.pickImage(source: source) {
-            self.parlaDelegate?.didFinishPickingImage?(with: $0, collectionView: self.collectionView)
+            self.delegate?.didFinishPickingImage?(with: $0, collectionView: self.collectionView)
         }
     }
     
@@ -218,7 +219,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
    //     self.parlaDelegate?.didStartPickingImage(collectionView: self.collectionView)
         
         self.config.mediaPicker?.pickVideo(source: source) {
-            self.parlaDelegate?.didFinishPickingVideo?(with: $0, collectionView: self.collectionView)
+            self.delegate?.didFinishPickingVideo?(with: $0, collectionView: self.collectionView)
         }
     }
     
@@ -245,10 +246,10 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
             alreadyCalled = true
             let mapMsg = PMapMessageImpl(id: 10, sender: config.sender, coordinates: coords)
             
-            self.parlaDelegate?.didStartBuildingCurrentLocationMessage?(with: coords, with: mapMsg)
+            self.delegate?.didStartBuildingCurrentLocationMessage?(with: coords, with: mapMsg)
             
             mapMsg.startAsynch {
-                self.parlaDelegate?.didFinishBuildingCurrentLocationMessage?(with: coords, with: mapMsg)
+                self.delegate?.didFinishBuildingCurrentLocationMessage?(with: coords, with: mapMsg)
             }
             
         }
@@ -257,7 +258,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     open func initialize() {
 
-        if parlaDataSource == nil || parlaDataSource.sender == nil {
+        if dataSource == nil || dataSource.sender == nil {
             assertionFailure("Fatal error: You must provide a dataSource and a sender to your viewController class (Implement the ParlaDataSource protocol and assign a valid sender instance to the sender property)")
             return ;
         }
@@ -276,9 +277,8 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         
         print("Currently running on iPhone model \(UIDevice.current.modelName)")
         
-        config = Parla.config!
-        config.mediaPicker = SystemMediaPicker(viewController: self.viewController)
-        config.accessoryActionChooser = ActionSheetAccessoryActionChooser(viewController: self.viewController)
+    //    config.mediaPicker = SystemMediaPicker(viewController: self.viewController)
+     //   config.accessoryActionChooser = ActionSheetAccessoryActionChooser(viewController: self.viewController)
         config.accessoryActionChooser?.delegate = self
         
         config.accessoryActionChooser?.accessoryActions = [

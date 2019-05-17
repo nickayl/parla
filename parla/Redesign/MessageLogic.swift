@@ -43,6 +43,8 @@ let voiceMessageReuseIdentifier = "VoiceMessageCellXib"
     var cellIdentifier: String { get }
     var isTopLabelActive: Bool { get set }
     var isReadyToUse: Bool { get }
+    var contentColor: UIColor { get }
+    var backgroundColor: UIColor { get }
     
     func displaySize(frameWidth: CGFloat) -> CGSize
     func triggerSelection()
@@ -71,9 +73,7 @@ public protocol PVoiceMessage : PMessage {
 @objc public protocol PImageMessage : PMessage {
     var image: UIImage! { get set }
     var imageDescription: String?  { get set }
-  //  var viewController: UIViewController! { get set }
     var viewer: ImageViewer? { get set }
-//    init(id: Int, sender: PSender, image: UIImage, date: Date)
 }
 
 @objc public protocol PMapMessage : PImageMessage {
@@ -82,7 +82,6 @@ public protocol PVoiceMessage : PMessage {
     var address: String? { get set }
     var shouldDisplayLabel: Bool { get set }
     
-  //  func openToExternalMapApp()
     func startAsynch(completitionHandler: @escaping () -> Void)
 }
 
@@ -110,17 +109,11 @@ public class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageM
         self.isReadyToUse = false
     }
     
-    public override func triggerSelection() {
-        print("Open to external map app")
-        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = self.address
-        mapItem.openInMaps(launchOptions: nil)
-    }
-    
     public func startAsynch(completitionHandler: @escaping () -> Void) {
         let location = CLLocation(latitude: CLLocationDegrees(coordinates.latitude), longitude: CLLocationDegrees(coordinates.longitude))
+        
         var c = false
+        
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
             if let l = placemarks?.first {
                 print("Finished reverse geolocation")
@@ -147,9 +140,17 @@ public class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageM
         }
     }
     
+    public override func triggerSelection() {
+        print("Open to external map app is the default behaviour of the triggerSelection function for a map message.")
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = self.address
+        mapItem.openInMaps(launchOptions: nil)
+    }
+    
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
-        let cfg = Parla.config!
-        return CGSize(width: frameWidth - (cfg.sectionInsets.left + cfg.sectionInsets.right), height: 160)
+        let cfg = Parla.config
+        return CGSize(width: frameWidth - (cfg.cell.sectionInsets.left + cfg.cell.sectionInsets.right), height: 160)
     }
     
     public override var cellIdentifier: String {
@@ -174,15 +175,21 @@ public class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPla
         self.player = DefaultPAudioPlayer(voiceUrl: voiceUrl, delegate: nil)
         self.player?.optionalDelegate = self
         self.content = voiceUrl
+        self.backgroundColor = sender.type == .Incoming ? Parla.config.cell.voiceIncomingColor : Parla.config.cell.voiceOutgoingColor
     }
     
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
-        let cfg = Parla.config!
-        return CGSize(width: frameWidth - (cfg.sectionInsets.left + cfg.sectionInsets.right), height: 72)
+        let cfg = Parla.config
+        return CGSize(width: frameWidth - (cfg.cell.sectionInsets.left + cfg.cell.sectionInsets.right), height: 72)
     }
     
     public func didInitializeAVAudioPlayer(with: AVAudioPlayer) {
         self.duration = Float(with.duration)
+    }
+    
+    public override func triggerSelection() {
+        // TODO to be implemented
+        print("Voice message by default does nothing when is selected")
     }
 }
 
@@ -211,8 +218,8 @@ public class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
     }
     
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
-        let cfg = Parla.config!
-        return CGSize(width: frameWidth - (cfg.sectionInsets.left + cfg.sectionInsets.right), height: 160)
+        let cfg = Parla.config
+        return CGSize(width: frameWidth - (cfg.cell.sectionInsets.left + cfg.cell.sectionInsets.right), height: 160)
     }
 }
 
@@ -222,8 +229,8 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     public var imageDescription: String?
     public var viewer: ImageViewer?
     
-    private let viewController = Parla.config!.containerViewController!
-    private let config = Parla.config!
+    private let viewController = Parla.config.containerViewController!
+    private let config = Parla.config
     
     public override var cellIdentifier: String {
         return senderType == .Incoming ? incomingImageMessageReuseIdentifier : outgoingImageMessageReuseIdentifier
@@ -231,7 +238,7 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     
     public init(id: Int, sender: PSender, image: UIImage, date: Date = Date()) {
         self.image = image
-        self.viewer = config.kDefaultImageMessageViewer
+        self.viewer = config.imageViewer
         super.init(id: id, sender: sender, date: date, type: .ImageMessage)
         self.content = image
     }
@@ -241,7 +248,7 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     }
     
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
-        return CGSize(width: frameWidth - (config.sectionInsets.left + config.sectionInsets.right), height: 160)
+        return CGSize(width: frameWidth - (config.cell.sectionInsets.left + config.cell.sectionInsets.right), height: 160)
     }
     
 }
@@ -272,26 +279,34 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
     }
 
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
-        let cfg = Parla.config!
+        let cfg = Parla.config
         var cellWidth = frameWidth
-        let avatarSize = self.sender.avatar != nil ? cfg.avatarSize : CGSize(width: 0, height: 0)
+        let avatarSize = self.sender.avatar.size
         
-        let cellPaddingSpace = cfg.sectionInsets.left + cfg.sectionInsets.right
+        let cellPaddingSpace = cfg.cell.sectionInsets.left + cfg.cell.sectionInsets.right
         cellWidth -= cellPaddingSpace
         
-        let bubbleWidth = cellWidth - ((cfg.labelInsets.left + cfg.labelInsets.right) + (cfg.textInsets.left + cfg.textInsets.right) + avatarSize.width + cfg.kDefaultBubbleMargins)
+        let bubbleWidth = cellWidth - ((cfg.cell.labelInsets.left + cfg.cell.labelInsets.right) + (cfg.cell.textInsets.left + cfg.cell.textInsets.right) + avatarSize.width + cfg.cell.kDefaultBubbleMargins)
         
         let baseHeight = CGFloat(52.0)
-        var bubbleHeight = baseHeight
+        var cellHeight = baseHeight
         
         if(self.text.count > 60 || self.text.contains("\n")) {
-            bubbleHeight = ceil(text.height(with: bubbleWidth, font: cfg.kDefaultTextFont)) + (cfg.labelInsets.top + cfg.labelInsets.bottom)
-            bubbleHeight = bubbleHeight < baseHeight ? baseHeight : bubbleHeight
+            cellHeight = ceil(text.height(with: bubbleWidth, font: cfg.cell.kDefaultTextFont)) + (cfg.cell.labelInsets.top + cfg.cell.labelInsets.bottom)
+            cellHeight = cellHeight < baseHeight ? baseHeight : cellHeight
         }
         
-        bubbleHeight += isTopLabelActive ? 19 : 0
+        let bottomLabelHeight = CGFloat(Parla.config.cell.bottomLabelHeight)
+        let topLabelHeight = isTopLabelActive ? CGFloat(cfg.cell.topLabelHeight) : 0
         
-        return CGSize(width: cellWidth, height: bubbleHeight)
+        cellHeight += bottomLabelHeight
+        cellHeight += topLabelHeight
+        
+        if cellHeight < (avatarSize.height + bottomLabelHeight + topLabelHeight) {
+            cellHeight += (avatarSize.height + bottomLabelHeight + topLabelHeight) - cellHeight
+        }
+        
+        return CGSize(width: cellWidth, height: cellHeight)
     }
     
     
@@ -303,6 +318,8 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
 
 public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     
+    
+    
     public var isTopLabelActive: Bool = false
     public var messageId: Int = 0
     public var date: Date
@@ -311,6 +328,9 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     public var content: T?
     public var isReadyToUse: Bool = true
     public var delegate: PMessageDelegate?
+    
+    public var contentColor: UIColor
+    public var backgroundColor: UIColor
     
     public var toString: String {
         return "[messageType: \(messageType.rawValue) sender: \(sender.name) content: \(content)]"
@@ -321,14 +341,17 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     }
 
     public var cellIdentifier: String {
+        assertionFailure("cellIdentifier has not been overridden -- All the class that belongs to this inheritance hierarchy must override this method and provide a valid cell identifier for the UICollectionView. This is a fatal error and therefore the application must be terminated")
         return ""
     }
     
     public func displaySize(frameWidth: CGFloat) -> CGSize {
-        return CGSize(width: 50, height: 38)
+       assertionFailure("displaySize has not been overridden -- All the class that belongs to this inheritance hierarchy must override this method and provide a valid size for display this kind of message properly to be ussed by the underlying UICollectionView. This is a fatal error and therefore the application must be terminated")
+        return CGSize(width: 0, height: 0)
     }
     
     public func triggerSelection() {
+        // optional method to be overridden by subclasses that intend to provide a behaviour when the message is selected (by default, when the cell is touched, but you can change the kind of gesture that will trigger a selection event. For example, a long touch could be attached to the trigger selection event to perform some operation.)
         print("This message does nothing on selection")
     }
     
@@ -337,6 +360,13 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
         self.date = date
         self.sender = sender
         self.messageType = type
+        if sender.type == .Incoming {
+            self.contentColor = Parla.config.cell.textIncomingColor
+            self.backgroundColor = Parla.config.cell.textMessageBubbleIncomingColor
+        } else {
+            self.contentColor = Parla.config.cell.textOutgoingColor
+            self.backgroundColor = Parla.config.cell.textMessageBubbleOutgoingColor
+        }
     }
     
     public static func == (lhs: AbstractPMessage, rhs: AbstractPMessage) -> Bool {

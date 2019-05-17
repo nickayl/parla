@@ -44,7 +44,7 @@ public class ActionSheetAccessoryActionChooser : AccessoryActionChooser {
     
     init(viewController: UIViewController) {
         self.viewController = viewController
-        self.config = Parla.config!
+        self.config = Parla.config
         
         alert = UIAlertController(title: "Add media chooser", message: "Add photos and videos", preferredStyle: .alert)
         

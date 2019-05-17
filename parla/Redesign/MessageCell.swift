@@ -36,10 +36,11 @@ class VoiceMessageCell : AbstractMessageCell, PAudioPlayerDelegate {
         super.initialize()
         
         container.setBorderRadius(radius: 20)
+        container.backgroundColor = message.backgroundColor
         message.player?.delegate = self
         
         let cellWidth = frame.width
-        leadingOrTrailingConstraint.constant = cellWidth - (cfg.kDefaultVoiceMessageWidth + cfg.avatarSize.width)
+        leadingOrTrailingConstraint.constant = cellWidth - (cfg.cell.kDefaultVoiceMessageWidth + message.sender.avatar.size.width)
         print("Current progrtess: \(message.player?.currentProgress) / \(message.duration)")
         
         if message.duration > 0 {
@@ -110,7 +111,7 @@ class VideoMessageCell : AbstractMessageCell {
 
         let cellWidth = frame.width
         
-        leadingOrTrailingConstraint.constant = cellWidth - (cfg.kDefaultImageBubbleSize.width + cfg.avatarSize.width)
+        leadingOrTrailingConstraint.constant = cellWidth - (cfg.cell.kDefaultImageBubbleSize.width + message.sender.avatar.size.width)
         
         blackBackgroundVideoView.isHidden = false
         imageView.setBorderRadius(radius: 13)
@@ -165,7 +166,7 @@ class ImageMessageCell: AbstractMessageCell, PMessageDelegate {
 
         let cellWidth = frame.width
         
-        leadingOrTrailingConstraint.constant = cellWidth - (cfg.kDefaultImageBubbleSize.width + cfg.avatarSize.width)
+        leadingOrTrailingConstraint.constant = cellWidth - (cfg.cell.kDefaultImageBubbleSize.width + message.sender.avatar.size.width)
     
         self.message.delegate = self
         
@@ -218,6 +219,7 @@ class ImageMessageCell: AbstractMessageCell, PMessageDelegate {
 class TextMessageCell : AbstractMessageCell {
     
     @IBOutlet var textLabel: UIPaddingLabel!
+    @IBOutlet var textLabelHeightConstraint: NSLayoutConstraint!
     
     var message: PTextMessage! {
         didSet {
@@ -239,26 +241,24 @@ class TextMessageCell : AbstractMessageCell {
         super.initialize()
         
         //let avatarSize = Parla.config.avatarSize
-        let avatarSize = self.message.sender.avatar == nil ? CGSize(width: 0, height: 0) : cfg.avatarSize
+        let avatarSize = self.message.sender.avatar.size
         let cellWidth = frame.width
         
-        textLabel.textColor = cfg.kDefaultTextIncomingColor
-        
-        if message.senderType == .Outgoing {
-            textLabel.textColor = cfg.kDefaultTextOutgoingColor
-        }
-        
-        textLabel.backgroundColor = bubbleColor
-        textLabel.padding = cfg.textInsets
+        let top = message.isTopLabelActive ? Parla.config.cell.topLabelHeight : 0
+        textLabelHeightConstraint.constant = frame.size.height - CGFloat(Parla.config.cell.bottomLabelHeight + top + 14)
+        textLabel.textColor = message.contentColor
+        textLabel.backgroundColor = message.backgroundColor
+        textLabel.padding = cfg.cell.textInsets
         textLabel.text = message.text
         textLabel.setBorderRadius(radius: 19)
         
-        let textWidth = ceil(NSAttributedString(string: message.text).size().width) + (cfg.textInsets.left + cfg.textInsets.right)
+        let textWidth = ceil(NSAttributedString(string: message.text).size().width) + (cfg.cell.textInsets.left + cfg.cell.textInsets.right)
         
     //    print("tw \(textWidth) cw \(cellWidth) sendertype: \(message.senderType.rawValue)")
+        let kAddFactor:CGFloat = 1.367
         
-        if cellWidth > ((textWidth * cfg.kAddFactor) + avatarSize.width + cfg.kDefaultBubbleMargins) {
-            var bubbleWidth = (textWidth * cfg.kAddFactor)
+        if cellWidth > ((textWidth * kAddFactor) + avatarSize.width + cfg.cell.kDefaultBubbleMargins) {
+            var bubbleWidth = (textWidth * kAddFactor)
             bubbleWidth = bubbleWidth < 38 ? 38 : bubbleWidth
          //   print("bubble text width: \(bubbleWidth) original text width: \(textWidth)")
             leadingOrTrailingConstraint.constant = cellWidth - (bubbleWidth + avatarSize.width)
@@ -266,9 +266,9 @@ class TextMessageCell : AbstractMessageCell {
             textLabel.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             textLabel.setBorderRadius(radius: 19)
         } else {
-            leadingOrTrailingConstraint.constant = (cfg.labelInsets.left * 2)+cfg.kDefaultBubbleMargins
+            leadingOrTrailingConstraint.constant = (cfg.cell.labelInsets.left * 2)+cfg.cell.kDefaultBubbleMargins
             textLabel.textAlignment = .left
-            textLabel.padding = cfg.textInsets
+            textLabel.padding = cfg.cell.textInsets
         }
         
         addDefaultTapGestureRecognizer()
@@ -276,7 +276,7 @@ class TextMessageCell : AbstractMessageCell {
         
         (self.message as? PTextMessageImpl)?.label = textLabel
         
-        self.message.enableCopyOnLongTouch = false
+        self.message.enableCopyOnLongTouch = true
         
     }
     
@@ -294,6 +294,7 @@ class AbstractMessageCell: UICollectionViewCell {
     @IBOutlet var cellTopLabelHeightContraint: NSLayoutConstraint!
     @IBOutlet var cellBottomLabelHeightConstraint: NSLayoutConstraint!
     @IBOutlet var cellAvatarImageWidthConstraint: NSLayoutConstraint!
+    @IBOutlet var cellAvatarImageHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var cellTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var cellLeadingConstraint: NSLayoutConstraint!
@@ -306,8 +307,7 @@ class AbstractMessageCell: UICollectionViewCell {
         set { }
     }
     
-    let cfg = Parla.config!
-    var bubbleColor: UIColor!
+    let cfg = Parla.config
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -319,10 +319,8 @@ class AbstractMessageCell: UICollectionViewCell {
         
         if content?.sender.type == .Incoming {
             leadingOrTrailingConstraint = cellTrailingConstraint
-            bubbleColor = cfg.kDefaultBubbleViewIncomingColor
         } else {
             leadingOrTrailingConstraint = cellLeadingConstraint
-            bubbleColor = cfg.kDefaultBubbleViewOutgoingColor
         }
         
         // Hide the Top label every 4 items.
@@ -335,47 +333,37 @@ class AbstractMessageCell: UICollectionViewCell {
 //        }
         // ---
         
-        if self.content?.isTopLabelActive ?? false {
-            cellTopLabelHeightContraint.constant = cfg.kDefaultCellTopLabelHeight
-        } else {
-            cellTopLabelHeightContraint.constant = 0
-        }
+        cellTopLabelHeightContraint.constant = CGFloat(content?.isTopLabelActive ?? false ? Parla.config.cell.topLabelHeight : 0)
         
-        // If the avatar hidden option is true, let's hide the Avatar . Otherwise show it with default values
-        if cfg.isAvatarHidden || self.content?.sender.avatar?.image == nil {
-            cellAvatarImageWidthConstraint.constant = 0
-            self.avatarBubbleImage.frame.size = CGSize(width: 0, height: 0)
-            
-        } else {
-            cellAvatarImageWidthConstraint.constant = cfg.kDefaultCellAvatarImageWidth
-            avatarBubbleImage.setBorderRadius(radius: Int(avatarBubbleImage.frame.width/2))
-            
-            // If the sender have an avatar image let's set it. Otherwise it'll be replaced with a custom background color
-            if let img = viewController.parlaDataSource.sender.avatar?.image {
-                avatarBubbleImage.image = img
-            } else {
-                avatarBubbleImage.image = UIImage(withBackground: cfg.avatarBackgroundColor)
-            }
-        }
+        let avatarSize = content?.sender.avatar.size ?? CGSize.zero
+        
+        cellAvatarImageWidthConstraint.constant = avatarSize.width
+        cellAvatarImageHeightConstraint.constant = avatarSize.height
+        
+        // If the sender have an avatar image let's set it. Otherwise it'll be replaced with a custom background color
+        self.avatarBubbleImage.contentMode = Parla.config.avatar.imageContentMode
+        avatarBubbleImage.image = content?.sender.avatar.image
+        avatarBubbleImage.setBorderRadius(radius: Int(avatarSize.width / 2))
+      //  avatarBubbleImage.setNeedsLayout()
+        
 
         // Hide or show the bottom label of the cell.
-        if cfg.cellBottomLabelHidden {
+        if cfg.cell.cellBottomLabelHidden {
             cellBottomLabelHeightConstraint.constant = 0
         } else {
-            cellBottomLabelHeightConstraint.constant = cfg.kDefaultCellBottomLabelHeight
+            cellBottomLabelHeightConstraint.constant = CGFloat(cfg.cell.bottomLabelHeight)
             bottomLabel.text = self.content?.sender.name
         }
         
         
         if self.content?.sender.type == .Incoming {
          //   cellTrailingConstraint.constant = leadingOrTrailingConstraint.constant
-            bottomLabel.padding = UIEdgeInsets(top: 0, left: cfg.textInsets.left, bottom: 0, right: 0)
+            bottomLabel.padding = UIEdgeInsets(top: 0, left: cfg.cell.textInsets.left, bottom: 0, right: 0)
         } else {
           //  cellLeadingConstraint.constant = leadingOrTrailingConstraint.constant
-            bottomLabel.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right:cfg.textInsets.right)
+            bottomLabel.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right:cfg.cell.textInsets.right)
         }
         
-        self.avatarBubbleImage.image = self.content?.sender.avatar?.image
         self.bottomLabel.textAlignment = (content?.sender.type == .Incoming ? .left : .right)
     }
     
@@ -389,7 +377,7 @@ class AbstractMessageCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     //    print("Awake from nib")
-        self.bubbleColor = cfg.kDefaultBubbleViewIncomingColor
+    //    self.bubbleColor = cfg.cell.kDefaultBubbleViewIncomingColor
     }
     
     final fileprivate func addDefaultTapGestureRecognizer() {
@@ -401,11 +389,11 @@ class AbstractMessageCell: UICollectionViewCell {
     }
     
     @objc final fileprivate func didTapMessage(_ sender: UITapGestureRecognizer) {
-        self.viewController.parlaDelegate?.didTapMessageBubble(at: indexPath, message: content!, collectionView: viewController.collectionView)
+        self.viewController.delegate?.didTapMessageBubble(at: indexPath, message: content!, collectionView: viewController.collectionView)
     }
     
     @objc final fileprivate func didLongTouchMessage(_ sender: UITapGestureRecognizer) {
-        self.viewController.parlaDelegate?.didLongTouchMessage(at: indexPath, message: content!, collectionView: viewController.collectionView)
+        self.viewController.delegate?.didLongTouchMessage(at: indexPath, message: content!, collectionView: viewController.collectionView)
     }
     
 }

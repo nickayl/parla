@@ -34,7 +34,8 @@ extension UIDevice {
 }
 
 public extension String {
-
+    
+    
     /**
      Check if the string is a valid url
      */
@@ -49,7 +50,7 @@ public extension String {
     func height(with width: CGFloat, font: UIFont) -> CGFloat {
         let maxSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         let actualSize = self.boundingRect(with: maxSize, options: [.usesLineFragmentOrigin], attributes: [NSAttributedString.Key.font: font], context: nil)
-        return actualSize.height
+        return ceil(actualSize.height)
     }
     
     func isImage() -> Bool {
@@ -177,7 +178,6 @@ public extension UIView {
         self.layer.cornerRadius = CGFloat(radius)
         self.layer.masksToBounds = true
     }
-    
    
 }
 

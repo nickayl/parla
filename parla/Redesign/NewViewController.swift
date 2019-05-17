@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class NewViewController : UIViewController, ParlaDataSource, ParlaDelegate, VoiceRecorderDelegate, CLLocationManagerDelegate  {
+class NewViewController : UIViewController, ParlaViewDataSource, ParlaViewDelegate, VoiceRecorderDelegate, CLLocationManagerDelegate  {
     
     var sender: PSender!
     var otherSender: PSender!
@@ -26,8 +26,17 @@ class NewViewController : UIViewController, ParlaDataSource, ParlaDelegate, Voic
         // Initialization of ParlaView class
        
         self.attachedViewController = self
-        self.parlaView.parlaDelegate = self
-        self.parlaView.parlaDataSource = self
+        self.parlaView.delegate = self
+        self.parlaView.dataSource = self
+        
+//        Parla.config.cell.textMessageBubbleIncomingColor = UIColor.red
+//        Parla.config.cell.textMessageBubbleOutgoingColor = UIColor.green
+//        
+//        Parla.config.cell.textIncomingColor = UIColor.blue
+//        Parla.config.cell.textOutgoingColor = UIColor.yellow
+//        
+//        Parla.config.cell.voiceOutgoingColor = UIColor.cyan
+//        Parla.config.avatar.size = CGSize(width: 30, height: 30)
         
       //  let avatar = PAvatar(withImage: UIImage(withBackground: UIColor.green))
         let avatar = PAvatar(withImage: UIImage(named: "avatarDefault")!)
@@ -36,14 +45,14 @@ class NewViewController : UIViewController, ParlaDataSource, ParlaDelegate, Voic
         self.sender = PSender(senderId: 0, senderName: "Gabriele", avatar: nil, type: .Outgoing)
         self.otherSender = PSender(senderId: 1, senderName: "Ciccio", avatar: avatar, type: .Incoming)
         
-        Parla.config = Parla(withSender: sender)
-        let config = Parla.config!
-        
-        config.cellBottomLabelHidden = false
-        config.isAvatarHidden = false
-        config.avatarBackgroundColor = UIColor.black
+        let config = Parla.config
+        config.sender = sender
         config.containerViewController = self
         config.accessoryButton.preventDefault = false
+        
+        config.cell.cellBottomLabelHidden = false
+        config.avatar.isAvatarHidden = false
+        config.avatar.avatarBackgroundColor = UIColor.black
         
         let testVideo = Bundle.main.url(forResource: "video", withExtension: "mp4")!
         let voiceTest = Bundle.main.url(forResource: "Imagine", withExtension: "mp3")!

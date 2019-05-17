@@ -17,13 +17,13 @@ import UIKit
 
     public var id: Int
     public var name: String
-    public var avatar: PAvatar?
+    public var avatar: PAvatar
     public var type: SenderType
     
     public init(senderId: Int, senderName: String, avatar: PAvatar?, type: SenderType) {
         self.id = senderId
         self.name = senderName
-        self.avatar = avatar
+        self.avatar = avatar ?? PAvatar.void
         self.type = type
     }
     
@@ -34,9 +34,19 @@ import UIKit
 }
 
 public class PAvatar {
+    
     var image: UIImage
+    var size: CGSize
+    public static let void = PAvatar()
     
     public init(withImage image: UIImage) {
         self.image = image
+        self.size = Parla.config.avatar.size
     }
+    
+    private init() {
+        self.size = CGSize.zero
+        self.image = UIImage(withBackground: Parla.config.avatar.avatarBackgroundColor)
+    }
+    
 }
