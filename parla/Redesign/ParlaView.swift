@@ -69,10 +69,10 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     var textField: UITextField!
     var accessoryButton: UIView!
     var microphoneButton: UIMicrophoneView!
-    var bottomConstraint: NSLayoutConstraint!
+    var bottomConstraints: [NSLayoutConstraint] = []
     var sendButton: UIView!
     
-    private var keyboardDefaultBottomConstraintMargin = CGFloat(-35)
+    private var keyboardDefaultBottomConstraintMargin = CGFloat(-45)
     private var keyboardStarterBottomMargin = CGFloat(20)
     private var recorder: VoiceRecorder?
     private var locationManager: CLLocationManager?
@@ -293,20 +293,20 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         self.addSubview(inputToolbarContainer!)
         self.addSubview(microphoneButton)
         
-        self.bottomConstraint = NSLayoutConstraint(item: inputToolbarContainer, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin+10)
-        let top = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -keyboardDefaultBottomConstraintMargin)
+        self.bottomConstraints.append(NSLayoutConstraint(item: inputToolbarContainer, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin))
+        
+        self.bottomConstraints.append(NSLayoutConstraint(item: microphoneButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin))
         
         self.addConstraints([
-            self.bottomConstraint,
             NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
-            top,
+            NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -keyboardDefaultBottomConstraintMargin),
             NSLayoutConstraint(item: inputToolbarContainer, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: microphoneButton, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: microphoneButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin+10),
             NSLayoutConstraint(item: inputToolbarContainer, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: inputToolbarContainer, attribute: .top, relatedBy: .equal, toItem: collectionView, attribute: .bottom, multiplier: 1, constant: 0)
             ])
+        self.addConstraints(bottomConstraints)
 
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
@@ -367,7 +367,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
         print("keyboard size: \(keyboardSize)")
         
-        bottomConstraint.constant -= keyboardSize.height + keyboardStarterBottomMargin
+        bottomConstraints.forEach { $0.constant -= keyboardSize.height + keyboardStarterBottomMargin }
         self.collectionView.scrollToBottom(animated: true)
     }
     
@@ -375,7 +375,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         
        // let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
     
-        bottomConstraint.constant = CGFloat(keyboardDefaultBottomConstraintMargin)
+        bottomConstraints.forEach { $0.constant = CGFloat(keyboardDefaultBottomConstraintMargin) }
     }
     
 

@@ -48,9 +48,6 @@
 		52710E3D228F3F330003D634 /* domenico.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 52710E3C228F3F330003D634 /* domenico.jpeg */; };
 		52710E3F228F42420003D634 /* chiara.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52710E3E228F42420003D634 /* chiara.jpg */; };
 		52710E42228F43FD0003D634 /* mondello-beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52710E41228F43FD0003D634 /* mondello-beach.jpg */; };
-		52710E43228F443E0003D634 /* mondello.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 52710E40228F436E0003D634 /* mondello.mp4 */; };
-		52710E45228F56A00003D634 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-17 at 22.45.52.png in Resources */ = {isa = PBXBuildFile; fileRef = 52710E44228F56A00003D634 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-17 at 22.45.52.png */; };
-		52710E47228F59030003D634 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-17 at 23.02.21.png in Resources */ = {isa = PBXBuildFile; fileRef = 52710E46228F59030003D634 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-17 at 23.02.21.png */; };
 		527994422282C94500ACB791 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994412282C94500ACB791 /* AppDelegate.swift */; };
 		527994472282C94500ACB791 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527994452282C94500ACB791 /* Main.storyboard */; };
 		527994492282C94700ACB791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527994482282C94700ACB791 /* Assets.xcassets */; };
@@ -95,6 +92,7 @@
 		52E6D2C2228FDF5D00A8D6C2 /* ParlaInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */; };
 		52E6D2C4228FE43B00A8D6C2 /* ParlaInputToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E6D2C3228FE43B00A8D6C2 /* ParlaInputToolbar.xib */; };
 		52E6D2C6228FFE7A00A8D6C2 /* VoiceMessageCellOutgoing.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E6D2C5228FFE7A00A8D6C2 /* VoiceMessageCellOutgoing.xib */; };
+		52E6D2C82290108000A8D6C2 /* mondello.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 52E6D2C72290103600A8D6C2 /* mondello.mp4 */; };
 		52F7C70F2288275000459833 /* VoiceRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7C70E2288275000459833 /* VoiceRecorder.swift */; };
 		52F7C7112288300B00459833 /* VoicePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7C7102288300B00459833 /* VoicePlayer.swift */; };
 		52FB4DC32284155B001BF14E /* SenderLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DC22284155B001BF14E /* SenderLogic.swift */; };
@@ -170,10 +168,7 @@
 		523D8C87228C651F00EE3736 /* MapImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapImageGenerator.swift; sourceTree = "<group>"; };
 		52710E3C228F3F330003D634 /* domenico.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = domenico.jpeg; sourceTree = "<group>"; };
 		52710E3E228F42420003D634 /* chiara.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chiara.jpg; sourceTree = "<group>"; };
-		52710E40228F436E0003D634 /* mondello.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mondello.mp4; sourceTree = "<group>"; };
 		52710E41228F43FD0003D634 /* mondello-beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "mondello-beach.jpg"; sourceTree = "<group>"; };
-		52710E44228F56A00003D634 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-17 at 22.45.52.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone Xʀ - 2019-05-17 at 22.45.52.png"; sourceTree = "<group>"; };
-		52710E46228F59030003D634 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-17 at 23.02.21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone Xʀ - 2019-05-17 at 23.02.21.png"; sourceTree = "<group>"; };
 		5279943E2282C94500ACB791 /* parla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		527994412282C94500ACB791 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		527994462282C94500ACB791 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -222,6 +217,7 @@
 		52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlaInputToolbar.swift; sourceTree = "<group>"; };
 		52E6D2C3228FE43B00A8D6C2 /* ParlaInputToolbar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParlaInputToolbar.xib; sourceTree = "<group>"; };
 		52E6D2C5228FFE7A00A8D6C2 /* VoiceMessageCellOutgoing.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoiceMessageCellOutgoing.xib; sourceTree = "<group>"; };
+		52E6D2C72290103600A8D6C2 /* mondello.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mondello.mp4; sourceTree = "<group>"; };
 		52F7C70E2288275000459833 /* VoiceRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorder.swift; sourceTree = "<group>"; };
 		52F7C7102288300B00459833 /* VoicePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePlayer.swift; sourceTree = "<group>"; };
 		52FB4DC22284155B001BF14E /* SenderLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SenderLogic.swift; path = parla/Redesign/SenderLogic.swift; sourceTree = SOURCE_ROOT; };
@@ -310,10 +306,8 @@
 		52710E3B228F3F210003D634 /* Test Resources */ = {
 			isa = PBXGroup;
 			children = (
-				52710E46228F59030003D634 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-17 at 23.02.21.png */,
 				52710E41228F43FD0003D634 /* mondello-beach.jpg */,
-				52710E40228F436E0003D634 /* mondello.mp4 */,
-				52710E44228F56A00003D634 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-17 at 22.45.52.png */,
+				52E6D2C72290103600A8D6C2 /* mondello.mp4 */,
 				52710E3E228F42420003D634 /* chiara.jpg */,
 				52710E3C228F3F330003D634 /* domenico.jpeg */,
 			);
@@ -676,16 +670,14 @@
 				527994A92282E96300ACB791 /* IncomingImageMessageCell.xib in Resources */,
 				5279946C2282CA3D00ACB791 /* avatarDefault.png in Resources */,
 				527994A82282E96300ACB791 /* OutgoingImageMessageCell.xib in Resources */,
-				52710E43228F443E0003D634 /* mondello.mp4 in Resources */,
 				52FB4DD92284AED0001BF14E /* IncomingVideoMessageCell.xib in Resources */,
 				5279946E2282CA3D00ACB791 /* video.mp4 in Resources */,
-				52710E47228F59030003D634 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-17 at 23.02.21.png in Resources */,
 				5279946D2282CA3D00ACB791 /* play100.png in Resources */,
 				527994712282CA3D00ACB791 /* doc.jpg in Resources */,
 				5279946F2282CA3D00ACB791 /* play_blu.png in Resources */,
 				5279944C2282C94700ACB791 /* LaunchScreen.storyboard in Resources */,
+				52E6D2C82290108000A8D6C2 /* mondello.mp4 in Resources */,
 				527994492282C94700ACB791 /* Assets.xcassets in Resources */,
-				52710E45228F56A00003D634 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-17 at 22.45.52.png in Resources */,
 				52FB4DD72284AE89001BF14E /* OutgoingVideoMessageCell.xib in Resources */,
 				52710E3D228F3F330003D634 /* domenico.jpeg in Resources */,
 				527994742282CA3D00ACB791 /* play40.png in Resources */,
