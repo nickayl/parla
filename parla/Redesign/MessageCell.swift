@@ -348,7 +348,7 @@ class AbstractMessageCell: UICollectionViewCell {
         
 
         // Hide or show the bottom label of the cell.
-        if cfg.cell.cellBottomLabelHidden {
+        if cfg.cell.isBottomLabelHidden {
             cellBottomLabelHeightConstraint.constant = 0
         } else {
             cellBottomLabelHeightConstraint.constant = CGFloat(cfg.cell.bottomLabelHeight)

@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--New View Controller-->
+        <!--New View Controller2-->
         <scene sceneID="EVG-Fj-ZYV">
             <objects>
-                <viewController id="iC1-VP-cvW" customClass="NewViewController" customModule="parla" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iC1-VP-cvW" customClass="NewViewController2" customModule="parla" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6sA-71-XIx" customClass="ParlaView" customModule="parla" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

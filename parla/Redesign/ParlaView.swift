@@ -246,14 +246,13 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     
-    open func initialize() {
+    open func initialize(dataSource: ParlaViewDataSource, delegate: ParlaViewDelegate?, voiceRecorderDelegate: VoiceRecorderDelegate? = nil) {
 
-        if dataSource == nil || dataSource.mainSender() == nil {
-            assertionFailure("Fatal error: You must provide a dataSource and a sender to your viewController class (Implement the ParlaDataSource protocol and assign a valid sender instance to the sender property)")
-            return ;
-        }
+        self.dataSource = dataSource
+        self.delegate = delegate
+        self.voiceRecorderDelegate = voiceRecorderDelegate
         
-         Parla.config.sender = dataSource.mainSender()
+        Parla.config.sender = dataSource.mainSender()
         
         let model = Utils.getModelNumber()
         

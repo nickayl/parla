@@ -136,10 +136,7 @@ class BubbleImageViewHolder : ViewHolder  {
         }
         
         
-        cell.bubbleImage.addGestureRecognizer(
-            UITapGestureRecognizer(target: cell, action: #selector(cell.bubbleImageSelected(sender:)))
-        )
-        
+      
         return cell
 
         

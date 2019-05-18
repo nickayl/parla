@@ -46,7 +46,7 @@ public class PAvatar {
     
     private init() {
         self.size = CGSize.zero
-        self.image = UIImage(withBackground: Parla.config.avatar.avatarBackgroundColor)
+        self.image = UIImage(withBackground: Parla.config.avatar.backgroundColor)
     }
     
 }

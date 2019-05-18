@@ -88,9 +88,7 @@ public class CellBubble : NSObject {
             
             cell.bubbleImage.setBorderRadius(radius: 13)
             
-            cell.bubbleImage.addGestureRecognizer(
-                UITapGestureRecognizer(target: cell, action: #selector(cell.bubbleImageSelected(sender:)))
-            )
+            
 
         } else if message.messageType == .VideoMessage {
             leadingOrTrailingConstraint.constant = cellWidth - (cfg.kDefaultImageBubbleSize.width + cfg.avatarSize.width)
@@ -110,9 +108,7 @@ public class CellBubble : NSObject {
                 }
             } else {  print("video nil") }
             
-            cell.bubbleImage.addGestureRecognizer(
-                UITapGestureRecognizer(target: cell, action: #selector(cell.bubbleImageSelected(sender:)))
-            )
+           
         } else if message.messageType == .VoiceMessage {
             
             if let url = message.voice {
@@ -125,7 +121,7 @@ public class CellBubble : NSObject {
                         cell.player[indexPath.item]!.prepareToPlay()
                         
                     }
-                    cell.voiceMessagePlayButtonImage.addGestureRecognizer(UITapGestureRecognizer(target: cell, action: #selector(cell.playOrPauseVoiceButton(sender:))))
+                  
                     
                 } catch let error {
                     print(error.localizedDescription)

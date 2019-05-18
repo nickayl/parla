@@ -48,7 +48,7 @@ public final class Parla {
     }
     
     public class AvatarConfig {
-        public var isAvatarHidden = false {
+        public var isHidden = false {
             willSet {
                 if newValue {
                //     size = CGSize.zero
@@ -56,7 +56,7 @@ public final class Parla {
             }
         }
         public var size: CGSize = AvatarConfig.kDefaultAvatarSize
-        public var avatarBackgroundColor = AvatarConfig.kDefaultAvatarBackgroundColor
+        public var backgroundColor = AvatarConfig.kDefaultAvatarBackgroundColor
         public var imageContentMode: UIView.ContentMode = .scaleAspectFill
         
         public static let kDefaultAvatarSize = CGSize(width: 30, height: 30)
@@ -111,7 +111,7 @@ public final class Parla {
         public let kDefaultVoiceMessageWidth:CGFloat = 200
        // public let kDefaultTextFont: UIFont = UIFont(name: "AvenirNext-Regular", size: 16.0)!
         
-        public var cellBottomLabelHidden:Bool = false
+        public var isBottomLabelHidden:Bool = false
         
         public var sectionInsets = UIEdgeInsets(top: 8.0, left: 10.0, bottom: 0.0, right: 10.0)
         public var labelInsets = UIEdgeInsets(top: 16.0, left: 0.0, bottom: 16.0, right: 0.0)
