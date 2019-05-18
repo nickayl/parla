@@ -96,7 +96,7 @@
 		52E6D2CB2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.41.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E6D2C92290153B00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.41.png */; };
 		52E6D2CC2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E6D2CA2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png */; };
 		52E6D2CE2290167600A8D6C2 /* NewViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6D2CD2290167600A8D6C2 /* NewViewController2.swift */; };
-		52E6D2D022902FC800A8D6C2 /* github_task1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E6D2CF22902FC800A8D6C2 /* github_task1.png */; };
+		52E6D2D22290326B00A8D6C2 /* github_task_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E6D2D12290326B00A8D6C2 /* github_task_1.png */; };
 		52F7C70F2288275000459833 /* VoiceRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7C70E2288275000459833 /* VoiceRecorder.swift */; };
 		52F7C7112288300B00459833 /* VoicePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7C7102288300B00459833 /* VoicePlayer.swift */; };
 		52FB4DC32284155B001BF14E /* SenderLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DC22284155B001BF14E /* SenderLogic.swift */; };
@@ -225,7 +225,7 @@
 		52E6D2C92290153B00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.41.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.41.png"; sourceTree = "<group>"; };
 		52E6D2CA2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png"; sourceTree = "<group>"; };
 		52E6D2CD2290167600A8D6C2 /* NewViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController2.swift; sourceTree = "<group>"; };
-		52E6D2CF22902FC800A8D6C2 /* github_task1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github_task1.png; sourceTree = "<group>"; };
+		52E6D2D12290326B00A8D6C2 /* github_task_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github_task_1.png; sourceTree = "<group>"; };
 		52F7C70E2288275000459833 /* VoiceRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorder.swift; sourceTree = "<group>"; };
 		52F7C7102288300B00459833 /* VoicePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePlayer.swift; sourceTree = "<group>"; };
 		52FB4DC22284155B001BF14E /* SenderLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SenderLogic.swift; path = parla/Redesign/SenderLogic.swift; sourceTree = SOURCE_ROOT; };
@@ -317,8 +317,8 @@
 				52E6D2C92290153B00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.41.png */,
 				52E6D2CA2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png */,
 				52710E41228F43FD0003D634 /* mondello-beach.jpg */,
+				52E6D2D12290326B00A8D6C2 /* github_task_1.png */,
 				52E6D2C72290103600A8D6C2 /* mondello.mp4 */,
-				52E6D2CF22902FC800A8D6C2 /* github_task1.png */,
 				52710E3E228F42420003D634 /* chiara.jpg */,
 				52710E3C228F3F330003D634 /* domenico.jpeg */,
 			);
@@ -701,12 +701,12 @@
 				52710E3F228F42420003D634 /* chiara.jpg in Resources */,
 				527994AA2282E96300ACB791 /* OutgoingTextMessageCell.xib in Resources */,
 				52710E42228F43FD0003D634 /* mondello-beach.jpg in Resources */,
-				52E6D2D022902FC800A8D6C2 /* github_task1.png in Resources */,
 				527994732282CA3D00ACB791 /* play.png in Resources */,
 				527994A62282E96300ACB791 /* IncomingTextMessageCell.xib in Resources */,
 				527994722282CA3D00ACB791 /* Imagine.mp3 in Resources */,
 				527994702282CA3D00ACB791 /* pause100.png in Resources */,
 				52E6D2CC2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png in Resources */,
+				52E6D2D22290326B00A8D6C2 /* github_task_1.png in Resources */,
 				52E6D2C6228FFE7A00A8D6C2 /* VoiceMessageCellOutgoing.xib in Resources */,
 				52E6D2CB2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.41.png in Resources */,
 				527994472282C94500ACB791 /* Main.storyboard in Resources */,
