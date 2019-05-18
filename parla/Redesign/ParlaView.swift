@@ -24,7 +24,7 @@ public protocol ParlaViewDataSource {
     func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
     func didLongTouchMessage(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
     func didPressSendButton(withMessage message: PMessage, textField: UITextField, collectionView: UICollectionView)
-    func didPressAccessoryButton(button: UIButton, collectionView: UICollectionView)
+    func didPressAccessoryButton(button: UIView, collectionView: UICollectionView)
     // ==========
     
     // === Optional functions ======= //
@@ -49,6 +49,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     public var delegate: ParlaViewDelegate?
     private let config = Parla.config
     
+    
     private var viewController: UIViewController!
     
     public var voiceRecorderDelegate: VoiceRecorderDelegate? {
@@ -62,14 +63,14 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         self.collectionView.scrollToBottom(animated: animated)
     }
     
-    var inputToolbarContainer: UIView?
+    var inputToolbarContainer: ParlaInputToolbar?
     var collectionView: UICollectionView!
-    var textFieldContainer: UIView!
+   // var textFieldContainer: UIView!
     var textField: UITextField!
-    var accessoryButton: UIButton!
+    var accessoryButton: UIView!
     var microphoneButton: UIMicrophoneView!
     var bottomConstraint: NSLayoutConstraint!
-    var sendButton: UIButton!
+    var sendButton: UIView!
     
     private var keyboardDefaultBottomConstraintMargin = CGFloat(-35)
     private var keyboardStarterBottomMargin = CGFloat(20)
@@ -252,6 +253,8 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
             return ;
         }
         
+         Parla.config.sender = dataSource.mainSender()
+        
         let model = Utils.getModelNumber()
         
         if model.0 < 10 {
@@ -263,11 +266,8 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         }
         
         print("\(model) == c: \(keyboardDefaultBottomConstraintMargin)")
-        
         print("Currently running on iPhone model \(UIDevice.current.modelName)")
         
-    //    config.mediaPicker = SystemMediaPicker(viewController: self.viewController)
-     //   config.accessoryActionChooser = ActionSheetAccessoryActionChooser(viewController: self.viewController)
         config.accessoryActionChooser?.delegate = self
         
         config.accessoryActionChooser?.accessoryActions = [
@@ -281,38 +281,44 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         //let b = Bundle.main
         
         let b = Bundle(for: ParlaView.self)
+        collectionView = UICollectionView(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.backgroundColor = UIColor.white
+        let nib = UINib(nibName: "ParlaInputToolbar", bundle: b)
+        let mainView = nib.instantiate(withOwner: self, options: nil).first as? UIView
         
-        let nib = UINib(nibName: "ParlaCollectionView", bundle: b)
-        let chatView = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        inputToolbarContainer = mainView?.subviews[0] as? ParlaInputToolbar
+        microphoneButton = mainView?.subviews[1] as? UIMicrophoneView
         
-        self.addSubview(chatView)
-        self.bottomConstraint = NSLayoutConstraint(item: chatView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin)
-        let top = NSLayoutConstraint(item: chatView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -keyboardDefaultBottomConstraintMargin)
+        self.addSubview(collectionView)
+        self.addSubview(inputToolbarContainer!)
+        self.addSubview(microphoneButton)
+        
+        self.bottomConstraint = NSLayoutConstraint(item: inputToolbarContainer, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin+10)
+        let top = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -keyboardDefaultBottomConstraintMargin)
         
         self.addConstraints([
             self.bottomConstraint,
-            NSLayoutConstraint(item: chatView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: chatView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
-            top
+            NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
+            top,
+            NSLayoutConstraint(item: inputToolbarContainer, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: microphoneButton, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: microphoneButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin+10),
+            NSLayoutConstraint(item: inputToolbarContainer, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: inputToolbarContainer, attribute: .top, relatedBy: .equal, toItem: collectionView, attribute: .bottom, multiplier: 1, constant: 0)
             ])
-        
-        self.collectionView = chatView.subviews[0] as? UICollectionView
+
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        self.inputToolbarContainer = chatView.subviews[1]
-        self.textFieldContainer = chatView.subviews[1].subviews[2]
-        self.sendButton = chatView.subviews[1].subviews[1] as? UIButton
-        self.accessoryButton = chatView.subviews[1].subviews[3] as? UIButton
-        self.microphoneButton = chatView.subviews[2] as? UIMicrophoneView
+        self.textField = self.inputToolbarContainer?.textField
+        self.sendButton = self.inputToolbarContainer?.sendButton
+        self.accessoryButton = self.inputToolbarContainer?.accessoryButton
         
+        textField.delegate = self
+        microphoneButton.delegate = self
         sendButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onSendButtonPressed(_:))))
-        self.accessoryButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onAccessoryButtonPressed(_:))))
-   //     self.microphoneButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onMicrophoneButtonPressed(_:))))
-        
-        
-        self.textField = chatView.subviews[1].subviews[2].subviews[0] as? UITextField
-        self.textField.delegate = self
-        
+        accessoryButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onAccessoryButtonPressed(_:))))
+
         collectionView.register(UINib(nibName: incomingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingTextMessageReuseIdentifier)
         collectionView.register(UINib(nibName: outgoingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingTextMessageReuseIdentifier)
         collectionView.register(UINib(nibName: incomingImageMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingImageMessageReuseIdentifier)
@@ -320,23 +326,15 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         collectionView.register(UINib(nibName: incomingVideoMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingVideoMessageReuseIdentifier)
         collectionView.register(UINib(nibName: outgoingVideoMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingVideoMessageReuseIdentifier)
         collectionView.register(UINib(nibName: incomingVoiceMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingVoiceMessageReuseIdenfitier)
-        collectionView.register(UINib(nibName: "VoiceMessageCell", bundle: b), forCellWithReuseIdentifier: voiceMessageReuseIdentifier )
+        collectionView.register(UINib(nibName: "VoiceMessageCellIncoming", bundle: b), forCellWithReuseIdentifier: voiceMessageIncomingReuseIdentifier)
+        collectionView.register(UINib(nibName: "VoiceMessageCellOutgoing", bundle: b), forCellWithReuseIdentifier: voiceMessageOutgoingReuseIdentifier)
         
-        chatView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        //   self.view.translatesAutoresizingMaskIntoConstraints = false
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        self.textFieldContainer.setBorderRadius(radius: 7)
-        self.textField.setBorderRadius(radius: 6)
-        
-        textField.layer.sublayerTransform = CATransform3DMakeTranslation(12, 0, 0);
-        self.microphoneButton.delegate = self
-        
-        self.textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: UIControl.Event.editingChanged)
-        
+        textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: UIControl.Event.editingChanged)
     }
     
     @objc func textFieldEditingChanged(_ sender: Any) {

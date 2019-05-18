@@ -19,7 +19,8 @@ let outgoingImageMessageXibName = "OutgoingImageMessageCell", outgoingImageMessa
 let incomingVoiceMessageXibName = "VoiceMessageCell", incomingVoiceMessageReuseIdenfitier = "VoiceIncomingXib"
 let outgoingVideoMessageXibName = "OutgoingVideoMessageCell", outgoingVideoMessageReuseIdentifier = "VideoOutgoingXib"
 let incomingVideoMessageXibName = "IncomingVideoMessageCell", incomingVideoMessageReuseIdentifier = "VideoIncomingXib"
-let voiceMessageReuseIdentifier = "VoiceMessageCellXib"
+let voiceMessageIncomingReuseIdentifier = "VoiceMessageCellIncomingXib"
+let voiceMessageOutgoingReuseIdentifier = "VoiceMessageCellOutgoingXib"
 
 @objc public enum MessageType : Int {
     case ImageMessage, VideoMessage, TextMessage, VoiceMessage, MapMessage
@@ -166,7 +167,7 @@ public class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPla
     public var player: PAudioPlayer?
     
     public override var cellIdentifier: String {
-        return voiceMessageReuseIdentifier
+        return sender.type == .Incoming ? "VoiceMessageCellIncomingXib" : "VoiceMessageCellOutgoingXib"
     }
     
     public init(id: Int, sender: PSender, date: Date = Date(), voiceUrl: URL) {
@@ -292,7 +293,7 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
         var cellHeight = baseHeight
         
         if(self.text.count > 60 || self.text.contains("\n")) {
-            cellHeight = ceil(text.height(with: bubbleWidth, font: cfg.cell.kDefaultTextFont)) + (cfg.cell.labelInsets.top + cfg.cell.labelInsets.bottom)
+            cellHeight = ceil(text.height(with: bubbleWidth, font: UIFont.systemFont(ofSize: 17.5))) + (cfg.cell.labelInsets.top + cfg.cell.labelInsets.bottom)
             cellHeight = cellHeight < baseHeight ? baseHeight : cellHeight
         }
         

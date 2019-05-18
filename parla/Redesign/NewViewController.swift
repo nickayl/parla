@@ -16,7 +16,6 @@ class NewViewController : UIViewController, ParlaViewDataSource, ParlaViewDelega
    // var attachedViewController: UIViewController!
     
     private var collectionView: UICollectionView!
-    private var locationManager: CLLocationManager!
     private var domenico: PSender!
     
     var messages: [PMessage]!
@@ -26,46 +25,17 @@ class NewViewController : UIViewController, ParlaViewDataSource, ParlaViewDelega
     override func viewDidLoad() {
 
         // Initialization of ParlaView class
-       
-    //    self.attachedViewController = self
+
         self.parlaView.delegate = self
         self.parlaView.dataSource = self
-        
-//        Parla.config.cell.textMessageBubbleIncomingColor = UIColor.red
-//        Parla.config.cell.textMessageBubbleOutgoingColor = UIColor.green
-//        
-//        Parla.config.cell.textIncomingColor = UIColor.blue
-//        Parla.config.cell.textOutgoingColor = UIColor.yellow
-//        
-//        Parla.config.cell.voiceOutgoingColor = UIColor.cyan
-//        Parla.config.avatar.size = CGSize(width: 30, height: 30)
-        
-      //  let avatar = PAvatar(withImage: UIImage(withBackground: UIColor.green))
-        let avatar = PAvatar(withImage: UIImage(named: "avatarDefault")!)
         self.parlaView.voiceRecorderDelegate = self
         
-//        self.sender = PSender(senderId: 0, senderName: "Gabriele", avatar: nil, type: .Outgoing)
-//        self.otherSender = PSender(senderId: 1, senderName: "Ciccio", avatar: avatar, type: .Incoming)
-        
+
         let config = Parla.config
-        
-      //  config.containerViewController = self
         config.accessoryButton.preventDefault = false
         config.cell.cellBottomLabelHidden = false
         config.avatar.isAvatarHidden = false
         config.avatar.avatarBackgroundColor = UIColor.black
-        
-        
-//        let testVideo = Bundle.main.url(forResource: "video", withExtension: "mp4")!
-//        let voiceTest = Bundle.main.url(forResource: "Imagine", withExtension: "mp3")!
-        
-//        self.messages = [
-//            PVoiceMessageImpl(id: 5, sender: sender, date: Date(), voiceUrl: voiceTest),
-//            PTextMessageImpl(id: 1, sender: sender, text: "Ciao ciccio!", date: Date()),
-//            PTextMessageImpl(id: 2, sender: otherSender, text: "Ciao Gabri! Come va?"),
-//            PImageMessageImpl(id: 3, sender: sender, image: UIImage(named: "doc.jpg")!, date: Date()),
-//            PVideoMessageImpl(id: 4, sender: sender, videoUrl: testVideo)
-//        ]
         
         
         let domenicoAvatar = PAvatar(withImage: UIImage(named: "domenico.jpeg")!)
@@ -75,7 +45,6 @@ class NewViewController : UIViewController, ParlaViewDataSource, ParlaViewDelega
         domenico = PSender(senderId: 10, senderName: "Domenico", avatar: domenicoAvatar, type: .Outgoing)
         let chiara = PSender(senderId: 11, senderName: "Chiara", avatar: chiaraAvatar, type: .Incoming)
         
-        config.sender = domenico
         sender = domenico
         
         self.messages = [
@@ -84,23 +53,52 @@ class NewViewController : UIViewController, ParlaViewDataSource, ParlaViewDelega
             PTextMessageImpl(id: 3, sender: domenico, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
             PImageMessageImpl(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
             PVideoMessageImpl(id: 5, sender: chiara, videoUrl: mondello),
+            PTextMessageImpl(id: 6, sender: domenico, text: "La guerra d'Etiopia, nota anche come guerra d'Abissinia o seconda guerra italo-etiopica, si svolse tra il 3 ottobre 1935 e il 5 maggio 1936 e vide contrapposti il Regno d'Italia e l'Impero d'Etiopia. Condotte inizialmente dal generale Emilio De Bono, rimpiazzato poi dal maresciallo Pietro Badoglio, le forze italiane invasero l'Etiopia a partire dalla colonia eritrea a nord, mentre un fronte secondario fu aperto a sud-est dalle forze del generale Rodolfo Graziani dislocate nella Somalia italiana. Nonostante una dura resistenza, le forze etiopiche furono soverchiate dalla superiorità numerica e tecnologica degli italiani e il conflitto si concluse con l'ingresso delle forze di Badoglio nella capitale Addis Abeba.  La guerra fu la campagna coloniale più grande della storia: la mobilitazione italiana assunse dimensioni straordinarie, impegnando un numero di uomini, una modernità di mezzi e una rapidità di approntamento mai visti fino ad allora. Fu un conflitto altamente simbolico, dove il regime fascista impiegò una grande quantità di mezzi propagandistici con lo scopo di impostare e condurre una guerra in linea con le esigenze di prestigio internazionale e di rinsaldamento interno del regime stesso, volute da Benito Mussolini. In questo contesto i vertici militari e politici italiani non badarono a spese per il raggiungimento dell'obiettivo: il Duce approvò e sollecitò l'invio e l'utilizzo in Etiopia di ogni arma disponibile e non esitò ad autorizzare l'impiego in alcuni casi di armi chimiche."),
+            PTextMessageImpl(id: 6, sender: chiara, text: "La guerra d'Etiopia, nota anche come guerra d'Abissinia o seconda guerra italo-etiopica, si svolse tra il 3 ottobre 1935 e il 5 maggio 1936 e vide contrapposti il Regno d'Italia e l'Impero d'Etiopia. Condotte inizialmente dal generale Emilio De Bono, rimpiazzato poi dal maresciallo Pietro Badoglio, le forze italiane invasero l'Etiopia a partire dalla colonia eritrea a nord, mentre un fronte secondario fu aperto a sud-est dalle forze del generale Rodolfo Graziani dislocate nella Somalia italiana. Nonostante una dura resistenza, le forze etiopiche furono soverchiate dalla superiorità numerica e tecnologica degli italiani e il conflitto si concluse con l'ingresso delle forze di Badoglio nella capitale Addis Abeba.  La guerra fu la campagna coloniale più grande della storia: la mobilitazione italiana assunse dimensioni straordinarie, impegnando un numero di uomini, una modernità di mezzi e una rapidità di approntamento mai visti fino ad allora. Fu un conflitto altamente simbolico, dove il regime fascista impiegò una grande quantità di mezzi propagandistici con lo scopo di impostare e condurre una guerra in linea con le esigenze di prestigio internazionale e di rinsaldamento interno del regime stesso, volute da Benito Mussolini. In questo contesto i vertici militari e politici italiani non badarono a spese per il raggiungimento dell'obiettivo: il Duce approvò e sollecitò l'invio e l'utilizzo in Etiopia di ogni arma disponibile e non esitò ad autorizzare l'impiego in alcuni casi di armi chimiche. L'aggressione dell'Italia contro l'Etiopia ebbe rilevanti conseguenze diplomatiche e suscitò una notevole riprovazione da parte della comunità internazionale: la Società delle Nazioni decise d'imporre delle sanzioni economiche contro l'Italia, ritirate nel luglio 1936 senza peraltro aver provocato il benché minimo rallentamento delle operazioni militari.  Le ostilità non cessarono con la fine delle operazioni di guerra convenzionali, ma si prolungarono con la crescente attività della guerriglia etiopica dei cosiddetti arbegnuoc (\"patrioti\") e con le conseguenti misure repressive attuate dal governo italiano, durante le quali non furono risparmiate azioni terroristiche nei confronti della popolazione civile; la resistenza etiope collaborò poi con le truppe britanniche nella liberazione del paese dagli italiani nel corso della seconda guerra mondiale. Formalmente lo stato di guerra ebbe ufficialmente termine il 10 febbraio 1947 con la stipula del Trattato di Parigi fra l'Italia e le potenze alleate, che comportò per l'Italia la perdita di tutte le sue colonie africane.  Leggi la voce · Tutte le voci in vetrina    Voci di qualità Voci di qualità Amatori Lodi 1980-1981.jpg L'Amatori Wasken Lodi (IPA: [amaˈtori ˈvasken ˈlɔːdi]; Amatori Hockey Lodi dal 1965 al 1996, Hockey Amatori Sporting Lodi dal 1999 al 2014), meglio noto come Amatori Lodi, è una società italiana di hockey su pista con sede a Lodi. I suoi colori sociali, ispirati allo stemma cittadino, sono il giallo e il rosso.")
         ]
         
-        for i in 0 ..< a.count {
-            if i % 2 == 0 {
-              //  self.messages.append(PTextMessageImpl(id: i+4, sender: sender, text: a[i]))
-            } else {
-             //   self.messages.append(PTextMessageImpl(id: i+4, sender: otherSender, text: a[i]))
-            }
-        }
+        //        Parla.config.cell.textMessageBubbleIncomingColor = UIColor.red
+        //        Parla.config.cell.textMessageBubbleOutgoingColor = UIColor.green
+        //
+        //        Parla.config.cell.textIncomingColor = UIColor.blue
+        //        Parla.config.cell.textOutgoingColor = UIColor.yellow
+        //
+        //        Parla.config.cell.voiceOutgoingColor = UIColor.cyan
+        //        Parla.config.avatar.size = CGSize(width: 30, height: 30)
         
-        for i in 0 ..< messages.count {
-            messages[i].isTopLabelActive = (i % 4 == 0)
-        }
+        //  let avatar = PAvatar(withImage: UIImage(withBackground: UIColor.green))
+        //  let avatar = PAvatar(withImage: UIImage(named: "avatarDefault")!)
+        
+        //        self.sender = PSender(senderId: 0, senderName: "Gabriele", avatar: nil, type: .Outgoing)
+        //        self.otherSender = PSender(senderId: 1, senderName: "Ciccio", avatar: avatar, type: .Incoming)
+        
+        
+        //        let testVideo = Bundle.main.url(forResource: "video", withExtension: "mp4")!
+        //        let voiceTest = Bundle.main.url(forResource: "Imagine", withExtension: "mp3")!
+        
+        //        self.messages = [
+        //            PVoiceMessageImpl(id: 5, sender: sender, date: Date(), voiceUrl: voiceTest),
+        //            PTextMessageImpl(id: 1, sender: sender, text: "Ciao ciccio!", date: Date()),
+        //            PTextMessageImpl(id: 2, sender: otherSender, text: "Ciao Gabri! Come va?"),
+        //            PImageMessageImpl(id: 3, sender: sender, image: UIImage(named: "doc.jpg")!, date: Date()),
+        //            PVideoMessageImpl(id: 4, sender: sender, videoUrl: testVideo)
+        //        ]
+        
+        
+//        for i in 0 ..< a.count {
+//            if i % 2 == 0 {
+//                self.messages.append(PTextMessageImpl(id: i+4, sender: sender, text: a[i]))
+//            } else {
+//                self.messages.append(PTextMessageImpl(id: i+4, sender: otherSender, text: a[i]))
+//            }
+//        }
+//
+//        for i in 0 ..< messages.count {
+//            messages[i].isTopLabelActive = (i % 4 == 0)
+//        }
         
         self.parlaView.initialize()
         self.collectionView = parlaView.collectionView
-   //     locationManager.requestWhenInUseAuthorization()
     }
     
     
@@ -172,7 +170,7 @@ class NewViewController : UIViewController, ParlaViewDataSource, ParlaViewDelega
     }
     
     
-    func didPressAccessoryButton(button: UIButton, collectionView: UICollectionView) {
+    func didPressAccessoryButton(button: UIView, collectionView: UICollectionView) {
         print("Did press accessory button")
     }
     

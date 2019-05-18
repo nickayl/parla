@@ -26,7 +26,7 @@
                     </collectionViewFlowLayout>
                     <cells/>
                 </collectionView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="34z-K7-8CI" userLabel="InputToolbarContainer">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="34z-K7-8CI" userLabel="InputToolbarContainer" customClass="ParlaInputToolbar" customModule="ParlaKit" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="619" width="375" height="48"/>
                     <subviews>
                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSC-YM-96n">
@@ -89,6 +89,12 @@
                         <constraint firstAttribute="trailing" secondItem="sSC-YM-96n" secondAttribute="trailing" id="jqH-0A-hvo"/>
                         <constraint firstItem="sSC-YM-96n" firstAttribute="leading" secondItem="34z-K7-8CI" secondAttribute="leading" id="lma-jb-nfw"/>
                     </constraints>
+                    <connections>
+                        <outlet property="accessoryButton" destination="ccv-K9-qjP" id="Ti5-71-iKW"/>
+                        <outlet property="microphoneButton" destination="Kn6-HV-Ke1" id="11l-Br-keW"/>
+                        <outlet property="sendButton" destination="krh-WN-yC3" id="rk6-RU-lyK"/>
+                        <outlet property="textField" destination="BBr-AD-8IG" id="Y5g-ip-pGj"/>
+                    </connections>
                 </view>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kn6-HV-Ke1" customClass="UIMicrophoneView" customModule="ParlaKit" customModuleProvider="target">
                     <rect key="frame" x="327" y="619" width="48" height="48"/>

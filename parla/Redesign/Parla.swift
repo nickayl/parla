@@ -109,12 +109,12 @@ public final class Parla {
         public let kDefaultImageBubbleSize: CGSize = CGSize(width: 200, height: 180)
         public let kDefaultVideoBubbleSize: CGSize = CGSize(width: 200, height: 180)
         public let kDefaultVoiceMessageWidth:CGFloat = 200
-        public let kDefaultTextFont: UIFont = UIFont(name: "AvenirNext-Regular", size: 16.0)!
+       // public let kDefaultTextFont: UIFont = UIFont(name: "AvenirNext-Regular", size: 16.0)!
         
         public var cellBottomLabelHidden:Bool = false
         
         public var sectionInsets = UIEdgeInsets(top: 8.0, left: 10.0, bottom: 0.0, right: 10.0)
-        public var labelInsets = UIEdgeInsets(top: 24.0, left: 0.0, bottom: 24.0, right: 0.0)
+        public var labelInsets = UIEdgeInsets(top: 16.0, left: 0.0, bottom: 16.0, right: 0.0)
         public var textInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         
         fileprivate init() {

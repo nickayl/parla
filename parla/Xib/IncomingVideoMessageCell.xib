@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domenico" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YO7-hK-XkR" customClass="UIPaddingLabel" customModule="ParlaKit" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="146" width="375" height="16"/>
+                        <rect key="frame" x="34" y="146" width="341" height="16"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="TQ1-54-OJE"/>
@@ -90,9 +90,9 @@
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="YO7-hK-XkR" firstAttribute="leading" secondItem="Twd-jF-AcY" secondAttribute="leading" id="AGZ-0l-EMe"/>
                 <constraint firstItem="Twd-jF-AcY" firstAttribute="leading" secondItem="g6f-W1-Pxh" secondAttribute="trailing" constant="4" id="B1y-ij-rlU"/>
                 <constraint firstAttribute="trailing" secondItem="YO7-hK-XkR" secondAttribute="trailing" id="Fpd-ut-8aM"/>
-                <constraint firstItem="YO7-hK-XkR" firstAttribute="leading" secondItem="g6f-W1-Pxh" secondAttribute="leading" id="Gkp-2k-5TE"/>
                 <constraint firstAttribute="bottom" secondItem="YO7-hK-XkR" secondAttribute="bottom" id="O1T-B4-AzR"/>
                 <constraint firstItem="Twd-jF-AcY" firstAttribute="top" secondItem="0iM-zK-qnI" secondAttribute="bottom" id="PHI-QG-2Is"/>
                 <constraint firstItem="0iM-zK-qnI" firstAttribute="leading" secondItem="2Vw-H0-rig" secondAttribute="leading" id="SWr-95-fsr"/>

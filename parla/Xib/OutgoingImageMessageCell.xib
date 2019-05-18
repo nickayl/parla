@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domenico" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1a7-qE-aVn" customClass="UIPaddingLabel" customModule="ParlaKit" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="146" width="375" height="16"/>
+                        <rect key="frame" x="0.0" y="146" width="341" height="16"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="yDH-hJ-56J"/>
@@ -83,7 +83,6 @@
                 <constraint firstAttribute="bottom" secondItem="1a7-qE-aVn" secondAttribute="bottom" id="0Ub-b1-WRQ"/>
                 <constraint firstItem="r2B-m8-X7T" firstAttribute="leading" secondItem="FfR-L5-W7W" secondAttribute="leading" id="325-c5-INy"/>
                 <constraint firstItem="1a7-qE-aVn" firstAttribute="top" secondItem="xJp-jd-iIK" secondAttribute="bottom" constant="6" id="B0o-5c-DFL"/>
-                <constraint firstItem="xJp-jd-iIK" firstAttribute="trailing" secondItem="1a7-qE-aVn" secondAttribute="trailing" id="Iel-CX-FcV"/>
                 <constraint firstItem="1a7-qE-aVn" firstAttribute="leading" secondItem="FfR-L5-W7W" secondAttribute="leading" id="LL3-PU-oiJ"/>
                 <constraint firstAttribute="trailing" secondItem="xPl-hr-4Gt" secondAttribute="trailing" id="O6e-rg-r2O"/>
                 <constraint firstItem="xPl-hr-4Gt" firstAttribute="leading" secondItem="FfR-L5-W7W" secondAttribute="leading" id="SzA-ce-wYH"/>
@@ -92,6 +91,7 @@
                 <constraint firstItem="r2B-m8-X7T" firstAttribute="top" secondItem="xPl-hr-4Gt" secondAttribute="bottom" id="Zpo-mN-Fox"/>
                 <constraint firstItem="xJp-jd-iIK" firstAttribute="leading" secondItem="r2B-m8-X7T" secondAttribute="trailing" constant="4" id="cOZ-eJ-n72"/>
                 <constraint firstItem="xPl-hr-4Gt" firstAttribute="top" secondItem="FfR-L5-W7W" secondAttribute="top" id="mEE-Ic-iWU"/>
+                <constraint firstItem="1a7-qE-aVn" firstAttribute="trailing" secondItem="r2B-m8-X7T" secondAttribute="trailing" id="r2q-9F-kbA"/>
             </constraints>
             <size key="customSize" width="375" height="162"/>
             <connections>
