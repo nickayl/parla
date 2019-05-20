@@ -9,6 +9,11 @@
 import UIKit
 import CoreLocation
 
+/**
+ 
+ Implement this protocol to provide the messages to be added to the ParlaView view and to set the main sender of the view.
+ 
+*/
 public protocol ParlaViewDataSource {
 //    var sender: PSender! { get set }
 //    var attachedViewController: UIViewController! { get set }
@@ -18,7 +23,11 @@ public protocol ParlaViewDataSource {
     func mainSender() -> PSender
 }
 
-@objc public protocol ParlaViewDelegate {
+/**
+    An optional delegate that, if set in the initializer, will notify the user of various operations performed.
+    - Tag: parlaViewDelegate
+ */
+@objc public protocol ParlaViewDelegate  {
     
     // General delegate functions
     func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
@@ -39,24 +48,24 @@ public protocol ParlaViewDataSource {
     
     @objc optional func didFinishBuildingCurrentLocationMessage(with coordinates: CLLocationCoordinate2D, with message: PMapMessage)
     @objc optional func didStartBuildingCurrentLocationMessage(with coordinates: CLLocationCoordinate2D, with message: PMapMessage)
+    
+    @objc optional func didStartRecordingVoiceMessage(atUrl url: URL)
+    @objc optional func didEndRecordingVoiceMessage(atUrl url: URL)
     // ==========
     
 }
 
-open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate, CLLocationManagerDelegate, UIMicrophoneViewDelegate  {
+/**
+    The central view to be added in your storyboard views where you want to display the chat UI.
+    **This view must belong to a UIViewController class hierarchy or a runtime error will occur.**
+*/
+open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate, CLLocationManagerDelegate, UIMicrophoneViewDelegate, VoiceRecorderDelegate  {
 
     public var dataSource: ParlaViewDataSource!
     public var delegate: ParlaViewDelegate?
     private let config = Parla.config
     
-    
     private var viewController: UIViewController!
-    
-    public var voiceRecorderDelegate: VoiceRecorderDelegate? {
-        willSet {
-            self.recorder?.delegate = newValue
-        }
-    }
     
     public func refreshCollection(animated: Bool) {
         self.collectionView.reloadData()
@@ -80,6 +89,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.recorder = DefaultVoiceRecorder()
+        self.recorder?.delegate = self
     }
     
     ///  ********* ========== Collection View Methods ========== **************  ///
@@ -147,6 +157,9 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     open override func awakeFromNib() {
         self.viewController = self.parentViewController
+        if viewController == nil {
+            assertionFailure("The ParlaView view must belong to a UIViewController. This is a fatal error and the application must be terminated.")
+        }
         Parla.config.containerViewController = self.viewController
     }
     
@@ -245,12 +258,22 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
-    
-    open func initialize(dataSource: ParlaViewDataSource, delegate: ParlaViewDelegate?, voiceRecorderDelegate: VoiceRecorderDelegate? = nil) {
+    /**
+     
+     Prepares the view for the message rendering.
+     Must be called after the customizations on Parla.config and possibly
+     before the messages are added.
+     Anyway you can call the refreshCollection method to update the data.
+     
+     - Parameter dataSource: The source of data (the messages) to be added to the view.
+     - Parameter delegate: An optional, but reccomanded, delegate that will be notified when the user performs certain operations.
+        Please see the [ParlaViewDelegate](x-source-tag://parlaViewDelegate) protocol for a complete list of notified operations.
+     
+     */
+    open func initialize(dataSource: ParlaViewDataSource, delegate: ParlaViewDelegate?) {
 
         self.dataSource = dataSource
         self.delegate = delegate
-        self.voiceRecorderDelegate = voiceRecorderDelegate
         
         Parla.config.sender = dataSource.mainSender()
         
@@ -351,17 +374,16 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
+    public func voiceRecorderDidStartRecording(at url: URL, voiceRecorder: VoiceRecorder) {
+        self.delegate?.didStartRecordingVoiceMessage?(atUrl: url)
+    }
     
-//    override open func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(true)
-//
-//       // UIApplication.shared.isStatusBarHidden = false
-//    }
-    
-    
+    public func voiceRecorderDidEndRecording(at url: URL, voiceRecorder: VoiceRecorder) {
+        self.delegate?.didEndRecordingVoiceMessage?(atUrl: url)
+    }
+
     @objc public final func keyboardWillShow(_ notification: NSNotification) {
         // print(notification.userInfo)
-        
         // We need the  keyboard height
         let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
         print("keyboard size: \(keyboardSize)")
@@ -371,11 +393,16 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     @objc public final func keyboardWillHide(_ notification: NSNotification) {
-        
        // let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
     
         bottomConstraints.forEach { $0.constant = CGFloat(keyboardDefaultBottomConstraintMargin) }
     }
     
 
+    //    override open func viewWillAppear(_ animated: Bool) {
+    //        super.viewWillAppear(true)
+    //
+    //       // UIApplication.shared.isStatusBarHidden = false
+    //    }
+    
 }

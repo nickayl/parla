@@ -40,12 +40,12 @@ let voiceMessageOutgoingReuseIdentifier = "VoiceMessageCellOutgoingXib"
     var date: Date { get set }
     var sender: PSender { get set }
     var messageType: MessageType { get }
-    var senderType: SenderType { get }
     var cellIdentifier: String { get }
     var isTopLabelActive: Bool { get set }
     var isReadyToUse: Bool { get }
     var contentColor: UIColor { get }
     var backgroundColor: UIColor { get }
+    var isIncoming: Bool { get }
     
     func displaySize(frameWidth: CGFloat) -> CGSize
     func triggerSelection()
@@ -86,7 +86,7 @@ public protocol PVoiceMessage : PMessage {
     func startAsynch(completitionHandler: @escaping () -> Void)
 }
 
-public class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageMessage, PMapMessage {
+class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageMessage, PMapMessage {
     
     public var image: UIImage?
     public var imageDescription: String?
@@ -155,12 +155,12 @@ public class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageM
     }
     
     public override var cellIdentifier: String {
-        return senderType == .Incoming ? incomingImageMessageReuseIdentifier : outgoingImageMessageReuseIdentifier
+        return isIncoming ? incomingImageMessageReuseIdentifier : outgoingImageMessageReuseIdentifier
     }
     
 }
 
-public class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPlayerOptionalDelegate {
+class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPlayerOptionalDelegate {
     
     public var duration: Float = 0
     public var voiceUrl: URL
@@ -176,7 +176,7 @@ public class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPla
         self.player = DefaultPAudioPlayer(voiceUrl: voiceUrl, delegate: nil)
         self.player?.optionalDelegate = self
         self.content = voiceUrl
-        self.backgroundColor = sender.type == .Incoming ? Parla.config.cell.voiceIncomingColor : Parla.config.cell.voiceOutgoingColor
+        self.backgroundColor = isIncoming ? Parla.config.cell.voiceIncomingColor : Parla.config.cell.voiceOutgoingColor
     }
     
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
@@ -194,7 +194,7 @@ public class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPla
     }
 }
 
-public class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
+class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
     
     public var thumbnail: UIImage?
     public var videoUrl: URL
@@ -202,7 +202,7 @@ public class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
     public var player: VideoPlayer?
     
     public override var cellIdentifier: String {
-        return senderType == .Incoming ? incomingVideoMessageReuseIdentifier : outgoingVideoMessageReuseIdentifier
+        return isIncoming ? incomingVideoMessageReuseIdentifier : outgoingVideoMessageReuseIdentifier
     }
     
     required public init(id: Int, sender: PSender, videoUrl: URL, thumbnail: UIImage? = nil, date: Date = Date()) {
@@ -224,7 +224,7 @@ public class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
     }
 }
 
-public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
+class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     
     public var image: UIImage!
     public var imageDescription: String?
@@ -234,7 +234,7 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     private let config = Parla.config
     
     public override var cellIdentifier: String {
-        return senderType == .Incoming ? incomingImageMessageReuseIdentifier : outgoingImageMessageReuseIdentifier
+        return isIncoming ? incomingImageMessageReuseIdentifier : outgoingImageMessageReuseIdentifier
     }
     
     public init(id: Int, sender: PSender, image: UIImage, date: Date = Date()) {
@@ -254,7 +254,7 @@ public class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     
 }
 
-public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
+class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
     
     public var text: String
     public var label: CopyableText?
@@ -262,14 +262,11 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
     public var enableCopyOnLongTouch: Bool = true {
         didSet {
                 label?.canCopyText = self.enableCopyOnLongTouch
-//            } else {
-//                print("WARNING ==> CANNOT COPY TEXT WITHOUT AN ASSIGNED UIPaddingLabel. Please use the correct initializer. <== ")
-//            }
         }
     }
     
     public override var cellIdentifier: String {
-        return senderType == .Incoming ? incomingTextMessageReuseIdentifier : outgoingTextMessageReuseIdentifier
+        return isIncoming ? incomingTextMessageReuseIdentifier : outgoingTextMessageReuseIdentifier
     }
     
     required public init(id: Int, sender: PSender, text: String, date: Date = Date()) {
@@ -319,8 +316,6 @@ public class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
 
 public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     
-    
-    
     public var isTopLabelActive: Bool = false
     public var messageId: Int = 0
     public var date: Date
@@ -330,15 +325,15 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     public var isReadyToUse: Bool = true
     public var delegate: PMessageDelegate?
     
-    public var contentColor: UIColor
-    public var backgroundColor: UIColor
+    public var contentColor: UIColor = Parla.CellConfig.kDefaultContentColor
+    public var backgroundColor: UIColor = Parla.CellConfig.kDefaultBackgroundColor
+    
+    public var isIncoming: Bool {
+        return sender.type == .Incoming
+    }
     
     public var toString: String {
         return "[messageType: \(messageType.rawValue) sender: \(sender.name) content: \(content)]"
-    }
-    
-    public var senderType: SenderType {
-        return sender == Parla.config.sender ? .Outgoing : .Incoming
     }
 
     public var cellIdentifier: String {
@@ -361,7 +356,8 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
         self.date = date
         self.sender = sender
         self.messageType = type
-        if sender.type == .Incoming {
+        super.init()
+        if isIncoming {
             self.contentColor = Parla.config.cell.textIncomingColor
             self.backgroundColor = Parla.config.cell.textMessageBubbleIncomingColor
         } else {

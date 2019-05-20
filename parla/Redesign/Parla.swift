@@ -7,11 +7,30 @@
 //
 
 import Foundation
+import CoreLocation
 import UIKit
 
 public final class Parla {
     
-    public var sender: PSender!
+    public static func newTextMessage(id: Int, sender: PSender, text: String, date: Date = Date()) -> PTextMessage {
+        return PTextMessageImpl(id: id, sender: sender, text: text, date: date)
+    }
+    
+    public static func newImageMessage(id: Int, sender: PSender, image: UIImage, date: Date = Date()) -> PImageMessage {
+        return PImageMessageImpl(id: id, sender: sender, image: image, date: date)
+    }
+    
+    public static func newVideoMessage(id: Int, sender: PSender, videoUrl: URL, thumbnail: UIImage? = nil, date: Date = Date()) -> PVideoMessage {
+        return PVideoMessageImpl(id: id, sender: sender, videoUrl: videoUrl, thumbnail: thumbnail, date: date)
+    }
+    
+    public static func newVoiceMessage(id: Int, sender: PSender, date: Date = Date(), voiceUrl: URL) -> PVoiceMessage {
+        return PVoiceMessageImpl(id: id, sender: sender, date: date, voiceUrl: voiceUrl)
+    }
+    
+    public static func newMapMessage(id: Int, sender: PSender, date: Date = Date(), coordinates: CLLocationCoordinate2D) -> PMapMessage {
+        return PMapMessageImpl(id: id, sender: sender, date: date, coordinates: coordinates)
+    }
     
     public var containerViewController: UIViewController! {
         didSet {
@@ -24,14 +43,15 @@ public final class Parla {
         }
     }
     
+    public var sender: PSender!
     public var mediaPicker: MediaPicker?
     public var accessoryActionChooser: AccessoryActionChooser?
     public var imageViewer: ImageViewer?
     
     // Default implementations if the user does not specifies a custom one.
-    public var kDefaultMediaPicker: MediaPicker?
-    public var kDefaultImageMessageViewer: ImageViewer?
-    public var kDefaultAccessoryActionChooser: AccessoryActionChooser?
+    public var kDefaultMediaPicker: MediaPicker!
+    public var kDefaultImageMessageViewer: ImageViewer!
+    public var kDefaultAccessoryActionChooser: AccessoryActionChooser!
     
     // Configuration inner classes
     public let accessoryButton = AccessoryButtonConfig()
@@ -42,12 +62,12 @@ public final class Parla {
     
     fileprivate init() { }
     
-    public class AccessoryButtonConfig {
+    public final class AccessoryButtonConfig {
         public var preventDefault = false
         fileprivate init() { }
     }
     
-    public class AvatarConfig {
+    public final class AvatarConfig {
         public var isHidden = false {
             willSet {
                 if newValue {
@@ -97,6 +117,9 @@ public final class Parla {
         public var voiceOutgoingColor = CellConfig.kDefaultVoiceOutgoingColor
         
         // ========
+        
+        public static let kDefaultContentColor = UIColor.black
+        public static let kDefaultBackgroundColor = UIColor.white
         
         // Top and bottom label heights
 //        public let kDefaultCellBottomLabelHeight: CGFloat = 16

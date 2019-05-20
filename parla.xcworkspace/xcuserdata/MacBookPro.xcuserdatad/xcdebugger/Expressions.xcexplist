@@ -19,10 +19,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ImageMessageCell.initialize():MessageCell.swift">
+         contextName = "TextMessageCell.awakeFromNib():MessageCell.swift">
       </ContextState>
       <ContextState
-         contextName = "TextMessageCell.initialize():MessageCell.swift">
+         contextName = "NewViewController.viewDidLoad():NewViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.messages as! [PTextMessageImpl]">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "ImageMessageCell.content.setter:MessageCell.swift">
@@ -39,6 +44,14 @@
          contextName = "closure #1 in closure #1 in DefaultVoiceRecorder.start():VoiceRecorder.swift">
       </ContextState>
       <ContextState
+         contextName = "ParlaView.awakeFromNib():ParlaView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.parentViewController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "UIMicrophoneView.awakeFromNib():UIMicrophoneView.swift">
          <PersistentStrings>
             <PersistentString
@@ -50,10 +63,10 @@
          contextName = "VoiceMessageCell.initialize():MessageCell.swift">
       </ContextState>
       <ContextState
-         contextName = "ParlaView.awakeFromNib():ParlaView.swift">
+         contextName = "DefaultPAudioPlayer.initializePlayer():VoicePlayer.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.parentViewController">
+               value = "URL.documentsDirectory">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -80,15 +93,10 @@
          contextName = "DefaultVoiceRecorder.stop():VoiceRecorder.swift">
       </ContextState>
       <ContextState
-         contextName = "TextMessageCell.awakeFromNib():MessageCell.swift">
+         contextName = "ImageMessageCell.initialize():MessageCell.swift">
       </ContextState>
       <ContextState
-         contextName = "NewViewController.viewDidLoad():NewViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.messages as! [PTextMessageImpl]">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "TextMessageCell.initialize():MessageCell.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

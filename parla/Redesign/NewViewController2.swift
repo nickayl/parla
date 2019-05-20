@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDelegate, VoiceRecorderDelegate, CLLocationManagerDelegate  {
+class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDelegate, CLLocationManagerDelegate  {
     
     private var collectionView: UICollectionView!
     
@@ -43,19 +43,20 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
         config.avatar.backgroundColor = UIColor.black
         
         // Initialization of ParlaView class
-        parlaView.initialize(dataSource: self, delegate: self, voiceRecorderDelegate: self)
+        parlaView.initialize(dataSource: self, delegate: self)
         
         // This is a test video taken from the main bundle.
         let mondello = Bundle.main.url(forResource: "mondello", withExtension: "mp4")!
         
         // Adding some test messages
         self.messages = [
-            PTextMessageImpl(id: 1, sender: mSender, text: "Hi Chiara! How are you? :)"),
-            PTextMessageImpl(id: 2, sender: chiara, text: "Hi Domenico, all right! I'm sitting on a deckchiar here in the wonderful beach of Mondello, in Palermo (Italy)  :)"),
-            PTextMessageImpl(id: 3, sender: mSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
-            PImageMessageImpl(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
-            PVideoMessageImpl(id: 5, sender: chiara, videoUrl: mondello),
-            PTextMessageImpl(id: 6, sender: mSender, text: "Amazing, i'm coming right now!")
+            Parla.newTextMessage(id: 1, sender: mSender, text: "Hi Chiara! How are you? :)"),
+            Parla.newTextMessage(id: 2, sender: chiara, text: "Hi Domenico, all right! I'm sitting on a deckchiar here in the wonderful beach of Mondello, in Palermo (Italy)  :)"),
+            Parla.newTextMessage(id: 3, sender: mSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
+            Parla.newImageMessage(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
+            Parla.newVideoMessage(id: 5, sender: chiara, videoUrl: mondello),
+            Parla.newTextMessage(id: 6, sender: mSender, text: "Amazing, i'm coming right now!"),
+            Parla.newVoiceMessage(id: 7, sender: chiara, voiceUrl: URL(string: "file:///Users/MacBookPro/Library/Developer/CoreSimulator/Devices/4619688B-BFB8-4B22-AAC6-501136DF6168/data/Containers/Data/Application/96E77E80-6000-4216-BCF9-3A45578A0DEB/Documents/voice_Domenico_1558335874.020494.m4a")!)
         ]
         
        
@@ -125,16 +126,16 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
     }
     
     
-    func voiceRecorderDidEndRecording(at url: URL, voiceRecorder: VoiceRecorder) {
-        print("did finish recording voice")
+    func didStartRecordingVoiceMessage(atUrl url: URL) {
+        print("Voice recording  start")
+    }
+    
+    func didEndRecordingVoiceMessage(atUrl url: URL) {
+        print("Voice recording  END")
         let msg = PVoiceMessageImpl(id: messages.count+1, sender: mainSender(), date: Date(), voiceUrl: url)
         messages.append(msg)
         collectionView.reloadData()
         collectionView.scrollToBottom(animated: true)
-    }
-    
-    func voiceRecorderDidStartRecording(at url: URL, voiceRecorder: VoiceRecorder) {
-        print("Voice recording  START")
     }
     
     
