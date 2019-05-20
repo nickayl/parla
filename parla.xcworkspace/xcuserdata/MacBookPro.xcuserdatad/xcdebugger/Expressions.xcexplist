@@ -71,6 +71,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AbstractMessageCell.didTapMessage(_:):MessageCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.content as! PTextMessageImpl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ParlaViewController.collectionView(_:cellForItemAt:):ParlaViewController.swift">
          <PersistentStrings>
             <PersistentString

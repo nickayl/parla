@@ -393,7 +393,7 @@ class AbstractMessageCell: UICollectionViewCell {
     }
     
     @objc final fileprivate func didLongTouchMessage(_ sender: UITapGestureRecognizer) {
-        self.viewController.delegate?.didLongTouchMessage(at: indexPath, message: content!, collectionView: viewController.collectionView)
+        self.viewController.delegate?.didLongTouchMessage?(at: indexPath, message: content!, collectionView: viewController.collectionView)
     }
     
 }

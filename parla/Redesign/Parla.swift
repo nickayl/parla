@@ -32,6 +32,17 @@ public final class Parla {
         return PMapMessageImpl(id: id, sender: sender, date: date, coordinates: coordinates)
     }
     
+    public static func outgoingSender(id: Int, name: String, avatar: PAvatar?) -> POutgoingSender {
+        if let instance = outgoingSenderInstance {
+            return instance
+        }
+        
+        outgoingSenderInstance = POutgoingSender(id: id, name: name, avatar: avatar)
+        return outgoingSenderInstance!
+    }
+    
+    private static var outgoingSenderInstance: POutgoingSender?
+    
     public var containerViewController: UIViewController! {
         didSet {
             self.kDefaultImageMessageViewer = SKPhotoBrowserImageViewer.getInstance(for: self.containerViewController)

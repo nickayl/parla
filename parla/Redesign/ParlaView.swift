@@ -20,7 +20,7 @@ public protocol ParlaViewDataSource {
     
     func messageForCell(at indexPath: IndexPath, collectionView: UICollectionView) -> PMessage
     func numberOfMessagesIn(collectionView: UICollectionView) -> Int
-    func mainSender() -> PSender
+    func outgoingSender() -> POutgoingSender
 }
 
 /**
@@ -31,7 +31,6 @@ public protocol ParlaViewDataSource {
     
     // General delegate functions
     func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
-    func didLongTouchMessage(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
     func didPressSendButton(withMessage message: PMessage, textField: UITextField, collectionView: UICollectionView)
     func didPressAccessoryButton(button: UIView, collectionView: UICollectionView)
     // ==========
@@ -40,6 +39,7 @@ public protocol ParlaViewDataSource {
     
     // Accessory button delegate functions
     
+    @objc optional func didLongTouchMessage(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView)
     @objc optional func didStartPickingImage(collectionView: UICollectionView)
     @objc optional func didFinishPickingImage(with image:UIImage?, collectionView: UICollectionView)
     
@@ -138,7 +138,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     @objc private func onSendButtonPressed(_ sender: UITapGestureRecognizer) {
         if !textField.text!.isEmpty {
             let sm = PTextMessageImpl(id: self.dataSource.numberOfMessagesIn(collectionView: collectionView)+1,
-                                      sender: self.dataSource.mainSender(),
+                                      sender: self.dataSource.outgoingSender(),
                                       text: textField.text!,
                                       date: Date())
             
@@ -275,7 +275,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         self.dataSource = dataSource
         self.delegate = delegate
         
-        Parla.config.sender = dataSource.mainSender()
+        Parla.config.sender = dataSource.outgoingSender()
         
         let model = Utils.getModelNumber()
         

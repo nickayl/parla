@@ -14,7 +14,7 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
     private var collectionView: UICollectionView!
     
     // The main sender. His messages are considered as Outgoing, all the messages of other senders will be considerer as Incoming messages.
-    var mSender: PSender!
+    var mainSender: POutgoingSender!
     
     // The array of messages
     var messages: [PMessage]!
@@ -31,8 +31,8 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
         let chiaraAvatar = PAvatar(withImage: UIImage(named: "chiara.jpg")!)
         
         // In this example we have 2 message senders
-        self.mSender = PSender(senderId: 10, senderName: "Domenico", avatar: domenicoAvatar, type: .Outgoing)
-        let chiara = PSender(senderId: 11, senderName: "Chiara", avatar: chiaraAvatar, type: .Incoming)
+        mainSender = Parla.outgoingSender(id: 10, name: "Domenico", avatar: domenicoAvatar)
+        let chiara = PIncomingSender(id: 11, name: "Chiara", avatar: chiaraAvatar)
         
         let config = Parla.config
         config.accessoryButton.preventDefault = false
@@ -50,13 +50,12 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
         
         // Adding some test messages
         self.messages = [
-            Parla.newTextMessage(id: 1, sender: mSender, text: "Hi Chiara! How are you? :)"),
+            Parla.newTextMessage(id: 1, sender: mainSender, text: "Hi Chiara! How are you? :)"),
             Parla.newTextMessage(id: 2, sender: chiara, text: "Hi Domenico, all right! I'm sitting on a deckchiar here in the wonderful beach of Mondello, in Palermo (Italy)  :)"),
-            Parla.newTextMessage(id: 3, sender: mSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
+            Parla.newTextMessage(id: 3, sender: mainSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
             Parla.newImageMessage(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
             Parla.newVideoMessage(id: 5, sender: chiara, videoUrl: mondello),
-            Parla.newTextMessage(id: 6, sender: mSender, text: "Amazing, i'm coming right now!"),
-            Parla.newVoiceMessage(id: 7, sender: chiara, voiceUrl: URL(string: "file:///Users/MacBookPro/Library/Developer/CoreSimulator/Devices/4619688B-BFB8-4B22-AAC6-501136DF6168/data/Containers/Data/Application/96E77E80-6000-4216-BCF9-3A45578A0DEB/Documents/voice_Domenico_1558335874.020494.m4a")!)
+            Parla.newTextMessage(id: 6, sender: mainSender, text: "Amazing, i'm coming right now!"),
         ]
         
        
@@ -105,7 +104,7 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
     
     func didFinishPickingVideo(with: URL?, collectionView: UICollectionView) {
         if let url = with {
-            let msg = PVideoMessageImpl(id: messages.count+1, sender: mainSender(), videoUrl: url)
+            let msg = PVideoMessageImpl(id: messages.count+1, sender: outgoingSender(), videoUrl: url)
             messages.append(msg)
             collectionView.reloadData()
             collectionView.scrollToBottom(animated: true)
@@ -114,16 +113,13 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
     
     func didFinishPickingImage(with image: UIImage?, collectionView: UICollectionView) {
         if image != nil {
-            let msg = PImageMessageImpl(id: messages.count+1, sender: mainSender(), image: image!)
+            let msg = PImageMessageImpl(id: messages.count+1, sender: outgoingSender(), image: image!)
             messages.append(msg)
             collectionView.reloadData()
             collectionView.scrollToBottom(animated: true)
         }
     }
     
-    func mainSender() -> PSender {
-        return mSender
-    }
     
     
     func didStartRecordingVoiceMessage(atUrl url: URL) {
@@ -132,7 +128,7 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
     
     func didEndRecordingVoiceMessage(atUrl url: URL) {
         print("Voice recording  END")
-        let msg = PVoiceMessageImpl(id: messages.count+1, sender: mainSender(), date: Date(), voiceUrl: url)
+        let msg = PVoiceMessageImpl(id: messages.count+1, sender: outgoingSender(), date: Date(), voiceUrl: url)
         messages.append(msg)
         collectionView.reloadData()
         collectionView.scrollToBottom(animated: true)
@@ -140,7 +136,12 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
     
     
     func didPressAccessoryButton(button: UIView, collectionView: UICollectionView) {
+        //Parla.config.accessoryActionChooser?.show()
         print("Did press accessory button")
+    }
+    
+    func outgoingSender() -> POutgoingSender {
+        return mainSender
     }
     
     func messageForCell(at indexPath: IndexPath, collectionView: UICollectionView) -> PMessage {

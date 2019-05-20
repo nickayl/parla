@@ -20,9 +20,9 @@ import UIKit
     public var avatar: PAvatar
     public var type: SenderType
     
-    public init(senderId: Int, senderName: String, avatar: PAvatar?, type: SenderType) {
-        self.id = senderId
-        self.name = senderName
+    fileprivate init(id: Int, name: String, avatar: PAvatar?, type: SenderType) {
+        self.id = id
+        self.name = name
         self.avatar = avatar ?? PAvatar.void
         self.type = type
     }
@@ -31,6 +31,18 @@ import UIKit
         return lhs.id == rhs.id
     }
     
+}
+
+@objc public class PIncomingSender: PSender {
+    public init(id: Int, name: String, avatar: PAvatar?) {
+        super.init(id: id, name: name, avatar: avatar, type: .Incoming)
+    }
+}
+
+@objc public class POutgoingSender: PSender {
+    public init(id: Int, name: String, avatar: PAvatar?) {
+        super.init(id: id, name: name, avatar: avatar, type: .Outgoing)
+    }
 }
 
 public class PAvatar {
