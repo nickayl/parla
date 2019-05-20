@@ -44,6 +44,11 @@
 		522611A22285F13300AA703E /* UIPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279947A2282CAA500ACB791 /* UIPaddingLabel.swift */; };
 		522611CE228614C600AA703E /* SKPhotoBrowser.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 522611CC228614C600AA703E /* SKPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		522611CF228614C600AA703E /* MobilePlayer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 522611CD228614C600AA703E /* MobilePlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		523BA7432292BD1300600061 /* MapImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8C87228C651F00EE3736 /* MapImageGenerator.swift */; };
+		523BA7442292BD1700600061 /* UIMicrophoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */; };
+		523BA7452292BD1D00600061 /* ParlaInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */; };
+		523BA7462292BD2800600061 /* VoiceMessageCellOutgoing.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E6D2C5228FFE7A00A8D6C2 /* VoiceMessageCellOutgoing.xib */; };
+		523BA7472292BD8800600061 /* ParlaInputToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E6D2C3228FE43B00A8D6C2 /* ParlaInputToolbar.xib */; };
 		523D8C88228C651F00EE3736 /* MapImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8C87228C651F00EE3736 /* MapImageGenerator.swift */; };
 		52710E3D228F3F330003D634 /* domenico.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 52710E3C228F3F330003D634 /* domenico.jpeg */; };
 		52710E3F228F42420003D634 /* chiara.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52710E3E228F42420003D634 /* chiara.jpg */; };
@@ -655,6 +660,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523BA7472292BD8800600061 /* ParlaInputToolbar.xib in Resources */,
 				5226118D2285EAB700AA703E /* VoiceMessageCellIncoming.xib in Resources */,
 				5226118B2285EAB700AA703E /* OutgoingTextMessageCell.xib in Resources */,
 				522611862285EAB700AA703E /* IncomingImageMessageCell.xib in Resources */,
@@ -662,6 +668,7 @@
 				522611882285EAB700AA703E /* IncomingTextMessageCell.xib in Resources */,
 				52090707228B27F9001BC7A8 /* UIPaintableImageView.xib in Resources */,
 				5226118C2285EAB700AA703E /* ParlaCollectionView.xib in Resources */,
+				523BA7462292BD2800600061 /* VoiceMessageCellOutgoing.xib in Resources */,
 				522611872285EAB700AA703E /* IncomingVideoMessageCell.xib in Resources */,
 				5226118F2285EBAC00AA703E /* Assets.xcassets in Resources */,
 				5226118A2285EAB700AA703E /* OutgoingVideoMessageCell.xib in Resources */,
@@ -823,13 +830,16 @@
 				522611832285EA6200AA703E /* VideoPlayer.swift in Sources */,
 				52090703228B2782001BC7A8 /* UIPaintView.swift in Sources */,
 				522611842285EA6200AA703E /* MediaPicker.swift in Sources */,
+				523BA7452292BD1D00600061 /* ParlaInputToolbar.swift in Sources */,
 				5226117E2285EA6200AA703E /* Parla.swift in Sources */,
 				522611A22285F13300AA703E /* UIPaddingLabel.swift in Sources */,
 				522611802285EA6200AA703E /* MessageCell.swift in Sources */,
 				5226117D2285EA6200AA703E /* MessageLogic.swift in Sources */,
+				523BA7442292BD1700600061 /* UIMicrophoneView.swift in Sources */,
 				522611A12285F13100AA703E /* Extensions.swift in Sources */,
 				522611852285EA6200AA703E /* AccessoryActionChooser.swift in Sources */,
 				5226117C2285EA6200AA703E /* SenderLogic.swift in Sources */,
+				523BA7432292BD1300600061 /* MapImageGenerator.swift in Sources */,
 				52090705228B2798001BC7A8 /* VoiceRecorder.swift in Sources */,
 				52090704228B2785001BC7A8 /* UIPaintableImageView.swift in Sources */,
 				5226117F2285EA6200AA703E /* ParlaView.swift in Sources */,

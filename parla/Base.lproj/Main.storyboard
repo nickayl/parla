@@ -14,14 +14,26 @@
         <scene sceneID="EVG-Fj-ZYV">
             <objects>
                 <viewController id="iC1-VP-cvW" customClass="NewViewController2" customModule="parla" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6sA-71-XIx" customClass="ParlaView" customModule="parla" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="6sA-71-XIx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXO-S4-IBB" customClass="ParlaView" customModule="parla" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bXO-S4-IBB" firstAttribute="top" secondItem="leE-l0-B64" secondAttribute="top" id="3qa-vR-CIw"/>
+                            <constraint firstItem="bXO-S4-IBB" firstAttribute="leading" secondItem="leE-l0-B64" secondAttribute="leading" id="eS8-Ec-u1T"/>
+                            <constraint firstItem="bXO-S4-IBB" firstAttribute="trailing" secondItem="leE-l0-B64" secondAttribute="trailing" id="m9L-zl-Rd5"/>
+                            <constraint firstItem="bXO-S4-IBB" firstAttribute="bottom" secondItem="leE-l0-B64" secondAttribute="bottom" id="z06-iS-Ttf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="leE-l0-B64"/>
                     </view>
                     <connections>
-                        <outlet property="parlaView" destination="6sA-71-XIx" id="JrF-iS-VDy"/>
+                        <outlet property="parlaView" destination="bXO-S4-IBB" id="8cc-CR-klP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rn8-tj-JqY" userLabel="First Responder" sceneMemberID="firstResponder"/>

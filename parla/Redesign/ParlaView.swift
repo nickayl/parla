@@ -59,6 +59,7 @@ public protocol ParlaViewDataSource {
     The central view to be added in your storyboard views where you want to display the chat UI.
     **This view must belong to a UIViewController class hierarchy or a runtime error will occur.**
 */
+@IBDesignable
 open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate, CLLocationManagerDelegate, UIMicrophoneViewDelegate, VoiceRecorderDelegate  {
 
     public var dataSource: ParlaViewDataSource!
@@ -83,13 +84,19 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     private var keyboardDefaultBottomConstraintMargin = CGFloat(-45)
     private var keyboardStarterBottomMargin = CGFloat(20)
+    
     private var recorder: VoiceRecorder?
     private var locationManager: CLLocationManager?
+    
+    @IBInspectable public var bottomMargin: CGFloat = 0
+    @IBInspectable public var topMargin: CGFloat = 0
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.recorder = DefaultVoiceRecorder()
         self.recorder?.delegate = self
+        bottomMargin = keyboardDefaultBottomConstraintMargin
+        topMargin = keyboardStarterBottomMargin
     }
     
     ///  ********* ========== Collection View Methods ========== **************  ///
@@ -277,18 +284,18 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         
         Parla.config.sender = dataSource.outgoingSender()
         
-        let model = Utils.getModelNumber()
+//        let model = Utils.getModelNumber()
+//
+//        if model.0 < 10 {
+//            keyboardDefaultBottomConstraintMargin = 0
+//            keyboardStarterBottomMargin = 0
+//        } else if model.0 > 10 && (model.1 < 5 && model.1 != 3) {
+//            keyboardDefaultBottomConstraintMargin = 0
+//            keyboardStarterBottomMargin = 0
+//        }
         
-        if model.0 < 10 {
-            keyboardDefaultBottomConstraintMargin = 0
-            keyboardStarterBottomMargin = 0
-        } else if model.0 > 10 && (model.1 < 5 && model.1 != 3) {
-            keyboardDefaultBottomConstraintMargin = 0
-            keyboardStarterBottomMargin = 0
-        }
-        
-        print("\(model) == c: \(keyboardDefaultBottomConstraintMargin)")
-        print("Currently running on iPhone model \(UIDevice.current.modelName)")
+  //      print("\(model) == c: \(keyboardDefaultBottomConstraintMargin)")
+    //    print("Currently running on iPhone model \(UIDevice.current.modelName)")
         
         config.accessoryActionChooser?.delegate = self
         
@@ -315,14 +322,14 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         self.addSubview(inputToolbarContainer!)
         self.addSubview(microphoneButton)
         
-        self.bottomConstraints.append(NSLayoutConstraint(item: inputToolbarContainer, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin))
+        self.bottomConstraints.append(NSLayoutConstraint(item: inputToolbarContainer, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0))
         
-        self.bottomConstraints.append(NSLayoutConstraint(item: microphoneButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: keyboardDefaultBottomConstraintMargin))
+        self.bottomConstraints.append(NSLayoutConstraint(item: microphoneButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0))
         
         self.addConstraints([
             NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -keyboardDefaultBottomConstraintMargin),
+            NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: inputToolbarContainer, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: microphoneButton, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: inputToolbarContainer, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
@@ -388,14 +395,14 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
         print("keyboard size: \(keyboardSize)")
         
-        bottomConstraints.forEach { $0.constant -= keyboardSize.height + keyboardStarterBottomMargin }
+        bottomConstraints.forEach { $0.constant -= keyboardSize.height }
         self.collectionView.scrollToBottom(animated: true)
     }
     
     @objc public final func keyboardWillHide(_ notification: NSNotification) {
        // let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
     
-        bottomConstraints.forEach { $0.constant = CGFloat(keyboardDefaultBottomConstraintMargin) }
+        bottomConstraints.forEach { $0.constant = 0 }
     }
     
 
