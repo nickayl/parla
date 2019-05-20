@@ -40,48 +40,46 @@ class MyViewController : UIViewController, ParlaViewDataSource, ParlaViewDelegat
 Then in your viewDidLoad add your custom logic, for example: 
 ```swift
 override func viewDidLoad() {
-        
-       
-        // The avatars of the senders. If you do not want an avatar pass nil and disable avatar in the config
-        // class before initializing: Parla.config.avatar.isHidden = true
-        let domenicoAvatar = PAvatar(withImage: UIImage(named: "domenico.jpeg")!)
-        let chiaraAvatar = PAvatar(withImage: UIImage(named: "chiara.jpg")!)
-        
-        // In this example we have 2 message senders
-        self.mSender = PSender(senderId: 10, senderName: "Domenico", avatar: domenicoAvatar, type: .Outgoing)
-        let chiara = PSender(senderId: 11, senderName: "Chiara", avatar: chiaraAvatar, type: .Incoming)
-        
-        let config = Parla.config
-        config.accessoryButton.preventDefault = false
-        config.cell.isBottomLabelHidden = false
-        config.avatar.isHidden = false
-        
-        // This color will be used if you pass a nil avatar to a sender but do not set the isHidden property to true.
-        config.avatar.backgroundColor = UIColor.black
-        
-        // Initialization of ParlaView class
-        parlaView.initialize(dataSource: self, delegate: self)
-        
-        // This is a test video taken from the main bundle.
-        let mondello = Bundle.main.url(forResource: "mondello", withExtension: "mp4")!
-        
-        // Adding some test messages
-        self.messages = [
-            Parla.newTextMessage(id: 1, sender: mSender, text: "Hi Chiara! How are you? :)"),
-            Parla.newTextMessage(id: 2, sender: chiara, text: "Hi Domenico, all right! I'm sitting on a deckchiar here in the wonderful beach of Mondello, in Palermo (Italy)  :)"),
-            Parla.newTextMessage(id: 3, sender: mSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
-            Parla.newImageMessage(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
-            Parla.newVideoMessage(id: 5, sender: chiara, videoUrl: mondello),
-            Parla.newTextMessage(id: 6, sender: mSender, text: "Amazing, i'm coming right now!"),
-        ]
-        
-       
-        // Hide the top label every 4 times.
-        for i in 0 ..< messages.count {
-            messages[i].isTopLabelActive = (i % 4 == 0)
-            // messages[i].isTopLabelActive = false
-        }
-        
+
+
+    // The avatars of the senders. If you do not want an avatar pass nil and disable avatar in the config
+    // class before initializing: Parla.config.avatar.isHidden = true
+    let domenicoAvatar = PAvatar(withImage: UIImage(named: "domenico.jpeg")!)
+    let chiaraAvatar = PAvatar(withImage: UIImage(named: "chiara.jpg")!)
+
+    // In this example we have 2 message senders
+    mainSender = Parla.outgoingSender(id: 10, name: "Domenico", avatar: domenicoAvatar)
+    let chiara = PIncomingSender(id: 11, name: "Chiara", avatar: chiaraAvatar)
+
+    let config = Parla.config
+    config.accessoryButton.preventDefault = false
+    config.cell.isBottomLabelHidden = false
+    config.avatar.isHidden = false
+
+    // This color will be used if you pass a nil avatar to a sender but do not set the isHidden property to true.
+    config.avatar.backgroundColor = UIColor.black
+
+    // Initialization of ParlaView class
+    parlaView.initialize(dataSource: self, delegate: self)
+
+    // This is a test video taken from the main bundle.
+    let mondello = Bundle.main.url(forResource: "mondello", withExtension: "mp4")!
+
+    // Adding some test messages
+    self.messages = [
+        Parla.newTextMessage(id: 1, sender: mainSender, text: "Hi Chiara! How are you? :)"),
+        Parla.newTextMessage(id: 2, sender: chiara, text: "Hi Domenico, all right! I'm sitting on a deckchiar here in the wonderful beach of Mondello, in Palermo (Italy)  :)"),
+        Parla.newTextMessage(id: 3, sender: mainSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
+        Parla.newImageMessage(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
+        Parla.newVideoMessage(id: 5, sender: chiara, videoUrl: mondello),
+        Parla.newTextMessage(id: 6, sender: mainSender, text: "Amazing, i'm coming right now!"),
+    ]
+
+
+    // Hide the top label every 4 times.
+    for i in 0 ..< messages.count {
+        messages[i].isTopLabelActive = (i % 4 == 0)
+        // messages[i].isTopLabelActive = false
     }
 ```
 
