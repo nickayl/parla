@@ -1,4 +1,7 @@
 # Parla
+
+**DOCUMENTATION UNDER CONSTRUCTION**
+
 Parla is a modern and user-friendly Chat UI library for iOS. It has been built with flexibility in mind: There are a lot of things that you can change!
 
 It is really easy to use, it requires only little configuration and you are ready to start!
