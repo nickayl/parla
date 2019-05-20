@@ -57,19 +57,19 @@ override func viewDidLoad() {
         config.avatar.backgroundColor = UIColor.black
         
         // Initialization of ParlaView class
-        parlaView.initialize(dataSource: self, delegate: self, voiceRecorderDelegate: self)
+        parlaView.initialize(dataSource: self, delegate: self)
         
         // This is a test video taken from the main bundle.
         let mondello = Bundle.main.url(forResource: "mondello", withExtension: "mp4")!
         
         // Adding some test messages
         self.messages = [
-            PTextMessageImpl(id: 1, sender: mSender, text: "Hi Chiara! How are you? :)"),
-            PTextMessageImpl(id: 2, sender: chiara, text: "Hi Domenico, all right! I'm sitting on a deckchiar here in the wonderful beach of Mondello, in Palermo (Italy)  :)"),
-            PTextMessageImpl(id: 3, sender: mSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
-            PImageMessageImpl(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
-            PVideoMessageImpl(id: 5, sender: chiara, videoUrl: mondello),
-            PTextMessageImpl(id: 6, sender: mSender, text: "Amazing, i'm coming right now!")
+            Parla.newTextMessage(id: 1, sender: mSender, text: "Hi Chiara! How are you? :)"),
+            Parla.newTextMessage(id: 2, sender: chiara, text: "Hi Domenico, all right! I'm sitting on a deckchiar here in the wonderful beach of Mondello, in Palermo (Italy)  :)"),
+            Parla.newTextMessage(id: 3, sender: mSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
+            Parla.newImageMessage(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
+            Parla.newVideoMessage(id: 5, sender: chiara, videoUrl: mondello),
+            Parla.newTextMessage(id: 6, sender: mSender, text: "Amazing, i'm coming right now!"),
         ]
         
        
@@ -79,9 +79,53 @@ override func viewDidLoad() {
             // messages[i].isTopLabelActive = false
         }
         
-        
-        self.collectionView = parlaView.collectionView
     }
 ```
 
+Finally, implement the required functions of the ParlaViewDatasource:
+```swift
+func outgoingSender() -> POutgoingSender {
+    return mainSender
+}
 
+func messageForCell(at indexPath: IndexPath, collectionView: UICollectionView) -> PMessage {
+    return self.messages[indexPath.row]
+}
+
+func numberOfMessagesIn(collectionView: UICollectionView) -> Int {
+    return self.messages.count
+}
+ ```
+ 
+Optionally, but reccomanded, implement the required functions of the ParlaViewDelegate protocol:
+```swift
+func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView) {
+    // You can choose if the binded action with the tap event should occur.
+    message.triggerSelection()
+    print("===>> DID TAP MESSAGE BUBBLE \(message.toString) << ===")
+
+}
+
+func didPressSendButton(withMessage message: PMessage, textField: UITextField, collectionView: UICollectionView) {
+    print("===>> DID PRESS SEND BUTTON \(message.toString) << ===")
+    // ** Example of possible implementation **
+    self.messages.append(message)
+    textField.text = ""
+    collectionView.reloadData()
+    collectionView.scrollToBottom(animated: true)
+    // **** //
+}
+
+func didPressAccessoryButton(button: UIView, collectionView: UICollectionView) {
+    print("===>> DID PRESS ACCESSORY BUTTON << ===")
+}
+ ```
+ 
+ ## Contribution
+ 
+Contributors are welcome! 
+Since this is a brand new library, i hope someone will help me with the maintainance of the project and for the future feature releases.
+ 
+ ## Contact info
+ 
+ If you want to contact me for any information, send me an email at: dom.aiello90@gmail.com
