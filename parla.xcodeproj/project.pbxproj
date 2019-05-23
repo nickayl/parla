@@ -17,6 +17,10 @@
 		52090705228B2798001BC7A8 /* VoiceRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7C70E2288275000459833 /* VoiceRecorder.swift */; };
 		52090706228B2798001BC7A8 /* VoicePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7C7102288300B00459833 /* VoicePlayer.swift */; };
 		52090707228B27F9001BC7A8 /* UIPaintableImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520906FA228AEC84001BC7A8 /* UIPaintableImageView.xib */; };
+		520B636D2296DF97009A655F /* MobilePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520B636C2296DF97009A655F /* MobilePlayer.framework */; };
+		520B636F2296DF9D009A655F /* SKPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520B636E2296DF9D009A655F /* SKPhotoBrowser.framework */; };
+		520B63702296DFA8009A655F /* SKPhotoBrowser.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 520B636E2296DF9D009A655F /* SKPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		520B63712296DFA8009A655F /* MobilePlayer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 520B636C2296DF97009A655F /* MobilePlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5226115D22857B1D00AA703E /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5226115C22857B1D00AA703E /* MediaPicker.swift */; };
 		5226115F228587FD00AA703E /* AccessoryActionChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5226115E228587FD00AA703E /* AccessoryActionChooser.swift */; };
 		522611732285EA4E00AA703E /* ParlaKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522611722285EA4E00AA703E /* ParlaKitTests.swift */; };
@@ -42,8 +46,6 @@
 		522611982285EDAF00AA703E /* ParlaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522611652285EA4E00AA703E /* ParlaKit.framework */; };
 		522611A12285F13100AA703E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994792282CAA500ACB791 /* Extensions.swift */; };
 		522611A22285F13300AA703E /* UIPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279947A2282CAA500ACB791 /* UIPaddingLabel.swift */; };
-		522611CE228614C600AA703E /* SKPhotoBrowser.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 522611CC228614C600AA703E /* SKPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		522611CF228614C600AA703E /* MobilePlayer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 522611CD228614C600AA703E /* MobilePlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		523BA7432292BD1300600061 /* MapImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8C87228C651F00EE3736 /* MapImageGenerator.swift */; };
 		523BA7442292BD1700600061 /* UIMicrophoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */; };
 		523BA7452292BD1D00600061 /* ParlaInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */; };
@@ -142,8 +144,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				522611CE228614C600AA703E /* SKPhotoBrowser.framework in CopyFiles */,
-				522611CF228614C600AA703E /* MobilePlayer.framework in CopyFiles */,
+				520B63702296DFA8009A655F /* SKPhotoBrowser.framework in CopyFiles */,
+				520B63712296DFA8009A655F /* MobilePlayer.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +159,8 @@
 		520906FA228AEC84001BC7A8 /* UIPaintableImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UIPaintableImageView.xib; sourceTree = "<group>"; };
 		520906FC228AF4FB001BC7A8 /* UIPaintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPaintView.swift; sourceTree = "<group>"; };
 		52090701228B0CB8001BC7A8 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		520B636C2296DF97009A655F /* MobilePlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobilePlayer.framework; sourceTree = "<group>"; };
+		520B636E2296DF9D009A655F /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SKPhotoBrowser.framework; sourceTree = "<group>"; };
 		5226115C22857B1D00AA703E /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		5226115E228587FD00AA703E /* AccessoryActionChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryActionChooser.swift; sourceTree = "<group>"; };
 		522611652285EA4E00AA703E /* ParlaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParlaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,8 +176,6 @@
 		5226119B2285EEDA00AA703E /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SKPhotoBrowser.framework; path = "../../../Library/Developer/Xcode/DerivedData/parla-dezhnxynwculdscnaijvjpuutdam/Build/Products/Debug-iphonesimulator/SKPhotoBrowser/SKPhotoBrowser.framework"; sourceTree = "<group>"; };
 		5226119D2285EF2300AA703E /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5226119F2285EF2A00AA703E /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		522611CC228614C600AA703E /* SKPhotoBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SKPhotoBrowser.framework; sourceTree = "<group>"; };
-		522611CD228614C600AA703E /* MobilePlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobilePlayer.framework; sourceTree = "<group>"; };
 		523D8C87228C651F00EE3736 /* MapImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapImageGenerator.swift; sourceTree = "<group>"; };
 		52710E3C228F3F330003D634 /* domenico.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = domenico.jpeg; sourceTree = "<group>"; };
 		52710E3E228F42420003D634 /* chiara.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chiara.jpg; sourceTree = "<group>"; };
@@ -256,6 +258,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				361AE318ACE789F3A2AAD5D3 /* Pods_ParlaKit.framework in Frameworks */,
+				520B636F2296DF9D009A655F /* SKPhotoBrowser.framework in Frameworks */,
+				520B636D2296DF97009A655F /* MobilePlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,8 +337,8 @@
 		527994352282C94500ACB791 = {
 			isa = PBXGroup;
 			children = (
-				522611CD228614C600AA703E /* MobilePlayer.framework */,
-				522611CC228614C600AA703E /* SKPhotoBrowser.framework */,
+				520B636E2296DF9D009A655F /* SKPhotoBrowser.framework */,
+				520B636C2296DF97009A655F /* MobilePlayer.framework */,
 				527994402282C94500ACB791 /* parla */,
 				527994552282C94700ACB791 /* parlaTests */,
 				522611662285EA4E00AA703E /* ParlaKit */,
@@ -948,14 +952,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2DB1E79FFEF83A4150A2FA89 /* Pods-ParlaKit.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 23PQ7WQ52E;
+				DEVELOPMENT_TEAM = VJEA3X5TN7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ParlaKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -966,6 +974,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cyclonesword.ParlaKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -979,13 +988,17 @@
 			baseConfigurationReference = EF8BDEF8DBD5105320B899D7 /* Pods-ParlaKit.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 23PQ7WQ52E;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ParlaKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -996,6 +1009,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cyclonesword.ParlaKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
