@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "ParlaKit"
-  spec.version      = "1.0.1"
+  spec.version      = "1.0.2"
   spec.summary      = "An easy and lightweight chat UI library for iOS"
 
   # This description is used to generate tags and improve search results.
@@ -66,6 +66,7 @@ Pod::Spec.new do |spec|
 
   # spec.platform     = :ios
   spec.platform     = :ios, "9.0"
+# spec.ios.deployment_target  = '9.0'
 
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
@@ -80,7 +81,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/cyclonesword/parla", :tag => spec.version }
+  spec.source       = { :git => "https://github.com/cyclonesword/parla.git", :tag => spec.version }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -92,7 +93,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.source_files  = "parla/**/*.{h,m,swift}"
-  spec.exclude_files = "parla/AppDelegate.swift", "parla/Corelib/AppDelegate.swift"
+  spec.exclude_files = "parla/AppDelegate.swift", "parla/Corelib/NewViewController2.swift", "parla/Drawing/TestViewController.swift"
 
   # spec.public_header_files = "Classes/**/*.h"
 
@@ -106,7 +107,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.resource  = "icon.png"
-  spec.resources = "parla/ParlaKitResources.bundle"
+  spec.resources = "parla/ParlaKitResources.bundle/**/*"
 
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
@@ -135,5 +136,8 @@ Pod::Spec.new do |spec|
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   spec.dependency 'SKPhotoBrowser', '~> 6.1.0'
   spec.dependency 'MobilePlayer', '~> 1.3.0'
+
+  spec.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
+  spec.swift_version = '5.0'
 
 end
