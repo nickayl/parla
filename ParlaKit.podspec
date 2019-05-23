@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "ParlaKit"
-  spec.version      = "1.0.2"
+  spec.version      = "1.0.1"
   spec.summary      = "An easy and lightweight chat UI library for iOS"
 
   # This description is used to generate tags and improve search results.
@@ -107,7 +107,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.resource  = "icon.png"
-  spec.resources = "parla/ParlaKitResources.bundle/**/*"
+  spec.resources = "parla/Resources/Xib/*.xib", "parla/Resources/*.{xcassets,png,jpg,jpeg}"
 
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
 

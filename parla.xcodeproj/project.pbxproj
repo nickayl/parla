@@ -317,7 +317,7 @@
 			children = (
 				52D6BBF622970FA500C441D7 /* Corelib */,
 				52B15A1222897B5600690FC8 /* Drawing */,
-				527994612282C9FE00ACB791 /* ParlaKitResources.bundle */,
+				527994612282C9FE00ACB791 /* Resources */,
 				527994412282C94500ACB791 /* AppDelegate.swift */,
 				527994452282C94500ACB791 /* Main.storyboard */,
 				5279944A2282C94700ACB791 /* LaunchScreen.storyboard */,
@@ -335,7 +335,7 @@
 			path = parlaTests;
 			sourceTree = "<group>";
 		};
-		527994612282C9FE00ACB791 /* ParlaKitResources.bundle */ = {
+		527994612282C9FE00ACB791 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				527994482282C94700ACB791 /* Assets.xcassets */,
@@ -349,7 +349,7 @@
 				5279946A2282CA3D00ACB791 /* play40.png */,
 				527994632282CA3C00ACB791 /* play100.png */,
 			);
-			path = ParlaKitResources.bundle;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		527994A02282E95200ACB791 /* Xib */ = {
