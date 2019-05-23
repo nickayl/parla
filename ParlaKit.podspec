@@ -92,7 +92,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.source_files  = "parla/**/*.{h,m,swift}"
-  #spec.exclude_files = "Classes/Exclude"
+  spec.exclude_files = "parla/AppDelegate.swift", "parla/AppDelegate.swift"
 
   # spec.public_header_files = "Classes/**/*.h"
 
@@ -106,7 +106,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.resource  = "icon.png"
-  # spec.resources = "Resources/*.png"
+  spec.resources = "parla/ParlaKitResources.bundle"
 
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
@@ -118,7 +118,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.framework  = "SomeFramework"
-  # spec.frameworks = "SomeFramework", "AnotherFramework"
+  spec.frameworks = "UIKit", "CoreMedia", "AVKit", "CoreLocation", "MapKit", "MobileCoreServices"
 
   # spec.library   = "iconv"
   # spec.libraries = "iconv", "xml2"
@@ -130,9 +130,10 @@ Pod::Spec.new do |spec|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # spec.requires_arc = true
+  spec.requires_arc = true
 
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # spec.dependency "JSONKit", "~> 1.4"
+  spec.dependency 'SKPhotoBrowser', '~> 6.1.0'
+  spec.dependency 'MobilePlayer', '~> 1.3.0'
 
 end

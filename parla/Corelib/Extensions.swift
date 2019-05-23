@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import CoreMedia
-import AVFoundation
+import AVKit
 
 public extension UIColor {
     

@@ -199,7 +199,7 @@
 		52E6D2D12290326B00A8D6C2 /* github_task_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github_task_1.png; sourceTree = "<group>"; };
 		52F7C70E2288275000459833 /* VoiceRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorder.swift; sourceTree = "<group>"; };
 		52F7C7102288300B00459833 /* VoicePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePlayer.swift; sourceTree = "<group>"; };
-		52FB4DC22284155B001BF14E /* SenderLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SenderLogic.swift; path = parla/Redesign/SenderLogic.swift; sourceTree = SOURCE_ROOT; };
+		52FB4DC22284155B001BF14E /* SenderLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SenderLogic.swift; path = parla/Corelib/SenderLogic.swift; sourceTree = SOURCE_ROOT; };
 		52FB4DC622841875001BF14E /* MessageLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLogic.swift; sourceTree = "<group>"; };
 		52FB4DCA22841A60001BF14E /* Parla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parla.swift; sourceTree = "<group>"; };
 		52FB4DCC22842D67001BF14E /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
@@ -317,8 +317,8 @@
 		527994402282C94500ACB791 /* parla */ = {
 			isa = PBXGroup;
 			children = (
+				52D6BBF622970FA500C441D7 /* Corelib */,
 				52B15A1222897B5600690FC8 /* Drawing */,
-				52FB4DC1228414E6001BF14E /* Redesign */,
 				527994612282C9FE00ACB791 /* ParlaKitResources.bundle */,
 				527994412282C94500ACB791 /* AppDelegate.swift */,
 				527994452282C94500ACB791 /* Main.storyboard */,
@@ -382,7 +382,7 @@
 			path = Drawing;
 			sourceTree = "<group>";
 		};
-		52FB4DC1228414E6001BF14E /* Redesign */ = {
+		52D6BBF622970FA500C441D7 /* Corelib */ = {
 			isa = PBXGroup;
 			children = (
 				527994792282CAA500ACB791 /* Extensions.swift */,
@@ -404,7 +404,7 @@
 				52E6D2CD2290167600A8D6C2 /* NewViewController2.swift */,
 				52FB4DD22284576D001BF14E /* NewViewController.swift */,
 			);
-			path = Redesign;
+			path = Corelib;
 			sourceTree = "<group>";
 		};
 		B07FDA34B9D9C56CA3DEAD89 /* Pods */ = {
