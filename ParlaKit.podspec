@@ -92,7 +92,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.source_files  = "parla/**/*.{h,m,swift}"
-  spec.exclude_files = "parla/AppDelegate.swift", "parla/AppDelegate.swift"
+  spec.exclude_files = "parla/AppDelegate.swift", "parla/Corelib/AppDelegate.swift"
 
   # spec.public_header_files = "Classes/**/*.h"
 

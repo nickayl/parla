@@ -94,7 +94,6 @@
 		52FB4DCD22842D67001BF14E /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCC22842D67001BF14E /* ImageViewer.swift */; };
 		52FB4DCF228433F6001BF14E /* ParlaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DCE228433F6001BF14E /* ParlaView.swift */; };
 		52FB4DD1228439DC001BF14E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DD0228439DC001BF14E /* MessageCell.swift */; };
-		52FB4DD32284576D001BF14E /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DD22284576D001BF14E /* NewViewController.swift */; };
 		52FB4DD52284AAB0001BF14E /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DD42284AAB0001BF14E /* VideoPlayer.swift */; };
 		52FB4DD72284AE89001BF14E /* OutgoingVideoMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FB4DD62284AE89001BF14E /* OutgoingVideoMessageCell.xib */; };
 		52FB4DD92284AED0001BF14E /* IncomingVideoMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FB4DD82284AED0001BF14E /* IncomingVideoMessageCell.xib */; };
@@ -205,7 +204,6 @@
 		52FB4DCC22842D67001BF14E /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		52FB4DCE228433F6001BF14E /* ParlaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlaView.swift; sourceTree = "<group>"; };
 		52FB4DD0228439DC001BF14E /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
-		52FB4DD22284576D001BF14E /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		52FB4DD42284AAB0001BF14E /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		52FB4DD62284AE89001BF14E /* OutgoingVideoMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingVideoMessageCell.xib; sourceTree = "<group>"; };
 		52FB4DD82284AED0001BF14E /* IncomingVideoMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingVideoMessageCell.xib; sourceTree = "<group>"; };
@@ -402,7 +400,6 @@
 				52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */,
 				52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */,
 				52E6D2CD2290167600A8D6C2 /* NewViewController2.swift */,
-				52FB4DD22284576D001BF14E /* NewViewController.swift */,
 			);
 			path = Corelib;
 			sourceTree = "<group>";
@@ -784,7 +781,6 @@
 				52FB4DCD22842D67001BF14E /* ImageViewer.swift in Sources */,
 				520906FD228AF4FB001BC7A8 /* UIPaintView.swift in Sources */,
 				52FB4DC32284155B001BF14E /* SenderLogic.swift in Sources */,
-				52FB4DD32284576D001BF14E /* NewViewController.swift in Sources */,
 				52F7C7112288300B00459833 /* VoicePlayer.swift in Sources */,
 				52FB4DCB22841A60001BF14E /* Parla.swift in Sources */,
 				52E6D2C2228FDF5D00A8D6C2 /* ParlaInputToolbar.swift in Sources */,
