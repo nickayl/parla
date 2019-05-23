@@ -319,7 +319,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         
         //let b = Bundle.main
         
-        let b = Bundle(for: ParlaView.self)
+        let b = Bundle.main
         collectionView = UICollectionView(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.backgroundColor = UIColor.white
         let nib = UINib(nibName: "ParlaInputToolbar", bundle: b)
