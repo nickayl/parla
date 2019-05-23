@@ -319,8 +319,8 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         
         //let b = Bundle.main
         
-        let url = Bundle(for: ParlaView.self).resourceURL!.appendingPathComponent("ParlaKit")
-        let b = Bundle(url: url)
+        let url = Bundle(for: ParlaView.self).url(forResource: "ParlaKit", withExtension: "bundle")
+        let b = Bundle(url: url!)
         collectionView = UICollectionView(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.backgroundColor = UIColor.white
         let nib = UINib(nibName: "ParlaInputToolbar", bundle: b)
