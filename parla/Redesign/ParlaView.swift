@@ -108,7 +108,17 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         cell.viewController = self
         cell.indexPath = indexPath
         cell.content = message
+        
         cell.initialize()
+        
+//        if indexPath.row > 0 {
+//            let precedingMsg = self.dataSource.messageForCell(at: IndexPath(row: indexPath.row-1, section: 1), collectionView: collectionView)
+//            if message.sender.id == precedingMsg.sender.id {
+//                cell.cellBottomLabelHeightConstraint.constant = 0
+//            }
+//        }
+//
+        
         
         return cell
     }

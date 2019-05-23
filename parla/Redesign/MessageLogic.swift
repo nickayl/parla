@@ -22,6 +22,11 @@ let incomingVideoMessageXibName = "IncomingVideoMessageCell", incomingVideoMessa
 let voiceMessageIncomingReuseIdentifier = "VoiceMessageCellIncomingXib"
 let voiceMessageOutgoingReuseIdentifier = "VoiceMessageCellOutgoingXib"
 
+@objc public protocol PMessageOptions {
+    var isTopLabelActive: Bool { get set }
+    var isBottomLabelActive: Bool { get set }
+}
+
 @objc public enum MessageType : Int {
     case ImageMessage, VideoMessage, TextMessage, VoiceMessage, MapMessage
 }
@@ -41,11 +46,11 @@ let voiceMessageOutgoingReuseIdentifier = "VoiceMessageCellOutgoingXib"
     var sender: PSender { get set }
     var messageType: MessageType { get }
     var cellIdentifier: String { get }
-    var isTopLabelActive: Bool { get set }
     var isReadyToUse: Bool { get }
     var contentColor: UIColor { get }
     var backgroundColor: UIColor { get }
     var isIncoming: Bool { get }
+    var options: PMessageOptions { get }
     
     func displaySize(frameWidth: CGFloat) -> CGSize
     func triggerSelection()
@@ -106,7 +111,7 @@ class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageMessage,
         self.mapImageGenerator = MapKitImageGenerator()
         super.init(id: id, sender: sender, type: .MapMessage)
         self.content = coordinates
-        self.isTopLabelActive = true
+        self.options.isTopLabelActive = true
         self.isReadyToUse = false
     }
     
@@ -284,18 +289,17 @@ class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
         let cellPaddingSpace = cfg.cell.sectionInsets.left + cfg.cell.sectionInsets.right
         cellWidth -= cellPaddingSpace
         
-        let bubbleWidth = cellWidth - ((cfg.cell.labelInsets.left + cfg.cell.labelInsets.right) + (cfg.cell.textInsets.left + cfg.cell.textInsets.right) + avatarSize.width + cfg.cell.kDefaultBubbleMargins)
+        let bubbleWidth = cellWidth - ((cfg.cell.labelInsets.left + cfg.cell.labelInsets.right) + (cfg.cell.textInsets.left + cfg.cell.textInsets.right) + (avatarSize.width*2) + cfg.cell.kDefaultBubbleMargins)
         
-        let baseHeight = CGFloat(52.0)
+        let baseHeight = CGFloat(36.0)
         var cellHeight = baseHeight
+
+        cellHeight = ceil(text.height(with: bubbleWidth, font: cfg.cell.kDefaultTextFont)) + (cfg.cell.labelInsets.top + cfg.cell.labelInsets.bottom)
+        cellHeight = cellHeight < baseHeight ? baseHeight : cellHeight
+     
         
-        if(self.text.count > 60 || self.text.contains("\n")) {
-            cellHeight = ceil(text.height(with: bubbleWidth, font: UIFont.systemFont(ofSize: 17.5))) + (cfg.cell.labelInsets.top + cfg.cell.labelInsets.bottom)
-            cellHeight = cellHeight < baseHeight ? baseHeight : cellHeight
-        }
-        
-        let bottomLabelHeight = CGFloat(Parla.config.cell.bottomLabelHeight)
-        let topLabelHeight = isTopLabelActive ? CGFloat(cfg.cell.topLabelHeight) : 0
+        let bottomLabelHeight = CGFloat(options.isBottomLabelActive ? CGFloat(cfg.cell.bottomLabelHeight) : 0)
+        let topLabelHeight = options.isTopLabelActive ? CGFloat(cfg.cell.topLabelHeight) : 0
         
         cellHeight += bottomLabelHeight
         cellHeight += topLabelHeight
@@ -316,7 +320,7 @@ class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
 
 public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     
-    public var isTopLabelActive: Bool = false
+  //  public var isTopLabelActive: Bool = false
     public var messageId: Int = 0
     public var date: Date
     public var sender: PSender
@@ -324,6 +328,7 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     public var content: T?
     public var isReadyToUse: Bool = true
     public var delegate: PMessageDelegate?
+    public var options: PMessageOptions
     
     public var contentColor: UIColor = Parla.CellConfig.kDefaultContentColor
     public var backgroundColor: UIColor = Parla.CellConfig.kDefaultBackgroundColor
@@ -356,6 +361,7 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
         self.date = date
         self.sender = sender
         self.messageType = type
+        self.options = PMessageOptionsImpl()
         super.init()
         if isIncoming {
             self.contentColor = Parla.config.cell.textIncomingColor
@@ -376,4 +382,8 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     
 }
 
+@objc public class PMessageOptionsImpl : NSObject, PMessageOptions {
+    public var isTopLabelActive: Bool = false
+    public var isBottomLabelActive: Bool = true
+}
 

@@ -79,13 +79,13 @@ public final class Parla {
     }
     
     public final class AvatarConfig {
-        public var isHidden = false {
-            willSet {
-                if newValue {
-               //     size = CGSize.zero
-                }
-            }
-        }
+//        public var isHidden = false {
+//            willSet {
+//                if newValue {
+//               //     size = CGSize.zero
+//                }
+//            }
+//        }
         public var size: CGSize = AvatarConfig.kDefaultAvatarSize
         public var backgroundColor = AvatarConfig.kDefaultAvatarBackgroundColor
         public var imageContentMode: UIView.ContentMode = .scaleAspectFill
@@ -139,16 +139,16 @@ public final class Parla {
         public var bottomLabelHeight = 16
         public var topLabelHeight = 16
         
-        public let kDefaultBubbleMargins: CGFloat = 20
+        public let kDefaultBubbleMargins: CGFloat = 35
         public let kDefaultImageBubbleSize: CGSize = CGSize(width: 200, height: 180)
         public let kDefaultVideoBubbleSize: CGSize = CGSize(width: 200, height: 180)
         public let kDefaultVoiceMessageWidth:CGFloat = 200
-       // public let kDefaultTextFont: UIFont = UIFont(name: "AvenirNext-Regular", size: 16.0)!
+        public let kDefaultTextFont: UIFont = UIFont(name: "AvenirNext-Regular", size: 16.0)!
         
         public var isBottomLabelHidden:Bool = false
         
         public var sectionInsets = UIEdgeInsets(top: 8.0, left: 10.0, bottom: 0.0, right: 10.0)
-        public var labelInsets = UIEdgeInsets(top: 16.0, left: 0.0, bottom: 16.0, right: 0.0)
+        public var labelInsets = UIEdgeInsets(top: 8.0, left: 0.0, bottom: 8.0, right: 0.0)
         public var textInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         
         fileprivate init() {

@@ -181,7 +181,7 @@ class ImageMessageCell: AbstractMessageCell, PMessageDelegate {
         addDefaultTapGestureRecognizer()
         addDefaultLongTouchGestureRecognizer()
         
-        if message.isTopLabelActive {
+        if message.options.isTopLabelActive {
             self.topLabel.text = message.imageDescription
             self.topLabel.textAlignment = (message.sender.type == .Incoming ? .left : .right)
         }
@@ -244,8 +244,7 @@ class TextMessageCell : AbstractMessageCell {
         let avatarSize = self.message.sender.avatar.size
         let cellWidth = frame.width
         
-        let top = message.isTopLabelActive ? Parla.config.cell.topLabelHeight : 0
-        textLabelHeightConstraint.constant = frame.size.height - CGFloat(Parla.config.cell.bottomLabelHeight + top + 14)
+        textLabelHeightConstraint.constant = frame.size.height - CGFloat(cellTopLabelHeightContraint.constant + cellBottomLabelHeightConstraint.constant)
         textLabel.textColor = message.contentColor
         textLabel.backgroundColor = message.backgroundColor
         textLabel.padding = cfg.cell.textInsets
@@ -266,7 +265,8 @@ class TextMessageCell : AbstractMessageCell {
             textLabel.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             textLabel.setBorderRadius(radius: 19)
         } else {
-            leadingOrTrailingConstraint.constant = (cfg.cell.labelInsets.left * 2)+cfg.cell.kDefaultBubbleMargins
+//            leadingOrTrailingConstraint.constant = (cfg.cell.labelInsets.left * 2)+cfg.cell.kDefaultBubbleMargins
+            leadingOrTrailingConstraint.constant = cfg.cell.kDefaultBubbleMargins + Parla.config.avatar.size.width
             textLabel.textAlignment = .left
             textLabel.padding = cfg.cell.textInsets
         }
@@ -315,7 +315,6 @@ class AbstractMessageCell: UICollectionViewCell {
     }
     
     func initialize() {
-        // To be overridden
         
         if content?.sender.type == .Incoming {
             leadingOrTrailingConstraint = cellTrailingConstraint
@@ -323,48 +322,37 @@ class AbstractMessageCell: UICollectionViewCell {
             leadingOrTrailingConstraint = cellLeadingConstraint
         }
         
-        // Hide the Top label every 4 items.
-//        if indexPath.item % 4 != 0 {
-//            self.content?.isDateLabelActive = false
-//            cellTopLabelHeightContraint.constant = 0
-//        } else {
-//            self.content?.isDateLabelActive = true
-//            cellTopLabelHeightContraint.constant = cfg.kDefaultCellTopLabelHeight
-//        }
-        // ---
+        let top = content?.options.isTopLabelActive ?? false ? Parla.config.cell.topLabelHeight : 0
+        let bottom = content?.options.isBottomLabelActive ?? false ? Parla.config.cell.bottomLabelHeight : 0
         
-        cellTopLabelHeightContraint.constant = CGFloat(content?.isTopLabelActive ?? false ? Parla.config.cell.topLabelHeight : 0)
+        cellTopLabelHeightContraint.constant = CGFloat(top)
+        cellBottomLabelHeightConstraint.constant = CGFloat(bottom)
+        
+        if bottom > 0 {
+            self.bottomLabel.text = self.content?.sender.name
+            self.bottomLabel.textAlignment = (content?.sender.type == .Incoming ? .left : .right)
+            
+            if self.content?.sender.type == .Incoming {
+                //   cellTrailingConstraint.constant = leadingOrTrailingConstraint.constant
+                bottomLabel.padding = UIEdgeInsets(top: 0, left: cfg.cell.textInsets.left, bottom: 0, right: 0)
+            } else {
+                //  cellLeadingConstraint.constant = leadingOrTrailingConstraint.constant
+                bottomLabel.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right:cfg.cell.textInsets.right)
+            }
+        }
         
         let avatarSize = content?.sender.avatar.size ?? CGSize.zero
         
         cellAvatarImageWidthConstraint.constant = avatarSize.width
         cellAvatarImageHeightConstraint.constant = avatarSize.height
         
-        // If the sender have an avatar image let's set it. Otherwise it'll be replaced with a custom background color
-        self.avatarBubbleImage.contentMode = Parla.config.avatar.imageContentMode
-        avatarBubbleImage.image = content?.sender.avatar.image
-        avatarBubbleImage.setBorderRadius(radius: Int(avatarSize.width / 2))
-      //  avatarBubbleImage.setNeedsLayout()
-        
-
-        // Hide or show the bottom label of the cell.
-        if cfg.cell.isBottomLabelHidden {
-            cellBottomLabelHeightConstraint.constant = 0
-        } else {
-            cellBottomLabelHeightConstraint.constant = CGFloat(cfg.cell.bottomLabelHeight)
-            bottomLabel.text = self.content?.sender.name
+        if !avatarSize.equalTo(CGSize.zero) {
+            // If the sender have an avatar image let's set it. Otherwise it'll be replaced with a custom background color
+            self.avatarBubbleImage.contentMode = Parla.config.avatar.imageContentMode
+            avatarBubbleImage.image = content?.sender.avatar.image
+            avatarBubbleImage.setBorderRadius(radius: Int(avatarSize.width / 2))
         }
         
-        
-        if self.content?.sender.type == .Incoming {
-         //   cellTrailingConstraint.constant = leadingOrTrailingConstraint.constant
-            bottomLabel.padding = UIEdgeInsets(top: 0, left: cfg.cell.textInsets.left, bottom: 0, right: 0)
-        } else {
-          //  cellLeadingConstraint.constant = leadingOrTrailingConstraint.constant
-            bottomLabel.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right:cfg.cell.textInsets.right)
-        }
-        
-        self.bottomLabel.textAlignment = (content?.sender.type == .Incoming ? .left : .right)
     }
     
     

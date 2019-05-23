@@ -31,19 +31,15 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
         let chiaraAvatar = PAvatar(withImage: UIImage(named: "chiara.jpg")!)
         
         // In this example we have 2 message senders
-        mainSender = Parla.outgoingSender(id: 10, name: "Domenico", avatar: domenicoAvatar)
+        mainSender = Parla.outgoingSender(id: 10, name: "Domenico", avatar: nil)
         let chiara = PIncomingSender(id: 11, name: "Chiara", avatar: chiaraAvatar)
         
         let config = Parla.config
         config.accessoryButton.preventDefault = false
         config.cell.isBottomLabelHidden = false
-        config.avatar.isHidden = false
         
         // This color will be used if you pass a nil avatar to a sender but do not set the isHidden property to true.
         config.avatar.backgroundColor = UIColor.black
-        
-        // Initialization of ParlaView class
-        parlaView.initialize(dataSource: self, delegate: self)
         
         // This is a test video taken from the main bundle.
         let mondello = Bundle.main.url(forResource: "mondello", withExtension: "mp4")!
@@ -58,12 +54,17 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
             Parla.newTextMessage(id: 6, sender: mainSender, text: "Amazing, i'm coming right now!"),
         ]
         
-       
-        // Hide the top label every 4 times.
-        for i in 0 ..< messages.count {
-            messages[i].isTopLabelActive = (i % 4 == 0)
-            // messages[i].isTopLabelActive = false
+        for m in messages {
+            m.options.isBottomLabelActive = false
         }
+       
+        // Initialization of ParlaView class
+        parlaView.initialize(dataSource: self, delegate: self)
+//        // Hide the top label every 4 times.
+//        for i in 0 ..< messages.count {
+//            messages[i].options.isTopLabelActive = (i % 4 == 0)
+//            // messages[i].isTopLabelActive = false
+//        }
         
         
         self.collectionView = parlaView.collectionView

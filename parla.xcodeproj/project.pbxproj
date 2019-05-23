@@ -474,7 +474,6 @@
 				52FB4DCA22841A60001BF14E /* Parla.swift */,
 				52FB4DCE228433F6001BF14E /* ParlaView.swift */,
 				52FB4DD0228439DC001BF14E /* MessageCell.swift */,
-				52FB4DD22284576D001BF14E /* NewViewController.swift */,
 				52FB4DCC22842D67001BF14E /* ImageViewer.swift */,
 				52FB4DD42284AAB0001BF14E /* VideoPlayer.swift */,
 				5226115C22857B1D00AA703E /* MediaPicker.swift */,
@@ -485,6 +484,7 @@
 				52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */,
 				52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */,
 				52E6D2CD2290167600A8D6C2 /* NewViewController2.swift */,
+				52FB4DD22284576D001BF14E /* NewViewController.swift */,
 			);
 			path = Redesign;
 			sourceTree = "<group>";

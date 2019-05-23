@@ -19,15 +19,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TextMessageCell.awakeFromNib():MessageCell.swift">
+         contextName = "ImageMessageCell.initialize():MessageCell.swift">
       </ContextState>
       <ContextState
-         contextName = "NewViewController.viewDidLoad():NewViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.messages as! [PTextMessageImpl]">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "TextMessageCell.initialize():MessageCell.swift">
       </ContextState>
       <ContextState
          contextName = "ImageMessageCell.content.setter:MessageCell.swift">
@@ -98,13 +93,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "PTextMessageImpl.displaySize(frameWidth:):MessageLogic.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.text.count/800">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DefaultVoiceRecorder.stop():VoiceRecorder.swift">
       </ContextState>
       <ContextState
-         contextName = "ImageMessageCell.initialize():MessageCell.swift">
+         contextName = "TextMessageCell.awakeFromNib():MessageCell.swift">
       </ContextState>
       <ContextState
-         contextName = "TextMessageCell.initialize():MessageCell.swift">
+         contextName = "NewViewController.viewDidLoad():NewViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.messages as! [PTextMessageImpl]">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>
