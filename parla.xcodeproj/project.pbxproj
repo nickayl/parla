@@ -62,38 +62,20 @@
 		527994572282C94700ACB791 /* parlaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994562282C94700ACB791 /* parlaTests.swift */; };
 		5279946C2282CA3D00ACB791 /* avatarDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = 527994622282CA3C00ACB791 /* avatarDefault.png */; };
 		5279946D2282CA3D00ACB791 /* play100.png in Resources */ = {isa = PBXBuildFile; fileRef = 527994632282CA3C00ACB791 /* play100.png */; };
-		5279946E2282CA3D00ACB791 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 527994642282CA3D00ACB791 /* video.mp4 */; };
 		5279946F2282CA3D00ACB791 /* play_blu.png in Resources */ = {isa = PBXBuildFile; fileRef = 527994652282CA3D00ACB791 /* play_blu.png */; };
 		527994702282CA3D00ACB791 /* pause100.png in Resources */ = {isa = PBXBuildFile; fileRef = 527994662282CA3D00ACB791 /* pause100.png */; };
 		527994712282CA3D00ACB791 /* doc.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 527994672282CA3D00ACB791 /* doc.jpg */; };
-		527994722282CA3D00ACB791 /* Imagine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 527994682282CA3D00ACB791 /* Imagine.mp3 */; };
 		527994732282CA3D00ACB791 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 527994692282CA3D00ACB791 /* play.png */; };
 		527994742282CA3D00ACB791 /* play40.png in Resources */ = {isa = PBXBuildFile; fileRef = 5279946A2282CA3D00ACB791 /* play40.png */; };
 		527994752282CA3D00ACB791 /* Microphone-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 5279946B2282CA3D00ACB791 /* Microphone-100.png */; };
-		527994852282CAA600ACB791 /* SConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994782282CAA500ACB791 /* SConfig.swift */; };
 		527994862282CAA600ACB791 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994792282CAA500ACB791 /* Extensions.swift */; };
 		527994872282CAA600ACB791 /* UIPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279947A2282CAA500ACB791 /* UIPaddingLabel.swift */; };
-		527994882282CAA600ACB791 /* ViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279947B2282CAA600ACB791 /* ViewHolder.swift */; };
-		527994892282CAA600ACB791 /* SSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279947C2282CAA600ACB791 /* SSender.swift */; };
-		5279948A2282CAA600ACB791 /* AbstractBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279947D2282CAA600ACB791 /* AbstractBubble.swift */; };
-		5279948B2282CAA600ACB791 /* BubbleTextViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279947E2282CAA600ACB791 /* BubbleTextViewHolder.swift */; };
-		5279948C2282CAA600ACB791 /* BubbleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279947F2282CAA600ACB791 /* BubbleViewCell.swift */; };
-		5279948D2282CAA600ACB791 /* SMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994802282CAA600ACB791 /* SMessage.swift */; };
-		5279948E2282CAA600ACB791 /* CellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994812282CAA600ACB791 /* CellSizeCalculator.swift */; };
-		5279948F2282CAA600ACB791 /* BubbleImageViewHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994822282CAA600ACB791 /* BubbleImageViewHolder.swift */; };
-		527994902282CAA600ACB791 /* BubbleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994832282CAA600ACB791 /* BubbleDataSource.swift */; };
-		527994942282CAC500ACB791 /* CellBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994912282CAC400ACB791 /* CellBubble.swift */; };
-		527994952282CAC500ACB791 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994922282CAC400ACB791 /* ChatViewController.swift */; };
-		527994962282CAC500ACB791 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994932282CAC500ACB791 /* ViewController.swift */; };
-		527994992282CAFC00ACB791 /* DebuggingStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527994972282CAFC00ACB791 /* DebuggingStuff.swift */; };
-		5279949C2282D11A00ACB791 /* BubbleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279949B2282D11A00ACB791 /* BubbleDelegate.swift */; };
 		527994A62282E96300ACB791 /* IncomingTextMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A12282E96300ACB791 /* IncomingTextMessageCell.xib */; };
 		527994A72282E96300ACB791 /* ParlaCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A22282E96300ACB791 /* ParlaCollectionView.xib */; };
 		527994A82282E96300ACB791 /* OutgoingImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A32282E96300ACB791 /* OutgoingImageMessageCell.xib */; };
 		527994A92282E96300ACB791 /* IncomingImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A42282E96300ACB791 /* IncomingImageMessageCell.xib */; };
 		527994AA2282E96300ACB791 /* OutgoingTextMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */; };
 		527994AC2283079800ACB791 /* VoiceMessageCellIncoming.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994AB2283079800ACB791 /* VoiceMessageCellIncoming.xib */; };
-		52B15A1422897B6800690FC8 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B15A1322897B6800690FC8 /* DrawingViewController.swift */; };
 		52B15A162289F9F200690FC8 /* UIPaintableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B15A152289F9F200690FC8 /* UIPaintableImageView.swift */; };
 		52BB818E228D71BD00D3904C /* UIMicrophoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */; };
 		52E6D2C2228FDF5D00A8D6C2 /* ParlaInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */; };
@@ -191,38 +173,20 @@
 		527994582282C94700ACB791 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		527994622282CA3C00ACB791 /* avatarDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatarDefault.png; sourceTree = "<group>"; };
 		527994632282CA3C00ACB791 /* play100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play100.png; sourceTree = "<group>"; };
-		527994642282CA3D00ACB791 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		527994652282CA3D00ACB791 /* play_blu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_blu.png; sourceTree = "<group>"; };
 		527994662282CA3D00ACB791 /* pause100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause100.png; sourceTree = "<group>"; };
 		527994672282CA3D00ACB791 /* doc.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doc.jpg; sourceTree = "<group>"; };
-		527994682282CA3D00ACB791 /* Imagine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Imagine.mp3; sourceTree = "<group>"; };
 		527994692282CA3D00ACB791 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		5279946A2282CA3D00ACB791 /* play40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play40.png; sourceTree = "<group>"; };
 		5279946B2282CA3D00ACB791 /* Microphone-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Microphone-100.png"; sourceTree = "<group>"; };
-		527994782282CAA500ACB791 /* SConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SConfig.swift; sourceTree = "<group>"; };
 		527994792282CAA500ACB791 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5279947A2282CAA500ACB791 /* UIPaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPaddingLabel.swift; sourceTree = "<group>"; };
-		5279947B2282CAA600ACB791 /* ViewHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewHolder.swift; sourceTree = "<group>"; };
-		5279947C2282CAA600ACB791 /* SSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSender.swift; sourceTree = "<group>"; };
-		5279947D2282CAA600ACB791 /* AbstractBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractBubble.swift; sourceTree = "<group>"; };
-		5279947E2282CAA600ACB791 /* BubbleTextViewHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleTextViewHolder.swift; sourceTree = "<group>"; };
-		5279947F2282CAA600ACB791 /* BubbleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleViewCell.swift; sourceTree = "<group>"; };
-		527994802282CAA600ACB791 /* SMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMessage.swift; sourceTree = "<group>"; };
-		527994812282CAA600ACB791 /* CellSizeCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellSizeCalculator.swift; sourceTree = "<group>"; };
-		527994822282CAA600ACB791 /* BubbleImageViewHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleImageViewHolder.swift; sourceTree = "<group>"; };
-		527994832282CAA600ACB791 /* BubbleDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleDataSource.swift; sourceTree = "<group>"; };
-		527994912282CAC400ACB791 /* CellBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellBubble.swift; sourceTree = "<group>"; };
-		527994922282CAC400ACB791 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		527994932282CAC500ACB791 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		527994972282CAFC00ACB791 /* DebuggingStuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebuggingStuff.swift; sourceTree = "<group>"; };
-		5279949B2282D11A00ACB791 /* BubbleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleDelegate.swift; sourceTree = "<group>"; };
 		527994A12282E96300ACB791 /* IncomingTextMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingTextMessageCell.xib; sourceTree = "<group>"; };
 		527994A22282E96300ACB791 /* ParlaCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParlaCollectionView.xib; sourceTree = "<group>"; };
 		527994A32282E96300ACB791 /* OutgoingImageMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingImageMessageCell.xib; sourceTree = "<group>"; };
 		527994A42282E96300ACB791 /* IncomingImageMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingImageMessageCell.xib; sourceTree = "<group>"; };
 		527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingTextMessageCell.xib; sourceTree = "<group>"; };
 		527994AB2283079800ACB791 /* VoiceMessageCellIncoming.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoiceMessageCellIncoming.xib; sourceTree = "<group>"; };
-		52B15A1322897B6800690FC8 /* DrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		52B15A152289F9F200690FC8 /* UIPaintableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPaintableImageView.swift; sourceTree = "<group>"; };
 		52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMicrophoneView.swift; sourceTree = "<group>"; };
 		52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlaInputToolbar.swift; sourceTree = "<group>"; };
@@ -291,17 +255,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5226115B2285661900AA703E /* Legacy code */ = {
-			isa = PBXGroup;
-			children = (
-				52B15A1322897B6800690FC8 /* DrawingViewController.swift */,
-				527994922282CAC400ACB791 /* ChatViewController.swift */,
-				527994932282CAC500ACB791 /* ViewController.swift */,
-				527994762282CA4300ACB791 /* Domain */,
-			);
-			path = "Legacy code";
-			sourceTree = "<group>";
-		};
 		522611662285EA4E00AA703E /* ParlaKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,6 +290,7 @@
 		527994352282C94500ACB791 = {
 			isa = PBXGroup;
 			children = (
+				52710E3B228F3F210003D634 /* Test Resources */,
 				520B636E2296DF9D009A655F /* SKPhotoBrowser.framework */,
 				520B636C2296DF97009A655F /* MobilePlayer.framework */,
 				527994402282C94500ACB791 /* parla */,
@@ -363,15 +317,11 @@
 		527994402282C94500ACB791 /* parla */ = {
 			isa = PBXGroup;
 			children = (
-				52710E3B228F3F210003D634 /* Test Resources */,
 				52B15A1222897B5600690FC8 /* Drawing */,
 				52FB4DC1228414E6001BF14E /* Redesign */,
-				527994A02282E95200ACB791 /* Xib */,
-				5226115B2285661900AA703E /* Legacy code */,
-				527994612282C9FE00ACB791 /* Resources */,
+				527994612282C9FE00ACB791 /* ParlaKitResources.bundle */,
 				527994412282C94500ACB791 /* AppDelegate.swift */,
 				527994452282C94500ACB791 /* Main.storyboard */,
-				527994482282C94700ACB791 /* Assets.xcassets */,
 				5279944A2282C94700ACB791 /* LaunchScreen.storyboard */,
 				5279944D2282C94700ACB791 /* Info.plist */,
 			);
@@ -387,57 +337,21 @@
 			path = parlaTests;
 			sourceTree = "<group>";
 		};
-		527994612282C9FE00ACB791 /* Resources */ = {
+		527994612282C9FE00ACB791 /* ParlaKitResources.bundle */ = {
 			isa = PBXGroup;
 			children = (
+				527994482282C94700ACB791 /* Assets.xcassets */,
+				527994A02282E95200ACB791 /* Xib */,
 				527994622282CA3C00ACB791 /* avatarDefault.png */,
 				527994672282CA3D00ACB791 /* doc.jpg */,
-				527994682282CA3D00ACB791 /* Imagine.mp3 */,
 				5279946B2282CA3D00ACB791 /* Microphone-100.png */,
 				527994662282CA3D00ACB791 /* pause100.png */,
 				527994652282CA3D00ACB791 /* play_blu.png */,
 				527994692282CA3D00ACB791 /* play.png */,
 				5279946A2282CA3D00ACB791 /* play40.png */,
 				527994632282CA3C00ACB791 /* play100.png */,
-				527994642282CA3D00ACB791 /* video.mp4 */,
 			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		527994762282CA4300ACB791 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				5279949E2282D40C00ACB791 /* Protocols */,
-				5279949D2282D3D700ACB791 /* Bubble */,
-				527994972282CAFC00ACB791 /* DebuggingStuff.swift */,
-				527994812282CAA600ACB791 /* CellSizeCalculator.swift */,
-				527994782282CAA500ACB791 /* SConfig.swift */,
-				527994802282CAA600ACB791 /* SMessage.swift */,
-				5279947C2282CAA600ACB791 /* SSender.swift */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		5279949D2282D3D700ACB791 /* Bubble */ = {
-			isa = PBXGroup;
-			children = (
-				5279947B2282CAA600ACB791 /* ViewHolder.swift */,
-				527994912282CAC400ACB791 /* CellBubble.swift */,
-				5279947D2282CAA600ACB791 /* AbstractBubble.swift */,
-				527994822282CAA600ACB791 /* BubbleImageViewHolder.swift */,
-				5279947E2282CAA600ACB791 /* BubbleTextViewHolder.swift */,
-				5279947F2282CAA600ACB791 /* BubbleViewCell.swift */,
-			);
-			path = Bubble;
-			sourceTree = "<group>";
-		};
-		5279949E2282D40C00ACB791 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				527994832282CAA600ACB791 /* BubbleDataSource.swift */,
-				5279949B2282D11A00ACB791 /* BubbleDelegate.swift */,
-			);
-			path = Protocols;
+			path = ParlaKitResources.bundle;
 			sourceTree = "<group>";
 		};
 		527994A02282E95200ACB791 /* Xib */ = {
@@ -694,7 +608,6 @@
 				5279946C2282CA3D00ACB791 /* avatarDefault.png in Resources */,
 				527994A82282E96300ACB791 /* OutgoingImageMessageCell.xib in Resources */,
 				52FB4DD92284AED0001BF14E /* IncomingVideoMessageCell.xib in Resources */,
-				5279946E2282CA3D00ACB791 /* video.mp4 in Resources */,
 				5279946D2282CA3D00ACB791 /* play100.png in Resources */,
 				527994712282CA3D00ACB791 /* doc.jpg in Resources */,
 				5279946F2282CA3D00ACB791 /* play_blu.png in Resources */,
@@ -714,7 +627,6 @@
 				52710E42228F43FD0003D634 /* mondello-beach.jpg in Resources */,
 				527994732282CA3D00ACB791 /* play.png in Resources */,
 				527994A62282E96300ACB791 /* IncomingTextMessageCell.xib in Resources */,
-				527994722282CA3D00ACB791 /* Imagine.mp3 in Resources */,
 				527994702282CA3D00ACB791 /* pause100.png in Resources */,
 				52E6D2CC2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png in Resources */,
 				52E6D2D22290326B00A8D6C2 /* github_task_1.png in Resources */,
@@ -864,8 +776,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5279948C2282CAA600ACB791 /* BubbleViewCell.swift in Sources */,
-				5279948A2282CAA600ACB791 /* AbstractBubble.swift in Sources */,
 				52090702228B0CB8001BC7A8 /* TestViewController.swift in Sources */,
 				527994862282CAA600ACB791 /* Extensions.swift in Sources */,
 				5226115D22857B1D00AA703E /* MediaPicker.swift in Sources */,
@@ -874,34 +784,20 @@
 				52FB4DCD22842D67001BF14E /* ImageViewer.swift in Sources */,
 				520906FD228AF4FB001BC7A8 /* UIPaintView.swift in Sources */,
 				52FB4DC32284155B001BF14E /* SenderLogic.swift in Sources */,
-				527994882282CAA600ACB791 /* ViewHolder.swift in Sources */,
 				52FB4DD32284576D001BF14E /* NewViewController.swift in Sources */,
-				527994852282CAA600ACB791 /* SConfig.swift in Sources */,
-				527994902282CAA600ACB791 /* BubbleDataSource.swift in Sources */,
-				527994942282CAC500ACB791 /* CellBubble.swift in Sources */,
 				52F7C7112288300B00459833 /* VoicePlayer.swift in Sources */,
-				527994892282CAA600ACB791 /* SSender.swift in Sources */,
 				52FB4DCB22841A60001BF14E /* Parla.swift in Sources */,
 				52E6D2C2228FDF5D00A8D6C2 /* ParlaInputToolbar.swift in Sources */,
 				52BB818E228D71BD00D3904C /* UIMicrophoneView.swift in Sources */,
-				5279948B2282CAA600ACB791 /* BubbleTextViewHolder.swift in Sources */,
-				527994952282CAC500ACB791 /* ChatViewController.swift in Sources */,
 				5226115F228587FD00AA703E /* AccessoryActionChooser.swift in Sources */,
-				527994962282CAC500ACB791 /* ViewController.swift in Sources */,
 				52B15A162289F9F200690FC8 /* UIPaintableImageView.swift in Sources */,
 				52FB4DD52284AAB0001BF14E /* VideoPlayer.swift in Sources */,
-				52B15A1422897B6800690FC8 /* DrawingViewController.swift in Sources */,
-				5279948D2282CAA600ACB791 /* SMessage.swift in Sources */,
-				5279949C2282D11A00ACB791 /* BubbleDelegate.swift in Sources */,
 				52FB4DD1228439DC001BF14E /* MessageCell.swift in Sources */,
 				527994872282CAA600ACB791 /* UIPaddingLabel.swift in Sources */,
 				523D8C88228C651F00EE3736 /* MapImageGenerator.swift in Sources */,
 				52E6D2CE2290167600A8D6C2 /* NewViewController2.swift in Sources */,
 				527994422282C94500ACB791 /* AppDelegate.swift in Sources */,
-				527994992282CAFC00ACB791 /* DebuggingStuff.swift in Sources */,
 				52FB4DC722841875001BF14E /* MessageLogic.swift in Sources */,
-				5279948F2282CAA600ACB791 /* BubbleImageViewHolder.swift in Sources */,
-				5279948E2282CAA600ACB791 /* CellSizeCalculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1180,7 +1076,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23PQ7WQ52E;
 				INFOPLIST_FILE = parla/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1200,7 +1096,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23PQ7WQ52E;
 				INFOPLIST_FILE = parla/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
