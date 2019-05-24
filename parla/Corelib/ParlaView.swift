@@ -321,11 +321,12 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         
       //  let url = Bundle(for: ParlaView.self).url(forResource: "ParlaKit", withExtension: "bundle")
        // let b = Bundle(url: url!)
-        let b = Bundle(identifier: "com.cyclonesword.ParlaKit")
+        let b = Bundle(identifier: "org.cocoapods.ParlaKit")
+     //  let b = Bundle(identifier: "com.cyclonesword.ParlaKit")
         collectionView = UICollectionView(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.backgroundColor = UIColor.white
         let nib = UINib(nibName: "ParlaInputToolbar", bundle: b)
-        let mainView = nib.instantiate(withOwner: self, options: nil).first as? UIView
+        let mainView = nib.instantiate(withOwner: nil, options: nil).first as? UIView
         
         inputToolbarContainer = mainView?.subviews[0] as? ParlaInputToolbar
         microphoneButton = mainView?.subviews[1] as? UIMicrophoneView

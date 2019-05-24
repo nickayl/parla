@@ -107,11 +107,14 @@ Pod::Spec.new do |spec|
   #
 
   # spec.resource  = "icon.png"
-  spec.resources = "parla/Resources/Xib/*.xib", "parla/Resources/*.{xcassets,png,jpg,jpeg}"
+  spec.resources = "parla/Resources/Xib/*.xib", "parla/Resources/*.{xcassets,png,jpg,jpeg}",
+      "parla/Resources/Assets.xcassets"
+
   spec.resource_bundles = {
     'ParlaKit' => [
       'parla/Resources/Xib/*.xib',
-      'parla/Resources/*.{xcassets,png,jpg,jpeg}'
+      'parla/Resources/*.{xcassets,png,jpg,jpeg}',
+      'parla/Resources/Assets.xcassets'
     ]
   }
 
