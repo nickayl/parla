@@ -210,9 +210,13 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         }
 
         do {
-            try self.recorder?.toggle()
+            if self.recorder?.hasRecordingPermission ?? false {
+                try self.recorder?.toggle()
+            } else {
+                try self.recorder?.requestRecordingPermission()
+            }
         } catch {
-            print("An error occurred starting recording voice message: \(error)")
+            print("An error occurred recording voice message: \(error)")
         }
     }
     
@@ -317,12 +321,15 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
             .sendPosition : { self.sendPosition() }
         ]
         
-        //let b = Bundle.main
+        let b = Bundle.main
         
       //  let url = Bundle(for: ParlaView.self).url(forResource: "ParlaKit", withExtension: "bundle")
        // let b = Bundle(url: url!)
-        let b = Bundle(identifier: "org.cocoapods.ParlaKit")
-     //  let b = Bundle(identifier: "com.cyclonesword.ParlaKit")
+      
+        
+        //  let b = Bundle(identifier: "org.cocoapods.ParlaKit")
+
+        
         collectionView = UICollectionView(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.backgroundColor = UIColor.white
         let nib = UINib(nibName: "ParlaInputToolbar", bundle: b)

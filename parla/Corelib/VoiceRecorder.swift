@@ -14,11 +14,14 @@ public protocol VoiceRecorder {
     var audioUrl: URL { get set }
     var delegate: VoiceRecorderDelegate? { get set }
     var isRecording: Bool { get }
+    var hasRecordingPermission: Bool { get }
     
     func startAsynch(onRecordBegin: @escaping () -> Void) throws
     func stop() -> URL?
     func toggle() throws
+    func requestRecordingPermission() throws
     init(withFilename: String?)
+    
 }
 
 public protocol VoiceRecorderDelegate {
@@ -32,6 +35,9 @@ public enum VoiceRecorderError : Error {
 
 public class DefaultVoiceRecorder : NSObject, VoiceRecorder, AVAudioRecorderDelegate {
     
+    public var hasRecordingPermission: Bool {
+        return recordingSession?.recordPermission == AVAudioSession.RecordPermission.granted
+    }
     
     public var delegate: VoiceRecorderDelegate?
     private var recordingSession: AVAudioSession?
@@ -52,35 +58,38 @@ public class DefaultVoiceRecorder : NSObject, VoiceRecorder, AVAudioRecorderDele
         super.init()
         
         recordingSession = AVAudioSession.sharedInstance()
+        
      //   try? recordingSession?.setCategory(AVAudioSession.Category.playAndRecord)
     }
     
-
-    public func startAsynch(onRecordBegin: @escaping () -> Void) throws {
-        try? recordingSession?.setCategory(AVAudioSession.Category.playAndRecord)
+    public func requestRecordingPermission() throws {
+        try recordingSession?.setCategory(AVAudioSession.Category.playAndRecord)
         try recordingSession?.setActive(true)
         
-        recordingSession?.requestRecordPermission() { [unowned self] allowed in
-            DispatchQueue.main.async {
-                if !allowed { return }
-                print("Allowed to register audio")
-                
-                let settings = [
-                    AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-                    AVSampleRateKey: 12000,
-                    AVNumberOfChannelsKey: 1,
-                    AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue ]
-                
-                self.audioRecorder = try? AVAudioRecorder(url: self.audioUrl, settings: settings)
-                self.audioRecorder?.delegate = self
-                self.audioRecorder?.prepareToRecord()
-                self.audioRecorder?.record()
-                
-                if self.audioRecorder != nil {
-                    onRecordBegin()
-                    self.delegate?.voiceRecorderDidStartRecording(at: self.audioUrl, voiceRecorder: self)
-                }
+        recordingSession?.requestRecordPermission() { [unowned self] allowed in }
+    }
+
+    public func startAsynch(onRecordBegin: @escaping () -> Void) throws {
+        DispatchQueue.main.async {
+            if !self.hasRecordingPermission { return }
+            print("Allowed to register audio")
+            
+            let settings = [
+                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+                AVSampleRateKey: 12000,
+                AVNumberOfChannelsKey: 1,
+                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue ]
+            
+            self.audioRecorder = try? AVAudioRecorder(url: self.audioUrl, settings: settings)
+            self.audioRecorder?.delegate = self
+            self.audioRecorder?.prepareToRecord()
+            self.audioRecorder?.record()
+            
+            if self.audioRecorder != nil {
+                onRecordBegin()
+                self.delegate?.voiceRecorderDidStartRecording(at: self.audioUrl, voiceRecorder: self)
             }
+            
         }
     }
     
