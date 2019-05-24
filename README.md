@@ -6,7 +6,7 @@ Parla is a modern and user-friendly Chat UI library for iOS. It has been built w
 
 It is really easy to use, it requires only little configuration and you are ready to start!
 
-<img src="https://github.com/cyclonesword/parla/blob/master/parla/Test%20Resources/Simulator%20Screen%20Shot%20-%20iPhone%20X%CA%80%20-%202019-05-18%20at%2012.17.46.png" width="276" height="598"><img src="https://github.com/cyclonesword/parla/blob/master/parla/Test%20Resources/Simulator%20Screen%20Shot%20-%20iPhone%20X%CA%80%20-%202019-05-18%20at%2012.17.41.png" width="276" height="598">
+<img src="https://github.com/cyclonesword/parla/blob/master/Test%20Resources/Simulator%20Screen%20Shot%20-%20iPhone%20X%CA%80%20-%202019-05-18%20at%2012.17.41.png?raw=true" width="276" height="598"><img src="https://github.com/cyclonesword/parla/blob/master/Test%20Resources/Simulator%20Screen%20Shot%20-%20iPhone%20X%CA%80%20-%202019-05-18%20at%2012.17.46.png?raw=true" width="276" height="598">
 
 
 ## Installation
