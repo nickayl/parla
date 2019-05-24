@@ -1,5 +1,11 @@
 # Parla
 
+![Cocoapods platforms](https://img.shields.io/cocoapods/p/ParlaKit.svg?color=%23fb0006)
+![Cocoapods](https://img.shields.io/badge/language-swift%205.0-red.svg)
+![Cocoapods](https://img.shields.io/cocoapods/v/ParlaKit.svg?color=green)
+![Maintenance](https://img.shields.io/maintenance/yes/2019.svg)
+![Cocoapods](https://img.shields.io/cocoapods/l/ParlaKit.svg)
+
 **DOCUMENTATION UNDER CONSTRUCTION**
 
 Parla is a modern and user-friendly Chat UI library for iOS. It has been built with flexibility in mind: There are a lot of things that you can change!
@@ -11,7 +17,13 @@ It is really easy to use, it requires only little configuration and you are read
 
 ## Installation
 ### CocoaPods
-Documentation under construction
+
+Just add the ParlaKit dependency to your Podfile:
+```cocoapods
+  pod 'ParlaKit'
+  use_frameworks!
+```
+And then in your terminal (positioned in the same directory of your project's Podfile) run ```pod install``` 
 
 ### Carthage
 Carthage support will be soon available
