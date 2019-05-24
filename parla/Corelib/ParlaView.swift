@@ -321,13 +321,13 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
             .sendPosition : { self.sendPosition() }
         ]
         
-        let b = Bundle.main
+     //   let b = Bundle.main
         
       //  let url = Bundle(for: ParlaView.self).url(forResource: "ParlaKit", withExtension: "bundle")
        // let b = Bundle(url: url!)
       
         
-        //  let b = Bundle(identifier: "org.cocoapods.ParlaKit")
+          let b = Bundle(identifier: "org.cocoapods.ParlaKit")
 
         
         collectionView = UICollectionView(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
