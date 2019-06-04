@@ -38,6 +38,7 @@
 		527994A92282E96300ACB791 /* IncomingImageMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A42282E96300ACB791 /* IncomingImageMessageCell.xib */; };
 		527994AA2282E96300ACB791 /* OutgoingTextMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */; };
 		527994AC2283079800ACB791 /* VoiceMessageCellIncoming.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994AB2283079800ACB791 /* VoiceMessageCellIncoming.xib */; };
+		529AA73222A6799700E0C2EE /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AA73122A6799700E0C2EE /* DebugViewController.swift */; };
 		52B15A162289F9F200690FC8 /* UIPaintableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B15A152289F9F200690FC8 /* UIPaintableImageView.swift */; };
 		52BB818E228D71BD00D3904C /* UIMicrophoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */; };
 		52E6D2C2228FDF5D00A8D6C2 /* ParlaInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */; };
@@ -119,6 +120,7 @@
 		527994A42282E96300ACB791 /* IncomingImageMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingImageMessageCell.xib; sourceTree = "<group>"; };
 		527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingTextMessageCell.xib; sourceTree = "<group>"; };
 		527994AB2283079800ACB791 /* VoiceMessageCellIncoming.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoiceMessageCellIncoming.xib; sourceTree = "<group>"; };
+		529AA73122A6799700E0C2EE /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		52B15A152289F9F200690FC8 /* UIPaintableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPaintableImageView.swift; sourceTree = "<group>"; };
 		52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMicrophoneView.swift; sourceTree = "<group>"; };
 		52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlaInputToolbar.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		527994402282C94500ACB791 /* parla */ = {
 			isa = PBXGroup;
 			children = (
+				529AA73022A6797D00E0C2EE /* Debug */,
 				52D6BBF622970FA500C441D7 /* Corelib */,
 				52B15A1222897B5600690FC8 /* Drawing */,
 				527994612282C9FE00ACB791 /* Resources */,
@@ -259,6 +262,14 @@
 				52E6D2C3228FE43B00A8D6C2 /* ParlaInputToolbar.xib */,
 			);
 			path = Xib;
+			sourceTree = "<group>";
+		};
+		529AA73022A6797D00E0C2EE /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				529AA73122A6799700E0C2EE /* DebugViewController.swift */,
+			);
+			path = Debug;
 			sourceTree = "<group>";
 		};
 		52B15A1222897B5600690FC8 /* Drawing */ = {
@@ -528,6 +539,7 @@
 			files = (
 				52090702228B0CB8001BC7A8 /* TestViewController.swift in Sources */,
 				527994862282CAA600ACB791 /* Extensions.swift in Sources */,
+				529AA73222A6799700E0C2EE /* DebugViewController.swift in Sources */,
 				5226115D22857B1D00AA703E /* MediaPicker.swift in Sources */,
 				52FB4DCF228433F6001BF14E /* ParlaView.swift in Sources */,
 				52F7C70F2288275000459833 /* VoiceRecorder.swift in Sources */,

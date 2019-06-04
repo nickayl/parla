@@ -165,7 +165,7 @@ class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageMessage,
     
 }
 
-class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPlayerOptionalDelegate {
+class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPlayerDelegate {
     
     public var duration: Float = 0
     public var voiceUrl: URL
@@ -179,7 +179,6 @@ class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPlayerOpti
         self.voiceUrl = voiceUrl
         super.init(id: id, sender: sender, date: date, type: .VoiceMessage)
         self.player = DefaultPAudioPlayer(voiceUrl: voiceUrl, delegate: nil)
-        self.player?.optionalDelegate = self
         self.content = voiceUrl
         self.backgroundColor = isIncoming ? Parla.config.cell.voiceIncomingColor : Parla.config.cell.voiceOutgoingColor
     }

@@ -172,13 +172,6 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
-    open override func awakeFromNib() {
-        self.viewController = self.parentViewController
-        if viewController == nil {
-            assertionFailure("The ParlaView view must belong to a UIViewController. This is a fatal error and the application must be terminated.")
-        }
-        Parla.config.containerViewController = self.viewController
-    }
     
     /// ************** =========================== ****************** ///
     
@@ -279,8 +272,64 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
+    open override func awakeFromNib() {
+        self.viewController = self.parentViewController
+        
+        if viewController == nil {
+            assertionFailure("The ParlaView view must have a parent UIViewController. This is a fatal error and the application must be terminated.")
+        }
+        
+        Parla.config.containerViewController = self.viewController
+        
+        if !Parla.hasBeenPreloaded {
+            Parla.preload(withFrame: frame)
+        }
+        
+        self.collectionView = Parla.parlaCollectionView
+        self.inputToolbarContainer = Parla.parlaInputToolbar
+        self.microphoneButton = Parla.microphoneView
+        
+        self.addSubview(self.collectionView)
+        self.addSubview(self.inputToolbarContainer!)
+        self.addSubview(self.microphoneButton)
+        
+        self.bottomConstraints.append(NSLayoutConstraint(item: self.inputToolbarContainer, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0))
+        
+        self.bottomConstraints.append(NSLayoutConstraint(item: self.microphoneButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0))
+        
+        self.addConstraints([
+            NSLayoutConstraint(item: self.collectionView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.collectionView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.collectionView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.inputToolbarContainer, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.microphoneButton, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.inputToolbarContainer, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.inputToolbarContainer, attribute: .top, relatedBy: .equal, toItem: self.collectionView, attribute: .bottom, multiplier: 1, constant: 0)
+            ])
+        
+        self.addConstraints(self.bottomConstraints)
+        
+        self.textField = self.inputToolbarContainer?.textField
+        self.sendButton = self.inputToolbarContainer?.sendButton
+        self.accessoryButton = self.inputToolbarContainer?.accessoryButton
+        
+        self.textField.delegate = self
+        self.microphoneButton.delegate = self
+        
+        self.sendButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.onSendButtonPressed(_:))))
+        self.accessoryButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.onAccessoryButtonPressed(_:))))
+
+        self.textField.addTarget(self, action: #selector(self.textFieldEditingChanged(_:)), for: UIControl.Event.editingChanged)
+        
+        DispatchQueue.global().async {
+            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        }
+        
+    }
+    
+    
     /**
-     
      Prepares the view for the message rendering.
      Must be called after the customizations on Parla.config and possibly
      before the messages are added.
@@ -292,98 +341,22 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
      
      */
     open func initialize(dataSource: ParlaViewDataSource, delegate: ParlaViewDelegate?) {
-
         self.dataSource = dataSource
         self.delegate = delegate
+    
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
         
         Parla.config.sender = dataSource.outgoingSender()
         
-//        let model = Utils.getModelNumber()
-//
-//        if model.0 < 10 {
-//            keyboardDefaultBottomConstraintMargin = 0
-//            keyboardStarterBottomMargin = 0
-//        } else if model.0 > 10 && (model.1 < 5 && model.1 != 3) {
-//            keyboardDefaultBottomConstraintMargin = 0
-//            keyboardStarterBottomMargin = 0
-//        }
-        
-  //      print("\(model) == c: \(keyboardDefaultBottomConstraintMargin)")
-    //    print("Currently running on iPhone model \(UIDevice.current.modelName)")
-        
-        config.accessoryActionChooser?.delegate = self
-        
-        config.accessoryActionChooser?.accessoryActions = [
+        self.config.accessoryActionChooser?.delegate = self
+        self.config.accessoryActionChooser?.accessoryActions = [
             .chooseVideoFromGallery :  {  self.chooseVideoFrom(source: .photoLibrary) },
             .chooseImageFromGallery : {  self.chooseImageFrom(source: .photoLibrary) },
             .pickImageFromCamera :  {  self.chooseImageFrom(source: .camera) },
             .pickVideoFromCamera :  {  self.chooseVideoFrom(source: .camera) },
             .sendPosition : { self.sendPosition() }
         ]
-        
-     //   let b = Bundle.main
-        
-      //  let url = Bundle(for: ParlaView.self).url(forResource: "ParlaKit", withExtension: "bundle")
-       // let b = Bundle(url: url!)
-      
-        
-          let b = Bundle(identifier: "org.cocoapods.ParlaKit")
-
-        
-        collectionView = UICollectionView(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.backgroundColor = UIColor.white
-        let nib = UINib(nibName: "ParlaInputToolbar", bundle: b)
-        let mainView = nib.instantiate(withOwner: nil, options: nil).first as? UIView
-        
-        inputToolbarContainer = mainView?.subviews[0] as? ParlaInputToolbar
-        microphoneButton = mainView?.subviews[1] as? UIMicrophoneView
-        
-        self.addSubview(collectionView)
-        self.addSubview(inputToolbarContainer!)
-        self.addSubview(microphoneButton)
-        
-        self.bottomConstraints.append(NSLayoutConstraint(item: inputToolbarContainer, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0))
-        
-        self.bottomConstraints.append(NSLayoutConstraint(item: microphoneButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0))
-        
-        self.addConstraints([
-            NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: inputToolbarContainer, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: microphoneButton, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: inputToolbarContainer, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: inputToolbarContainer, attribute: .top, relatedBy: .equal, toItem: collectionView, attribute: .bottom, multiplier: 1, constant: 0)
-            ])
-        self.addConstraints(bottomConstraints)
-
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.textField = self.inputToolbarContainer?.textField
-        self.sendButton = self.inputToolbarContainer?.sendButton
-        self.accessoryButton = self.inputToolbarContainer?.accessoryButton
-        
-        textField.delegate = self
-        microphoneButton.delegate = self
-        sendButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onSendButtonPressed(_:))))
-        accessoryButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onAccessoryButtonPressed(_:))))
-
-        collectionView.register(UINib(nibName: incomingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingTextMessageReuseIdentifier)
-        collectionView.register(UINib(nibName: outgoingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingTextMessageReuseIdentifier)
-        collectionView.register(UINib(nibName: incomingImageMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingImageMessageReuseIdentifier)
-        collectionView.register(UINib(nibName: outgoingImageMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingImageMessageReuseIdentifier)
-        collectionView.register(UINib(nibName: incomingVideoMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingVideoMessageReuseIdentifier)
-        collectionView.register(UINib(nibName: outgoingVideoMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingVideoMessageReuseIdentifier)
-        collectionView.register(UINib(nibName: incomingVoiceMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingVoiceMessageReuseIdenfitier)
-        collectionView.register(UINib(nibName: "VoiceMessageCellIncoming", bundle: b), forCellWithReuseIdentifier: voiceMessageIncomingReuseIdentifier)
-        collectionView.register(UINib(nibName: "VoiceMessageCellOutgoing", bundle: b), forCellWithReuseIdentifier: voiceMessageOutgoingReuseIdentifier)
-        
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: UIControl.Event.editingChanged)
     }
     
     @objc func textFieldEditingChanged(_ sender: Any) {
@@ -425,6 +398,19 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         bottomConstraints.forEach { $0.constant = 0 }
     }
     
+    
+    //        let model = Utils.getModelNumber()
+    //
+    //        if model.0 < 10 {
+    //            keyboardDefaultBottomConstraintMargin = 0
+    //            keyboardStarterBottomMargin = 0
+    //        } else if model.0 > 10 && (model.1 < 5 && model.1 != 3) {
+    //            keyboardDefaultBottomConstraintMargin = 0
+    //            keyboardStarterBottomMargin = 0
+    //        }
+    
+    //      print("\(model) == c: \(keyboardDefaultBottomConstraintMargin)")
+    //    print("Currently running on iPhone model \(UIDevice.current.modelName)")
 
     //    override open func viewWillAppear(_ animated: Bool) {
     //        super.viewWillAppear(true)

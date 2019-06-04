@@ -32,6 +32,55 @@ public final class Parla {
         return PMapMessageImpl(id: id, sender: sender, date: date, coordinates: coordinates)
     }
     
+    // ==== Preloading ==== //
+    static var hasBeenPreloaded: Bool = false
+    static var parlaInputToolbar: ParlaInputToolbar!
+    static var parlaCollectionView: UICollectionView!
+    static var microphoneView: UIMicrophoneView!
+    
+    static let cocoapodsBundle: Bundle? = Bundle(identifier: "org.cocoapods.ParlaKit")
+    static let debugBundle = Bundle.main
+    static let bundle = cocoapodsBundle!
+    
+    public static func preload(withFrame frame: CGRect) {
+        let startDate = Date()
+        print("Preloading started")
+        parlaCollectionView = UICollectionView(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
+        parlaCollectionView.backgroundColor = UIColor.white
+        
+        let nib = UINib(nibName: "ParlaInputToolbar", bundle: bundle)
+        let mainView = nib.instantiate(withOwner: nil, options: nil).first as? UIView
+        
+        parlaInputToolbar = mainView?.subviews[0] as? ParlaInputToolbar
+        microphoneView = mainView?.subviews[1] as? UIMicrophoneView
+        
+        let b = bundle
+        
+        parlaCollectionView.register(UINib(nibName: incomingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingTextMessageReuseIdentifier)
+        parlaCollectionView.register(UINib(nibName: outgoingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingTextMessageReuseIdentifier)
+        parlaCollectionView.register(UINib(nibName: incomingImageMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingImageMessageReuseIdentifier)
+        parlaCollectionView.register(UINib(nibName: outgoingImageMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingImageMessageReuseIdentifier)
+        parlaCollectionView.register(UINib(nibName: incomingVideoMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingVideoMessageReuseIdentifier)
+        parlaCollectionView.register(UINib(nibName: outgoingVideoMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingVideoMessageReuseIdentifier)
+        parlaCollectionView.register(UINib(nibName: incomingVoiceMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingVoiceMessageReuseIdenfitier)
+        parlaCollectionView.register(UINib(nibName: "VoiceMessageCellIncoming", bundle: b), forCellWithReuseIdentifier: voiceMessageIncomingReuseIdentifier)
+        parlaCollectionView.register(UINib(nibName: "VoiceMessageCellOutgoing", bundle: b), forCellWithReuseIdentifier: voiceMessageOutgoingReuseIdentifier)
+        
+        parlaCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        hasBeenPreloaded = true
+        print("Preloading finished with duration: \(Date().timeIntervalSince(startDate))")
+    }
+    
+    public static func preloadAsynch(withFrame frame: CGRect) {
+        DispatchQueue.main.async {
+            print("Preloading asynch ...")
+            Parla.preload(withFrame: frame)
+        }
+    }
+    
+    // ======= //
+    
     public static func outgoingSender(id: Int, name: String, avatar: PAvatar?) -> POutgoingSender {
         if let instance = outgoingSenderInstance {
             return instance

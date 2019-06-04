@@ -9,19 +9,20 @@
 import Foundation
 import AVKit
 
-public protocol PAudioPlayerDelegate {
-    func didStartPlayingAudio(with url: URL?, atSecondsFromStart: Int, wasInPause: Bool)
-    func didStopPlayingAudio(with url: URL?, atSecondsFromStart: Int, pause: Bool)
-    func audioCurrentlyPlayingWith(currentTime time: Float, totalDuration duration: Float)
+@objc public protocol PAudioPlayerDelegate {
+    @objc optional func didStartPlayingAudio(with url: URL?, atSecondsFromStart: Int, wasInPause: Bool)
+    @objc optional func didStopPlayingAudio(with url: URL?, atSecondsFromStart: Int, pause: Bool)
+    @objc optional func audioCurrentlyPlayingWith(currentTime time: Float, totalDuration duration: Float)
+    @objc optional func didInitializeAVAudioPlayer(with: AVAudioPlayer)
 }
 
-public protocol PAudioPlayerOptionalDelegate {
-    func didInitializeAVAudioPlayer(with: AVAudioPlayer)
-}
+//public protocol PAudioPlayerOptionalDelegate {
+//    func didInitializeAVAudioPlayer(with: AVAudioPlayer)
+//}
 
 public protocol PAudioPlayer {
     var delegate: PAudioPlayerDelegate? { get set }
-    var optionalDelegate: PAudioPlayerOptionalDelegate? { get set }
+   // var optionalDelegate: PAudioPlayerOptionalDelegate? { get set }
     var currentProgress: Float { get }
     
     func play()
@@ -37,7 +38,7 @@ public class DefaultPAudioPlayer : NSObject, PAudioPlayer, AVAudioPlayerDelegate
     public var currentProgress: Float = 0
     
     public var delegate: PAudioPlayerDelegate?
-    public var optionalDelegate: PAudioPlayerOptionalDelegate?
+  //  public var optionalDelegate: PAudioPlayerOptionalDelegate?
     
     private var player: AVAudioPlayer?
     private var timer: Timer = Timer()
@@ -52,7 +53,7 @@ public class DefaultPAudioPlayer : NSObject, PAudioPlayer, AVAudioPlayerDelegate
     public func play() {
         
         player?.play()
-        self.delegate?.didStartPlayingAudio(with: voiceUrl, atSecondsFromStart: Int(player?.currentTime ?? 0), wasInPause: (player?.currentTime ?? 0.5) >= 0.5)
+        self.delegate?.didStartPlayingAudio?(with: voiceUrl, atSecondsFromStart: Int(player?.currentTime ?? 0), wasInPause: (player?.currentTime ?? 0.5) >= 0.5)
             
         if !timer.isValid {
             self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerForMethod(_:)), userInfo: nil, repeats: true)
@@ -81,7 +82,7 @@ public class DefaultPAudioPlayer : NSObject, PAudioPlayer, AVAudioPlayerDelegate
     public func pause() {
         if let p = player, p.isPlaying {
             p.pause()
-            self.delegate?.didStopPlayingAudio(with: voiceUrl, atSecondsFromStart: Int(player?.currentTime ?? 0), pause: true)
+            self.delegate?.didStopPlayingAudio?(with: voiceUrl, atSecondsFromStart: Int(player?.currentTime ?? 0), pause: true)
           //  isTimerInPause = true
             timer.invalidate()
         }
@@ -90,7 +91,7 @@ public class DefaultPAudioPlayer : NSObject, PAudioPlayer, AVAudioPlayerDelegate
     public func stop() {
         self.currentProgress = 1
         player?.stop()
-        self.delegate?.didStopPlayingAudio(with: voiceUrl, atSecondsFromStart: Int(player?.currentTime ?? 0), pause: false)
+        self.delegate?.didStopPlayingAudio?(with: voiceUrl, atSecondsFromStart: Int(player?.currentTime ?? 0), pause: false)
         timer.invalidate()
     }
     
@@ -103,7 +104,7 @@ public class DefaultPAudioPlayer : NSObject, PAudioPlayer, AVAudioPlayerDelegate
     public func timerForMethod(_ timer: Timer) {
         if let p = player, timer.isValid {
             self.currentProgress = Float(p.currentTime / p.duration)
-            self.delegate?.audioCurrentlyPlayingWith(currentTime: Float(p.currentTime), totalDuration: Float(p.duration))
+            self.delegate?.audioCurrentlyPlayingWith?(currentTime: Float(p.currentTime), totalDuration: Float(p.duration))
             
             print("Duration: \(p.duration) curtime: \(p.currentTime) ")//calc: \(voiceMessageProgressView.progress)")
             
@@ -121,7 +122,7 @@ public class DefaultPAudioPlayer : NSObject, PAudioPlayer, AVAudioPlayerDelegate
             self.player?.delegate = self
             
             if let p = player {
-                optionalDelegate?.didInitializeAVAudioPlayer(with: p)
+                delegate?.didInitializeAVAudioPlayer?(with: p)
             }
             
         } catch  {
