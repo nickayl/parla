@@ -8,6 +8,7 @@
 
 import Foundation
 import MobilePlayer
+import AVKit
 
 public protocol VideoPlayer {
     func play()
@@ -27,13 +28,14 @@ public class MobilePlayerVideoPlayer : VideoPlayer {
     }
     
     public func play() {
-        if playerVC == nil {
-            playerVC = MobilePlayerViewController(contentURL: videoMessage.videoUrl)
+        if playerVC == nil, let videoUrl = videoMessage.videoUrl {
+            playerVC = MobilePlayerViewController(contentURL: videoUrl)
             playerVC!.shouldAutoplay = false
             playerVC!.title = "\(videoMessage.sender.name)'s video"
             playerVC!.activityItems = [videoMessage.videoUrl]
+            viewController?.present(playerVC!, animated: true, completion: nil)
         }
-        viewController?.presentMoviePlayerViewControllerAnimated(playerVC)
+      //  viewController?.presentMoviePlayerViewControllerAnimated(playerVC)
     }
     
     public func pause() {

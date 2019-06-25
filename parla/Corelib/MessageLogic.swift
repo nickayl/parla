@@ -53,7 +53,7 @@ let voiceMessageOutgoingReuseIdentifier = "VoiceMessageCellOutgoingXib"
     var options: PMessageOptions { get }
     
     func displaySize(frameWidth: CGFloat) -> CGSize
-    func triggerSelection()
+    func triggerSelection(viewController: UIViewController?)
 }
 
 public protocol PTextMessage : PMessage {
@@ -64,10 +64,9 @@ public protocol PTextMessage : PMessage {
 
 public protocol PVideoMessage : PMessage {
     var thumbnail: UIImage? { get set }
-    var videoUrl: URL { get set }
+    var videoUrl: URL? { get set }
     var duration: Float? { get set }
     var player: VideoPlayer? { get set }
-    init(id: Int, sender: PSender, videoUrl: URL, thumbnail: UIImage?, date: Date)
 }
 
 public protocol PVoiceMessage : PMessage {
@@ -77,7 +76,8 @@ public protocol PVoiceMessage : PMessage {
 }
 
 @objc public protocol PImageMessage : PMessage {
-    var image: UIImage! { get set }
+    var image: UIImage? { get set }
+    var imageUrl: URL? { get set }
     var imageDescription: String?  { get set }
     var viewer: ImageViewer? { get set }
 }
@@ -94,6 +94,7 @@ public protocol PVoiceMessage : PMessage {
 class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageMessage, PMapMessage {
     
     public var image: UIImage?
+    public var imageUrl: URL?
     public var imageDescription: String?
     public var viewer: ImageViewer?
     public var mapImageGenerator: MapImageGenerator?
@@ -146,7 +147,7 @@ class PMapMessageImpl : AbstractPMessage<CLLocationCoordinate2D>, PImageMessage,
         }
     }
     
-    public override func triggerSelection() {
+    public override func triggerSelection(viewController: UIViewController? = nil) {
         print("Open to external map app is the default behaviour of the triggerSelection function for a map message.")
         let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: placemark)
@@ -192,7 +193,7 @@ class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPlayerDele
         self.duration = Float(with.duration)
     }
     
-    public override func triggerSelection() {
+    public override func triggerSelection(viewController: UIViewController? = nil) {
         // TODO to be implemented
         print("Voice message by default does nothing when is selected")
     }
@@ -201,7 +202,11 @@ class PVoiceMessageImpl : AbstractPMessage<URL>, PVoiceMessage, PAudioPlayerDele
 class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
     
     public var thumbnail: UIImage?
-    public var videoUrl: URL
+    public var videoUrl: URL? {
+        didSet {
+            isReadyToUse = videoUrl != nil
+        }
+    }
     public var duration: Float?
     public var player: VideoPlayer?
     
@@ -209,16 +214,17 @@ class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
         return isIncoming ? incomingVideoMessageReuseIdentifier : outgoingVideoMessageReuseIdentifier
     }
     
-    required public init(id: Int, sender: PSender, videoUrl: URL, thumbnail: UIImage? = nil, date: Date = Date()) {
+    required public init(id: Int, sender: PSender, videoUrl: URL? = nil, thumbnail: UIImage? = nil, date: Date = Date()) {
         self.videoUrl = videoUrl
         self.thumbnail = thumbnail
         super.init(id: id, sender: sender, date: date, type: .VideoMessage)
+        isReadyToUse = videoUrl != nil
         self.content = videoUrl
         
         self.player = MobilePlayerVideoPlayer(with: self)
     }
     
-    public override func triggerSelection() {
+    public override func triggerSelection(viewController: UIViewController? = nil) {
         player?.play()
     }
     
@@ -230,7 +236,8 @@ class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
 
 class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
     
-    public var image: UIImage!
+    public var image: UIImage?
+    public var imageUrl: URL?
     public var imageDescription: String?
     public var viewer: ImageViewer?
     
@@ -241,15 +248,18 @@ class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
         return isIncoming ? incomingImageMessageReuseIdentifier : outgoingImageMessageReuseIdentifier
     }
     
-    public init(id: Int, sender: PSender, image: UIImage, date: Date = Date()) {
+    public init(id: Int, sender: PSender, image: UIImage? = nil, imageUrl: URL? = nil, date: Date = Date()) {
         self.image = image
+        self.imageUrl = imageUrl
         self.viewer = config.imageViewer
         super.init(id: id, sender: sender, date: date, type: .ImageMessage)
         self.content = image
     }
     
-    public override func triggerSelection() {
-        self.viewer?.show(image: image)
+    public override func triggerSelection(viewController: UIViewController? = nil) {
+        if let img = image, let vc = viewController {
+            self.viewer?.show(image: img, in: vc)
+        }
     }
     
     public override func displaySize(frameWidth: CGFloat) -> CGSize {
@@ -311,7 +321,7 @@ class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {
     }
     
     
-    public override func triggerSelection() {
+    public override func triggerSelection(viewController: UIViewController? = nil) {
         print("TextMessage does nothing when is tapped")
     }
     
@@ -350,7 +360,7 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
         return CGSize(width: 0, height: 0)
     }
     
-    public func triggerSelection() {
+    public func triggerSelection(viewController: UIViewController? = nil) {
         // optional method to be overridden by subclasses that intend to provide a behaviour when the message is selected (by default, when the cell is touched, but you can change the kind of gesture that will trigger a selection event. For example, a long touch could be attached to the trigger selection event to perform some operation.)
         print("This message does nothing on selection")
     }

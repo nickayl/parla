@@ -22,8 +22,8 @@ public class UIPaintableImageViewXib : UIView {
 @IBDesignable
 public class UIPaintableImageView: UIView {
 
-    @IBOutlet var paintView: UIPaintView!
-    @IBOutlet var background: UIImageView!
+    @IBOutlet public var paintView: UIPaintView!
+    @IBOutlet public var background: UIImageView!
     
     @IBOutlet var widths: [NSLayoutConstraint]!
     @IBOutlet var heights: [NSLayoutConstraint]!

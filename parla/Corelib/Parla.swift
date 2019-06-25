@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import UIKit
+import SDWebImage
 
 public final class Parla {
     
@@ -20,7 +21,11 @@ public final class Parla {
         return PImageMessageImpl(id: id, sender: sender, image: image, date: date)
     }
     
-    public static func newVideoMessage(id: Int, sender: PSender, videoUrl: URL, thumbnail: UIImage? = nil, date: Date = Date()) -> PVideoMessage {
+    public static func newImageMessage(id: Int, sender: PSender, imageUrl: URL, date: Date = Date()) -> PImageMessage {
+        return PImageMessageImpl(id: id, sender: sender, imageUrl: imageUrl , date: date)
+    }
+    
+    public static func newVideoMessage(id: Int, sender: PSender, videoUrl: URL? = nil, thumbnail: UIImage? = nil, date: Date = Date()) -> PVideoMessage {
         return PVideoMessageImpl(id: id, sender: sender, videoUrl: videoUrl, thumbnail: thumbnail, date: date)
     }
     
@@ -41,6 +46,8 @@ public final class Parla {
     static let cocoapodsBundle: Bundle? = Bundle(identifier: "org.cocoapods.ParlaKit")
     static let debugBundle = Bundle.main
     static let bundle = cocoapodsBundle!
+    
+    public static let SDWebImageSharedConfig = SDWebImageDownloader.shared
     
     public static func preload(withFrame frame: CGRect) {
         let startDate = Date()
@@ -94,7 +101,7 @@ public final class Parla {
     
     public var containerViewController: UIViewController! {
         didSet {
-            self.kDefaultImageMessageViewer = SKPhotoBrowserImageViewer.getInstance(for: self.containerViewController)
+            self.kDefaultImageMessageViewer = SKPhotoBrowserImageViewer.getInstance()
             self.kDefaultMediaPicker = SystemMediaPicker(viewController: self.containerViewController)
             self.kDefaultAccessoryActionChooser = ActionSheetAccessoryActionChooser(viewController: self.containerViewController)
             self.mediaPicker = self.kDefaultMediaPicker

@@ -51,6 +51,8 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
             Parla.newTextMessage(id: 3, sender: mainSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
             Parla.newImageMessage(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
             Parla.newVideoMessage(id: 5, sender: chiara, videoUrl: mondello),
+            Parla.newVideoMessage(id: 8, sender: chiara),
+            Parla.newImageMessage(id: 7, sender: mainSender, imageUrl: URL(string: "https://jbytes.space:8443/download/image/21-06-2019_18-23-28-66208504000000.png")!),
             Parla.newTextMessage(id: 6, sender: mainSender, text: "Amazing, i'm coming right now!"),
         ]
         
@@ -72,7 +74,7 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
     
     
     func didTapMessageBubble(at indexPath: IndexPath, message: PMessage, collectionView: UICollectionView) {
-        message.triggerSelection()
+        message.triggerSelection(viewController: self)
         print("===>> DID TAP MESSAGE BUBBLE \(message.toString) << ===")
         
     }

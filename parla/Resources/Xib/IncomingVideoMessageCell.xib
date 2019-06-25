@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" reuseIdentifier="VideoIncomingXib" id="2Vw-H0-rig" customClass="VideoMessageCell" customModule="ParlaKit" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" reuseIdentifier="VideoIncomingXib" id="2Vw-H0-rig" customClass="VideoMessageCell" customModule="parla" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -28,7 +28,7 @@
                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domenico" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YO7-hK-XkR" customClass="UIPaddingLabel" customModule="ParlaKit" customModuleProvider="target">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domenico" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YO7-hK-XkR" customClass="UIPaddingLabel" customModule="parla" customModuleProvider="target">
                         <rect key="frame" x="34" y="146" width="341" height="16"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -73,14 +73,20 @@
                                     <constraint firstItem="x9D-xq-D7j" firstAttribute="centerX" secondItem="gxk-N2-y0A" secondAttribute="centerX" id="wTW-NI-mj3"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rpJ-7k-7qt">
+                                <rect key="frame" x="152" y="46.5" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="rpJ-7k-7qt" firstAttribute="centerX" secondItem="Twd-jF-AcY" secondAttribute="centerX" id="5CD-A2-Wbi"/>
                             <constraint firstItem="0r3-1g-vL9" firstAttribute="top" secondItem="Twd-jF-AcY" secondAttribute="top" id="6Zg-V2-zC5"/>
                             <constraint firstItem="0r3-1g-vL9" firstAttribute="leading" secondItem="Twd-jF-AcY" secondAttribute="leading" id="Jl9-7Q-SzI"/>
                             <constraint firstAttribute="trailing" secondItem="0r3-1g-vL9" secondAttribute="trailing" id="Kjz-IM-Hlr"/>
                             <constraint firstAttribute="bottom" secondItem="0r3-1g-vL9" secondAttribute="bottom" id="NLm-4w-swr"/>
                             <constraint firstAttribute="trailing" secondItem="gxk-N2-y0A" secondAttribute="trailing" id="SXk-fn-Hzk"/>
+                            <constraint firstItem="rpJ-7k-7qt" firstAttribute="centerY" secondItem="Twd-jF-AcY" secondAttribute="centerY" id="TWV-dC-06k"/>
                             <constraint firstAttribute="bottom" secondItem="gxk-N2-y0A" secondAttribute="bottom" id="V8f-6j-jeC"/>
                             <constraint firstItem="gxk-N2-y0A" firstAttribute="top" secondItem="Twd-jF-AcY" secondAttribute="top" id="mdO-gt-HNT"/>
                             <constraint firstItem="gxk-N2-y0A" firstAttribute="leading" secondItem="Twd-jF-AcY" secondAttribute="leading" id="qDx-hg-vkY"/>
@@ -105,6 +111,7 @@
             </constraints>
             <size key="customSize" width="375" height="162"/>
             <connections>
+                <outlet property="activityIndicator" destination="rpJ-7k-7qt" id="hUl-zl-wLJ"/>
                 <outlet property="avatarBubbleImage" destination="g6f-W1-Pxh" id="IAG-JK-3vW"/>
                 <outlet property="blackBackgroundVideoView" destination="gxk-N2-y0A" id="aOi-Tm-OFD"/>
                 <outlet property="bottomLabel" destination="YO7-hK-XkR" id="KmM-fz-tFR"/>

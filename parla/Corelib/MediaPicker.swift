@@ -77,8 +77,6 @@ public protocol VideoPicker {
  
  */
 
-
-
 public class SystemMediaPicker : NSObject, MediaPicker, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var viewController: UIViewController!
@@ -86,7 +84,7 @@ public class SystemMediaPicker : NSObject, MediaPicker, UIImagePickerControllerD
     private var imagePickerController: UIImagePickerController
     private var videoCompletitionHandler: ((URL?) -> Void)?
     
-    init(viewController: UIViewController) {
+    public init(viewController: UIViewController) {
         self.viewController = viewController
         imagePickerController = UIImagePickerController()
         super.init()

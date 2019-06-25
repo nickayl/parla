@@ -10,6 +10,7 @@ import Foundation
 
 import UIKit
 import AVKit
+import SDWebImage
 
 class VoiceMessageCell : AbstractMessageCell, PAudioPlayerDelegate {
     
@@ -85,9 +86,10 @@ class VoiceMessageCell : AbstractMessageCell, PAudioPlayerDelegate {
     
 }
 
-class VideoMessageCell : AbstractMessageCell {
+class VideoMessageCell : AbstractMessageCell, PMessageDelegate {
     
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var blackBackgroundVideoView: UIView!
     
     var message: PVideoMessage! {
@@ -117,21 +119,28 @@ class VideoMessageCell : AbstractMessageCell {
         imageView.setBorderRadius(radius: 16)
         blackBackgroundVideoView.setBorderRadius(radius: 13)
         
-        DispatchQueue.global(qos: .userInitiated).async {
-            let thumbnailImage = Utils.thumbnailImageForVideo(withUrl: self.message.videoUrl, atTime: 1)
-            // Bounce back to the main thread to update the UI
-            DispatchQueue.main.async {
-                self.imageView.image = thumbnailImage
-                self.message.thumbnail = thumbnailImage
-            }
+        if message.isReadyToUse {
+            messageIsReadyToBeConsumed(message: message)
+        } else {
+            self.activityIndicator.startAnimating()
         }
         
-//        imageView.addGestureRecognizer(
-//            UITapGestureRecognizer(target: self, action: #selector(videoSelected(sender:)))
-//        )
         addDefaultTapGestureRecognizer()
         addDefaultLongTouchGestureRecognizer()
-        
+    }
+    
+    func messageIsReadyToBeConsumed(message: PMessage) {
+        if let videoUrl = (message as? PVideoMessage)?.videoUrl {
+            DispatchQueue.global(qos: .userInitiated).async {
+                let thumbnailImage = Utils.thumbnailImageForVideo(withUrl: videoUrl, atTime: 1)
+                // Bounce back to the main thread to update the UI
+                DispatchQueue.main.async {
+                    self.message.thumbnail = thumbnailImage
+                    self.imageView.image = thumbnailImage
+                    self.activityIndicator.stopAnimating()
+                }
+            }
+        }
     }
     
 //    @objc func videoSelected(sender: UITapGestureRecognizer) {
@@ -168,10 +177,18 @@ class ImageMessageCell: AbstractMessageCell, PMessageDelegate {
         
         leadingOrTrailingConstraint.constant = cellWidth - (cfg.cell.kDefaultImageBubbleSize.width + message.sender.avatar.size.width)
     
-        self.message.delegate = self
+        message.delegate = self
         
-        if self.message.isReadyToUse {
-            imageView.image = self.message.image
+        if message.isReadyToUse {
+            if let img = message.image {
+                imageView.image = img
+            } else {
+                self.activityIndicator.startAnimating()
+                imageView?.sd_setImage(with: message.imageUrl, placeholderImage: nil, options: SDWebImageOptions.allowInvalidSSLCertificates, completed: { (img, error, cacheOrNetwork, originalUrl) in
+                        self.message.image = img
+                        self.messageIsReadyToBeConsumed(message: self.message)
+                    })
+            }
         } else {
             self.activityIndicator.startAnimating()
         }

@@ -12,7 +12,7 @@ import SKPhotoBrowser
 
 @objc public protocol ImageViewer {
    // var image: UIImage { get set }
-    func show(image: UIImage)
+    func show(image: UIImage, in viewController: UIViewController)
     func hide()
   //  init(withImage image: UIImage, withViewController viewController: UIViewController)
 }
@@ -27,14 +27,12 @@ import SKPhotoBrowser
     private static var instance: ImageViewer?
     
     
-    private init(viewController: UIViewController) {
-        self.viewController = viewController
-        
+    private override init() {
     }
     
-    public static func getInstance(for viewController: UIViewController) -> ImageViewer {
+    public static func getInstance() -> ImageViewer {
         if instance == nil {
-            instance = SKPhotoBrowserImageViewer(viewController: viewController)
+            instance = SKPhotoBrowserImageViewer()
         }
         return instance!
     }
@@ -44,7 +42,8 @@ import SKPhotoBrowser
 //        self.viewController = viewController
 //    }
     
-    public func show(image: UIImage) {
+    public func show(image: UIImage, in viewController: UIViewController) {
+        
         let photo = SKPhoto.photoWithImage(image)
         
         if browser == nil {
@@ -55,7 +54,7 @@ import SKPhotoBrowser
         }
         
         browser?.initializePageIndex(0)
-        self.viewController?.present(browser!, animated: true, completion: nil)
+        viewController.present(browser!, animated: true, completion: nil)
     }
     
     public func hide() {

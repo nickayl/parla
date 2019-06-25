@@ -109,6 +109,10 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         cell.indexPath = indexPath
         cell.content = message
         
+        if let d = cell as? PMessageDelegate {
+            message.delegate = d
+        }
+        
         cell.initialize()
         
 //        if indexPath.row > 0 {

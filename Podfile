@@ -4,6 +4,7 @@ use_frameworks!
 def parla_pods
   pod 'SKPhotoBrowser', '~> 6.1.0'
   pod 'MobilePlayer', '~> 1.3.0'
+  pod 'SDWebImage', '~> 5.0.2'
 end
 
 target 'parla' do
@@ -13,10 +14,6 @@ target 'parla' do
     inherit! :search_paths
   end
   
-end
-
-target 'ParlaKit' do
-  parla_pods
 end
 
 post_install do |installer|
