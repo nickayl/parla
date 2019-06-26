@@ -33,14 +33,14 @@ import UIKit
     
 }
 
-@objc public class PIncomingSender: PSender {
+@objc class PIncomingSender: PSender {
     
     public init(id: Int, name: String, avatar: PAvatar?) {
         super.init(id: id, name: name, avatar: avatar, type: .Incoming)
     }
 }
 
-@objc public class POutgoingSender: PSender {
+@objc class POutgoingSender: PSender {
     public init(id: Int, name: String, avatar: PAvatar?) {
         super.init(id: id, name: name, avatar: avatar, type: .Outgoing)
     }

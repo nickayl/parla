@@ -90,16 +90,16 @@ public final class Parla {
     
     // ======= //
     
-    public static func outgoingSender(id: Int, name: String, avatar: PAvatar?) -> POutgoingSender {
-        if let instance = outgoingSenderInstance {
-            return instance
-        }
-        
-        outgoingSenderInstance = POutgoingSender(id: id, name: name, avatar: avatar)
-        return outgoingSenderInstance!
+    public static func newOutgoingSender(id: Int, name: String, avatar: PAvatar?) -> POutgoingSender {
+        outgoingSender = POutgoingSender(id: id, name: name, avatar: avatar)
+        return outgoingSender!
     }
     
-    private static var outgoingSenderInstance: POutgoingSender?
+    private(set) static var outgoingSender: POutgoingSender?
+    
+    public static func newIncomingSender(id: Int, name: String, avatar: PAvatar?) -> PIncomingSender {
+        return PIncomingSender(id: id, name: name, avatar: avatar)
+    }
     
     public var containerViewController: UIViewController! {
         didSet {

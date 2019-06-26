@@ -31,8 +31,8 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
         let chiaraAvatar = PAvatar(withImage: UIImage(named: "chiara.jpg")!)
         
         // In this example we have 2 message senders
-        mainSender = Parla.outgoingSender(id: 10, name: "Domenico", avatar: nil)
-        let chiara = PIncomingSender(id: 11, name: "Chiara", avatar: chiaraAvatar)
+        mainSender = Parla.newOutgoingSender(id: 10, name: "Domenico", avatar: nil)
+        let chiara = Parla.newIncomingSender(id: 11, name: "Chiara", avatar: chiaraAvatar)
         
         let config = Parla.config
         config.accessoryButton.preventDefault = false
