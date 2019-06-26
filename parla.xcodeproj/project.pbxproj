@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		5226115D22857B1D00AA703E /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5226115C22857B1D00AA703E /* MediaPicker.swift */; };
 		5226115F228587FD00AA703E /* AccessoryActionChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5226115E228587FD00AA703E /* AccessoryActionChooser.swift */; };
 		523D8C88228C651F00EE3736 /* MapImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D8C87228C651F00EE3736 /* MapImageGenerator.swift */; };
+		524B112C22C37A0700F1BDC2 /* github_task1.png in Resources */ = {isa = PBXBuildFile; fileRef = 524B112B22C37A0600F1BDC2 /* github_task1.png */; };
 		52710E3D228F3F330003D634 /* domenico.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 52710E3C228F3F330003D634 /* domenico.jpeg */; };
 		52710E3F228F42420003D634 /* chiara.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52710E3E228F42420003D634 /* chiara.jpg */; };
 		52710E42228F43FD0003D634 /* mondello-beach.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52710E41228F43FD0003D634 /* mondello-beach.jpg */; };
@@ -48,7 +49,6 @@
 		52E6D2CB2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.41.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E6D2C92290153B00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.41.png */; };
 		52E6D2CC2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E6D2CA2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png */; };
 		52E6D2CE2290167600A8D6C2 /* NewViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6D2CD2290167600A8D6C2 /* NewViewController2.swift */; };
-		52E6D2D22290326B00A8D6C2 /* github_task_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52E6D2D12290326B00A8D6C2 /* github_task_1.png */; };
 		52F7C70F2288275000459833 /* VoiceRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7C70E2288275000459833 /* VoiceRecorder.swift */; };
 		52F7C7112288300B00459833 /* VoicePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7C7102288300B00459833 /* VoicePlayer.swift */; };
 		52FB4DC32284155B001BF14E /* SenderLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB4DC22284155B001BF14E /* SenderLogic.swift */; };
@@ -92,6 +92,7 @@
 		5226119D2285EF2300AA703E /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5226119F2285EF2A00AA703E /* Pods_parla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_parla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		523D8C87228C651F00EE3736 /* MapImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapImageGenerator.swift; sourceTree = "<group>"; };
+		524B112B22C37A0600F1BDC2 /* github_task1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github_task1.png; sourceTree = "<group>"; };
 		52710E3C228F3F330003D634 /* domenico.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = domenico.jpeg; sourceTree = "<group>"; };
 		52710E3E228F42420003D634 /* chiara.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chiara.jpg; sourceTree = "<group>"; };
 		52710E41228F43FD0003D634 /* mondello-beach.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "mondello-beach.jpg"; sourceTree = "<group>"; };
@@ -130,7 +131,6 @@
 		52E6D2C92290153B00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.41.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.41.png"; sourceTree = "<group>"; };
 		52E6D2CA2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png"; sourceTree = "<group>"; };
 		52E6D2CD2290167600A8D6C2 /* NewViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController2.swift; sourceTree = "<group>"; };
-		52E6D2D12290326B00A8D6C2 /* github_task_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github_task_1.png; sourceTree = "<group>"; };
 		52F7C70E2288275000459833 /* VoiceRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorder.swift; sourceTree = "<group>"; };
 		52F7C7102288300B00459833 /* VoicePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePlayer.swift; sourceTree = "<group>"; };
 		52FB4DC22284155B001BF14E /* SenderLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SenderLogic.swift; path = parla/Corelib/SenderLogic.swift; sourceTree = SOURCE_ROOT; };
@@ -176,10 +176,10 @@
 				52E6D2C92290153B00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.41.png */,
 				52E6D2CA2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png */,
 				52710E41228F43FD0003D634 /* mondello-beach.jpg */,
-				52E6D2D12290326B00A8D6C2 /* github_task_1.png */,
 				52E6D2C72290103600A8D6C2 /* mondello.mp4 */,
 				52710E3E228F42420003D634 /* chiara.jpg */,
 				52710E3C228F3F330003D634 /* domenico.jpeg */,
+				524B112B22C37A0600F1BDC2 /* github_task1.png */,
 			);
 			path = "Test Resources";
 			sourceTree = "<group>";
@@ -430,6 +430,7 @@
 				5279944C2282C94700ACB791 /* LaunchScreen.storyboard in Resources */,
 				52E6D2C82290108000A8D6C2 /* mondello.mp4 in Resources */,
 				527994492282C94700ACB791 /* Assets.xcassets in Resources */,
+				524B112C22C37A0700F1BDC2 /* github_task1.png in Resources */,
 				52FB4DD72284AE89001BF14E /* OutgoingVideoMessageCell.xib in Resources */,
 				52710E3D228F3F330003D634 /* domenico.jpeg in Resources */,
 				527994742282CA3D00ACB791 /* play40.png in Resources */,
@@ -445,7 +446,6 @@
 				527994A62282E96300ACB791 /* IncomingTextMessageCell.xib in Resources */,
 				527994702282CA3D00ACB791 /* pause100.png in Resources */,
 				52E6D2CC2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.46.png in Resources */,
-				52E6D2D22290326B00A8D6C2 /* github_task_1.png in Resources */,
 				52E6D2C6228FFE7A00A8D6C2 /* VoiceMessageCellOutgoing.xib in Resources */,
 				52E6D2CB2290153C00A8D6C2 /* Simulator Screen Shot - iPhone Xʀ - 2019-05-18 at 12.17.41.png in Resources */,
 				527994472282C94500ACB791 /* Main.storyboard in Resources */,
