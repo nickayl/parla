@@ -37,15 +37,15 @@ Carthage support will be soon available
 ### Quick Start Guide
 
 In the view you want to display the Chat UI, set the custom class as  ```ParlaView``` :
-<img src="https://github.com/cyclonesword/parla/blob/master/parla/Test%20Resources/github_task_1.png?raw=true" width="821" height="84">
+<img src="https://github.com/cyclonesword/parla/blob/master/Test%20Resources/github_task1.png?raw=true" width="821" height="64">
 
 Don't forget to bind the ParlaView view with an outlet inside your custom ViewController class.
 
 Then in your ViewController, you need to implement at leat the ```ParlaViewDatasource``` class, but i highly reccomand to bind also the ```ParlaViewDelegate``` to receive notification when the user perform various operations (such us when press the send button, when it is recording a voice message etc.) :
 ```swift
 class MyViewController : UIViewController, ParlaViewDataSource, ParlaViewDelegate { 
-    // The main sender. His messages are considered as Outgoing, all the messages of other senders will be considerer as   Incoming messages.
-    var mSender: PSender!
+    // The main sender. His messages are considered as Outgoing, all the messages of other senders will be considerer as Incoming messages.
+    var mainSender: POutgoingSender!
     
     // The array of messages
     var messages: [PMessage]!
@@ -57,47 +57,43 @@ class MyViewController : UIViewController, ParlaViewDataSource, ParlaViewDelegat
 Then in your viewDidLoad add your custom logic, for example: 
 ```swift
 override func viewDidLoad() {
+   // The avatars of the senders. If you do not want an avatar pass nil and disable avatar in the config
+      // class before initializing: Parla.config.avatar.isHidden = true
+      let domenicoAvatar = PAvatar(withImage: UIImage(named: "domenico.jpeg")!)
+      let chiaraAvatar = PAvatar(withImage: UIImage(named: "chiara.jpg")!)
 
+      // In this example we have 2 message senders
+      mainSender = Parla.newOutgoingSender(id: 10, name: "Domenico", avatar: nil)
+      let chiara = Parla.newIncomingSender(id: 11, name: "Chiara", avatar: chiaraAvatar)
 
-    // The avatars of the senders. If you do not want an avatar pass nil and disable avatar in the config
-    // class before initializing: Parla.config.avatar.isHidden = true
-    let domenicoAvatar = PAvatar(withImage: UIImage(named: "domenico.jpeg")!)
-    let chiaraAvatar = PAvatar(withImage: UIImage(named: "chiara.jpg")!)
+      let config = Parla.config
+      config.accessoryButton.preventDefault = false
+      config.cell.isBottomLabelHidden = false
 
-    // In this example we have 2 message senders
-    mainSender = Parla.outgoingSender(id: 10, name: "Domenico", avatar: domenicoAvatar)
-    let chiara = PIncomingSender(id: 11, name: "Chiara", avatar: chiaraAvatar)
+      // This color will be used if you pass a nil avatar to a sender but do not set the isHidden property to true.
+      config.avatar.backgroundColor = UIColor.black
 
-    let config = Parla.config
-    config.accessoryButton.preventDefault = false
-    config.cell.isBottomLabelHidden = false
-    config.avatar.isHidden = false
+      // This is a test video taken from the main bundle.
+      let mondello = Bundle.main.url(forResource: "mondello", withExtension: "mp4")!
 
-    // This color will be used if you pass a nil avatar to a sender but do not set the isHidden property to true.
-    config.avatar.backgroundColor = UIColor.black
+      // Adding some test messages
+      self.messages = [
+          Parla.newTextMessage(id: 1, sender: mainSender, text: "Hi Chiara! How are you? :)"),
+          Parla.newTextMessage(id: 2, sender: chiara, text: "Hi Domenico, all right! I'm sitting on a deckchiar here in the wonderful beach of Mondello, in Palermo (Italy)  :)"),
+          Parla.newTextMessage(id: 3, sender: mainSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
+          Parla.newImageMessage(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
+          Parla.newVideoMessage(id: 5, sender: chiara, videoUrl: mondello),
 
-    // Initialization of ParlaView class
-    parlaView.initialize(dataSource: self, delegate: self)
+          Parla.newImageMessage(id: 7, sender: mainSender, imageUrl: URL(string: "https://jbytes.space:8443/download/image/21-06-2019_18-23-28-66208504000000.png")!),
+          Parla.newTextMessage(id: 6, sender: mainSender, text: "Amazing, i'm coming right now!"),
+          Parla.newImageMessage(id: 9, sender: mainSender, imageUrl: URL(string: "https://www.hitsicily.com/_files/uploads/mondello-palermo-sicily-beach-2.jpg")!),
+          Parla.newImageMessage(id: 10, sender: chiara, imageUrl: URL(string: "https://www.hitsicily.com/_files/uploads/ciao.jpg")!)
+      ]
 
-    // This is a test video taken from the main bundle.
-    let mondello = Bundle.main.url(forResource: "mondello", withExtension: "mp4")!
-
-    // Adding some test messages
-    self.messages = [
-        Parla.newTextMessage(id: 1, sender: mainSender, text: "Hi Chiara! How are you? :)"),
-        Parla.newTextMessage(id: 2, sender: chiara, text: "Hi Domenico, all right! I'm sitting on a deckchiar here in the wonderful beach of Mondello, in Palermo (Italy)  :)"),
-        Parla.newTextMessage(id: 3, sender: mainSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
-        Parla.newImageMessage(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
-        Parla.newVideoMessage(id: 5, sender: chiara, videoUrl: mondello),
-        Parla.newTextMessage(id: 6, sender: mainSender, text: "Amazing, i'm coming right now!"),
-    ]
-
-
-    // Hide the top label every 4 times.
-    for i in 0 ..< messages.count {
-        messages[i].isTopLabelActive = (i % 4 == 0)
-        // messages[i].isTopLabelActive = false
-    }
+      for m in messages {
+          m.options.isBottomLabelActive = false
+      }
+}
 ```
 
 Finally, implement the required functions of the ParlaViewDatasource:
