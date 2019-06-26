@@ -152,6 +152,7 @@ class VideoMessageCell : AbstractMessageCell, PMessageDelegate {
 class ImageMessageCell: AbstractMessageCell, PMessageDelegate {
     
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var errorLabel: UILabel!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     var message: PImageMessage! {
@@ -182,11 +183,19 @@ class ImageMessageCell: AbstractMessageCell, PMessageDelegate {
         if message.isReadyToUse {
             if let img = message.image {
                 imageView.image = img
-            } else {
+            } else if let url = message.imageUrl {
                 self.activityIndicator.startAnimating()
-                imageView?.sd_setImage(with: message.imageUrl, placeholderImage: nil, options: SDWebImageOptions.allowInvalidSSLCertificates, completed: { (img, error, cacheOrNetwork, originalUrl) in
-                        self.message.image = img
-                        self.messageIsReadyToBeConsumed(message: self.message)
+                imageView?.sd_setImage(with: url, placeholderImage: nil,
+                                       options: SDWebImageOptions.allowInvalidSSLCertificates,
+                                       completed: { (img, error, cacheOrNetwork, originalUrl) in
+                        if error != nil || img == nil {
+                            self.errorLabel.text = "An error occurred loading the image"
+                            self.activityIndicator.stopAnimating()
+                        } else {
+                            self.errorLabel.text = ""
+                            self.message.image = img
+                            self.messageIsReadyToBeConsumed(message: self.message)
+                        }
                     })
             }
         } else {

@@ -43,9 +43,11 @@ public final class Parla {
     static var parlaCollectionView: UICollectionView!
     static var microphoneView: UIMicrophoneView!
     
-    static let cocoapodsBundle: Bundle? = Bundle(identifier: "org.cocoapods.ParlaKit")
-    static let debugBundle = Bundle.main
-    static let bundle = cocoapodsBundle!
+//    static let cocoapodsBundle: Bundle? = Bundle(identifier: "org.cocoapods.ParlaKit")
+//    static let debugBundle = Bundle.main
+//    static let bundle = debugBundle
+    
+    static let bundle = Bundle(identifier: "org.cocoapods.ParlaKit") ?? Bundle.main
     
     public static let SDWebImageSharedConfig = SDWebImageDownloader.shared
     

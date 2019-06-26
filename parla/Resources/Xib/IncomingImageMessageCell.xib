@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" reuseIdentifier="ImageIncomingXib" id="2Vw-H0-rig" customClass="ImageMessageCell" customModule="ParlaKit" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" reuseIdentifier="ImageIncomingXib" id="2Vw-H0-rig" customClass="ImageMessageCell" customModule="parla" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -28,7 +28,7 @@
                         <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domenico" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YO7-hK-XkR" customClass="UIPaddingLabel" customModule="ParlaKit" customModuleProvider="target">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domenico" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YO7-hK-XkR" customClass="UIPaddingLabel" customModule="parla" customModuleProvider="target">
                         <rect key="frame" x="34" y="146" width="341" height="16"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -65,15 +65,25 @@
                                 </constraints>
                                 <color key="color" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFd-5J-sY3">
+                                <rect key="frame" x="10" y="65" width="321" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pFd-5J-sY3" secondAttribute="trailing" constant="10" id="4Vn-50-rOK"/>
                             <constraint firstItem="0r3-1g-vL9" firstAttribute="top" secondItem="Twd-jF-AcY" secondAttribute="top" id="6Zg-V2-zC5"/>
                             <constraint firstItem="0r3-1g-vL9" firstAttribute="leading" secondItem="Twd-jF-AcY" secondAttribute="leading" id="Jl9-7Q-SzI"/>
                             <constraint firstAttribute="trailing" secondItem="0r3-1g-vL9" secondAttribute="trailing" id="Kjz-IM-Hlr"/>
+                            <constraint firstItem="pFd-5J-sY3" firstAttribute="centerX" secondItem="Twd-jF-AcY" secondAttribute="centerX" id="MCl-qs-Bge"/>
                             <constraint firstAttribute="bottom" secondItem="0r3-1g-vL9" secondAttribute="bottom" id="NLm-4w-swr"/>
                             <constraint firstItem="TwO-6U-Tq8" firstAttribute="centerY" secondItem="Twd-jF-AcY" secondAttribute="centerY" id="URn-Lg-xDP"/>
                             <constraint firstItem="TwO-6U-Tq8" firstAttribute="centerX" secondItem="Twd-jF-AcY" secondAttribute="centerX" id="Wpt-lB-QNQ"/>
+                            <constraint firstItem="pFd-5J-sY3" firstAttribute="centerY" secondItem="Twd-jF-AcY" secondAttribute="centerY" id="cbd-lO-TxJ"/>
+                            <constraint firstItem="pFd-5J-sY3" firstAttribute="leading" secondItem="Twd-jF-AcY" secondAttribute="leading" constant="10" id="hFK-at-L4E"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -104,6 +114,7 @@
                 <outlet property="cellLeadingConstraint" destination="azA-IB-p12" id="hGM-hD-jAP"/>
                 <outlet property="cellTopLabelHeightContraint" destination="vMm-9u-ecH" id="n9C-Me-afh"/>
                 <outlet property="cellTrailingConstraint" destination="wLK-c4-Uiz" id="6UL-N1-Hfr"/>
+                <outlet property="errorLabel" destination="pFd-5J-sY3" id="eqC-Sk-frM"/>
                 <outlet property="imageView" destination="0r3-1g-vL9" id="HwL-rP-Ulr"/>
                 <outlet property="topLabel" destination="0iM-zK-qnI" id="bF2-hz-Fau"/>
             </connections>

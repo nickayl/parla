@@ -51,9 +51,11 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
             Parla.newTextMessage(id: 3, sender: mainSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
             Parla.newImageMessage(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
             Parla.newVideoMessage(id: 5, sender: chiara, videoUrl: mondello),
-            Parla.newVideoMessage(id: 8, sender: chiara),
+            
             Parla.newImageMessage(id: 7, sender: mainSender, imageUrl: URL(string: "https://jbytes.space:8443/download/image/21-06-2019_18-23-28-66208504000000.png")!),
             Parla.newTextMessage(id: 6, sender: mainSender, text: "Amazing, i'm coming right now!"),
+            Parla.newImageMessage(id: 9, sender: mainSender, imageUrl: URL(string: "https://www.hitsicily.com/_files/uploads/mondello-palermo-sicily-beach-2.jpg")!),
+            Parla.newImageMessage(id: 10, sender: chiara, imageUrl: URL(string: "https://www.hitsicily.com/_files/uploads/ciao.jpg")!)
         ]
         
         for m in messages {
