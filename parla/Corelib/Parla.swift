@@ -17,6 +17,11 @@ public final class Parla {
         return PTextMessageImpl(id: id, sender: sender, text: text, date: date)
     }
     
+    public static func newFileMessage(id: Int, sender: PSender, url: URL, date: Date = Date()) -> PTextMessage {
+        let text = url.lastPathComponent
+        return PFileMessageImpl(id: id, sender: sender, fileName: text, url: url, date: date)
+    }
+    
     public static func newImageMessage(id: Int, sender: PSender, image: UIImage, date: Date = Date()) -> PImageMessage {
         return PImageMessageImpl(id: id, sender: sender, image: image, date: date)
     }
@@ -43,9 +48,10 @@ public final class Parla {
     static var parlaCollectionView: UICollectionView!
     static var microphoneView: UIMicrophoneView!
     
-    static let cocoapodsBundle: Bundle? = Bundle(identifier: "org.cocoapods.ParlaKit")
+ //   static let cocoapodsBundle: Bundle? = Bundle(identifier: "org.cocoapods.ParlaKit")
     static let debugBundle = Bundle.main
-    static let bundle = cocoapodsBundle!
+    //static let bundle = cocoapodsBundle!
+    static let bundle = debugBundle
     
     public static let SDWebImageSharedConfig = SDWebImageDownloader.shared
     
@@ -63,6 +69,8 @@ public final class Parla {
         
         let b = bundle
         
+        parlaCollectionView.register(UINib(nibName: incomingFileMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingFileMessageReuseIdentifier)
+        parlaCollectionView.register(UINib(nibName: outgoingFileMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingFileMessageReuseIdentifier)
         parlaCollectionView.register(UINib(nibName: incomingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingTextMessageReuseIdentifier)
         parlaCollectionView.register(UINib(nibName: outgoingTextMessageXibName, bundle: b), forCellWithReuseIdentifier: outgoingTextMessageReuseIdentifier)
         parlaCollectionView.register(UINib(nibName: incomingImageMessageXibName, bundle: b), forCellWithReuseIdentifier: incomingImageMessageReuseIdentifier)

@@ -231,6 +231,78 @@ class ImageMessageCell: AbstractMessageCell, PMessageDelegate {
     
 }
 
+class FileMessageCell : AbstractMessageCell {
+    
+    @IBOutlet var textLabel: UIPaddingLabel!
+    @IBOutlet var textLabelHeightConstraint: NSLayoutConstraint!
+    
+    var message: PFileMessage! {
+        didSet {
+            self.textLabel.text = message.fileName
+        }
+    }
+    
+    override var content: PMessage? {
+        get { return message }
+        
+        set {
+            if let v = newValue as? PFileMessage {
+                self.message = v
+            }
+        }
+    }
+    
+    override func initialize() {
+        super.initialize()
+        
+        // UIDocumentInteractionControllerDelegate
+        
+        
+        //let avatarSize = Parla.config.avatarSize
+        let avatarSize = self.message.sender.avatar.size
+        let cellWidth = frame.width
+        
+        textLabelHeightConstraint.constant = frame.size.height - CGFloat(cellTopLabelHeightContraint.constant + cellBottomLabelHeightConstraint.constant)
+        textLabel.textColor = message.contentColor
+        textLabel.backgroundColor = message.backgroundColor
+        textLabel.padding = cfg.cell.textInsets
+        message.fileName = "File::" + message.fileName
+        textLabel.attributedText = NSAttributedString(string: message.fileName, attributes:
+        [.underlineStyle: NSUnderlineStyle.single.rawValue])
+        
+        textLabel.setBorderRadius(radius: 19)
+        
+        let textWidth = ceil(NSAttributedString(string: message.fileName).size().width) + (cfg.cell.textInsets.left + cfg.cell.textInsets.right)
+        
+    //    print("tw \(textWidth) cw \(cellWidth) sendertype: \(message.senderType.rawValue)")
+        let kAddFactor:CGFloat = 1.367
+        
+        if cellWidth > ((textWidth * kAddFactor) + avatarSize.width + cfg.cell.kDefaultBubbleMargins) {
+            var bubbleWidth = (textWidth * kAddFactor)
+            bubbleWidth = bubbleWidth < 38 ? 38 : bubbleWidth
+         //   print("bubble text width: \(bubbleWidth) original text width: \(textWidth)")
+            leadingOrTrailingConstraint.constant = cellWidth - (bubbleWidth + avatarSize.width)
+            textLabel.textAlignment = .center
+            textLabel.padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            textLabel.setBorderRadius(radius: 19)
+        } else {
+//            leadingOrTrailingConstraint.constant = (cfg.cell.labelInsets.left * 2)+cfg.cell.kDefaultBubbleMargins
+            leadingOrTrailingConstraint.constant = cfg.cell.kDefaultBubbleMargins + Parla.config.avatar.size.width
+            textLabel.textAlignment = .left
+            textLabel.padding = cfg.cell.textInsets
+        }
+        
+        addDefaultTapGestureRecognizer()
+        addDefaultLongTouchGestureRecognizer()
+        
+        (self.message as? PTextMessageImpl)?.label = textLabel
+        
+    }
+    
+    override func awakeFromNib() {
+        print("Awake from nib")
+    }
+}
 
 
 class TextMessageCell : AbstractMessageCell {
@@ -366,7 +438,7 @@ class AbstractMessageCell: UICollectionViewCell {
         if !avatarSize.equalTo(CGSize.zero) {
             // If the sender have an avatar image let's set it. Otherwise it'll be replaced with a custom background color
             self.avatarBubbleImage.contentMode = Parla.config.avatar.imageContentMode
-            avatarBubbleImage.image = content?.sender.avatar.image
+            avatarBubbleImage.image = content?.sender.avatar.image ?? UIImage(withBackground: Parla.AvatarConfig.kDefaultAvatarBackgroundColor)
             avatarBubbleImage.setBorderRadius(radius: Int(avatarSize.width / 2))
         }
         

@@ -27,8 +27,8 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
        
         // The avatars of the senders. If you do not want an avatar pass nil and disable avatar in the config
         // class before initializing: Parla.config.avatar.isHidden = true
-        let domenicoAvatar = PAvatar(withImage: UIImage(named: "domenico.jpeg")!)
-        let chiaraAvatar = PAvatar(withImage: UIImage(named: "chiara.jpg")!)
+        let domenicoAvatar = PAvatar(withImage: UIImage(named: "domenico.jpeg"))
+        let chiaraAvatar = PAvatar(withImage: UIImage(named: "chiara.jpg"))
         
         // In this example we have 2 message senders
         mainSender = Parla.outgoingSender(id: 10, name: "Domenico", avatar: nil)
@@ -38,6 +38,7 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
         config.accessoryButton.preventDefault = false
         config.cell.isBottomLabelHidden = false
         
+        
         // This color will be used if you pass a nil avatar to a sender but do not set the isHidden property to true.
         config.avatar.backgroundColor = UIColor.black
         
@@ -45,6 +46,7 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
         let mondello = Bundle.main.url(forResource: "mondello", withExtension: "mp4")!
         
         // Adding some test messages
+        let fileurl = Bundle.main.url(forResource: "DICHIARAZIONE", withExtension: "pdf")!
         self.messages = [
             Parla.newTextMessage(id: 1, sender: mainSender, text: "Hi Chiara! How are you? :)"),
             Parla.newTextMessage(id: 2, sender: chiara, text: "Hi Domenico, all right! I'm sitting on a deckchiar here in the wonderful beach of Mondello, in Palermo (Italy)  :)"),
@@ -54,12 +56,16 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
             Parla.newVideoMessage(id: 8, sender: chiara),
             Parla.newImageMessage(id: 7, sender: mainSender, imageUrl: URL(string: "https://jbytes.space:8443/download/image/21-06-2019_18-23-28-66208504000000.png")!),
             Parla.newTextMessage(id: 6, sender: mainSender, text: "Amazing, i'm coming right now!"),
+            Parla.newFileMessage(id: 7, sender: mainSender, url: fileurl)
         ]
+        
+        
         
         for m in messages {
             m.options.isBottomLabelActive = false
         }
        
+        self.messages.append(contentsOf: [  ])
         // Initialization of ParlaView class
         parlaView.initialize(dataSource: self, delegate: self)
 //        // Hide the top label every 4 times.
@@ -87,6 +93,7 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
         print("END building current location message")
         
     }
+    
     
     func didStartBuildingCurrentLocationMessage(with coordinates: CLLocationCoordinate2D, with message: PMapMessage) {
         print("START building current location message")
@@ -123,6 +130,14 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
         }
     }
     
+    func didFinishChoosingFile(atUrl url: URL?) {
+        if let u = url {
+            let msg = PFileMessageImpl(id: messages.count+1, sender: mainSender, fileName: u.lastPathComponent, url: u)
+            messages.append(msg)
+            collectionView.reloadData()
+            collectionView.scrollToBottom(animated: true)
+        }
+    }
     
     
     func didStartRecordingVoiceMessage(atUrl url: URL) {

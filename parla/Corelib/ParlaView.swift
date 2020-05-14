@@ -51,6 +51,9 @@ public protocol ParlaViewDataSource {
     
     @objc optional func didStartRecordingVoiceMessage(atUrl url: URL)
     @objc optional func didEndRecordingVoiceMessage(atUrl url: URL)
+    
+    @objc optional func didFinishChoosingFile(atUrl url: URL?)
+    @objc optional func didCanceledChoosingFile()
     // ==========
     
 }
@@ -60,7 +63,7 @@ public protocol ParlaViewDataSource {
     **This view must belong to a UIViewController class hierarchy or a runtime error will occur.**
 */
 @IBDesignable
-open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate, CLLocationManagerDelegate, UIMicrophoneViewDelegate, VoiceRecorderDelegate  {
+open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, AccessoryActionChooserDelegate, CLLocationManagerDelegate, UIMicrophoneViewDelegate, VoiceRecorderDelegate, UIDocumentPickerDelegate  {
 
     public var dataSource: ParlaViewDataSource!
     public var delegate: ParlaViewDelegate?
@@ -227,7 +230,21 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     /// ************** =========================== ****************** ///
-
+    private let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.data", "public.pdf", "public.text"], in: .import)
+    
+    private func sendFile() {
+        documentPicker.delegate = self;
+        self.viewController.present(documentPicker, animated: true, completion: nil)
+    }
+    
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        self.delegate?.didFinishChoosingFile?(atUrl: url)
+    }
+    
+    public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        self.delegate?.didCanceledChoosingFile?()
+    }
+    
     private func chooseImageFrom(source: MediaPickerSource)  {
         self.delegate?.didStartPickingImage?(collectionView: self.collectionView)
         
@@ -359,7 +376,8 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
             .chooseImageFromGallery : {  self.chooseImageFrom(source: .photoLibrary) },
             .pickImageFromCamera :  {  self.chooseImageFrom(source: .camera) },
             .pickVideoFromCamera :  {  self.chooseVideoFrom(source: .camera) },
-            .sendPosition : { self.sendPosition() }
+            .sendPosition : { self.sendPosition() },
+            .sendFile : { self.sendFile()}
         ]
     }
     

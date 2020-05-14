@@ -21,6 +21,9 @@ let outgoingVideoMessageXibName = "OutgoingVideoMessageCell", outgoingVideoMessa
 let incomingVideoMessageXibName = "IncomingVideoMessageCell", incomingVideoMessageReuseIdentifier = "VideoIncomingXib"
 let voiceMessageIncomingReuseIdentifier = "VoiceMessageCellIncomingXib"
 let voiceMessageOutgoingReuseIdentifier = "VoiceMessageCellOutgoingXib"
+// new ==>
+let incomingFileMessageXibName = "IncomingFileMessageCell", incomingFileMessageReuseIdentifier = "FileIncomingXib"
+let outgoingFileMessageXibName = "OutgoingFileMessageCell", outgoingFileMessageReuseIdentifier = "FileOutgoingXib"
 
 @objc public protocol PMessageOptions {
     var isTopLabelActive: Bool { get set }
@@ -60,6 +63,13 @@ public protocol PTextMessage : PMessage {
     var text: String { get set }
     var enableCopyOnLongTouch: Bool { get set }
     init(id: Int, sender: PSender, text: String, date: Date)
+}
+
+public protocol PFileMessage : PMessage {
+    var fileName: String { get set }
+    var url: URL? { get set }
+    var fileExt: String? { get set }
+    init(id: Int, sender: PSender, fileName: String, url: URL, date: Date)
 }
 
 public protocol PVideoMessage : PMessage {
@@ -221,7 +231,7 @@ class PVideoMessageImpl : AbstractPMessage<URL>, PVideoMessage {
         isReadyToUse = videoUrl != nil
         self.content = videoUrl
         
-        self.player = MobilePlayerVideoPlayer(with: self)
+        self.player = AVPlayerVideoPlayer(with: self)
     }
     
     public override func triggerSelection(viewController: UIViewController? = nil) {
@@ -266,6 +276,59 @@ class PImageMessageImpl: AbstractPMessage<UIImage>, PImageMessage {
         return CGSize(width: frameWidth - (config.cell.sectionInsets.left + config.cell.sectionInsets.right), height: Parla.config.cell.kDefaultImageBubbleSize.height)
     }
     
+}
+
+class PFileMessageImpl : PTextMessageImpl, PFileMessage, UIDocumentInteractionControllerDelegate {
+    
+    var fileExt: String?
+    var fileName: String
+    var url: URL?
+    var viewController: UIViewController?
+    
+     // Initialize Document Interaction Controller
+    var documentInteractionController = UIDocumentInteractionController()
+    
+    public override var enableCopyOnLongTouch: Bool {
+        didSet {
+            label?.canCopyText = false
+        }
+    }
+    
+    override var cellIdentifier: String {
+        return isIncoming ? incomingFileMessageReuseIdentifier : outgoingFileMessageReuseIdentifier
+    }
+    
+    required init(id: Int, sender: PSender, fileName: String, url: URL, date: Date = Date()) {
+        self.fileName = fileName
+        self.url = url
+        // Configure Document Interaction Controller
+        super.init(id: id, sender: sender, text: fileName, date: date)
+        documentInteractionController.delegate = self
+    }
+
+    required public init(id: Int, sender: PSender, text: String, date: Date = Date()) {
+        self.fileName = text
+        // Configure Document Interaction Controller
+        super.init(id: id, sender: sender, text: text, date: date)
+        documentInteractionController.delegate = self
+    }
+    
+    private func documentInteractionControllerViewControllerForPreview
+        (controller: UIDocumentInteractionController) -> UIViewController {
+        return viewController!
+    }
+    
+    override func triggerSelection(viewController: UIViewController? = nil) {
+        print("Trigger selection on File message")
+        self.viewController = viewController
+        
+        if let vc = viewController, let u = url {
+             documentInteractionController.url = u
+            
+             // Present Open In Menu
+            documentInteractionController.presentOptionsMenu(from: vc.view.frame, in: vc.view, animated: true)
+        }
+    }
 }
 
 class PTextMessageImpl : AbstractPMessage<String>, PTextMessage {

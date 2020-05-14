@@ -16,6 +16,7 @@ import UIKit
     case pickImageFromCamera
     case pickVideoFromCamera
     case sendPosition
+    case sendFile
 }
 
 public typealias AccessoryAction = () -> Void
@@ -46,7 +47,7 @@ public class ActionSheetAccessoryActionChooser : AccessoryActionChooser {
         self.viewController = viewController
         self.config = Parla.config
         
-        alert = UIAlertController(title: "Add media chooser", message: "Add photos and videos", preferredStyle: .alert)
+        alert = UIAlertController(title: "Add media chooser", message: "Add photos and videos", preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Choose Photo", comment: "Default action"), style: .default, handler: { _ in
             let action = self.accessoryActions[.chooseImageFromGallery]
@@ -74,6 +75,12 @@ public class ActionSheetAccessoryActionChooser : AccessoryActionChooser {
         alert.addAction(UIAlertAction(title: NSLocalizedString("Send position", comment: "Default action"), style: .default, handler: { _ in
             let action = self.accessoryActions[.sendPosition]
             self.delegate?.didChooseAccessoryAction(with: action, ofType: .sendPosition)
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Attach File", comment: "Default action"), style: .default, handler: { _ in
+            let action = self.accessoryActions[.sendFile]
+            self.delegate?.didChooseAccessoryAction(with: action, ofType: .sendFile)
             
         }))
         

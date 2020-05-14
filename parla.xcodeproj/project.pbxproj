@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,6 +39,9 @@
 		527994AA2282E96300ACB791 /* OutgoingTextMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */; };
 		527994AC2283079800ACB791 /* VoiceMessageCellIncoming.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527994AB2283079800ACB791 /* VoiceMessageCellIncoming.xib */; };
 		529AA73222A6799700E0C2EE /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AA73122A6799700E0C2EE /* DebugViewController.swift */; };
+		52A8FD99246DD114009F01D9 /* OutgoingFileMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52A8FD98246DD114009F01D9 /* OutgoingFileMessageCell.xib */; };
+		52A8FD9B246DD11E009F01D9 /* IncomingFileMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52A8FD9A246DD11E009F01D9 /* IncomingFileMessageCell.xib */; };
+		52A8FD9D246DD4F8009F01D9 /* DICHIARAZIONE.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 52A8FD9C246DD4F8009F01D9 /* DICHIARAZIONE.pdf */; };
 		52B15A162289F9F200690FC8 /* UIPaintableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B15A152289F9F200690FC8 /* UIPaintableImageView.swift */; };
 		52BB818E228D71BD00D3904C /* UIMicrophoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */; };
 		52E6D2C2228FDF5D00A8D6C2 /* ParlaInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */; };
@@ -121,6 +124,9 @@
 		527994A52282E96300ACB791 /* OutgoingTextMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingTextMessageCell.xib; sourceTree = "<group>"; };
 		527994AB2283079800ACB791 /* VoiceMessageCellIncoming.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoiceMessageCellIncoming.xib; sourceTree = "<group>"; };
 		529AA73122A6799700E0C2EE /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
+		52A8FD98246DD114009F01D9 /* OutgoingFileMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingFileMessageCell.xib; sourceTree = "<group>"; };
+		52A8FD9A246DD11E009F01D9 /* IncomingFileMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingFileMessageCell.xib; sourceTree = "<group>"; };
+		52A8FD9C246DD4F8009F01D9 /* DICHIARAZIONE.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DICHIARAZIONE.pdf; sourceTree = "<group>"; };
 		52B15A152289F9F200690FC8 /* UIPaintableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPaintableImageView.swift; sourceTree = "<group>"; };
 		52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMicrophoneView.swift; sourceTree = "<group>"; };
 		52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlaInputToolbar.swift; sourceTree = "<group>"; };
@@ -235,6 +241,7 @@
 				527994482282C94700ACB791 /* Assets.xcassets */,
 				527994A02282E95200ACB791 /* Xib */,
 				527994622282CA3C00ACB791 /* avatarDefault.png */,
+				52A8FD9C246DD4F8009F01D9 /* DICHIARAZIONE.pdf */,
 				527994672282CA3D00ACB791 /* doc.jpg */,
 				5279946B2282CA3D00ACB791 /* Microphone-100.png */,
 				527994662282CA3D00ACB791 /* pause100.png */,
@@ -249,6 +256,8 @@
 		527994A02282E95200ACB791 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
+				52A8FD9A246DD11E009F01D9 /* IncomingFileMessageCell.xib */,
+				52A8FD98246DD114009F01D9 /* OutgoingFileMessageCell.xib */,
 				527994A42282E96300ACB791 /* IncomingImageMessageCell.xib */,
 				52FB4DD82284AED0001BF14E /* IncomingVideoMessageCell.xib */,
 				527994A12282E96300ACB791 /* IncomingTextMessageCell.xib */,
@@ -433,8 +442,11 @@
 				52FB4DD72284AE89001BF14E /* OutgoingVideoMessageCell.xib in Resources */,
 				52710E3D228F3F330003D634 /* domenico.jpeg in Resources */,
 				527994742282CA3D00ACB791 /* play40.png in Resources */,
+				52A8FD99246DD114009F01D9 /* OutgoingFileMessageCell.xib in Resources */,
+				52A8FD9B246DD11E009F01D9 /* IncomingFileMessageCell.xib in Resources */,
 				527994A72282E96300ACB791 /* ParlaCollectionView.xib in Resources */,
 				520906FB228AEC84001BC7A8 /* UIPaintableImageView.xib in Resources */,
+				52A8FD9D246DD4F8009F01D9 /* DICHIARAZIONE.pdf in Resources */,
 				52E6D2C4228FE43B00A8D6C2 /* ParlaInputToolbar.xib in Resources */,
 				527994752282CA3D00ACB791 /* Microphone-100.png in Resources */,
 				527994AC2283079800ACB791 /* VoiceMessageCellIncoming.xib in Resources */,

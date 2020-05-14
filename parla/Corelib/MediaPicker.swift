@@ -123,7 +123,7 @@ public class SystemMediaPicker : NSObject, MediaPicker, UIImagePickerControllerD
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         
         if image != nil {
-            UIImageWriteToSavedPhotosAlbum(image!, self, #selector(onSavingImageError(_:didFinishSavingWithError:contextInfo:)), nil)
+//            UIImageWriteToSavedPhotosAlbum(image!, self, #selector(onSavingImageError(_:didFinishSavingWithError:contextInfo:)), nil)
             completitionHandler?(image)
         } else {
             if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL {

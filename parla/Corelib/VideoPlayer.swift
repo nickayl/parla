@@ -17,6 +17,43 @@ public protocol VideoPlayer {
     func close()
 }
 
+public class AVPlayerVideoPlayer : VideoPlayer {
+    
+    private let viewController: UIViewController? = Parla.config.containerViewController
+    private var playerVC: AVPlayerViewController?
+    private var videoMessage: PVideoMessage
+    
+    init(with videoMessage: PVideoMessage) {
+       self.videoMessage = videoMessage
+    }
+    
+    public func play() {
+        if let videoUrl = videoMessage.videoUrl {
+            playerVC = AVPlayerViewController()
+            playerVC!.player = AVPlayer(url: videoUrl)
+           // playerVC!.shouldAutoplay = false
+            playerVC!.title = "\(videoMessage.sender.name)'s video"
+            //layerVC!.activityItems = [videoMessage.videoUrl]
+            viewController?.present(playerVC!, animated: true, completion: nil)
+        }
+      //  viewController?.presentMoviePlayerViewControllerAnimated(playerVC)
+    }
+    
+    public func pause() {
+        playerVC?.player?.pause()
+    }
+    
+    public func stop() {
+        playerVC?.player?.replaceCurrentItem(with: nil)
+    }
+    
+    public func close() {
+        playerVC?.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+@available(iOS, deprecated, message: "This VidePlayer implementation does no longer work.")
 public class MobilePlayerVideoPlayer : VideoPlayer {
     
     private let viewController: UIViewController? = Parla.config.containerViewController

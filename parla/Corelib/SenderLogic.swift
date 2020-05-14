@@ -48,11 +48,11 @@ import UIKit
 
 public class PAvatar {
     
-    var image: UIImage
+    var image: UIImage?
     var size: CGSize
     public static let void = PAvatar()
     
-    public init(withImage image: UIImage) {
+    public init(withImage image: UIImage?) {
         self.image = image
         self.size = Parla.config.avatar.size
     }
