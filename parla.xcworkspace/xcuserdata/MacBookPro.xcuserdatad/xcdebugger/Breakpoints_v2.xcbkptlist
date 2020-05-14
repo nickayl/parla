@@ -1144,54 +1144,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F208E4DD-4689-4D66-AA0A-A1D77E92897A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "parla/Corelib/Parla.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "Parla"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "F208E4DD-4689-4D66-AA0A-A1D77E92897A - d019f192a226e436"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "globalinit_33_E60F039AA70B8C0000721015D4F656A8_func5"
-                  moduleName = "parla"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/MacBookPro/Desktop/Old/xcode%20projects/parla/parla/Corelib/Parla.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  uuid = "F208E4DD-4689-4D66-AA0A-A1D77E92897A - 8da8555b4ff14231"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "parla.Parla.debugBundle.unsafeMutableAddressor : __C.NSBundle"
-                  moduleName = "parla"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/MacBookPro/Desktop/Old/xcode%20projects/parla/parla/Corelib/Parla.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "4">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "82BE6153-11D8-46DB-83F3-9E1FF2B2EDB5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1384,22 +1336,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D0A62853-1C2D-46D4-B73C-23CE9AE0B515"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "parla/Corelib/NewViewController2.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "304A38CC-4BF3-4EC5-9C88-B639883ED4CE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1487,9 +1423,9 @@
             filePath = "parla/Corelib/NewViewController2.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "didTapMessageBubble(at:message:collectionView:)"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1567,9 +1503,9 @@
             filePath = "parla/Corelib/NewViewController2.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "didFinishChoosingFile(atUrl:)"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "didFinishPickingImage(with:collectionView:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1583,9 +1519,9 @@
             filePath = "parla/Corelib/NewViewController2.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "didFinishChoosingFile(atUrl:)"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "didFinishPickingImage(with:collectionView:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
