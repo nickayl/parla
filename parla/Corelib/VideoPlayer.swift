@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MobilePlayer
 import AVKit
 
 public protocol VideoPlayer {
@@ -53,38 +52,38 @@ public class AVPlayerVideoPlayer : VideoPlayer {
     
 }
 
-@available(iOS, deprecated, message: "This VidePlayer implementation does no longer work.")
-public class MobilePlayerVideoPlayer : VideoPlayer {
-    
-    private let viewController: UIViewController? = Parla.config.containerViewController
-    private var playerVC: MobilePlayerViewController?
-    private var videoMessage: PVideoMessage
-    
-    init(with videoMessage: PVideoMessage) {
-       self.videoMessage = videoMessage
-    }
-    
-    public func play() {
-        if playerVC == nil, let videoUrl = videoMessage.videoUrl {
-            playerVC = MobilePlayerViewController(contentURL: videoUrl)
-            playerVC!.shouldAutoplay = false
-            playerVC!.title = "\(videoMessage.sender.name)'s video"
-            playerVC!.activityItems = [videoMessage.videoUrl]
-            viewController?.present(playerVC!, animated: true, completion: nil)
-        }
-      //  viewController?.presentMoviePlayerViewControllerAnimated(playerVC)
-    }
-    
-    public func pause() {
-       playerVC?.pause()
-    }
-    
-    public func stop() {
-        playerVC?.stop()
-    }
-    
-    public func close() {
-         playerVC?.dismiss(animated: true, completion: nil)
-    }
-    
-}
+//@available(iOS, deprecated, message: "This VidePlayer implementation does no longer work.")
+//public class MobilePlayerVideoPlayer : VideoPlayer {
+//
+//    private let viewController: UIViewController? = Parla.config.containerViewController
+//    private var playerVC: MobilePlayerViewController?
+//    private var videoMessage: PVideoMessage
+//
+//    init(with videoMessage: PVideoMessage) {
+//       self.videoMessage = videoMessage
+//    }
+//
+//    public func play() {
+//        if playerVC == nil, let videoUrl = videoMessage.videoUrl {
+//            playerVC = MobilePlayerViewController(contentURL: videoUrl)
+//            playerVC!.shouldAutoplay = false
+//            playerVC!.title = "\(videoMessage.sender.name)'s video"
+//            playerVC!.activityItems = [videoMessage.videoUrl]
+//            viewController?.present(playerVC!, animated: true, completion: nil)
+//        }
+//      //  viewController?.presentMoviePlayerViewControllerAnimated(playerVC)
+//    }
+//
+//    public func pause() {
+//       playerVC?.pause()
+//    }
+//
+//    public func stop() {
+//        playerVC?.stop()
+//    }
+//
+//    public func close() {
+//         playerVC?.dismiss(animated: true, completion: nil)
+//    }
+//
+//}
