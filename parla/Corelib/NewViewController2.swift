@@ -48,21 +48,21 @@ class NewViewController2 : UIViewController, ParlaViewDataSource, ParlaViewDeleg
         // Adding some test messages
         let fileurl = Bundle.main.url(forResource: "DICHIARAZIONE", withExtension: "pdf")!
         self.messages = [
-            Parla.newTextMessage(id: 1, sender: mainSender, text: "Hi Chiara! How are you? :)"),
+            Parla.newTextMessage(id: 1, sender: mainSender, text: "Hi Chiara! How are you? :)", date: Date.fromString("20/09/1990", withFormat: "dd/MM/yyyy")!),
             Parla.newTextMessage(id: 2, sender: chiara, text: "Hi Domenico, all right! I'm sitting on a deckchiar here in the wonderful beach of Mondello, in Palermo (Italy)  :)"),
             Parla.newTextMessage(id: 3, sender: mainSender, text: "Waw! Tha's awesome! I can't wait to see a picture of you in this wonderful place!"),
             Parla.newImageMessage(id: 4, sender: chiara, image: UIImage(named: "mondello-beach.jpg")!),
             Parla.newVideoMessage(id: 5, sender: chiara, videoUrl: mondello),
             Parla.newVideoMessage(id: 8, sender: chiara),
-            Parla.newImageMessage(id: 7, sender: mainSender, imageUrl: URL(string: "https://jbytes.space:8443/download/image/21-06-2019_18-23-28-66208504000000.png")!),
             Parla.newTextMessage(id: 6, sender: mainSender, text: "Amazing, i'm coming right now!"),
             Parla.newFileMessage(id: 7, sender: mainSender, url: fileurl)
         ]
         
         
-        
         for m in messages {
             m.options.isBottomLabelActive = false
+            m.options.isTopLabelActive = true
+            
         }
        
         self.messages.append(contentsOf: [  ])

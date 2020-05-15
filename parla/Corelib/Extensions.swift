@@ -274,12 +274,12 @@ internal extension Date {
     static func getDateTimeFormat() -> String {
         // 06/01/2019 10:04:20
         
-        return "dd_MM_yyyy__H_mm_ss"
+        return "yyyy/MM/dd H:mm:ss"
         //   return "yyyy-MM-dd hh:mm:ss"
     }
     
     static func getDateFormat() -> String {
-        return "dd_MM_yyyy"
+        return "dd MM yyyy"
     }
     
 }

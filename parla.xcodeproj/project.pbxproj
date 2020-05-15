@@ -127,6 +127,8 @@
 		52A8FD98246DD114009F01D9 /* OutgoingFileMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingFileMessageCell.xib; sourceTree = "<group>"; };
 		52A8FD9A246DD11E009F01D9 /* IncomingFileMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingFileMessageCell.xib; sourceTree = "<group>"; };
 		52A8FD9C246DD4F8009F01D9 /* DICHIARAZIONE.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = DICHIARAZIONE.pdf; sourceTree = "<group>"; };
+		52A8FD9E246DF763009F01D9 /* parla.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = parla.entitlements; sourceTree = "<group>"; };
+		52A8FD9F246DF7E8009F01D9 /* parlaDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = parlaDebug.entitlements; sourceTree = "<group>"; };
 		52B15A152289F9F200690FC8 /* UIPaintableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPaintableImageView.swift; sourceTree = "<group>"; };
 		52BB818D228D71BD00D3904C /* UIMicrophoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMicrophoneView.swift; sourceTree = "<group>"; };
 		52E6D2C1228FDF5D00A8D6C2 /* ParlaInputToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParlaInputToolbar.swift; sourceTree = "<group>"; };
@@ -214,6 +216,8 @@
 		527994402282C94500ACB791 /* parla */ = {
 			isa = PBXGroup;
 			children = (
+				52A8FD9F246DF7E8009F01D9 /* parlaDebug.entitlements */,
+				52A8FD9E246DF763009F01D9 /* parla.entitlements */,
 				529AA73022A6797D00E0C2EE /* Debug */,
 				52D6BBF622970FA500C441D7 /* Corelib */,
 				52B15A1222897B5600690FC8 /* Drawing */,
@@ -726,6 +730,7 @@
 			baseConfigurationReference = D25D1C435AAEEA8E8BD9F483 /* Pods-parla.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = parla/parlaDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23PQ7WQ52E;
 				INFOPLIST_FILE = parla/Info.plist;
@@ -746,6 +751,7 @@
 			baseConfigurationReference = 1408B47793C81470808D10E1 /* Pods-parla.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = parla/parla.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23PQ7WQ52E;
 				INFOPLIST_FILE = parla/Info.plist;

@@ -442,8 +442,15 @@ class AbstractMessageCell: UICollectionViewCell {
             avatarBubbleImage.setBorderRadius(radius: Int(avatarSize.width / 2))
         }
         
+        if let customText = content?.customTopLabelText {
+            self.topLabel.text = customText
+        }
+        
     }
     
+//    func setTopLabelText(text: String) {
+//        self.topLabel.text = text
+//    }
     
     override func prepareForReuse() {
         super.prepareForReuse()

@@ -54,6 +54,7 @@ let outgoingFileMessageXibName = "OutgoingFileMessageCell", outgoingFileMessageR
     var backgroundColor: UIColor { get }
     var isIncoming: Bool { get }
     var options: PMessageOptions { get }
+    var customTopLabelText: String? { get set }
     
     func displaySize(frameWidth: CGFloat) -> CGSize
     func triggerSelection(viewController: UIViewController?)
@@ -401,6 +402,7 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
     public var isReadyToUse: Bool = true
     public var delegate: PMessageDelegate?
     public var options: PMessageOptions
+    public var customTopLabelText: String?
     
     public var contentColor: UIColor = Parla.CellConfig.kDefaultContentColor
     public var backgroundColor: UIColor = Parla.CellConfig.kDefaultBackgroundColor
@@ -442,6 +444,7 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
             self.contentColor = Parla.config.cell.textOutgoingColor
             self.backgroundColor = Parla.config.cell.textMessageBubbleOutgoingColor
         }
+        customTopLabelText = date.toString()
     }
     
     public static func == (lhs: AbstractPMessage, rhs: AbstractPMessage) -> Bool {
@@ -452,6 +455,9 @@ public class AbstractPMessage<T> : NSObject, PMessage, Comparable {
         return lhs.date.compare(rhs.date).rawValue < 0
     }
     
+    public func setCustomTopLabelText(text: String) {
+        self.customTopLabelText = text
+    }
 }
 
 @objc public class PMessageOptionsImpl : NSObject, PMessageOptions {

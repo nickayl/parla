@@ -1359,8 +1359,8 @@
             filePath = "parla/Corelib/MessageLogic.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "triggerSelection(viewController:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1375,8 +1375,8 @@
             filePath = "parla/Corelib/MessageLogic.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
             landmarkName = "triggerSelection(viewController:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1391,8 +1391,8 @@
             filePath = "parla/Corelib/MessageLogic.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
             landmarkName = "documentInteractionControllerViewControllerForPreview(controller:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1407,8 +1407,8 @@
             filePath = "parla/Corelib/MessageLogic.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "323"
-            endingLineNumber = "323"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "triggerSelection(viewController:)"
             landmarkType = "7">
          </BreakpointContent>
