@@ -266,7 +266,7 @@ class FileMessageCell : AbstractMessageCell {
         textLabel.textColor = message.contentColor
         textLabel.backgroundColor = message.backgroundColor
         textLabel.padding = cfg.cell.textInsets
-        message.fileName = "File::" + message.fileName
+        message.fileName = message.fileName
         textLabel.attributedText = NSAttributedString(string: message.fileName, attributes:
         [.underlineStyle: NSUnderlineStyle.single.rawValue])
         

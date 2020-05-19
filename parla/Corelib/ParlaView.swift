@@ -232,6 +232,8 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     /// ************** =========================== ****************** ///
     private let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.data", "public.pdf", "public.text"], in: .import)
     
+    //private var documentPicker: UIDocumentPickerViewController? = nil
+    
     private func sendFile() {
         documentPicker.delegate = self;
         self.viewController.present(documentPicker, animated: true, completion: nil)
@@ -407,7 +409,7 @@ open class ParlaView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     @objc public final func keyboardWillShow(_ notification: NSNotification) {
         // print(notification.userInfo)
         // We need the  keyboard height
-        let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
+        let keyboardSize:CGSize = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
         print("keyboard size: \(keyboardSize)")
         
         bottomConstraints.forEach { $0.constant -= keyboardSize.height }
