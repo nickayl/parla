@@ -143,7 +143,3 @@ func didPressAccessoryButton(button: UIView, collectionView: UICollectionView) {
  
 Contributors are welcome! 
 Since this is a brand new library, i hope someone will help me with the maintainance of the project and for the future feature releases.
- 
-[comment]: <> # # Contact info
- 
-[comment]: <> # If you want to contact me for any information, send me an email at: dom.aiello90@gmail.com
