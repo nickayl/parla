@@ -3,7 +3,7 @@
 ![Cocoapods platforms](https://img.shields.io/cocoapods/p/ParlaKit.svg?color=%23fb0006)
 ![Cocoapods](https://img.shields.io/badge/language-swift%205.0-red.svg)
 ![Cocoapods](https://img.shields.io/cocoapods/v/ParlaKit.svg?color=green)
-![Maintenance](https://img.shields.io/maintenance/yes/2019.svg)
+![Maintenance](https://img.shields.io/maintenance/yes/2021.svg)
 ![Cocoapods](https://img.shields.io/cocoapods/l/ParlaKit.svg)
 
 **DOCUMENTATION UNDER CONSTRUCTION**
